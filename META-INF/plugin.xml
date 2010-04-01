@@ -1,0 +1,48 @@
+<idea-plugin version="2">
+    <name>Protocol Buffers</name>
+    <description>Google Protocol Buffers plugin</description>
+    <version>0.2</version>
+    <vendor>Nikolay Matveev</vendor>
+    <idea-version since-build="8000"/>
+
+    <application-components>
+        <!-- Add your application components here -->
+        <component>
+            <implementation-class>protobuf.ProtobufLoader</implementation-class>
+        </component>
+        <!-- <component>
+            <implementation-class>protobuf.settingss.application.ProtobufApplicationSettings</implementation-class>
+        </component> -->
+    </application-components>
+
+    <module-components>
+        <!-- Add your module components here -->
+    </module-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    <!--    <component>
+            <implementation-class>protobuf.compiler.CompilerLoader</implementation-class>
+        </component> -->
+    </project-components>
+
+    <actions>
+        <!-- Add your actions here -->
+        <!--<action id="Protobuf.NewFile" class="protobuf.actions.NewFileAction">
+            <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewXml"/>
+        </action>-->
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">        
+        <fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>                
+        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.ProtobufSyntaxHighlighter"/>
+        
+        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.ProtobufBraceMatcher"/>
+        <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.ProtobufParserDefinition"/>
+        <lang.formatter language="Protobuf"
+                    implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
+        <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.ProtobufCommenter"/>
+        <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
+        <annotator language="Protobuf" implementationClass="protobuf.annotator.ProtobufAnnotator"/>
+    </extensions>
+</idea-plugin>
