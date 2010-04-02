@@ -76,16 +76,16 @@ public class ReferenceElement {
             }
             marker.done(OPTION_REF);
             marker = marker.precede();
-        }
-        marker.drop();
+        }        
+        marker.done(OPTION_NAME);
         return true;
     }
 
     private static boolean parseOptionPart(PatchedPsiBuilder builder) {
         if (builder.compareToken(IK)) {
-            PsiBuilder.Marker marker = builder.mark();
+            //PsiBuilder.Marker marker = builder.mark();
             builder.match(IK);
-            marker.done(OPTION_REF);
+            //marker.done(OPTION_REF);
             return true;
         }
         if (!builder.compareToken(OPEN_PARANT)) {

@@ -1,6 +1,8 @@
 package protobuf.lang.psi.impl.definitions;
 
 import com.intellij.lang.ASTNode;
+import protobuf.lang.psi.api.PbPsiScope;
+import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.PbExtendDef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
@@ -17,5 +19,10 @@ public class PbExtendDefImpl extends PbPsiElementImpl implements PbExtendDef {
 
     public String toString(){
         return "extend definition";
+    }
+
+    @Override
+    public PbPsiScope getScope() {
+        return findChildByClass(PbBlock.class);
     }
 }

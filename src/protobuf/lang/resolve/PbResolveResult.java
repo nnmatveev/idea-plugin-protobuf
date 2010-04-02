@@ -8,7 +8,7 @@ import com.intellij.psi.ResolveResult;
  * Date: Mar 29, 2010
  */
 public class PbResolveResult implements ResolveResult {
-    public static final PbResolveResult[] EMPTY_ARRAY = new PbResolveResult[0];
+    public static final PbResolveResult[] EMPTY_RESULT = new PbResolveResult[0];
 
     private PsiElement myElement;
 

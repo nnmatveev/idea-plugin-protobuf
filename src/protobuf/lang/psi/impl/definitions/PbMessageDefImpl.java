@@ -7,9 +7,11 @@ import org.jetbrains.annotations.NonNls;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiScope;
+import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.blocks.PbMessageBlock;
 import protobuf.lang.psi.api.definitions.PbFieldDef;
 import protobuf.lang.psi.api.definitions.PbMessageDef;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.impl.members.PbNameImpl;
 
@@ -59,6 +61,6 @@ public class PbMessageDefImpl extends PbPsiElementImpl implements PbMessageDef {
 
     @Override
     public PbPsiScope getScope() {
-        return findChildByClass(PbMessageBlock.class);
+        return findChildByClass(PbBlock.class);
     }
 }

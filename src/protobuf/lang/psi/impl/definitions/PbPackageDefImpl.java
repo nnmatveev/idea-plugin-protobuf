@@ -1,10 +1,8 @@
 package protobuf.lang.psi.impl.definitions;
 
 import com.intellij.lang.ASTNode;
-import protobuf.lang.psi.api.references.PbPackageRef;
-import protobuf.lang.psi.api.references.PbRef;
-import protobuf.lang.psi.api.references.PbTypeRef;
 import protobuf.lang.psi.api.definitions.PbPackageDef;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
 /**
@@ -22,7 +20,7 @@ public class PbPackageDefImpl extends PbPsiElementImpl implements PbPackageDef {
 
     @Override
     public String getPackageName() {
-        final PbPackageRef packageRef = findChildByClass(PbPackageRef.class);
+        final PbRef packageRef = findChildByClass(PbRef.class);
         if(packageRef == null){
             return "";
         }        

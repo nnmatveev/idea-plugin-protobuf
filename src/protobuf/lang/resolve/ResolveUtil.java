@@ -2,10 +2,13 @@ package protobuf.lang.resolve;
 
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
-import protobuf.lang.psi.api.PbAssignable;
-import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.PbPsiElement;
-import protobuf.lang.psi.api.PbPsiScope;
+import com.intellij.psi.ResolveResult;
+import com.intellij.psi.tree.TokenSet;
+import protobuf.lang.psi.api.*;
+import protobuf.lang.psi.api.definitions.PbEnumDef;
+import protobuf.lang.psi.api.definitions.PbMessageDef;
+import protobuf.lang.psi.api.references.PbRef;
+import static protobuf.lang.ProtobufElementTypes.*;
 
 import java.util.ArrayList;
 
@@ -27,6 +30,10 @@ public class ResolveUtil {
                 return ResolveUtil.wrapInResolveResult(assignableElement.getAim());
             }
         }
-        return null;
+        return PbResolveResult.EMPTY_RESULT;
+    }
+
+    public static PbResolveResult[] resolveInScopeByName(PbPsiScopeHolder scopeHolder, String refName) {
+        return resolveInScopeByName(scopeHolder.getScope(),refName);
     }
 }

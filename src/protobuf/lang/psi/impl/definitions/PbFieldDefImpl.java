@@ -45,4 +45,14 @@ public class PbFieldDefImpl extends PbPsiElementImpl implements PbFieldDef {
     public PsiElement setName(@NonNls String s) throws IncorrectOperationException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+    @Override
+    public String getQualifiedName() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public PsiElement getAim() {
+        return this;
+    }
 }

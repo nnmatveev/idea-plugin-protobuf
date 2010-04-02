@@ -8,9 +8,10 @@ import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbAssignable;
 import protobuf.lang.psi.api.PbFile;
+import protobuf.lang.psi.api.PbPackage;
 import protobuf.lang.psi.api.PbPsiScope;
-import protobuf.lang.psi.api.definitions.PbImportDef;
-import protobuf.lang.psi.api.definitions.PbPackageDef;
+import protobuf.lang.psi.api.definitions.*;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.utils.PbPsiScopeBuilder;
 import protobuf.lang.psi.utils.PsiUtil;
 
@@ -98,7 +99,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
     public PbPsiScope getScope() {
         PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
         //all inner elements
-        scopeBuilder.append(findChildrenByClass(PbAssignable.class));        
+        scopeBuilder.append(findChildrenByClass(PbAssignable.class));
         //all inner elements in visible part of package
         scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
         //current package
@@ -107,6 +108,46 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         scopeBuilder.append(PsiUtil.getImportedSubPackages(this));
         //imported packages
         scopeBuilder.append(PsiUtil.getImportedPackages(this));
+        return scopeBuilder.getScope();
+
+    }
+
+    public PbPsiScope getScope(PbRef.ReferenceKind kind) {
+        //todo optimize!!!!!!!
+        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+        //all inner elements
+        scopeBuilder.append(findChildrenByClass(PbAssignable.class));
+        //all inner elements in visible part of package
+        scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
+        //current package
+        scopeBuilder.append(PsiUtil.getContainingPackage(this));
+        //imported packages
+        scopeBuilder.append(PsiUtil.getImportedSubPackages(this));
+        //imported packages
+        scopeBuilder.append(PsiUtil.getImportedPackages(this));
+        //import extend fields
+        PbExtendDef[] extendDefs = findChildrenByClass(PbExtendDef.class);
+        scopeBuilder.extractAndAppend(extendDefs);
+
+        switch (kind) {
+            case MESSAGE: {
+                scopeBuilder.filter(PbMessageDef.class);
+            }
+            break;
+            case MESSAGE_OR_ENUM: {
+                scopeBuilder.filter(PbMessageDef.class, PbEnumDef.class);
+            }
+            break;
+            case MESSAGE_OR_PACKAGE: {
+                scopeBuilder.filter(PbMessageDef.class, PbPackage.class);
+            }
+            break;
+            case EXTEND_FIELD_INSIDE:
+            case EXTEND_FIELD: {
+                scopeBuilder.filter(PbFieldDef.class, PbPackage.class);
+            }
+            break;
+        }
         return scopeBuilder.getScope();
 
     }

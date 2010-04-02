@@ -1,7 +1,6 @@
 package protobuf.lang.psi;
 
 import com.intellij.psi.PsiElementVisitor;
-import protobuf.lang.psi.api.references.PbImportRef;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.references.PbRef;
 

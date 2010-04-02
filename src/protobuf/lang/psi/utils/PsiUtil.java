@@ -1,6 +1,7 @@
 package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.references.PbRef;
@@ -16,6 +17,20 @@ public class PsiUtil {
     private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());
 
     public static PbAssignable[] EMPTY_ASSIGNABLE = new PbAssignable[0];
+
+    public static PbPsiScope EMPTY_SCOPE = new EmptyScope(); 
+
+    private static class EmptyScope implements PbPsiScope{
+        @Override
+        public PbAssignable[] getElementsInScope() {
+            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
+        }
+
+        @Override
+        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
+        }
+    }
 
     public static String getQualifiedReferenceText(PbRef ref) {
         StringBuilder sbuilder = new StringBuilder();

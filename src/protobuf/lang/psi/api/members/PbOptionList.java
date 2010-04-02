@@ -8,5 +8,5 @@ import protobuf.lang.psi.api.PbPsiElement;
  */
 public interface PbOptionList extends PbPsiElement {
 
-    public OptionAssigment[] getOptions();
+    public PbOptionAssigment[] getOptions();
 }

@@ -1,6 +1,5 @@
 package protobuf.lang.psi.api.definitions;
 
-import protobuf.lang.psi.api.definitions.PbDefinition;
 
 /**
  * author: Nikolay Matveev

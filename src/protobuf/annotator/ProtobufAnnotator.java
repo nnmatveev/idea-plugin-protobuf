@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import protobuf.highlighter.DefaultHighlighter;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.references.PbImportRef;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.definitions.PbEnumConstantDefinition;
