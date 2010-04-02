@@ -3,6 +3,7 @@ package protobuf.lang.psi;
 import com.intellij.psi.PsiElementVisitor;
 import protobuf.lang.psi.api.references.PbImportRef;
 import protobuf.lang.psi.api.definitions.*;
+import protobuf.lang.psi.api.references.PbRef;
 
 /**
  * author: Nikolay Matveev
@@ -18,5 +19,5 @@ public abstract class ProtobufPsiElementVisitor extends PsiElementVisitor {
 
     public abstract void visitMessageDefinition(PbMessageDef element);
 
-    public abstract void visitImportReference(PbImportRef element);
+    public abstract void visitRef(PbRef element);
 }

@@ -20,8 +20,9 @@ public class ResolveUtil {
 
     public static PbResolveResult[] resolveInScopeByName(PbPsiScope scope, String refName) {
         PbAssignable[] assignableElements = scope.getElementsInScope();
-        for (PbAssignable assignableElement : assignableElements) {
-            //todo java.lang.NullPointerException
+        for (PbAssignable assignableElement : assignableElements) {            
+            assert assignableElement != null;
+            assert assignableElement.getName() != null;
             if (assignableElement.getName().equals(refName)) {
                 return ResolveUtil.wrapInResolveResult(assignableElement.getAim());
             }

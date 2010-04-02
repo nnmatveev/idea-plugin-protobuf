@@ -37,7 +37,11 @@ public class OptionDefinition implements ProtobufElementTypes {
 
     public static boolean parseOptionAssigment(PatchedPsiBuilder builder) {
         PsiBuilder.Marker optionAssigmentMarker = builder.mark();
-        if (!ReferenceElement.parseForOptionName(builder)) {
+        if (builder.compareToken(IK)) {
+            PsiBuilder.Marker optionNameMarker = builder.mark();
+            builder.match(IK);
+            optionNameMarker.done(OPTION_NAME);
+        } else if (!ReferenceElement.parseForCustomOption(builder)) {            
             optionAssigmentMarker.rollbackTo();
             return false;
         }
@@ -45,5 +49,5 @@ public class OptionDefinition implements ProtobufElementTypes {
         builder.match(CONSTANT_LITERALS, "constant.literal.expected");
         optionAssigmentMarker.done(OPTION_ASSIGMENT);
         return true;
-    }   
+    }
 }

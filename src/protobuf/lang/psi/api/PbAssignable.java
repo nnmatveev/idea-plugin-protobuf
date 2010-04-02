@@ -9,5 +9,9 @@ import com.intellij.psi.PsiElement;
 public interface PbAssignable{
     public String getName();
 
+    public String getQualifiedName();
+
     public PsiElement getAim();
+
+    //public PbPsiScope getScope();
 }

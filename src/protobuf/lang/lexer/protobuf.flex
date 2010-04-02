@@ -30,7 +30,7 @@ LETTER = [:letter:]|"_"
 IDENTIFIER = ({LETTER})({LETTER}|{DIGIT})*
 
 LINE_COMMENT = "/""/"{INPUT_CHARACTER}*
-C_STYLE_COMMENT="/*"[^*]~"*/" | "/*""*"+"/"
+C_STYLE_COMMENT="/*"((.|{EOL})*?)"*/"
 
 HEX_INT32="-"?"0""x"{HEX_DIGIT}{8}
 HEX_INT64="-"?"0""x"{HEX_DIGIT}{16}

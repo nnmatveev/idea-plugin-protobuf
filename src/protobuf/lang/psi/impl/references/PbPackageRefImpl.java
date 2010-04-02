@@ -43,13 +43,8 @@ public class PbPackageRefImpl extends PbRefImpl implements PbPackageRef {
     }
 
     @Override
-    public boolean isReferenceTo(PsiElement psiElement) {
-        return getManager().areElementsEquivalent(psiElement, resolve());
-    }
-
-    @Override
     public PsiElement getQualifier() {
-        return findChildByType(ProtobufElementTypes.PACKAGE_REF_ELEMENT);
+        return findChildByType(ProtobufElementTypes.PACKAGE_REF);
     }
 
     public static class OurResolver implements ResolveCache.Resolver {

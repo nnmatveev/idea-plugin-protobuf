@@ -26,6 +26,11 @@ public class PbPsiPackageWrapper implements PbPackage {
     }
 
     @Override
+    public String getQualifiedName() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public PsiElement getAim() {
         return myPsiPackage;
     }
@@ -41,6 +46,7 @@ public class PbPsiPackageWrapper implements PbPackage {
     public PbPsiScope getVisibleScope(PbFile protoFile) {
         PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();        
         scopeBuilder.extractAndAppend(protoFile.getImportedFilesByPackageName(myPsiPackage.getQualifiedName()));
+        scopeBuilder.append(protoFile.getScope());
         scopeBuilder.append(PsiUtil.getImportedSubPackages(myPsiPackage, protoFile));        
         return scopeBuilder.getScope();
     }

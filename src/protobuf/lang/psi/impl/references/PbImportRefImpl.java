@@ -65,11 +65,6 @@ public class PbImportRefImpl extends PbRefImpl implements PbImportRef {
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
-        visitor.visitImportReference(this);
-    }
-
-    @Override
     public PsiElement getQualifier() {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

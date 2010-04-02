@@ -2,14 +2,8 @@ package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.*;
-import protobuf.lang.psi.api.PbAssignable;
-import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.PbPackage;
-import protobuf.lang.psi.api.PbPsiScope;
+import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.references.PbRef;
-import protobuf.lang.psi.api.references.PbTypeRef;
-import protobuf.lang.resolve.PbResolveResult;
-import protobuf.lang.resolve.ResolveUtil;
 
 import java.util.ArrayList;
 
@@ -78,9 +72,19 @@ public class PsiUtil {
         return getImportedSubPackages(psiPackage, protoFile);
     }
 
-    public static PbPsiPackageWrapper getCurrentPackage(PbFile protoFile) {
+    public static PbPsiPackageWrapper[] getImportedPackages(PbFile protoFile) {
+        PbFile[] importedFiles = protoFile.getImportedFiles(true);
+        ArrayList<PbPsiPackageWrapper> importedPackages = new ArrayList<PbPsiPackageWrapper>();
+        for(PbFile file : importedFiles){
+            importedPackages.add(getContainingPackage(file));
+        }
+        return importedPackages.toArray(new PbPsiPackageWrapper[importedPackages.size()]);
+    }
+
+    public static PbPsiPackageWrapper getContainingPackage(PbFile protoFile) {
         JavaPsiFacade facade = JavaPsiFacade.getInstance(protoFile.getProject());
         PsiPackage psiPackage = facade.findPackage(protoFile.getPackageName());
+        assert psiPackage != null;
         if (psiPackage == null) {
             return null;
         }
@@ -93,6 +97,23 @@ public class PsiUtil {
             wrappedPackages[i] = new PbPsiPackageWrapper(psiPackages[i]);
         }
         return wrappedPackages;
+    }
+
+    public static PbPsiScope getScopeByElement(final PsiElement element){
+        PsiElement scope = element;
+        while(!(scope instanceof PbPsiScope)){
+            scope = scope.getParent();
+        }
+        return (PbPsiScope)scope;
+    }
+
+    public static PbPsiScopeHolder getScopeHolderByElement(final PsiElement element){
+        PsiElement scope = element;
+        while(!(scope instanceof PbPsiScopeHolder) && scope != null){
+            scope = scope.getParent();
+        }
+        assert scope != null;
+        return (PbPsiScopeHolder)scope;
     }
 
 

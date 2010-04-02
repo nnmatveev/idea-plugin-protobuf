@@ -8,17 +8,18 @@ import com.intellij.psi.tree.TokenSet;
  */
 public interface ProtobufElementTypes extends ProtobufTokenTypes {
 
-    ProtobufElementType PACKAGE_DEF = new ProtobufElementType("Package definition");
-    ProtobufElementType PACKAGE_REF_ELEMENT = new ProtobufElementType("Package definition");
-    //ProtobufElementType PACKAGE_NAME = new ProtobufElementType("Package name");
+    ProtobufElementType TYPE_REF = new ProtobufElementType("Reference");
 
-    ProtobufElementType REFERENCE_ELEMENT = new ProtobufElementType("Reference definition");
+    ProtobufElementType PACKAGE_DEF = new ProtobufElementType("Package definition");
+    ProtobufElementType PACKAGE_REF = new ProtobufElementType("Package reference");
 
     ProtobufElementType OPTION_DEF = new ProtobufElementType("Option definition");
-    ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("Option definition");
+    ProtobufElementType OPTION_NAME = new ProtobufElementType("Option name");
+    ProtobufElementType OPTION_REF = new ProtobufElementType("Option reference");
+    ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("Optionassigment");
 
     ProtobufElementType IMPORT_DEF = new ProtobufElementType("Import definition");
-    ProtobufElementType IMPORT_REF_ELEMENT = new ProtobufElementType("Import reference");
+    ProtobufElementType IMPORT_REF = new ProtobufElementType("Import reference");
 
     ProtobufElementType SERVICE_DEF = new ProtobufElementType("Service definition");
     ProtobufElementType SERVICE_BLOCK = new ProtobufElementType("Service block");
@@ -41,6 +42,7 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     //ProtobufElementType GROUP_BLOCK = new ProtobufElementType("group block");
 
     ProtobufElementType ENUM_DEF = new ProtobufElementType("Enum definition");
+    ProtobufElementType ENUM_NAME = new ProtobufElementType("Enum name");
     ProtobufElementType ENUM_BLOCK = new ProtobufElementType("Enum block");    
     ProtobufElementType ENUM_CONST_DEF = new ProtobufElementType("Enum constant");
 

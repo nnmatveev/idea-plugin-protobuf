@@ -5,6 +5,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.blocks.PbMessageBlock;
 import protobuf.lang.psi.api.definitions.PbFieldDef;
@@ -42,6 +43,13 @@ public class PbMessageDefImpl extends PbPsiElementImpl implements PbMessageDef {
 
     public String getName(){
         return findChildByClass(PbNameImpl.class).getText();
+    }
+
+    @Override
+    public String getQualifiedName() {
+        PbFile contFile = (PbFile)getContainingFile();
+        StringBuilder qualifiedName;
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override

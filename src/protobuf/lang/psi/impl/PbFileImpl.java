@@ -4,7 +4,6 @@ import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
-import com.intellij.psi.PsiNamedElement;
 import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbAssignable;
@@ -14,7 +13,6 @@ import protobuf.lang.psi.api.definitions.PbImportDef;
 import protobuf.lang.psi.api.definitions.PbPackageDef;
 import protobuf.lang.psi.utils.PbPsiScopeBuilder;
 import protobuf.lang.psi.utils.PsiUtil;
-import protobuf.lang.resolve.ResolveUtil;
 
 import java.util.ArrayList;
 
@@ -104,7 +102,11 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         //all inner elements in visible part of package
         scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
         //current package
-        scopeBuilder.append(PsiUtil.getCurrentPackage(this));
+        scopeBuilder.append(PsiUtil.getContainingPackage(this));
+        //imported packages
+        scopeBuilder.append(PsiUtil.getImportedSubPackages(this));
+        //imported packages
+        scopeBuilder.append(PsiUtil.getImportedPackages(this));
         return scopeBuilder.getScope();
 
     }

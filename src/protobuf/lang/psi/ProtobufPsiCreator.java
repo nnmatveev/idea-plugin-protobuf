@@ -9,6 +9,7 @@ import protobuf.lang.psi.impl.blocks.*;
 import protobuf.lang.psi.impl.definitions.*;
 import protobuf.lang.psi.impl.members.*;
 import protobuf.lang.psi.impl.members.PbOptionAssigmentImpl;
+import protobuf.lang.psi.impl.references.PbOptionRefImpl;
 import protobuf.lang.psi.impl.references.PbTypeRefImpl;
 import protobuf.lang.psi.impl.references.PbImportRefImpl;
 import protobuf.lang.psi.impl.references.PbPackageRefImpl;
@@ -22,17 +23,19 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
     public static PsiElement createElement(ASTNode node){
         IElementType element = node.getElementType();
 
-        if(element.equals(REFERENCE_ELEMENT)) return new PbTypeRefImpl(node);
-        if(element.equals(IMPORT_REF_ELEMENT)) return new PbImportRefImpl(node);
-        //if(element.equals(IMPORT_REF_ELEMENT)) return new PbPackageRefImpl(node);
+        if(element.equals(TYPE_REF)) return new PbTypeRefImpl(node);
+        if(element.equals(IMPORT_REF)) return new PbImportRefImpl(node);
+        //if(element.equals(IMPORT_REF)) return new PbPackageRefImpl(node);
         
         if(element.equals(IMPORT_DEF)) return new PbImportDefImpl(node);
 
         if(element.equals(PACKAGE_DEF)) return new PbPackageDefImpl(node);
-        if(element.equals(PACKAGE_REF_ELEMENT)) return new PbPackageRefImpl(node);
+        if(element.equals(PACKAGE_REF)) return new PbPackageRefImpl(node);
         //if(element.equals(PACKAGE_NAME)) return new PbNameImpl(node);
 
         if(element.equals(OPTION_DEF)) return new PbOptionDefImpl(node);
+        if(element.equals(OPTION_NAME)) return new PbNameImpl(node);
+        if(element.equals(OPTION_REF)) return new PbOptionRefImpl(node);
         if(element.equals(OPTION_ASSIGMENT)) return new PbOptionAssigmentImpl(node);
 
         if(element.equals(MESSAGE_DEF)) return new PbMessageDefImpl(node);
@@ -45,6 +48,7 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
         if(element.equals(OPTION_LIST)) return new PbOptionListImpl(node);
 
         if(element.equals(ENUM_DEF)) return new PbEnumDefImpl(node);
+        if(element.equals(ENUM_NAME)) return new PbNameImpl(node);
         if(element.equals(ENUM_BLOCK)) return new PbEnumBlockImpl(node);
         if(element.equals(ENUM_CONST_DEF)) return new PbEnumConstantDefImpl(node);
 

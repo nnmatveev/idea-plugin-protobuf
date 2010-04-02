@@ -6,6 +6,7 @@ import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import protobuf.lang.psi.api.definitions.PbEnumDef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
+import protobuf.lang.psi.impl.members.PbNameImpl;
 
 /**
  * author: Nikolay Matveev
@@ -27,5 +28,10 @@ public class PbEnumDefImpl extends PbPsiElementImpl implements PbEnumDef {
     @Override
     public PsiElement getAim() {
         return this;
+    }
+
+    @Override
+    public String getName() {
+        return findChildByClass(PbNameImpl.class).getText();
     }
 }

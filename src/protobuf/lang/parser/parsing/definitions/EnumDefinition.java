@@ -22,7 +22,7 @@ public class EnumDefinition implements ProtobufElementTypes {
         }
         PsiBuilder.Marker enumMarker = builder.mark();
         builder.match(ENUM);
-        builder.matchAs(IK,NAME, "identifier.expected");
+        builder.matchAs(IK,ENUM_NAME, "identifier.expected");
         if(!parseEnumBlock(builder)){
             builder.error("enum.block.expected");
         }        

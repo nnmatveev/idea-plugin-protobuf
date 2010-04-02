@@ -14,6 +14,7 @@ import protobuf.lang.psi.api.references.PbImportRef;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.definitions.PbEnumConstantDefinition;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.util.PbBundle;
 //import protobuf.lang.psi.impl.PbPsiElement;
 
@@ -72,10 +73,10 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
     }
 
     @Override
-    public void visitImportReference(PbImportRef element) {
+    public void visitRef(PbRef element) {
         if(element.resolve() == null){
-            myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.import")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
-        }
+            myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+        }        
     }
 
     private void checkForWellformed(PbMessageDef message) {

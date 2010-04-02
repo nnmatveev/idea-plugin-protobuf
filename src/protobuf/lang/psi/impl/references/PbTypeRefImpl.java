@@ -39,27 +39,25 @@ public class PbTypeRefImpl extends PbRefImpl implements PbTypeRef {
     }
 
     public PbTypeRef getQualifier() {
-        return (PbTypeRef) findChildByType(ProtobufElementTypes.REFERENCE_ELEMENT);
+        return (PbTypeRef) findChildByType(ProtobufElementTypes.TYPE_REF);
     }
 
     public TextRange getRangeInElement() {
+        final PsiElement refNameElement = findChildByType(IK);
+        if (refNameElement != null) {
+            final int offsetInParent = refNameElement.getStartOffsetInParent();
+            return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
+        }
         return new TextRange(0, getTextLength());
     }
 
     public PsiElement resolve() {
-        //todo what is 'incomplete code(last parameter)'?
         ResolveResult[] results = getManager().getResolveCache().resolveWithCaching(this, ourResolver, true, false);
         return results.length > 0 ? results[0].getElement() : null;
     }
 
     public String getCanonicalText() {
         return getText();
-    }
-
-    //todo: optimize
-
-    public boolean isReferenceTo(PsiElement psiElement) {
-        return getManager().areElementsEquivalent(psiElement, resolve());
     }
 
     @NotNull
@@ -96,7 +94,6 @@ public class PbTypeRefImpl extends PbRefImpl implements PbTypeRef {
             switch (kind) {
                 case MESSAGE_OR_PACKAGE_OR_ENUM: {
                     if (qualifiedElement != null) {
-
                         final PsiElement resolvedElement = qualifiedElement.resolve();
                         //bar.foo
                         if (resolvedElement != null) {
@@ -121,13 +118,13 @@ public class PbTypeRefImpl extends PbRefImpl implements PbTypeRef {
                     } else {
                         //bar
                         //innerscope and then outerscope search
-                        final PsiElement contextElement = refElement.getContext();
-                        if (contextElement instanceof PbPsiScope) {
-                            PbResolveResult[] results = ResolveUtil.resolveInScopeByName((PbPsiScope) contextElement, refName);
+                        final PbPsiScopeHolder scopeHolder = PsiUtil.getScopeHolderByElement(refElement);
+                        PbResolveResult[] results = ResolveUtil.resolveInScopeByName(scopeHolder.getScope(), refName);
+                        if (results != null) return results;
+                        if (!(scopeHolder instanceof PbFile)) {
+                            results = ResolveUtil.resolveInScopeByName(((PbFile) refElement.getContainingFile()).getScope(), refName);
                             if (results != null) return results;
                         }
-                        PbResolveResult[] results = ResolveUtil.resolveInScopeByName(((PbFile) refElement.getContainingFile()).getScope(), refName);
-                        if (results != null) return results;
                     }
                 }
                 break;

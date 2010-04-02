@@ -24,6 +24,10 @@ public class PbPsiScopeBuilder implements PbPsiScope {
         }
     }
 
+    public void append(PbPsiScope scope) {
+        append(scope.getElementsInScope());
+    }
+
     public void append(PbPsiScope[] scopes) {
         for (PbPsiScope scope : scopes) {
             append(scope.getElementsInScope());
