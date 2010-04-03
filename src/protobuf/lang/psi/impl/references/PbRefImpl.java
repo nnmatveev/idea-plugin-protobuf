@@ -9,11 +9,12 @@ import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
-import protobuf.lang.ProtobufElementTypes;
 import protobuf.lang.ProtobufTokenTypes;
+
+import static protobuf.lang.psi.PbPsiEnums.*;
+
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.PbPsiScopeHolder;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.members.PbFieldType;
@@ -24,7 +25,6 @@ import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiPackageWrapper;
 import protobuf.lang.psi.utils.PbPsiScopeBuilder;
 import protobuf.lang.psi.utils.PsiUtil;
-import protobuf.lang.resolve.PbResolveResult;
 import protobuf.lang.resolve.ResolveUtil;
 import protobuf.lang.util.TextUtil;
 
@@ -49,16 +49,16 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case DIRECTORY: {
                 return "directory reference";
             }
-            case MESSAGE: {
+            case MESSAGE_OR_GROUP: {
                 return "message reference";
             }
-            case MESSAGE_OR_ENUM: {
+            case MESSAGE_OR_ENUM_OR_GROUP: {
                 return "message or enum reference";
             }
-            case MESSAGE_OR_PACKAGE: {
+            case MESSAGE_OR_PACKAGE_OR_GROUP: {
                 return "message or package reference";
             }
-            case MESSAGE_FIELD: {
+            case MESSAGE_OR_GROUP_FIELD: {
                 return "message field reference";
             }
             case EXTEND_FIELD: {
@@ -103,10 +103,10 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 return null;
             }
             case PACKAGE:
-            case MESSAGE:
-            case MESSAGE_OR_ENUM:
-            case MESSAGE_OR_PACKAGE:
-            case MESSAGE_FIELD: {
+            case MESSAGE_OR_GROUP:
+            case MESSAGE_OR_ENUM_OR_GROUP:
+            case MESSAGE_OR_PACKAGE_OR_GROUP:
+            case MESSAGE_OR_GROUP_FIELD: {
                 return findChildByClass(PbRef.class);
             }
             case EXTEND_FIELD_INSIDE: {
@@ -127,15 +127,15 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             }
             case PACKAGE: {
             }
-            case MESSAGE: {
+            case MESSAGE_OR_GROUP: {
             }
-            case MESSAGE_OR_ENUM: {
+            case MESSAGE_OR_ENUM_OR_GROUP: {
 
             }
-            case MESSAGE_OR_PACKAGE: {
+            case MESSAGE_OR_PACKAGE_OR_GROUP: {
 
             }
-            case MESSAGE_FIELD: {
+            case MESSAGE_OR_GROUP_FIELD: {
 
             }
             case EXTEND_FIELD_INSIDE:{
@@ -152,10 +152,10 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         switch (getKind()) {
             case DIRECTORY:
             case PACKAGE:
-            case MESSAGE:
-            case MESSAGE_OR_ENUM:
-            case MESSAGE_OR_PACKAGE:
-            case MESSAGE_FIELD:
+            case MESSAGE_OR_GROUP:
+            case MESSAGE_OR_ENUM_OR_GROUP:
+            case MESSAGE_OR_PACKAGE_OR_GROUP:
+            case MESSAGE_OR_GROUP_FIELD:
             case EXTEND_FIELD_INSIDE: {
                 PsiElement psi = findChildByType(ProtobufTokenTypes.IK);
                 return psi != null ? psi.getText() : null;
@@ -179,9 +179,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case DIRECTORY: {
             }
             case PACKAGE:
-            case MESSAGE:
-            case MESSAGE_OR_ENUM:
-            case MESSAGE_OR_PACKAGE: {
+            case MESSAGE_OR_GROUP:
+            case MESSAGE_OR_ENUM_OR_GROUP:
+            case MESSAGE_OR_PACKAGE_OR_GROUP: {
                 PsiElement refNameElement = findChildByType(IK);
                 if (refNameElement != null) {
                     final int offsetInParent = refNameElement.getStartOffsetInParent();
@@ -190,7 +190,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
             }
             break;
-            case MESSAGE_FIELD: {
+            case MESSAGE_OR_GROUP_FIELD: {
                 PsiElement refNameElement = findChildByType(IK);
                 if (refNameElement != null) {
                     final int offsetInParent = refNameElement.getStartOffsetInParent();
@@ -239,15 +239,15 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             }
             case PACKAGE: {
             }
-            case MESSAGE: {
+            case MESSAGE_OR_GROUP: {
             }
-            case MESSAGE_OR_ENUM: {
+            case MESSAGE_OR_ENUM_OR_GROUP: {
 
             }
-            case MESSAGE_OR_PACKAGE: {
+            case MESSAGE_OR_PACKAGE_OR_GROUP: {
 
             }
-            case MESSAGE_FIELD: {
+            case MESSAGE_OR_GROUP_FIELD: {
 
             }
             case EXTEND_FIELD_INSIDE: {
@@ -276,14 +276,14 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 case PACKAGE: {
                     return ReferenceKind.PACKAGE;
                 }
-                case MESSAGE: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE;
+                case MESSAGE_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
                 }
-                case MESSAGE_OR_ENUM: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE;
+                case MESSAGE_OR_ENUM_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
                 }
-                case MESSAGE_OR_PACKAGE: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE;
+                case MESSAGE_OR_PACKAGE_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
                 }
                 case EXTEND_FIELD: {
                     if (findChildByType(OPEN_PARANT) != null) {
@@ -292,35 +292,35 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     if (findChildByType(IK) == null) {
                         return ReferenceKind.EXTEND_FIELD;
                     }
-                    return ReferenceKind.MESSAGE_FIELD;
+                    return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
                 }
-                case MESSAGE_FIELD: {
+                case MESSAGE_OR_GROUP_FIELD: {
                     if (findChildByType(CLOSE_PARANT) != null) {
                         return ReferenceKind.EXTEND_FIELD_INSIDE;
                     }
                     if (findChildByType(IK) == null) {
                         return ReferenceKind.EXTEND_FIELD;
                     }
-                    return ReferenceKind.MESSAGE_FIELD;
+                    return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
                 }
                 case EXTEND_FIELD_INSIDE: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE;
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
                 }
             }
 
         }
         if (parent instanceof PbExtendDef) {
-            return ReferenceKind.MESSAGE;
+            return ReferenceKind.MESSAGE_OR_GROUP;
         }
         if (parent instanceof PbFieldType) {
-            return ReferenceKind.MESSAGE_OR_ENUM;
+            return ReferenceKind.MESSAGE_OR_ENUM_OR_GROUP;
         }
         if (parent instanceof PbOptionName) {
             if (findChildByType(OPEN_PARANT) != null) {
                 return ReferenceKind.EXTEND_FIELD_INSIDE;
             }
             if (findChildByType(IK) != null) {
-                return ReferenceKind.MESSAGE_FIELD;
+                return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
             }
             return ReferenceKind.EXTEND_FIELD;
         }
@@ -333,7 +333,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         //todo 'enum constants as value of options and fields', imports
 
         if (parent instanceof PbServiceMethodDef) {
-            return ReferenceKind.MESSAGE;
+            return ReferenceKind.MESSAGE_OR_GROUP;
         }
         LOG.info("reference: " + getText());
         assert false;
@@ -362,9 +362,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     JavaPsiFacade facade = JavaPsiFacade.getInstance(ref.getManager().getProject());
                     return facade.findPackage(qualifiedName);
                 }
-                case MESSAGE:
-                case MESSAGE_OR_ENUM:
-                case MESSAGE_OR_PACKAGE: {
+                case MESSAGE_OR_GROUP:
+                case MESSAGE_OR_ENUM_OR_GROUP:
+                case MESSAGE_OR_PACKAGE_OR_GROUP: {
                     if (qualifier != null) {
                         LOG.info("message or enum or package reference and qulifier != null: " + refName);
                         final PsiElement resolvedElement = qualifier.resolve();
@@ -398,7 +398,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     }
                 }
                 break;
-                case MESSAGE_FIELD: {
+                case MESSAGE_OR_GROUP_FIELD: {
                     if (qualifier != null) {
                         LOG.info("message field and qualifier!=null: " + refName);
                         final PsiElement resolvedElement = qualifier.resolve();
@@ -421,17 +421,20 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                         if (resolvedElement != null) {
                             LOG.info("extend field inside and qualifier resolved: " + refName);
                             if (resolvedElement instanceof PsiPackage) {
-                                PbPsiPackageWrapper pbPackage = new PbPsiPackageWrapper((PsiPackage)resolvedElement);
-                                return ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope((PbFileImpl)ref.getContainingFile()), refName, refKind);
+                                PbPsiPackageWrapper pbPackage = new PbPsiPackageWrapper((PsiPackage) resolvedElement);
+                                return ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope((PbFileImpl) ref.getContainingFile()), refName, refKind);
 
                             }
                             if (resolvedElement instanceof PbPsiScopeHolder) {
                                 return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
                             }
-                            /*if(resolvedElement instanceof PbFieldDef){
-                                
-                            } */
-                            //assert false;
+                            if (resolvedElement instanceof PbPsiScopeHolder) {
+                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
+                            }
+                            if (resolvedElement instanceof PbFieldDef) {
+                                final PbFieldDef field = (PbFieldDef) resolvedElement;
+                            }
+                            assert false;
                         }
                     } else {
                         LOG.info("extend field inside field and qualifier==null: " + refName);

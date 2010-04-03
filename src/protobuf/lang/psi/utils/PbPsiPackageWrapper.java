@@ -3,10 +3,9 @@ package protobuf.lang.psi.utils;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiPackage;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.*;
-import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbFileImpl;
-import protobuf.lang.resolve.ResolveUtil;
 
 /**
  * author: Nikolay Matveev
@@ -25,11 +24,6 @@ public class PbPsiPackageWrapper implements PbPackage {
     public String getName() {
         LOG.info("PbPsiPackageWrapper name: " + myPsiPackage.getName());
         return myPsiPackage.getName();
-    }
-
-    @Override
-    public String getQualifiedName() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
@@ -65,7 +59,7 @@ public class PbPsiPackageWrapper implements PbPackage {
         }
 
         @Override
-        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+        public PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind) {
             switch (kind) {
                 case DIRECTORY: {
                     assert false;
@@ -75,9 +69,9 @@ public class PbPsiPackageWrapper implements PbPackage {
                     assert false;
                 }
                 break;
-                case MESSAGE:
-                case MESSAGE_OR_ENUM:
-                case MESSAGE_OR_PACKAGE: {
+                case MESSAGE_OR_GROUP:
+                case MESSAGE_OR_ENUM_OR_GROUP:
+                case MESSAGE_OR_PACKAGE_OR_GROUP: {
                     PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
                     if (myPsiPackage.getQualifiedName().equals(myFile.getPackageName())) {
                         scopeBuilder.append(myFile.getScope(), kind);
@@ -100,7 +94,7 @@ public class PbPsiPackageWrapper implements PbPackage {
                 case EXTEND_FIELD: {
                     assert false;
                 }
-                case MESSAGE_FIELD: {
+                case MESSAGE_OR_GROUP_FIELD: {
                     assert false;
                 }
             }

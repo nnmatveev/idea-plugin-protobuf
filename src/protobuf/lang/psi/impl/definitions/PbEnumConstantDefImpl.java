@@ -25,11 +25,6 @@ public class PbEnumConstantDefImpl extends PbPsiElementImpl implements PbEnumCon
     }
 
     @Override
-    public String getQualifiedName() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public PsiElement getAim() {
         return this;
     }

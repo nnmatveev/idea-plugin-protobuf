@@ -1,11 +1,9 @@
 package protobuf.lang.psi.utils;
 
-import com.intellij.psi.PsiNamedElement;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.PbAssignable;
 import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.PbPsiScopeHolder;
-import protobuf.lang.psi.api.definitions.PbMessageDef;
-import protobuf.lang.psi.api.references.PbRef;
 
 import java.util.ArrayList;
 
@@ -26,31 +24,17 @@ public class PbPsiScopeBuilder {
         }
     }
 
-    public void append(PbPsiScope scope) {
-        append(scope.getElementsInScope(PbRef.ReferenceKind.ANY));
-    }
-
-    public void append(PbPsiScope scope, PbRef.ReferenceKind kind) {
+    public void append(PbPsiScope scope, PbPsiEnums.ReferenceKind kind) {
         append(scope.getElementsInScope(kind));
     }
 
-    public void append(PbPsiScope[] scopes) {
-        for (PbPsiScope scope : scopes) {
-            append(scope.getElementsInScope(PbRef.ReferenceKind.ANY));
-        }
-    }
-
-    public void append(PbPsiScope[] scopes, PbRef.ReferenceKind kind) {
+    public void append(PbPsiScope[] scopes, PbPsiEnums.ReferenceKind kind) {
         for (PbPsiScope scope : scopes) {
             append(scope, kind);
         }
     }
 
-    public void extractAndAppend(PbPsiScopeHolder scopeHolder) {
-            append(scopeHolder.getScope().getElementsInScope(PbRef.ReferenceKind.ANY));
-    }
-
-    public void extractAndAppend(PbPsiScopeHolder scopeHolder, PbRef.ReferenceKind kind) {        
+    public void extractAndAppend(PbPsiScopeHolder scopeHolder, PbPsiEnums.ReferenceKind kind) {
             append(scopeHolder.getScope().getElementsInScope(kind));
     }
 
@@ -60,7 +44,7 @@ public class PbPsiScopeBuilder {
         }
     }*/
 
-    public void extractAndAppend(PbPsiScopeHolder[] scopeHolders, PbRef.ReferenceKind kind) {
+    public void extractAndAppend(PbPsiScopeHolder[] scopeHolders, PbPsiEnums.ReferenceKind kind) {
         for (PbPsiScopeHolder scope : scopeHolders) {
             append(scope.getScope().getElementsInScope(kind));
         }

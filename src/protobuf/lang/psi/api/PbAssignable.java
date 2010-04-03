@@ -10,9 +10,7 @@ public interface PbAssignable {
 
     public static PbAssignable[] EMPTY_ASSIGNABLE_ARRAY = new PbAssignable[0]; 
 
-    public String getName();
-
-    public String getQualifiedName();
+    public String getName();   
 
     public PsiElement getAim();
 }

@@ -1,15 +1,12 @@
 package protobuf.lang.psi.api;
 
-import com.intellij.psi.PsiNamedElement;
-import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.PbPsiEnums;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 30, 2010
  */
-public interface PbPsiScope {
-    
-    //PbAssignable[] getElementsInScope();
+public interface PbPsiScope {        
 
-    PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind);
+    PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind);
 }

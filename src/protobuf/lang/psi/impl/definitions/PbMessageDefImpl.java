@@ -49,13 +49,6 @@ public class PbMessageDefImpl extends PbPsiElementImpl implements PbMessageDef {
     }
 
     @Override
-    public String getQualifiedName() {
-        PbFile contFile = (PbFile)getContainingFile();
-        StringBuilder qualifiedName;
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    @Override
     public PsiElement getAim() {
         return this;
     }

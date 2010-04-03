@@ -7,16 +7,14 @@ import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiPackage;
 import protobuf.file.ProtobufFileType;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbAssignable;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.PbPackage;
 import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.definitions.*;
-import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.utils.PbPsiPackageWrapper;
 import protobuf.lang.psi.utils.PbPsiScopeBuilder;
-import protobuf.lang.psi.utils.PsiUtil;
 
 import java.util.ArrayList;
 
@@ -169,7 +167,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         }
 
         @Override
-        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+        public PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind) {
             return getElementsInScope(kind, myInnerOnly, myDirectInvocation);
         }
 
@@ -190,7 +188,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
        } */
 
-        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind, boolean innerOnly, boolean directInvocation) {
+        public PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind, boolean innerOnly, boolean directInvocation) {
             switch (kind) {
                 case DIRECTORY:
                 case PACKAGE: {
@@ -198,7 +196,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
                 }
                 break;
-                case MESSAGE: {
+                case MESSAGE_OR_GROUP: {
                     PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
                     scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
                     if (!innerOnly) {
@@ -209,7 +207,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
                     }
                     return scopeBuilder.getElements();
                 }
-                case MESSAGE_OR_ENUM: {
+                case MESSAGE_OR_ENUM_OR_GROUP: {
                     PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
                     scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
                     scopeBuilder.append(findChildrenByClass(PbEnumDef.class));
@@ -221,7 +219,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
                     }
                     return scopeBuilder.getElements();
                 }
-                case MESSAGE_OR_PACKAGE: {
+                case MESSAGE_OR_PACKAGE_OR_GROUP: {
                     PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
                     scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
                     if (directInvocation) {
@@ -241,7 +239,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
                     LOG.info("extendDefs size: " + extendDefs.length);
                     if (extendDefs.length > 0) {
                         PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
-                        scopeBuilder.extractAndAppend(extendDefs, PbRef.ReferenceKind.MESSAGE_FIELD);
+                        scopeBuilder.extractAndAppend(extendDefs, PbPsiEnums.ReferenceKind.MESSAGE_OR_GROUP_FIELD);
                         return scopeBuilder.getElements();
                     }
                 }

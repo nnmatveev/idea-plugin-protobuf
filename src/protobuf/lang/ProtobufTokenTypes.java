@@ -15,7 +15,7 @@ public interface ProtobufTokenTypes {
     TokenSet IDENTIFIERS = TokenSet.create(IDENTIFIER);
 
     IElementType SEMICOLON = new ProtobufElementType(";");
-    IElementType DOT = new ProtobufElementType(".");   TokenSet DOT_SET = TokenSet.create(DOT); //hack for lookAhead
+    IElementType DOT = new ProtobufElementType(".");
     IElementType COMMA = new ProtobufElementType(",");
     
     IElementType EQUAL = new ProtobufElementType("=");
@@ -57,7 +57,7 @@ public interface ProtobufTokenTypes {
     //definitions
     IElementType IMPORT = new ProtobufElementType("import");
     IElementType PACKAGE = new ProtobufElementType("package");
-    IElementType MESSAGE = new ProtobufElementType("message");  TokenSet MESSAGE_SET = TokenSet.create(MESSAGE); //hack for lookAhead
+    IElementType MESSAGE = new ProtobufElementType("message");
     IElementType EXTEND = new ProtobufElementType("extend");
     IElementType SERVICE = new ProtobufElementType("service");
     IElementType OPTION = new ProtobufElementType("option");
@@ -86,7 +86,7 @@ public interface ProtobufTokenTypes {
     TokenSet FIELD_LABELS = TokenSet.create(REQUIRED,OPTIONAL,REPEATED); //keyword
 
 
-    IElementType GROUP = new ProtobufElementType("group");
+    IElementType GROUP = new ProtobufElementType("group");  TokenSet GROUP_SET = TokenSet.create(GROUP); //hack for lookAhead
     
     //Built-in types
     IElementType DOUBLE = new ProtobufElementType("double");

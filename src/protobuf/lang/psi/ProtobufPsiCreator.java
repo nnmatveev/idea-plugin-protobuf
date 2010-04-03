@@ -44,6 +44,9 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
         if(element.equals(FIELD_TYPE)) return new PbFieldTypeImpl(node);
         if(element.equals(OPTION_LIST)) return new PbOptionListImpl(node);
 
+        if(element.equals(GROUP_DEF)) return new PbGroupDefImpl(node);
+        if(element.equals(GROUP_BLOCK)) return new PbBlockImpl(node);
+
         if(element.equals(ENUM_DEF)) return new PbEnumDefImpl(node);
         if(element.equals(ENUM_NAME)) return new PbNameImpl(node);
         if(element.equals(ENUM_BLOCK)) return new PbBlockImpl(node);

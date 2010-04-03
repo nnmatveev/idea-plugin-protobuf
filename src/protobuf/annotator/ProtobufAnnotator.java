@@ -49,9 +49,6 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
 
     @Override
     public void visitFieldDefinition(PbFieldDef field) {
-        if (field.isGroup()) {
-            myHolder.createWarningAnnotation(field, "this feature is deprecated and should not be used when creating new message types – use nested message types instead");
-        }
     }
 
     public void visitEnumConstantDefinition(PbEnumConstantDefinition element) {
@@ -79,7 +76,7 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
     }
 
     private void checkForWellformed(PbMessageDef message) {
-        PbFieldDef[] fields = message.getFields();
+        /*PbFieldDef[] fields = message.getFields();
         ArrayList<PbFieldDef> requiredFields = new ArrayList<PbFieldDef>();
         ArrayList<PbFieldDef> optionalFields = new ArrayList<PbFieldDef>();
         for (PbFieldDef field : fields) {
@@ -103,7 +100,7 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
             for (PbFieldDef field : optionalFields) {
                 myHolder.createWarningAnnotation(field, "a well-formed message can have zero or one of this field (but not more than one)");
             }
-        }
+        } */
     }
 
     private void restoreNameHighlighting(PsiElement element) {

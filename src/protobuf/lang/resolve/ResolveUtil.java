@@ -2,17 +2,8 @@ package protobuf.lang.resolve;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiNamedElement;
-import com.intellij.psi.ResolveResult;
-import com.intellij.psi.tree.TokenSet;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.*;
-import protobuf.lang.psi.api.definitions.PbEnumDef;
-import protobuf.lang.psi.api.definitions.PbMessageDef;
-import protobuf.lang.psi.api.references.PbRef;
-
-import static protobuf.lang.ProtobufElementTypes.*;
-
-import java.util.ArrayList;
 
 /**
  * author: Nikolay Matveev
@@ -49,7 +40,7 @@ public class ResolveUtil {
         return null;
     } */
 
-    public static PsiElement resolveInScopeByName(PbPsiScope scope, String refName, PbRef.ReferenceKind kind) {
+    public static PsiElement resolveInScopeByName(PbPsiScope scope, String refName, PbPsiEnums.ReferenceKind kind) {
         PbAssignable[] assignableElements = scope.getElementsInScope(kind);
         int i = 0;
         for (PbAssignable assignableElement : assignableElements) {

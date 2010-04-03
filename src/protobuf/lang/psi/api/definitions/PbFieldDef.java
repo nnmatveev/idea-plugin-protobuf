@@ -3,7 +3,7 @@ package protobuf.lang.psi.api.definitions;
 import com.intellij.psi.PsiNamedElement;
 import protobuf.lang.psi.api.PbAssignable;
 
-import static protobuf.lang.psi.api.members.PbFieldType.Type;
+import static protobuf.lang.psi.PbPsiEnums.*;
 
 /**
  * author: Nikolay Matveev
@@ -11,15 +11,8 @@ import static protobuf.lang.psi.api.members.PbFieldType.Type;
  */
 public interface PbFieldDef extends PbBlockDefinition, PsiNamedElement, PbAssignable{
 
-    public boolean isGroup();
+    public FieldLabel getLabel();
 
-    public Label getLabel();
+    public FieldType getType();
 
-    public Type getType();
-
-    enum Label {
-        REQUIRED,
-        REPEATED,
-        OPTIONAL
-    }
 }

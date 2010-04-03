@@ -1,9 +1,10 @@
 package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.*;
+import protobuf.lang.psi.api.definitions.PbExtendDef;
 import protobuf.lang.psi.api.references.PbRef;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ public class PsiUtil {
 
     private static class EmptyScope implements PbPsiScope{
         @Override
-        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+        public PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind) {
             return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
         }
     }
@@ -79,6 +80,9 @@ public class PsiUtil {
     public static PbPsiScopeHolder getScopeHolderByElement(final PsiElement element){
         PsiElement scopeHolder = element;
         while(!(scopeHolder instanceof PbPsiScopeHolder) && scopeHolder != null){
+            if(scopeHolder instanceof PbExtendDef){
+                scopeHolder = scopeHolder.getParent(); //todo [hack] maybe there is a better way to avoid such problem
+            }
             scopeHolder = scopeHolder.getParent();
         }
         assert scopeHolder != null;

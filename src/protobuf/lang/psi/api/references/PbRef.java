@@ -1,8 +1,8 @@
 package protobuf.lang.psi.api.references;
 
-import com.intellij.psi.PsiPolyVariantReference;
 import com.intellij.psi.PsiQualifiedReference;
 import com.intellij.psi.PsiReference;
+import protobuf.lang.psi.PbPsiEnums;
 
 /**
  * author: Nikolay Matveev
@@ -10,19 +10,7 @@ import com.intellij.psi.PsiReference;
  */
 public interface PbRef extends PsiReference, PsiQualifiedReference {
 
-    enum ReferenceKind {
-        ANY,
-        DIRECTORY,        
-        PACKAGE,
-        MESSAGE,
-        MESSAGE_OR_ENUM,
-        MESSAGE_OR_PACKAGE,
-        MESSAGE_FIELD,
-        EXTEND_FIELD,
-        EXTEND_FIELD_INSIDE        
-    }
-
     String getReferenceName();
 
-    ReferenceKind getKind();
+    PbPsiEnums.ReferenceKind getKind();
 }

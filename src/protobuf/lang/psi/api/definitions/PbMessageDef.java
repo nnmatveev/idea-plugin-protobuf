@@ -11,8 +11,6 @@ import protobuf.lang.psi.api.definitions.PbToplevelDefinition;
  * Date: Mar 11, 2010
  */
 public interface PbMessageDef extends PbToplevelDefinition, PbBlockDefinition, PsiNamedElement, PbPsiScopeHolder, PbAssignable {
-    PbFieldDef[] getFields();      
-
     @Override
     String getName();
 }

@@ -39,9 +39,8 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     ProtobufElementType FIELD_TYPE = new ProtobufElementType("Field type");
     ProtobufElementType FIELD_LABEL = new ProtobufElementType("Field label");
     ProtobufElementType OPTION_LIST = new ProtobufElementType("Field settings");
-    //ProtobufElementType GROUP_DEFINITION = new ProtobufElementType("group definition");
-    
-    //ProtobufElementType GROUP_BLOCK = new ProtobufElementType("group block");
+    ProtobufElementType GROUP_DEF = new ProtobufElementType("Group field definition");
+    ProtobufElementType GROUP_BLOCK = new ProtobufElementType("group block");
 
     ProtobufElementType ENUM_DEF = new ProtobufElementType("Enum definition");
     ProtobufElementType ENUM_NAME = new ProtobufElementType("Enum name");
