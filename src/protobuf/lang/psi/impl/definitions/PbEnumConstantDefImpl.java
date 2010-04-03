@@ -1,6 +1,7 @@
 package protobuf.lang.psi.impl.definitions;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.definitions.PbEnumConstantDefinition;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
@@ -21,5 +22,20 @@ public class PbEnumConstantDefImpl extends PbPsiElementImpl implements PbEnumCon
 
     public String toString(){
         return "enum constant definition";
-    }      
+    }
+
+    @Override
+    public String getQualifiedName() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public PsiElement getAim() {
+        return this;
+    }
+
+    @Override
+    public String getName() {
+        return super.getName();    //To change body of overridden methods use File | Settings | File Templates.
+    }
 }

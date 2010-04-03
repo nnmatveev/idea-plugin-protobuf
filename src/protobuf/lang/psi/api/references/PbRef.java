@@ -8,9 +8,10 @@ import com.intellij.psi.PsiReference;
  * author: Nikolay Matveev
  * Date: Mar 30, 2010
  */
-public interface PbRef extends PsiReference, PsiQualifiedReference, PsiPolyVariantReference {
+public interface PbRef extends PsiReference, PsiQualifiedReference {
 
     enum ReferenceKind {
+        ANY,
         DIRECTORY,        
         PACKAGE,
         MESSAGE,
@@ -18,7 +19,7 @@ public interface PbRef extends PsiReference, PsiQualifiedReference, PsiPolyVaria
         MESSAGE_OR_PACKAGE,
         MESSAGE_FIELD,
         EXTEND_FIELD,
-        EXTEND_FIELD_INSIDE
+        EXTEND_FIELD_INSIDE        
     }
 
     String getReferenceName();

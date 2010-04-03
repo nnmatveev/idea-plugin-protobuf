@@ -4,6 +4,7 @@ import com.intellij.psi.PsiFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.definitions.PbImportDef;
 import protobuf.lang.psi.api.definitions.PbPackageDef;
+import protobuf.lang.psi.api.references.PbRef;
 
 /**
  * author: Nikolay Matveev
@@ -18,9 +19,5 @@ public interface PbFile extends PsiFile, PbPsiElement, PbPsiScopeHolder {
     PbImportDef[] getImportDefinitions();
 
     PbFile[] getImportedFiles(boolean checkForAliased);   
-
-    PbFile[] getImportedFilesByPackageName(String packageName);
-
-    boolean isPackageImported(String packageName);   
 
 }

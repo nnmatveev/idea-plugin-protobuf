@@ -4,6 +4,8 @@ import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiPackage;
 import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbAssignable;
@@ -12,6 +14,7 @@ import protobuf.lang.psi.api.PbPackage;
 import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.utils.PbPsiPackageWrapper;
 import protobuf.lang.psi.utils.PbPsiScopeBuilder;
 import protobuf.lang.psi.utils.PsiUtil;
 
@@ -24,10 +27,6 @@ import java.util.ArrayList;
 public class PbFileImpl extends PsiFileBase implements PbFile {
 
     private final static Logger LOG = Logger.getInstance(PbFileImpl.class.getName());
-
-    //public static PbImportDef[] EMPTY_IMPORT_DEFS = new PbImportDefImpl[0];
-    //public static PbMessageDef[] EMPTY_MESSAGE_DEFS = new PbMessageDefImpl[0];
-
 
     public PbFileImpl(FileViewProvider viewProvider) {
         super(viewProvider, ProtobufFileType.PROTOBUF_FILE_TYPE.getLanguage());
@@ -65,6 +64,10 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
     }
 
     @Override
+    public PbPsiScope getScope() {
+        return new PbFileScope(false, true);
+    }
+
     public PbFile[] getImportedFiles(boolean onlyAliased) {
         PbImportDef[] importDefs = getImportDefinitions();
         ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
@@ -75,11 +78,10 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
             }
 
         }
-        return importFiles.toArray(new PbFile[importFiles.size()]);
+        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
     }
 
-    @Override
-    public PbFile[] getImportedFilesByPackageName(String packageName) {
+    public PbFileImpl[] getImportedFilesByPackageName(String packageName) {
         PbFile[] importedFiles = getImportedFiles(true);
         ArrayList<PbFile> suitableImportedFiles = new ArrayList<PbFile>();
         for (PbFile file : importedFiles) {
@@ -87,68 +89,169 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
                 suitableImportedFiles.add(file);
             }
         }
-        return suitableImportedFiles.toArray(new PbFile[suitableImportedFiles.size()]);
+        return suitableImportedFiles.toArray(new PbFileImpl[suitableImportedFiles.size()]);
     }
 
-    @Override
-    public boolean isPackageImported(String packageName) {
-        return getImportedFilesByPackageName(packageName).length > 0 ? true : false;
-    }
+    /**
+     * public boolean isPackageImported(String packageName) {
+     * return getImportedFilesByPackageName(packageName).length > 0 ? true : false;
+     * }
+     */
 
-    @Override
-    public PbPsiScope getScope() {
-        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
-        //all inner elements
-        scopeBuilder.append(findChildrenByClass(PbAssignable.class));
-        //all inner elements in visible part of package
-        scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
-        //current package
-        scopeBuilder.append(PsiUtil.getContainingPackage(this));
-        //imported packages
-        scopeBuilder.append(PsiUtil.getImportedSubPackages(this));
-        //imported packages
-        scopeBuilder.append(PsiUtil.getImportedPackages(this));
-        return scopeBuilder.getScope();
-
-    }
-
-    public PbPsiScope getScope(PbRef.ReferenceKind kind) {
-        //todo optimize!!!!!!!
-        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
-        //all inner elements
-        scopeBuilder.append(findChildrenByClass(PbAssignable.class));
-        //all inner elements in visible part of package
-        scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
-        //current package
-        scopeBuilder.append(PsiUtil.getContainingPackage(this));
-        //imported packages
-        scopeBuilder.append(PsiUtil.getImportedSubPackages(this));
-        //imported packages
-        scopeBuilder.append(PsiUtil.getImportedPackages(this));
-        //import extend fields
-        PbExtendDef[] extendDefs = findChildrenByClass(PbExtendDef.class);
-        scopeBuilder.extractAndAppend(extendDefs);
-
-        switch (kind) {
-            case MESSAGE: {
-                scopeBuilder.filter(PbMessageDef.class);
-            }
-            break;
-            case MESSAGE_OR_ENUM: {
-                scopeBuilder.filter(PbMessageDef.class, PbEnumDef.class);
-            }
-            break;
-            case MESSAGE_OR_PACKAGE: {
-                scopeBuilder.filter(PbMessageDef.class, PbPackage.class);
-            }
-            break;
-            case EXTEND_FIELD_INSIDE:
-            case EXTEND_FIELD: {
-                scopeBuilder.filter(PbFieldDef.class, PbPackage.class);
-            }
-            break;
+    public static PbPsiPackageWrapper getContainingPackage(PbFile protoFile) {
+        JavaPsiFacade facade = JavaPsiFacade.getInstance(protoFile.getProject());
+        PsiPackage psiPackage = facade.findPackage(protoFile.getPackageName());
+        assert psiPackage != null;
+        if (psiPackage == null) {
+            LOG.info("containing package is null");
+            return null;
         }
-        return scopeBuilder.getScope();
+        LOG.info("containing package:" + psiPackage.getName());
+        return new PbPsiPackageWrapper(psiPackage);
+    }
 
+    /**
+     * public static PbPsiPackageWrapper[] getImportedSubPackages(PsiPackage psiPackage, PbFileImpl protoFile) {
+     * PsiPackage[] subPackages = psiPackage.getSubPackages();
+     * ArrayList<PbPsiPackageWrapper> importedSubPackages = new ArrayList<PbPsiPackageWrapper>();
+     * for (PsiPackage subPackage : subPackages) {
+     * if (protoFile.isPackageImported(subPackage.getQualifiedName())) {
+     * importedSubPackages.add(new PbPsiPackageWrapper(subPackage));
+     * }
+     * }
+     * LOG.info("subpackages size: " + importedSubPackages.size());
+     * return importedSubPackages.toArray(new PbPsiPackageWrapper[importedSubPackages.size()]);
+     * }
+     * <p/>
+     * public static PbPsiPackageWrapper[] getImportedSubPackages(PbFileImpl protoFile) {
+     * JavaPsiFacade facade = JavaPsiFacade.getInstance(protoFile.getProject());
+     * PsiPackage psiPackage = facade.findPackage(protoFile.getPackageName());
+     * if (psiPackage == null) {
+     * LOG.info("package null");
+     * return new PbPsiPackageWrapper[0];
+     * }
+     * return getImportedSubPackages(psiPackage, protoFile);
+     * }
+     */
+
+    public static PbPsiPackageWrapper[] getImportedPackages(PbFile protoFile) {
+        PbFile[] importedFiles = protoFile.getImportedFiles(true);
+        ArrayList<PbPsiPackageWrapper> importedPackages = new ArrayList<PbPsiPackageWrapper>();
+        for (PbFile file : importedFiles) {
+            importedPackages.add(getContainingPackage(file));
+        }
+        return importedPackages.toArray(new PbPsiPackageWrapper[importedPackages.size()]);
+    }
+
+    /**
+     * public static PbPsiPackageWrapper[] getVisiblePackages(PbFile protoFile) {
+     * PbFile[] importedFiles = protoFile.getImportedFiles(true);
+     * ArrayList<PbPsiPackageWrapper> importedPackages = new ArrayList<PbPsiPackageWrapper>();
+     * for(PbFile file : importedFiles){
+     * importedPackages.add(getContainingPackage(file));
+     * }
+     * return importedPackages.toArray(new PbPsiPackageWrapper[importedPackages.size()]);
+     * }
+     */
+
+    public PbPsiScope getInnerScope() {
+        return new PbFileScope(true, false);
+    }
+
+    class PbFileScope implements PbPsiScope {
+
+        boolean myInnerOnly;
+        boolean myDirectInvocation;
+
+        public PbFileScope(boolean innerOnly, boolean directInvocation) {
+            myInnerOnly = innerOnly;
+            myDirectInvocation = directInvocation;
+        }
+
+        @Override
+        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+            return getElementsInScope(kind, myInnerOnly, myDirectInvocation);
+        }
+
+
+        /*public PbPsiScope getScope(boolean innerOnly) {
+           PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+           //all inner elements
+           scopeBuilder.append(findChildrenByClass(PbAssignable.class));
+           //all inner elements in visible part of package
+           scopeBuilder.extractAndAppend(getImportedFilesByPackageName(getPackageName()));
+           //current package
+           scopeBuilder.append(PsiUtil.getContainingPackage(this));
+           //imported packages
+           scopeBuilder.append(getImportedSubPackages(this));
+           //imported packages
+           scopeBuilder.append(PsiUtil.getImportedPackages(this));
+           return scopeBuilder.getScope();
+
+       } */
+
+        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind, boolean innerOnly, boolean directInvocation) {
+            switch (kind) {
+                case DIRECTORY:
+                case PACKAGE: {
+                    assert false;
+
+                }
+                break;
+                case MESSAGE: {
+                    PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                    scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
+                    if (!innerOnly) {
+                        PbFileImpl[] importedFiles = getImportedFilesByPackageName(getPackageName());
+                        for (PbFileImpl file : importedFiles) {
+                            scopeBuilder.append(((PbFileScope) file.getScope()).getElementsInScope(kind, true, false));
+                        }
+                    }
+                    return scopeBuilder.getElements();
+                }
+                case MESSAGE_OR_ENUM: {
+                    PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                    scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
+                    scopeBuilder.append(findChildrenByClass(PbEnumDef.class));
+                    if (!innerOnly) {
+                        PbFileImpl[] importedFiles = getImportedFilesByPackageName(getPackageName());
+                        for (PbFileImpl file : importedFiles) {
+                            scopeBuilder.append(((PbFileScope) file.getScope()).getElementsInScope(kind, true, false));
+                        }
+                    }
+                    return scopeBuilder.getElements();
+                }
+                case MESSAGE_OR_PACKAGE: {
+                    PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                    scopeBuilder.append(findChildrenByClass(PbMessageDef.class));
+                    if (directInvocation) {
+                        scopeBuilder.append(getContainingPackage(PbFileImpl.this));
+                        scopeBuilder.append(getImportedPackages(PbFileImpl.this));
+                    }
+                    if (!innerOnly) {
+                        PbFileImpl[] importedFiles = getImportedFilesByPackageName(getPackageName());
+                        for (PbFileImpl file : importedFiles) {
+                            scopeBuilder.append(((PbFileScope) file.getScope()).getElementsInScope(kind, true, false));
+                        }
+                    }
+                    return scopeBuilder.getElements();
+                }
+                case EXTEND_FIELD_INSIDE: {
+                    PbExtendDef[] extendDefs = findChildrenByClass(PbExtendDef.class);
+                    LOG.info("extendDefs size: " + extendDefs.length);
+                    if (extendDefs.length > 0) {
+                        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                        scopeBuilder.extractAndAppend(extendDefs, PbRef.ReferenceKind.MESSAGE_FIELD);
+                        return scopeBuilder.getElements();
+                    }
+                }
+                break;
+                case EXTEND_FIELD: {
+                    assert false;
+                }
+                break;
+            }
+            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
+        }
     }
 }

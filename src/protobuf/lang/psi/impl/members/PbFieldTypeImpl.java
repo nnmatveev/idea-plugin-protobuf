@@ -18,6 +18,10 @@ public class PbFieldTypeImpl extends PbPsiElementImpl implements PbFieldType {
     }
 
     public Type getType() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        //PbFieldType fieldType = findChildByClass(PbFieldType.class);
+        /*if(fieldType != null){
+            if(fieldType.)
+        }*/
+        return null;
     }
 }

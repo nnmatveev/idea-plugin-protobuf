@@ -11,6 +11,7 @@ import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.blocks.PbMessageBlock;
 import protobuf.lang.psi.api.definitions.PbFieldDef;
 import protobuf.lang.psi.api.definitions.PbMessageDef;
+import protobuf.lang.psi.api.members.PbName;
 import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.impl.members.PbNameImpl;

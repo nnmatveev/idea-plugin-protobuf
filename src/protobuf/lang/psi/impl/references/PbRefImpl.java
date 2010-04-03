@@ -12,12 +12,17 @@ import org.jetbrains.annotations.NotNull;
 import protobuf.lang.ProtobufElementTypes;
 import protobuf.lang.ProtobufTokenTypes;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.api.PbFile;
+import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.PbPsiScopeHolder;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.members.PbFieldType;
 import protobuf.lang.psi.api.members.PbOptionName;
 import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.impl.PbFileImpl;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
+import protobuf.lang.psi.utils.PbPsiPackageWrapper;
+import protobuf.lang.psi.utils.PbPsiScopeBuilder;
 import protobuf.lang.psi.utils.PsiUtil;
 import protobuf.lang.resolve.PbResolveResult;
 import protobuf.lang.resolve.ResolveUtil;
@@ -82,6 +87,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     @Override
+    public PbFile getContainingFile() {
+        return (PbFile) super.getContainingFile();
+    }
+
+    @Override
     public boolean isSoft() {
         return false;
     }
@@ -96,9 +106,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE:
             case MESSAGE_OR_ENUM:
             case MESSAGE_OR_PACKAGE:
-            case MESSAGE_FIELD:
-            case EXTEND_FIELD_INSIDE:{
-                return (PbRef) findChildByType(ProtobufElementTypes.REF);
+            case MESSAGE_FIELD: {
+                return findChildByClass(PbRef.class);
+            }
+            case EXTEND_FIELD_INSIDE: {
+                return findChildByClass(PbRef.class);
             }
             case EXTEND_FIELD: {
                 //todo check
@@ -126,7 +138,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_FIELD: {
 
             }
-            case EXTEND_FIELD_INSIDE:
+            case EXTEND_FIELD_INSIDE:{
+            }
             case EXTEND_FIELD: {
 
             }
@@ -137,22 +150,16 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     @Override
     public String getReferenceName() {
         switch (getKind()) {
-            case DIRECTORY: {
+            case DIRECTORY:
+            case PACKAGE:
+            case MESSAGE:
+            case MESSAGE_OR_ENUM:
+            case MESSAGE_OR_PACKAGE:
+            case MESSAGE_FIELD:
+            case EXTEND_FIELD_INSIDE: {
+                PsiElement psi = findChildByType(ProtobufTokenTypes.IK);
+                return psi != null ? psi.getText() : null;
             }
-            case PACKAGE: {
-            }
-            case MESSAGE: {
-            }
-            case MESSAGE_OR_ENUM: {
-
-            }
-            case MESSAGE_OR_PACKAGE: {
-
-            }
-            case MESSAGE_FIELD: {
-
-            }
-            case EXTEND_FIELD_INSIDE:
             case EXTEND_FIELD: {
 
             }
@@ -168,6 +175,35 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public TextRange getRangeInElement() {
+        switch (getKind()) {
+            case DIRECTORY: {
+            }
+            case PACKAGE:
+            case MESSAGE:
+            case MESSAGE_OR_ENUM:
+            case MESSAGE_OR_PACKAGE: {
+                PsiElement refNameElement = findChildByType(IK);
+                if (refNameElement != null) {
+                    final int offsetInParent = refNameElement.getStartOffsetInParent();
+                    return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
+                }
+
+            }
+            break;
+            case MESSAGE_FIELD: {
+                PsiElement refNameElement = findChildByType(IK);
+                if (refNameElement != null) {
+                    final int offsetInParent = refNameElement.getStartOffsetInParent();
+                    return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
+                }
+            }
+            case EXTEND_FIELD_INSIDE: {
+
+            }
+            case EXTEND_FIELD: {
+
+            }
+        }
         return new TextRange(0, getTextLength());
     }
 
@@ -193,12 +229,33 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PsiElement resolve() {
-        ResolveResult[] results = getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
-        return results.length > 0 ? results[0].getElement() : null;
+        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
     }
 
     @Override
     public String getCanonicalText() {
+        switch (getKind()) {
+            case DIRECTORY: {
+            }
+            case PACKAGE: {
+            }
+            case MESSAGE: {
+            }
+            case MESSAGE_OR_ENUM: {
+
+            }
+            case MESSAGE_OR_PACKAGE: {
+
+            }
+            case MESSAGE_FIELD: {
+
+            }
+            case EXTEND_FIELD_INSIDE: {
+            }
+            case EXTEND_FIELD: {
+
+            }
+        }
         if (getKind().equals(ReferenceKind.DIRECTORY)) {
             return TextUtil.trim(getText(), '"');
         }
@@ -229,7 +286,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     return ReferenceKind.MESSAGE_OR_PACKAGE;
                 }
                 case EXTEND_FIELD: {
-                    if (findChildByType(CLOSE_PARANT) != null) {
+                    if (findChildByType(OPEN_PARANT) != null) {
                         return ReferenceKind.EXTEND_FIELD_INSIDE;
                     }
                     if (findChildByType(IK) == null) {
@@ -259,6 +316,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             return ReferenceKind.MESSAGE_OR_ENUM;
         }
         if (parent instanceof PbOptionName) {
+            if (findChildByType(OPEN_PARANT) != null) {
+                return ReferenceKind.EXTEND_FIELD_INSIDE;
+            }
             if (findChildByType(IK) != null) {
                 return ReferenceKind.MESSAGE_FIELD;
             }
@@ -270,7 +330,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         if (parent instanceof PbImportDef) {
             return ReferenceKind.DIRECTORY;
         }
-        //todo 'service rpc', 'enum constants as value of options and fields', imports
+        //todo 'enum constants as value of options and fields', imports
 
         if (parent instanceof PbServiceMethodDef) {
             return ReferenceKind.MESSAGE;
@@ -280,101 +340,112 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return null;
     }
 
-    @NotNull
-    @Override
-    public ResolveResult[] multiResolve(boolean b) {
-        return PbResolveResult.EMPTY_RESULT;
-    }
+    public static class ExperimentalResolver implements ResolveCache.Resolver {
 
-    public static class ExperimentalResolver implements ResolveCache.PolyVariantResolver<PbRefImpl> {
-
-        public PbResolveResult[] resolve(PbRefImpl ref, boolean b) {
+        public PsiElement resolve(PsiReference refElement, boolean b) {
+            final PbRefImpl ref = (PbRefImpl) refElement;
             final ReferenceKind refKind = ref.getKind();
-            final String refName = ref.getName();
+            final String refName = ref.getReferenceName();
             final PbRef qualifier = ref.getQualifier();
             switch (refKind) {
                 case DIRECTORY: {
-                    LOG.info("directory: " + TextUtil.trim(ref.getText(),'"'));
-                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(TextUtil.trim(ref.getText(),'"'));
+                    LOG.info("directory: " + TextUtil.trim(ref.getText(), '"'));
+                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(TextUtil.trim(ref.getText(), '"'));
                     if (vfile != null) {
                         PsiFile pfile = ref.getManager().findFile(vfile);
-                        ResolveUtil.wrapInResolveResult(pfile);
+                        return pfile;
                     }
                     return null;
                 }
                 case PACKAGE: {
-                    String qualifiedName = PsiUtil.getQualifiedReferenceText(ref);                    
+                    String qualifiedName = PsiUtil.getQualifiedReferenceText(ref);
                     JavaPsiFacade facade = JavaPsiFacade.getInstance(ref.getManager().getProject());
-                    return ResolveUtil.wrapInResolveResult(facade.findPackage(qualifiedName));
+                    return facade.findPackage(qualifiedName);
                 }
-                case MESSAGE: {
-                    if (qualifier != null) {
-                        PsiElement resolvedElement = qualifier.resolve();
-                        if(resolvedElement instanceof PbPsiScopeHolder){
-                            //todo add kind parameter
-                            return ResolveUtil.resolveInScopeByName((PbPsiScopeHolder)resolvedElement,refName);
-                        }
-                        assert false;
-                    }
-                }
-                case MESSAGE_OR_ENUM: {
-
-                }
+                case MESSAGE:
+                case MESSAGE_OR_ENUM:
                 case MESSAGE_OR_PACKAGE: {
-
-                }
-                case MESSAGE_FIELD: {
-
-                }
-                case EXTEND_FIELD_INSIDE:
-                case EXTEND_FIELD: {
-
-                }
-
-            }
-            /*final ReferenceKind kind = refElement.getKind();
-            final PbTypeRef qualifiedElement = refElement.getQualifier();
-            final String refName = refElement.getReferenceName();
-            final String qualifiedName = PsiUtil.getQualifiedReferenceText(refElement);
-            switch (kind) {
-                case MESSAGE_OR_PACKAGE_OR_ENUM: {
-                    if (qualifiedElement != null) {
-                        final PsiElement resolvedElement = qualifiedElement.resolve();
-                        //bar.foo
+                    if (qualifier != null) {
+                        LOG.info("message or enum or package reference and qulifier != null: " + refName);
+                        final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
+                            LOG.info("message or enum or package reference and qulifier != null and resolved: " + refName);
+                            if (resolvedElement instanceof PbPsiScopeHolder) {
+                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
+                            }
                             if (resolvedElement instanceof PsiPackage) {
                                 PbPsiPackageWrapper pbPackage = new PbPsiPackageWrapper((PsiPackage) resolvedElement);
-                                PbResolveResult[] results = ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope((PbFile) refElement.getContainingFile()), refName);
-                                if (results != null) return results;
+                                return ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope(((PbFileImpl) ref.getContainingFile())), refName, refKind);
                             }
-                            if (resolvedElement instanceof PbPsiScopeHolder) {
-                                PbResolveResult[] results = ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName);
-                                if (results != null) return results;
-                            }
-                        } else {
-                            return PbResolveResult.EMPTY_RESULT;
+                            assert false;
                         }
-
-                    } else if (refElement.findChildByType(DOT) != null) {
-                        //.bar
-                        //outerscope search
-                        PbResolveResult[] results = ResolveUtil.resolveInScopeByName(((PbFile) refElement.getContainingFile()).getScope(), refName);
-                        if (results != null) return results;
+                    } else if (ref.findChildByType(DOT) != null) {
+                        LOG.info("message or enum or package reference and qulifier == null and contained DOT: " + refName);
+                        //only outerscope
+                        return ResolveUtil.resolveInScopeByName(ref.getContainingFile().getScope(), refName, refKind);
                     } else {
-                        //bar
-                        //innerscope and then outerscope search
-                        final PbPsiScopeHolder scopeHolder = PsiUtil.getScopeHolderByElement(refElement);
-                        PbResolveResult[] results = ResolveUtil.resolveInScopeByName(scopeHolder.getScope(), refName);
-                        if (results != null) return results;
+                        LOG.info("message or enum or package reference and qulifier == null and not contained DOT: " + refName);
+                        //innerscope and then outerscope
+                        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                        final PbPsiScopeHolder scopeHolder = PsiUtil.getScopeHolderByElement(ref);
+                        LOG.info(ref.getText());
+                        scopeBuilder.append(scopeHolder.getScope(), refKind);
                         if (!(scopeHolder instanceof PbFile)) {
-                            results = ResolveUtil.resolveInScopeByName(((PbFile) refElement.getContainingFile()).getScope(), refName);
-                            if (results != null) return results;
+                            LOG.info("scopeHolder not instanceof PbFile");
+                            scopeBuilder.append(ref.getContainingFile().getScope(), refKind);
                         }
+                        return ResolveUtil.resolveInScopeByName(scopeBuilder.getElements(), refName);
                     }
                 }
                 break;
-            } */
-            return PbResolveResult.EMPTY_RESULT;
+                case MESSAGE_FIELD: {
+                    if (qualifier != null) {
+                        LOG.info("message field and qualifier!=null: " + refName);
+                        final PsiElement resolvedElement = qualifier.resolve();
+                        //change resolving rules
+                        if (resolvedElement != null) {
+                            LOG.info("message field and qualifier resolved: " + refName);
+                            if (resolvedElement instanceof PbPsiScopeHolder) {
+                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
+                            }
+                        }
+                    } else {
+                        LOG.info("message field and qualifier==null: " + refName);
+                    }
+                }
+                break;
+                case EXTEND_FIELD_INSIDE: {
+                    if (qualifier != null) {
+                        LOG.info("extend field inside and qualifier!=null: " + refName);
+                        final PsiElement resolvedElement = qualifier.resolve();
+                        if (resolvedElement != null) {
+                            LOG.info("extend field inside and qualifier resolved: " + refName);
+                            if (resolvedElement instanceof PsiPackage) {
+                                PbPsiPackageWrapper pbPackage = new PbPsiPackageWrapper((PsiPackage)resolvedElement);
+                                return ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope((PbFileImpl)ref.getContainingFile()), refName, refKind);
+
+                            }
+                            if (resolvedElement instanceof PbPsiScopeHolder) {
+                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
+                            }
+                            /*if(resolvedElement instanceof PbFieldDef){
+                                
+                            } */
+                            //assert false;
+                        }
+                    } else {
+                        LOG.info("extend field inside field and qualifier==null: " + refName);
+                        return ResolveUtil.resolveInScopeByName(ref.getContainingFile().getScope(), refName, refKind);
+                    }
+                }
+                break;
+                case EXTEND_FIELD: {
+
+                }
+                break;
+
+            }
+            return null;
         }
     }
 }

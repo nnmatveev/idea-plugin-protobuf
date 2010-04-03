@@ -4,6 +4,8 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiPackage;
 import protobuf.lang.psi.api.*;
+import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.impl.PbFileImpl;
 import protobuf.lang.resolve.ResolveUtil;
 
 /**
@@ -37,17 +39,73 @@ public class PbPsiPackageWrapper implements PbPackage {
 
     @Override
     public PbPsiScope getScope() {
+        assert false;
+        //todo [medium] complete
         //getSubPackages
         //getFilesInPackage
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
 
-    public PbPsiScope getVisibleScope(PbFile protoFile) {
-        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();        
+    public PbPsiScope getVisibleScope(PbFileImpl protoFile) {
+        /*PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
         scopeBuilder.extractAndAppend(protoFile.getImportedFilesByPackageName(myPsiPackage.getQualifiedName()));
         scopeBuilder.append(protoFile.getScope());
-        scopeBuilder.append(PsiUtil.getImportedSubPackages(myPsiPackage, protoFile));        
-        return scopeBuilder.getScope();
+        scopeBuilder.append(protoFile.getImportedSubPackages(myPsiPackage, protoFile));
+        return scopeBuilder.getScope();*/
+        return new PbPsiPackageWrapperScope(protoFile);
     }
+
+    class PbPsiPackageWrapperScope implements PbPsiScope {
+
+        PbFileImpl myFile;
+
+        public PbPsiPackageWrapperScope(PbFileImpl file) {
+            myFile = file;
+        }
+
+        @Override
+        public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
+            switch (kind) {
+                case DIRECTORY: {
+                    assert false;
+                }
+                break;
+                case PACKAGE: {
+                    assert false;
+                }
+                break;
+                case MESSAGE:
+                case MESSAGE_OR_ENUM:
+                case MESSAGE_OR_PACKAGE: {
+                    PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                    if (myPsiPackage.getQualifiedName().equals(myFile.getPackageName())) {
+                        scopeBuilder.append(myFile.getScope(), kind);
+                    } else {
+                        PbFileImpl[] importedFiles = myFile.getImportedFilesByPackageName(myPsiPackage.getQualifiedName());
+                        for (PbFileImpl file : importedFiles) {
+                            scopeBuilder.append(file.getInnerScope(), kind);
+                        }
+                    }
+                    return scopeBuilder.getElements();
+                }
+                case EXTEND_FIELD_INSIDE: {
+                    if (myPsiPackage.getQualifiedName().equals(myFile.getPackageName())) {
+                        PbPsiScopeBuilder scopeBuilder = new PbPsiScopeBuilder();
+                        scopeBuilder.append(myFile.getScope(), kind);
+                        return scopeBuilder.getElements();
+                    }
+                }
+                break;
+                case EXTEND_FIELD: {
+                    assert false;
+                }
+                case MESSAGE_FIELD: {
+                    assert false;
+                }
+            }
+            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
+        }
+    }
+
 }

@@ -22,11 +22,6 @@ public class PsiUtil {
 
     private static class EmptyScope implements PbPsiScope{
         @Override
-        public PbAssignable[] getElementsInScope() {
-            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
-        }
-
-        @Override
         public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
             return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
         }
@@ -63,48 +58,7 @@ public class PsiUtil {
             }
         }
         return fileAccumulator.toArray(new PbFile[fileAccumulator.size()]);
-    }
-
-    public static PbPsiPackageWrapper[] getImportedSubPackages(PsiPackage psiPackage, PbFile protoFile) {
-        PsiPackage[] subPackages = psiPackage.getSubPackages();
-        ArrayList<PbPsiPackageWrapper> importedSubPackages = new ArrayList<PbPsiPackageWrapper>();
-        for (PsiPackage subPackage : subPackages) {
-            if (protoFile.isPackageImported(subPackage.getQualifiedName())) {
-                importedSubPackages.add(new PbPsiPackageWrapper(subPackage));
-            }
-        }
-        LOG.info("subpackages size: " + importedSubPackages.size());
-        return importedSubPackages.toArray(new PbPsiPackageWrapper[importedSubPackages.size()]);
-    }
-
-    public static PbPsiPackageWrapper[] getImportedSubPackages(PbFile protoFile) {
-        JavaPsiFacade facade = JavaPsiFacade.getInstance(protoFile.getProject());
-        PsiPackage psiPackage = facade.findPackage(protoFile.getPackageName());
-        if (psiPackage == null) {
-            LOG.info("package null");
-            return new PbPsiPackageWrapper[0];
-        }
-        return getImportedSubPackages(psiPackage, protoFile);
-    }
-
-    public static PbPsiPackageWrapper[] getImportedPackages(PbFile protoFile) {
-        PbFile[] importedFiles = protoFile.getImportedFiles(true);
-        ArrayList<PbPsiPackageWrapper> importedPackages = new ArrayList<PbPsiPackageWrapper>();
-        for(PbFile file : importedFiles){
-            importedPackages.add(getContainingPackage(file));
-        }
-        return importedPackages.toArray(new PbPsiPackageWrapper[importedPackages.size()]);
-    }
-
-    public static PbPsiPackageWrapper getContainingPackage(PbFile protoFile) {
-        JavaPsiFacade facade = JavaPsiFacade.getInstance(protoFile.getProject());
-        PsiPackage psiPackage = facade.findPackage(protoFile.getPackageName());
-        assert psiPackage != null;
-        if (psiPackage == null) {
-            return null;
-        }
-        return new PbPsiPackageWrapper(psiPackage);
-    }
+    }           
 
     public static PbPsiPackageWrapper[] wrapPsiPackages(PsiPackage[] psiPackages) {
         PbPsiPackageWrapper[] wrappedPackages = new PbPsiPackageWrapper[psiPackages.length];
@@ -123,12 +77,12 @@ public class PsiUtil {
     }
 
     public static PbPsiScopeHolder getScopeHolderByElement(final PsiElement element){
-        PsiElement scope = element;
-        while(!(scope instanceof PbPsiScopeHolder) && scope != null){
-            scope = scope.getParent();
+        PsiElement scopeHolder = element;
+        while(!(scopeHolder instanceof PbPsiScopeHolder) && scopeHolder != null){
+            scopeHolder = scopeHolder.getParent();
         }
-        assert scope != null;
-        return (PbPsiScopeHolder)scope;
+        assert scopeHolder != null;
+        return (PbPsiScopeHolder)scopeHolder;
     }
 
 

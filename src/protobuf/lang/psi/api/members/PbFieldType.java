@@ -11,7 +11,7 @@ public interface PbFieldType extends PbPsiElement {
     enum Type {
         BUILT_IN_TYPE,
         GROUP,
-        USER_DEFINED_TYPE,
+        CUSTOM_TYPE,
 
         BOOL,
         STRING,

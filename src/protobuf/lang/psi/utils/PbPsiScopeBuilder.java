@@ -4,6 +4,7 @@ import com.intellij.psi.PsiNamedElement;
 import protobuf.lang.psi.api.PbAssignable;
 import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.PbPsiScopeHolder;
+import protobuf.lang.psi.api.definitions.PbMessageDef;
 import protobuf.lang.psi.api.references.PbRef;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
  * author: Nikolay Matveev
  * Date: Mar 31, 2010
  */
-public class PbPsiScopeBuilder implements PbPsiScope {
+public class PbPsiScopeBuilder {
     ArrayList<PbAssignable> elementsInScope = new ArrayList<PbAssignable>();
 
     public void append(PbAssignable elem) {
@@ -26,59 +27,50 @@ public class PbPsiScopeBuilder implements PbPsiScope {
     }
 
     public void append(PbPsiScope scope) {
-        append(scope.getElementsInScope());
-    }
-
-    public void extractAndAppend(PbPsiScopeHolder[] scopeHolders) {
-        for (PbPsiScopeHolder scope : scopeHolders) {
-            append(scope.getScope().getElementsInScope());
-        }
+        append(scope.getElementsInScope(PbRef.ReferenceKind.ANY));
     }
 
     public void append(PbPsiScope scope, PbRef.ReferenceKind kind) {
-        /*
-        append(scope.getElementsInScope());
-        *
+        append(scope.getElementsInScope(kind));
     }
 
     public void append(PbPsiScope[] scopes) {
         for (PbPsiScope scope : scopes) {
-            append(scope.getElementsInScope());
+            append(scope.getElementsInScope(PbRef.ReferenceKind.ANY));
         }
     }
 
     public void append(PbPsiScope[] scopes, PbRef.ReferenceKind kind) {
-        /*for (PbPsiScope scope : scopes) {
+        for (PbPsiScope scope : scopes) {
             append(scope, kind);
-        } */
-    }
-
-    public void filter(Class...classes){
-        for(PbAssignable assignable: elementsInScope){
-            for(Class filterClass : classes){
-                if(PbAssignable.class.equals(filterClass)){
-                    elementsInScope.remove(assignable);
-                }
-            }
         }
     }
 
+    public void extractAndAppend(PbPsiScopeHolder scopeHolder) {
+            append(scopeHolder.getScope().getElementsInScope(PbRef.ReferenceKind.ANY));
+    }
 
+    public void extractAndAppend(PbPsiScopeHolder scopeHolder, PbRef.ReferenceKind kind) {        
+            append(scopeHolder.getScope().getElementsInScope(kind));
+    }
 
-    @Override
-    public PbAssignable[] getElementsInScope() {
+    /*public void extractAndAppend(PbPsiScopeHolder[] scopeHolders) {
+        for (PbPsiScopeHolder scope : scopeHolders) {
+            append(scope.getScope().getElementsInScope());
+        }
+    }*/
+
+    public void extractAndAppend(PbPsiScopeHolder[] scopeHolders, PbRef.ReferenceKind kind) {
+        for (PbPsiScopeHolder scope : scopeHolders) {
+            append(scope.getScope().getElementsInScope(kind));
+        }
+    }
+
+    public PbAssignable[] getElements() {
         return elementsInScope.toArray(new PbAssignable[elementsInScope.size()]);
-    }
+    }  
 
-    @Override    
-    public PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind) {
-        for(PbAssignable element : elementsInScope){
-            
-        }
-        return new PbAssignable[0];  //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    public PbPsiScope getScope() {
+    /*public PbPsiScope getScope() {
         return this;
-    }
+    }*/
 }

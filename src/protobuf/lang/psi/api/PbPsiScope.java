@@ -8,7 +8,8 @@ import protobuf.lang.psi.api.references.PbRef;
  * Date: Mar 30, 2010
  */
 public interface PbPsiScope {
-    PbAssignable[] getElementsInScope();   
+    
+    //PbAssignable[] getElementsInScope();
 
     PbAssignable[] getElementsInScope(PbRef.ReferenceKind kind);
 }

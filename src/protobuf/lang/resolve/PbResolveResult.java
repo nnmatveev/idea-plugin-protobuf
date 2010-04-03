@@ -22,6 +22,6 @@ public class PbResolveResult implements ResolveResult {
 
     @Override
     public boolean isValidResult() {
-        return false;  //todo complete
+        return false;  //todo [medium] complete
     }
 }

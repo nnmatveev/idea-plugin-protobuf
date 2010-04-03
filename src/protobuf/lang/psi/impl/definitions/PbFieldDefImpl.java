@@ -9,6 +9,7 @@ import protobuf.lang.psi.api.definitions.PbFieldDef;
 import static protobuf.lang.psi.api.members.PbFieldType.Type;
 
 import protobuf.lang.psi.impl.PbPsiElementImpl;
+import protobuf.lang.psi.impl.members.PbNameImpl;
 
 /**
  * author: Nikolay Matveev
@@ -54,5 +55,10 @@ public class PbFieldDefImpl extends PbPsiElementImpl implements PbFieldDef {
     @Override
     public PsiElement getAim() {
         return this;
+    }
+
+    @Override
+    public String getName() {
+        return findChildByClass(PbNameImpl.class).getText();
     }
 }
