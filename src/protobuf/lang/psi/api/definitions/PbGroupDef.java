@@ -1,13 +1,12 @@
 package protobuf.lang.psi.api.definitions;
 
-import protobuf.lang.psi.api.PbAssignable;
-import protobuf.lang.psi.api.PbPsiScopeHolder;
+import com.intellij.psi.PsiNamedElement;
+import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 
 /**
  * author: Nikolay Matveev
  * Date: Apr 3, 2010
  */
 
-//todo [low] it is not best idea to extends PbMessageDef
-public interface PbGroupDef extends PbFieldDef, PbMessageDef, PbPsiScopeHolder {
+public interface PbGroupDef extends PbFieldDef, PsiNamedElement, PbBlockHolder {
 }

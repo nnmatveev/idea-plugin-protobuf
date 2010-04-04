@@ -22,15 +22,5 @@ public class PbEnumConstantDefImpl extends PbPsiElementImpl implements PbEnumCon
 
     public String toString(){
         return "enum constant definition";
-    }
-
-    @Override
-    public PsiElement getAim() {
-        return this;
-    }
-
-    @Override
-    public String getName() {
-        return super.getName();    //To change body of overridden methods use File | Settings | File Templates.
-    }
+    }       
 }

@@ -33,6 +33,7 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
         if(element.equals(OPTION_DEF)) return new PbOptionDefImpl(node);
         if(element.equals(OPTION_NAME)) return new PbOptionNameImpl(node);
         if(element.equals(OPTION_REF)) return new PbRefImpl(node);
+        if(element.equals(OPTION_REF_SEQ)) return new PbOptionRefSeqImpl(node);
         if(element.equals(OPTION_ASSIGMENT)) return new PbOptionAssigmentImpl(node);
 
         if(element.equals(MESSAGE_DEF)) return new PbMessageDefImpl(node);

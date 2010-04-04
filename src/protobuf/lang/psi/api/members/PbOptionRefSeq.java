@@ -4,7 +4,7 @@ import protobuf.lang.psi.api.PbPsiElement;
 
 /**
  * author: Nikolay Matveev
- * Date: Apr 2, 2010
+ * Date: Apr 4, 2010
  */
-public interface PbOptionName extends PbPsiElement {
+public interface PbOptionRefSeq extends PbPsiElement {
 }

@@ -18,6 +18,7 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     ProtobufElementType OPTION_DEF = new ProtobufElementType("Option definition");
     ProtobufElementType OPTION_NAME = new ProtobufElementType("Option name");
     ProtobufElementType OPTION_REF = new ProtobufElementType("Option reference");
+    ProtobufElementType OPTION_REF_SEQ = new ProtobufElementType("Option reference sequence");
     ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("Optionassigment");
 
     ProtobufElementType IMPORT_DEF = new ProtobufElementType("Import definition");
@@ -57,6 +58,6 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     TokenSet SKIPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
     TokenSet BLOCKS = TokenSet.create(MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
-    TokenSet DEFS = TokenSet.create(MESSAGE_DEF,ENUM_DEF,SERVICE_DEF,SERVICE_METHOD_DEF,EXTEND_DEF,EXTENSIONS_DEF,IMPORT_DEF,PACKAGE_DEF,FIELD_DEF,OPTION_DEF,ENUM_CONST_DEF);            
+    TokenSet DEFS = TokenSet.create(MESSAGE_DEF,ENUM_DEF,SERVICE_DEF,SERVICE_METHOD_DEF,EXTEND_DEF,EXTENSIONS_DEF,IMPORT_DEF,PACKAGE_DEF,FIELD_DEF,OPTION_DEF,ENUM_CONST_DEF);   
 
 }

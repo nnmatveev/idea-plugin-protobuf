@@ -60,37 +60,38 @@ public class ReferenceElement {
         return true;
     }
 
-    public static boolean parseForCustomOption(PatchedPsiBuilder builder) {        
+    public static boolean parseForCustomOption(PatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_PARANT)) {
             return false;
         }
-        PsiBuilder.Marker marker = builder.mark();
+        PsiBuilder.Marker nameMarker = builder.mark();
+        PsiBuilder.Marker refSeqMarker = builder.mark();
+        PsiBuilder.Marker refMarker = builder.mark();
         parseOptionPart(builder);
         while (!builder.eof() && builder.compareToken(DOT)) {
             builder.match(DOT);
-            if (!parseOptionPart(builder)) {
+            if (builder.compareToken(IK)) {
+                //complete previous marker
+                builder.match(IK);
+                refMarker.done(OPTION_REF);
+                refMarker = refMarker.precede();
+            } else if (builder.compareToken(OPEN_PARANT)) {
+                //drop previous precede marker and start new marker
+                refMarker.drop();
+                refMarker = builder.mark();
+                parseOptionPart(builder);
+            } else {
                 builder.error("identifier.or.open.parant.expected");
-                marker.done(OPTION_REF);
-                marker = marker.precede();
                 break;
             }
-            marker.done(OPTION_REF);
-            marker = marker.precede();
-        }        
-        marker.done(OPTION_NAME);
+        }
+        refMarker.drop();
+        refSeqMarker.done(OPTION_REF_SEQ);
+        nameMarker.done(OPTION_NAME);
         return true;
     }
 
     private static boolean parseOptionPart(PatchedPsiBuilder builder) {
-        if (builder.compareToken(IK)) {
-            //PsiBuilder.Marker marker = builder.mark();
-            builder.match(IK);
-            //marker.done(OPTION_REF);
-            return true;
-        }
-        if (!builder.compareToken(OPEN_PARANT)) {
-            return false;
-        }
         PsiBuilder.Marker marker = builder.mark();
         builder.match(OPEN_PARANT);
         builder.match(DOT);
@@ -99,7 +100,7 @@ public class ReferenceElement {
             marker.done(OPTION_REF);
             marker = marker.precede();
             builder.match(DOT);
-            builder.match(IK, "identifier.expected");            
+            builder.match(IK, "identifier.expected");
         }
         builder.match(CLOSE_PARANT, "close.parant.expected");
         marker.done(OPTION_REF);

@@ -14,7 +14,12 @@ public class PbPsiElementImpl extends ASTWrapperPsiElement implements PbPsiEleme
         super(node);        
     }
 
-
+    @Override
+    public String toString() {
+        return this.getNode().getElementType().toString();                
+    }
+    
+    @Override
     public void accept(ProtobufPsiElementVisitor visitor) {
         
     }

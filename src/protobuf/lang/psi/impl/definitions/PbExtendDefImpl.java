@@ -1,11 +1,9 @@
 package protobuf.lang.psi.impl.definitions;
 
 import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiElement;
-import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.PbExtendDef;
-import protobuf.lang.psi.impl.PbPsiElementImpl;
+import protobuf.lang.psi.impl.auxiliary.PbBlockHolderImpl;
 
 /**
  * author: Nikolay Matveev
@@ -13,7 +11,7 @@ import protobuf.lang.psi.impl.PbPsiElementImpl;
  */
 
 //todo: inspection that nested 'extend' is bad
-public class PbExtendDefImpl extends PbPsiElementImpl implements PbExtendDef {
+public class PbExtendDefImpl extends PbBlockHolderImpl implements PbExtendDef {
     public PbExtendDefImpl(ASTNode node){
         super(node);
     }
@@ -21,9 +19,5 @@ public class PbExtendDefImpl extends PbPsiElementImpl implements PbExtendDef {
     public String toString(){
         return "extend definition";
     }
-
-    @Override
-    public PbPsiScope getScope() {
-        return findChildByClass(PbBlock.class);
-    }   
+       
 }

@@ -1,9 +1,7 @@
 package protobuf.lang.psi.impl.definitions;
 
 import com.intellij.lang.ASTNode;
-import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
-import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.PbGroupDef;
 
@@ -32,10 +30,10 @@ public class PbGroupDefImpl extends PbFieldDefImpl implements PbGroupDef {
     @Override
     public FieldType getType() {
         return FieldType.GROUP;
-    }
+    }   
 
     @Override
-    public PbPsiScope getScope() {
+    public PbBlock getBlock() {
         return findChildByClass(PbBlock.class);
     }
 }

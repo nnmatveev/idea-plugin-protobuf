@@ -5,13 +5,13 @@ package protobuf.lang.psi;
  * Date: Apr 3, 2010
  */
 public class PbPsiEnums {
-    public enum FieldLabel{
+    public enum FieldLabel {
         REQUIRED,
         REPEATED,
         OPTIONAL
     }
 
-    public enum FieldType{
+    public enum FieldType {
         BUILT_IN_TYPE,
         GROUP,
         CUSTOM_TYPE,
@@ -33,14 +33,48 @@ public class PbPsiEnums {
         SINT64,
     }
 
-    public enum ReferenceKind {        
+    public enum ReferenceKind {
         DIRECTORY,
         PACKAGE,
         MESSAGE_OR_GROUP,
         MESSAGE_OR_ENUM_OR_GROUP,
         MESSAGE_OR_PACKAGE_OR_GROUP,
         MESSAGE_OR_GROUP_FIELD,
-        EXTEND_FIELD,
-        EXTEND_FIELD_INSIDE
+        EXTEND_FIELD,        
+        ENUM_CONSTANT
+    }
+
+    public enum FileOption {
+        JAVA_PACKAGE,
+        JAVA_OUTER_CLASS,
+        JAVA_MULTIPLE_FILES,
+        OPTIMIZE_FOR,
+        CC_GENERIC_SERVICES,
+        JAVA_GENERIC_SERVICES,
+        PYTHON_GENERIC_SERVICES,
+    }
+
+    public enum OptimizeMode {
+        SPEED,
+        CODE_SIZE,
+        LITE_RUNTIME
+    }
+
+    public enum MessageOption {
+        MESSAGE_SET_WIRE_FORMAT,
+        NO_STANDARD_DESCRIPTOR_ACCESSOR
+    }
+
+    public enum FieldOption {
+        CTYPE,
+        PACKED,
+        DEPRECATED,
+        EXPERIMENTAL_MAP_KEY
+    }
+
+    public enum CType {
+        STRING,
+        CORD,
+        STRING_PIECE
     }
 }

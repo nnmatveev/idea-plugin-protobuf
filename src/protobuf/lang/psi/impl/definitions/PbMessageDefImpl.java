@@ -5,22 +5,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
-import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.PbPsiScope;
 import protobuf.lang.psi.api.blocks.PbBlock;
-import protobuf.lang.psi.api.blocks.PbMessageBlock;
 import protobuf.lang.psi.api.definitions.PbFieldDef;
 import protobuf.lang.psi.api.definitions.PbMessageDef;
-import protobuf.lang.psi.api.members.PbName;
-import protobuf.lang.psi.api.references.PbRef;
-import protobuf.lang.psi.impl.PbPsiElementImpl;
+import protobuf.lang.psi.impl.auxiliary.PbBlockHolderImpl;
 import protobuf.lang.psi.impl.members.PbNameImpl;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 10, 2010
  */
-public class PbMessageDefImpl extends PbPsiElementImpl implements PbMessageDef {
+public class PbMessageDefImpl extends PbBlockHolderImpl implements PbMessageDef {
 
     public PbMessageDefImpl(ASTNode node) {
         super(node);
@@ -46,15 +41,5 @@ public class PbMessageDefImpl extends PbPsiElementImpl implements PbMessageDef {
 
     public String getName(){
         return findChildByClass(PbNameImpl.class).getText();
-    }
-
-    @Override
-    public PsiElement getAim() {
-        return this;
-    }
-
-    @Override
-    public PbPsiScope getScope() {
-        return findChildByClass(PbBlock.class);
     }
 }

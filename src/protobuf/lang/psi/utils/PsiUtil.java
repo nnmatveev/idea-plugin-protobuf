@@ -2,12 +2,19 @@ package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.*;
-import protobuf.lang.psi.PbPsiEnums;
+import com.intellij.psi.tree.TokenSet;
 import protobuf.lang.psi.api.*;
-import protobuf.lang.psi.api.definitions.PbExtendDef;
+import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
+import protobuf.lang.psi.api.blocks.PbBlock;
+import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.impl.PbFileImpl;
 
 import java.util.ArrayList;
+
+import static protobuf.lang.ProtobufElementTypes.ENUM_DEF;
+import static protobuf.lang.ProtobufElementTypes.GROUP_DEF;
+import static protobuf.lang.ProtobufElementTypes.MESSAGE_DEF;
 
 /**
  * author: Nikolay Matveev
@@ -15,18 +22,11 @@ import java.util.ArrayList;
  */
 public class PsiUtil {
 
-    private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());
+    private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());   
 
-    public static PbAssignable[] EMPTY_ASSIGNABLE = new PbAssignable[0];
+    public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 
-    public static PbPsiScope EMPTY_SCOPE = new EmptyScope(); 
-
-    private static class EmptyScope implements PbPsiScope{
-        @Override
-        public PbAssignable[] getElementsInScope(PbPsiEnums.ReferenceKind kind) {
-            return PbAssignable.EMPTY_ASSIGNABLE_ARRAY;
-        }
-    }
+    public static PsiPackage[] EMPTY_PACKAGE_ARRAY = new PsiPackage[0];
 
     public static String getQualifiedReferenceText(PbRef ref) {
         StringBuilder sbuilder = new StringBuilder();
@@ -50,44 +50,84 @@ public class PsiUtil {
         return true;
     }
 
-    public static PbFile[] getProtoFilesInPackage(PsiPackage psiPackage, PbFile protoFile) {
-        PsiElement[] files = psiPackage.getChildren();
-        ArrayList<PbFile> fileAccumulator = new ArrayList<PbFile>();
-        for (PsiElement file : files) {
-            if (file instanceof PbFile) {
-                fileAccumulator.add((PbFile) file);
+    //new methods
+
+    public static PsiElement getRootScope(final PsiElement element) {
+        return JavaPsiFacade.getInstance(element.getManager().getProject()).findPackage("");
+    }
+
+    public static PsiElement getUpperScope(final PsiElement element) {
+        if (element instanceof PsiPackage) {
+            return ((PsiPackage) element).getParentPackage();            
+        }
+        if (element instanceof PbFile) {
+            JavaPsiFacade facade = JavaPsiFacade.getInstance(element.getManager().getProject());
+            return facade.findPackage(((PbFile) element).getPackageName());
+        }
+        if (element instanceof PbPsiElement) {
+            PbPsiElement scope = (PbPsiElement) element.getParent();
+            int i = 0;
+            while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
+                if(i==98){
+                    LOG.info("upper scope: \n" + scope.getText());
+                    assert false;
+                }
+                if(scope == scope.getParent()) assert false;
+                scope = (PbPsiElement) scope.getParent();
+                i++;
+            }
+            return scope;
+        }
+        assert false;
+        return null;
+    }
+
+    public static PsiElement getScope(final PsiElement element) {
+        if (element instanceof PbBlockHolder) {
+            return ((PbBlockHolder) element).getBlock();
+        }
+        if (element instanceof PbFile) {
+            return element;
+        }
+        if (element instanceof PsiPackage) {
+            return element;
+        }
+        assert false;
+        return null;
+    }
+
+    public static PbFile[] getImportedFiles(PbFile file, boolean onlyAliased) {
+        PbImportDef[] importDefs = file.getImportDefinitions();
+        ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
+        for (PbImportDef importDef : importDefs) {
+            PbFile aliasedFile = importDef.getAliasedFile();
+            if (aliasedFile != null || !onlyAliased) {
+                importFiles.add(aliasedFile);
+            }
+
+        }
+        if (importFiles.size() == 0) {
+            return EMPTY_FILE_ARRAY;
+        }
+        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
+    }
+
+    public static PbFile[] getImportedFiles(PbFile file, String packageName) {
+        PbImportDef[] importDefs = file.getImportDefinitions();
+        ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
+        for (PbImportDef importDef : importDefs) {
+            PbFile aliasedFile = importDef.getAliasedFile();
+            if (packageName.equals(aliasedFile)) {
+                importFiles.add(aliasedFile);
             }
         }
-        return fileAccumulator.toArray(new PbFile[fileAccumulator.size()]);
+        if (importFiles.size() == 0) {
+            return EMPTY_FILE_ARRAY;
+        }
+        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
     }           
 
-    public static PbPsiPackageWrapper[] wrapPsiPackages(PsiPackage[] psiPackages) {
-        PbPsiPackageWrapper[] wrappedPackages = new PbPsiPackageWrapper[psiPackages.length];
-        for (int i = 0; i < psiPackages.length; i++) {
-            wrappedPackages[i] = new PbPsiPackageWrapper(psiPackages[i]);
-        }
-        return wrappedPackages;
+    public static boolean isSamePackage(PbFile file, PsiPackage psiPackage) {
+        return psiPackage.getQualifiedName().equals(file.getPackageName());
     }
-
-    public static PbPsiScope getScopeByElement(final PsiElement element){
-        PsiElement scope = element;
-        while(!(scope instanceof PbPsiScope)){
-            scope = scope.getParent();
-        }
-        return (PbPsiScope)scope;
-    }
-
-    public static PbPsiScopeHolder getScopeHolderByElement(final PsiElement element){
-        PsiElement scopeHolder = element;
-        while(!(scopeHolder instanceof PbPsiScopeHolder) && scopeHolder != null){
-            if(scopeHolder instanceof PbExtendDef){
-                scopeHolder = scopeHolder.getParent(); //todo [hack] maybe there is a better way to avoid such problem
-            }
-            scopeHolder = scopeHolder.getParent();
-        }
-        assert scopeHolder != null;
-        return (PbPsiScopeHolder)scopeHolder;
-    }
-
-
 }
