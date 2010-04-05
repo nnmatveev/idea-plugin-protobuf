@@ -13,16 +13,18 @@ import static protobuf.lang.psi.PbPsiEnums.*;
 public class PbFieldTypeImpl extends PbPsiElementImpl implements PbFieldType {
     public PbFieldTypeImpl(ASTNode node){
         super(node);
-    }
+    }    
 
-    public String toString(){
-        return "field type";
-    }
-
+    @Override
     public FieldType getType() {
         if(findChildByClass(PbRef.class) != null){
             return FieldType.CUSTOM_TYPE;
         }
         return FieldType.BUILT_IN_TYPE;
+    }
+
+    @Override
+    public PbRef getTypeRef() {
+        return findChildByClass(PbRef.class);
     }
 }

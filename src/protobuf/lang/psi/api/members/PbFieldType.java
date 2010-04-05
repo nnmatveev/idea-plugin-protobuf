@@ -1,6 +1,7 @@
 package protobuf.lang.psi.api.members;
 
 import protobuf.lang.psi.api.PbPsiElement;
+import protobuf.lang.psi.api.references.PbRef;
 
 import static protobuf.lang.psi.PbPsiEnums.*;
 
@@ -11,5 +12,7 @@ import static protobuf.lang.psi.PbPsiEnums.*;
 public interface PbFieldType extends PbPsiElement {
 
     FieldType getType();
+
+    PbRef getTypeRef();
 
 }

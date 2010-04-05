@@ -8,5 +8,5 @@ import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
  * Date: Apr 3, 2010
  */
 
-public interface PbGroupDef extends PbFieldDef, PsiNamedElement, PbBlockHolder {
+public interface PbGroupDef extends PbBlockDefinition, PsiNamedElement, PbBlockHolder {
 }

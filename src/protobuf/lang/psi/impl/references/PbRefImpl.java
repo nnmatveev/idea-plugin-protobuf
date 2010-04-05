@@ -161,7 +161,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case PACKAGE:
             case MESSAGE_OR_GROUP:
             case MESSAGE_OR_ENUM_OR_GROUP:
-            case MESSAGE_OR_PACKAGE_OR_GROUP: {
+            case MESSAGE_OR_PACKAGE_OR_GROUP:
+            case MESSAGE_OR_GROUP_FIELD:
+            case EXTEND_FIELD: {
                 PsiElement refNameElement = findChildByType(IK);
                 if (refNameElement != null) {
                     final int offsetInParent = refNameElement.getStartOffsetInParent();
@@ -169,21 +171,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 }
 
             }
-            break;
-            case MESSAGE_OR_GROUP_FIELD: {
-                PsiElement refNameElement = findChildByType(IK);
-                if (refNameElement != null) {
-                    final int offsetInParent = refNameElement.getStartOffsetInParent();
-                    return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
-                }
-            }
-            case EXTEND_FIELD: {
-                PsiElement refNameElement = findChildByType(IK);
-                if (refNameElement != null) {
-                    final int offsetInParent = refNameElement.getStartOffsetInParent();
-                    return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
-                }
-            }            
+            break;           
         }
         return new TextRange(0, getTextLength());
     }
@@ -210,8 +198,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PsiElement resolve() {
-        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
-        //return null;
+        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);        
     }
 
     @Override
@@ -310,8 +297,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
         public PsiElement resolve(PsiReference refElement, boolean b) {
             final PbRefImpl ref = (PbRefImpl) refElement;
-            final ReferenceKind refKind = ref.getKind();
-            final String refName = ref.getReferenceName();
+            final ReferenceKind refKind = ref.getKind();            
             final PbRef qualifier = ref.getQualifier();
             switch (refKind) {
                 case DIRECTORY: {
@@ -330,13 +316,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 }
                 case MESSAGE_OR_GROUP:
                 case MESSAGE_OR_ENUM_OR_GROUP:
-                case MESSAGE_OR_PACKAGE_OR_GROUP: {
+                case MESSAGE_OR_PACKAGE_OR_GROUP:
+                case EXTEND_FIELD: {
                     if (qualifier != null) {    //foo.bar                        
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
                             return ResolveUtil.resolveInScope(PsiUtil.getScope(resolvedElement),ref);                            
                         }
-                        return null;
                     } else if (ref.findChildByType(DOT) != null) {  //.foo
                         return ResolveUtil.resolveInScope(PsiUtil.getRootScope(ref),ref);
                     } else {    // foo
@@ -357,47 +343,16 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                         return null;
                     }
                 }
-                //break;
-                case MESSAGE_OR_GROUP_FIELD: {
-                    /*if (qualifier != null) {
-                        final PsiElement resolvedElement = qualifier.resolve();
-                        //change resolving rules
-                        if (resolvedElement != null) {
-                            if (resolvedElement instanceof PbPsiScopeHolder) {
-                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
-                            }
-                        }
-                    } else {
-                    }
-                    */
-                }
                 break;
-                case EXTEND_FIELD: {
-                    /*if (qualifier != null) {
+                case MESSAGE_OR_GROUP_FIELD: {
+                    if (qualifier != null) {                        
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
-                            if (resolvedElement instanceof PsiPackage) {
-                                PbPsiPackageWrapper pbPackage = new PbPsiPackageWrapper((PsiPackage) resolvedElement);
-                                return ResolveUtil.resolveInScopeByName(pbPackage.getVisibleScope((PbFileImpl) ref.getContainingFile()), refName, refKind);
-
-                            }
-                            if (resolvedElement instanceof PbPsiScopeHolder) {
-                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
-                            }
-                            if (resolvedElement instanceof PbPsiScopeHolder) {
-                                return ResolveUtil.resolveInScopeByName(((PbPsiScopeHolder) resolvedElement).getScope(), refName, refKind);
-                            }
-                            if (resolvedElement instanceof PbFieldDef) {
-                                final PbFieldDef field = (PbFieldDef) resolvedElement;
-
-                            }
-                            //assert false;
+                            return ResolveUtil.resolveInScope(PsiUtil.getTypeScope(resolvedElement),ref);                            
                         }
-                    } else {
-                        return ResolveUtil.resolveInScopeByName(ref.getContainingFile().getScope(), refName, refKind);
-                    } */
+                    }
                 }
-                break;                
+                break;                                
             }
             return null;
         }

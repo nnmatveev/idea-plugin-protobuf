@@ -3,6 +3,7 @@ package protobuf.lang.psi.utils;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.*;
 import com.intellij.psi.tree.TokenSet;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.blocks.PbBlock;
@@ -11,6 +12,8 @@ import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbFileImpl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static protobuf.lang.ProtobufElementTypes.ENUM_DEF;
 import static protobuf.lang.ProtobufElementTypes.GROUP_DEF;
@@ -22,7 +25,7 @@ import static protobuf.lang.ProtobufElementTypes.MESSAGE_DEF;
  */
 public class PsiUtil {
 
-    private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());   
+    private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());
 
     public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 
@@ -58,7 +61,7 @@ public class PsiUtil {
 
     public static PsiElement getUpperScope(final PsiElement element) {
         if (element instanceof PsiPackage) {
-            return ((PsiPackage) element).getParentPackage();            
+            return ((PsiPackage) element).getParentPackage();
         }
         if (element instanceof PbFile) {
             JavaPsiFacade facade = JavaPsiFacade.getInstance(element.getManager().getProject());
@@ -68,11 +71,11 @@ public class PsiUtil {
             PbPsiElement scope = (PbPsiElement) element.getParent();
             int i = 0;
             while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
-                if(i==98){
+                if (i == 98) {
                     LOG.info("upper scope: \n" + scope.getText());
                     assert false;
                 }
-                if(scope == scope.getParent()) assert false;
+                if (scope == scope.getParent()) assert false;
                 scope = (PbPsiElement) scope.getParent();
                 i++;
             }
@@ -96,6 +99,24 @@ public class PsiUtil {
         return null;
     }
 
+    public static PsiElement getTypeScope(final PsiElement element) {
+        if (element instanceof PbFieldDef) {
+            PbRef typeRef = ((PbFieldDef) element).getTypeRef();
+            if (typeRef != null) {
+                PsiElement resolvedElement = typeRef.resolve();
+                if (resolvedElement != null) {
+                    return getScope(resolvedElement);
+                }
+            }
+            return null;
+        }
+        if (element instanceof PbExtendDef) {
+            //todo add extend type scope
+        }
+        assert false;
+        return null;
+    }
+
     public static PbFile[] getImportedFiles(PbFile file, boolean onlyAliased) {
         PbImportDef[] importDefs = file.getImportDefinitions();
         ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
@@ -112,12 +133,12 @@ public class PsiUtil {
         return importFiles.toArray(new PbFileImpl[importFiles.size()]);
     }
 
-    public static PbFile[] getImportedFiles(PbFile file, String packageName) {
+    public static PbFile[] getImportedFilesByPackageName(PbFile file, @NotNull String packageName) {
         PbImportDef[] importDefs = file.getImportDefinitions();
         ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
         for (PbImportDef importDef : importDefs) {
             PbFile aliasedFile = importDef.getAliasedFile();
-            if (packageName.equals(aliasedFile)) {
+            if (aliasedFile != null && packageName.equals(aliasedFile.getPackageName())) {
                 importFiles.add(aliasedFile);
             }
         }
@@ -125,7 +146,22 @@ public class PsiUtil {
             return EMPTY_FILE_ARRAY;
         }
         return importFiles.toArray(new PbFileImpl[importFiles.size()]);
-    }           
+    }   
+
+    public static boolean isVisibleSubPackage(PsiPackage subPackage, PbFile curFile){
+        PbFile[] importedFiles = getImportedFiles(curFile,true);
+        String qSubPackageName = subPackage.getQualifiedName();
+        if(curFile.getPackageName().startsWith(qSubPackageName)){
+            return true;
+        }
+        for(PbFile importedFile : importedFiles){
+            String qPackageName = importedFile.getPackageName();
+            if(qPackageName.startsWith(qSubPackageName)){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static boolean isSamePackage(PbFile file, PsiPackage psiPackage) {
         return psiPackage.getQualifiedName().equals(file.getPackageName());

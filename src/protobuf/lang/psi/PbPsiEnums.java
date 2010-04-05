@@ -12,8 +12,7 @@ public class PbPsiEnums {
     }
 
     public enum FieldType {
-        BUILT_IN_TYPE,
-        GROUP,
+        BUILT_IN_TYPE,        
         CUSTOM_TYPE,
 
         BOOL,

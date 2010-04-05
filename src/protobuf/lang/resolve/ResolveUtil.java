@@ -19,7 +19,7 @@ import protobuf.lang.psi.utils.PsiUtil;
  */
 public class ResolveUtil {
 
-    private final static Logger LOG = Logger.getInstance(ResolveUtil.class.getName());      
+    private final static Logger LOG = Logger.getInstance(ResolveUtil.class.getName());
 
     public static PsiElement resolveInScope(final PsiElement scope, final PbRef ref) {
         ReferenceKind kind = ref.getKind();
@@ -27,7 +27,9 @@ public class ResolveUtil {
         if (scope instanceof PsiPackage) {
             switch (kind) {
                 case DIRECTORY:
-                case PACKAGE:
+                case PACKAGE:{
+
+                }
                 case MESSAGE_OR_GROUP_FIELD: {
                     assert false;
                 }
@@ -37,7 +39,14 @@ public class ResolveUtil {
                 case EXTEND_FIELD: {
                     //get imported files by package name and invoke this function for this files
                     PbFile containingFile = (PbFile) ref.getContainingFile();
-                    PbFile[] importedFiles = PsiUtil.getImportedFiles(containingFile, ((PsiPackage) scope).getQualifiedName());
+                    if (PsiUtil.isSamePackage(containingFile, (PsiPackage) scope)) {
+                        PsiElement resolveResult = resolveInScope(containingFile, ref);
+                        if (resolveResult != null) {
+                            return resolveResult;
+                        }
+                    }
+                    LOG.info("(extend field) package qualified name: " + ((PsiPackage) scope).getQualifiedName());
+                    PbFile[] importedFiles = PsiUtil.getImportedFilesByPackageName(containingFile, ((PsiPackage) scope).getQualifiedName());
                     for (PbFile importedFile : importedFiles) {
                         PsiElement resolveResult = resolveInScope(importedFile, ref);
                         if (resolveResult != null) {
@@ -47,23 +56,23 @@ public class ResolveUtil {
                 }
                 break;
                 case MESSAGE_OR_PACKAGE_OR_GROUP: {
-                    //get imported subpackages for this file and try to resolve
-                    //get imported files by package name and invoke this function for this files
                     PbFile containingFile = (PbFile) ref.getContainingFile();
-                    PsiPackage[] subPackages = ((PsiPackage) scope).getSubPackages();
-                    PsiElement resolveResult = resolveInSubPackagesByImportedFile(containingFile, subPackages, refName);
-                        if (resolveResult != null) {
-                            return resolveResult;
+                    //resolve in subpackages scope
+                    //alg: find subpackage and then find it in subpackages
+                    PsiPackage subPackage = resolveInSubPackagesScope((PsiPackage)scope,refName);
+                    if(subPackage!=null){
+                        //f(subPackage, thisFile, importedFiles) -> boolean
+                        //true if this subPackage in visible scope either false
+                        if(PsiUtil.isVisibleSubPackage(subPackage,containingFile)){
+                            return subPackage;
                         }
-                    PbFile[] importedFiles = PsiUtil.getImportedFiles(containingFile, true);
-                    for (PbFile importedFile : importedFiles) {
-                        // importedFile,subPackages[] refName -> PsiPackage
-                        resolveResult = resolveInSubPackagesByImportedFile(importedFile, subPackages, refName);
-                        if (resolveResult != null) {
-                            return resolveResult;
-                        }
-                        resolveResult = resolveInScope(importedFile, ref);
-                        if (resolveResult != null) {
+                    }
+
+                    //resolve in imported files scope
+                    PbFile[] importedFiles = PsiUtil.getImportedFilesByPackageName(containingFile,((PsiPackage)scope).getQualifiedName());
+                    for(PbFile importedFile : importedFiles){
+                        PsiElement resolveResult = resolveInScope(importedFile,ref);
+                        if(resolveResult != null){
                             return resolveResult;
                         }
                     }
@@ -107,8 +116,8 @@ public class ResolveUtil {
                             PbBlock extendBlock = ((PbExtendDef) child).getBlock();
                             PsiElement[] extendChildren = extendBlock.getChildren();
                             for (PsiElement extendChild : extendChildren) {
-                                if (refName.equals(((PsiNamedElement) extendChild).getName())) {
-                                    return child;
+                                if (extendChild instanceof PbFieldDef && refName.equals(((PsiNamedElement) extendChild).getName())) {
+                                    return extendChild;
                                 }
                             }
                         }
@@ -130,14 +139,13 @@ public class ResolveUtil {
             }
         }
         return null;
-    }
-
-    public static PsiElement resolveInSubPackagesByImportedFile(PbFile file, PsiPackage[] subPackages, String refName) {
-        for (PsiPackage subPackage : subPackages) {
-            if (PsiUtil.isSamePackage(file, subPackage)) {
-                if (subPackage.getName().equals(refName)) {
-                    return subPackage;
-                }
+    }   
+    
+    public static PsiPackage resolveInSubPackagesScope(final PsiPackage parentPackage, String refName){
+        PsiPackage[] subPackages = parentPackage.getSubPackages();
+        for(PsiPackage subPackage : subPackages){
+            if(subPackage.getName().equals(refName)){
+                return subPackage;
             }
         }
         return null;
