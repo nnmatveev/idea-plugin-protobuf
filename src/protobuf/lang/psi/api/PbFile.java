@@ -17,4 +17,8 @@ public interface PbFile extends PsiFile, PbPsiElement{
 
     PbImportDef[] getImportDefinitions();
 
+    //String getOuterClassName();
+
+    //String getJavaPackage();
+
 }

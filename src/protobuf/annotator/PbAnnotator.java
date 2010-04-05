@@ -62,28 +62,25 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     //todo: required: a well-formed message must have exactly one of this field.
 
     @Override
-    public void visitMessageDefinition(PbMessageDef message) {
-        restoreNameHighlighting(message);
+    public void visitMessageDefinition(PbMessageDef message) {        
         checkForWellformed(message);
     }
 
     @Override
     public void visitRef(PbRef element) {
-        if(element.resolve() == null){
-            PsiElement qualifier = element.getQualifier();
+        if(element.resolve() == null){            
             if(element.isLeafReference()){
                 myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
             } else {
                 myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
-            }            
-            LOG.info("visitRef: " + element.getNode().getText());
+            }
         }        
     }
 
     @Override
     public void visitName(PbName name) {
-        PsiElement parent = name.getParent();
-        IElementType type = name.getNode().getElementType();
+        //todo [low] complete
+        PsiElement parent = name.getParent();        
         if(parent instanceof PbMessageDef || parent instanceof PbEnumDef || parent instanceof PbGroupDef || parent instanceof PbServiceDef || parent instanceof PbFieldDef){
             if(name.getNameTokenType().equals(PbPsiEnums.NameTokenType.KEYWORD)){
                 myHolder.createInfoAnnotation(name.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);    
@@ -120,16 +117,6 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
                 myHolder.createWarningAnnotation(field, "a well-formed message can have zero or one of this field (but not more than one)");
             }
         } */
-    }
-
-    private void restoreNameHighlighting(PsiElement element) {
-        //ASTNode nameNode = element.getNode().findChildByType(NAME);
-        //if (nameNode != null) {
-        //    ASTNode nameNodeChild = nameNode.findChildByType(IK);
-        //    if(nameNodeChild!=null && !nameNodeChild.getElementType().equals(IDENTIFIER)){
-        //        myHolder.createInfoAnnotation(nameNodeChild,null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
-        //    }
-        //}
     }
 
     @Override

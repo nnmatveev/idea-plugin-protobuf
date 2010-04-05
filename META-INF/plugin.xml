@@ -10,6 +10,9 @@
         <component>
             <implementation-class>protobuf.ProtobufLoader</implementation-class>
         </component>
+        <component>
+            <implementation-class>protobuf.compiler.PbCompilerSettings</implementation-class>
+        </component>
         <!-- <component>
             <implementation-class>protobuf.settingss.application.ProtobufApplicationSettings</implementation-class>
         </component> -->
@@ -20,10 +23,13 @@
     </module-components>
 
     <project-components>
+        <component>
+            <implementation-class>protobuf.compiler.PbCompilerLoader</implementation-class>
+        </component>
         <!-- Add your project components here -->
-    <!--    <component>
-            <implementation-class>protobuf.compiler.CompilerLoader</implementation-class>
-        </component> -->
+        <!--    <component>
+           <implementation-class>protobuf.compiler_old_old.CompilerLoader</implementation-class>
+       </component> -->
     </project-components>
 
     <actions>
@@ -33,16 +39,18 @@
         </action>-->
     </actions>
 
-    <extensions defaultExtensionNs="com.intellij">        
-        <fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>                
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>
         <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.ProtobufSyntaxHighlighter"/>
-        
+
         <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.ProtobufBraceMatcher"/>
         <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.ProtobufParserDefinition"/>
         <lang.formatter language="Protobuf"
-                    implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
+                        implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
         <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.ProtobufCommenter"/>
         <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
+
+        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
     </extensions>
 </idea-plugin>

@@ -22,7 +22,7 @@ import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PsiUtil;
 import protobuf.lang.resolve.ResolveUtil;
-import protobuf.lang.util.TextUtil;
+import protobuf.util.TextUtil;
 
 import static protobuf.lang.ProtobufElementTypes.*;
 

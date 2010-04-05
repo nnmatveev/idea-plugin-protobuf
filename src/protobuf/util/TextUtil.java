@@ -1,4 +1,4 @@
-package protobuf.lang.util;
+package protobuf.util;
 
 /**
  * author: Nikolay Matveev
@@ -17,5 +17,13 @@ public class TextUtil {
         }
         if (start < end) return str.substring(start, end + 1);
         return str;
+    }
+
+    public static String removeFromEnd(String str, char c) {
+        int newend = str.length() - 1;
+        while(newend > 0 && str.charAt(newend) == c){
+            newend--;
+        }
+        return str.substring(0,newend);
     }
 }
