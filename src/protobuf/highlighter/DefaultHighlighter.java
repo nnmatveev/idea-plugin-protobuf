@@ -46,7 +46,9 @@ public class DefaultHighlighter{
     static final TextAttributes TEXT_ATTR = new TextAttributes();
     static{
         TEXT_ATTR.setForegroundColor(new Color(0,0,0));
-        TEXT_ATTR.setFontType(Font.PLAIN);
+        //todo [low] regular text
+        
+        TEXT_ATTR.setFontType(Font.ITALIC);
     }
     static final TextAttributes ERROR_INFO_ATTR = new TextAttributes();
     static{

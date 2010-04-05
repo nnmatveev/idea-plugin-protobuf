@@ -13,4 +13,6 @@ public interface PbRef extends PsiReference, PsiQualifiedReference {
     String getReferenceName();
 
     PbPsiEnums.ReferenceKind getKind();
+
+    boolean isLeafReference();
 }

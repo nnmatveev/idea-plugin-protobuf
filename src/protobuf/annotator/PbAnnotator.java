@@ -6,26 +6,28 @@ import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 import protobuf.highlighter.DefaultHighlighter;
+import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.definitions.*;
 import protobuf.lang.psi.api.definitions.PbEnumConstantDefinition;
+import protobuf.lang.psi.api.members.PbName;
 import protobuf.lang.psi.api.references.PbRef;
 import protobuf.util.PbBundle;
-//import protobuf.lang.psi.impl.PbPsiElement;
+import static protobuf.lang.ProtobufElementTypes.*;
 
-import java.util.ArrayList;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 12, 2010
  */
-public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Annotator {
+public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator {
 
-    private final static Logger LOG = Logger.getInstance(ProtobufAnnotator.class.getName());
+    private final static Logger LOG = Logger.getInstance(PbAnnotator.class.getName());
 
     private AnnotationHolder myHolder;
 
@@ -51,11 +53,8 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
     public void visitFieldDefinition(PbFieldDef field) {
     }
 
+     @Override
     public void visitEnumConstantDefinition(PbEnumConstantDefinition element) {
-        ASTNode nameNode = element.getNode().getFirstChildNode();
-        if (nameNode != null) {
-            myHolder.createInfoAnnotation(nameNode, null).setTextAttributes(DefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
-        }
     }
 
 
@@ -71,8 +70,28 @@ public class ProtobufAnnotator extends ProtobufPsiElementVisitor implements Anno
     @Override
     public void visitRef(PbRef element) {
         if(element.resolve() == null){
-            myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+            PsiElement qualifier = element.getQualifier();
+            if(element.isLeafReference()){
+                myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+            } else {
+                myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+            }            
+            LOG.info("visitRef: " + element.getNode().getText());
         }        
+    }
+
+    @Override
+    public void visitName(PbName name) {
+        PsiElement parent = name.getParent();
+        IElementType type = name.getNode().getElementType();
+        if(parent instanceof PbMessageDef || parent instanceof PbEnumDef || parent instanceof PbGroupDef || parent instanceof PbServiceDef || parent instanceof PbFieldDef){
+            if(name.getNameTokenType().equals(PbPsiEnums.NameTokenType.KEYWORD)){
+                myHolder.createInfoAnnotation(name.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);    
+            }
+        } else if(parent instanceof PbEnumConstantDefinition){
+            myHolder.createInfoAnnotation(name.getNode(), null).setTextAttributes(DefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
+        }
+        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private void checkForWellformed(PbMessageDef message) {

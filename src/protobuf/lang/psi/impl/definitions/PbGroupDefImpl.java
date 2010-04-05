@@ -7,6 +7,8 @@ import org.jetbrains.annotations.NonNls;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.PbGroupDef;
+import protobuf.lang.psi.api.members.PbName;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.impl.members.PbNameImpl;
 
@@ -18,7 +20,7 @@ import static protobuf.lang.psi.PbPsiEnums.*;
  */
 public class PbGroupDefImpl extends PbPsiElementImpl implements PbGroupDef {
 
-    public PbGroupDefImpl(ASTNode node){
+    public PbGroupDefImpl(ASTNode node) {
         super(node);
     }
 
@@ -28,18 +30,17 @@ public class PbGroupDefImpl extends PbPsiElementImpl implements PbGroupDef {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return "Group definition";
     }
 
-    /*@Override
-    public FieldType getType() {
-        return FieldType.GROUP;
-    } */
-
     @Override
     public String getName() {
-        return findChildByClass(PbNameImpl.class).getText();
+        PbNameImpl name = findChildByClass(PbNameImpl.class);
+        if (name != null) {
+            return name.getText();
+        }
+        return null;
     }
 
     @Override
@@ -50,5 +51,14 @@ public class PbGroupDefImpl extends PbPsiElementImpl implements PbGroupDef {
     @Override
     public PsiElement setName(@NonNls String s) throws IncorrectOperationException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public String getLowerCaseName() {
+        String name = getName();
+        if (name != null) {
+            return name.toLowerCase();
+        }
+        return null;
     }
 }

@@ -71,14 +71,12 @@ public class PsiUtil {
             PbPsiElement scope = (PbPsiElement) element.getParent();
             int i = 0;
             while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
-                if (i == 98) {
-                    LOG.info("upper scope: \n" + scope.getText());
-                    assert false;
-                }
-                if (scope == scope.getParent()) assert false;
-                scope = (PbPsiElement) scope.getParent();
-                i++;
+                scope = (PbPsiElement) scope.getParent();                
             }
+            if (scope instanceof PbFile) {
+                JavaPsiFacade facade = JavaPsiFacade.getInstance(scope.getManager().getProject());
+                return facade.findPackage(((PbFile) scope).getPackageName());
+            }           
             return scope;
         }
         assert false;
@@ -110,8 +108,11 @@ public class PsiUtil {
             }
             return null;
         }
+        if (element instanceof PbGroupDef) {
+            return ((PbGroupDef) element).getBlock();                        
+        }
         if (element instanceof PbExtendDef) {
-            //todo add extend type scope
+            return ((PbExtendDef) element).getBlock();
         }
         assert false;
         return null;
@@ -146,17 +147,16 @@ public class PsiUtil {
             return EMPTY_FILE_ARRAY;
         }
         return importFiles.toArray(new PbFileImpl[importFiles.size()]);
-    }   
+    }
 
-    public static boolean isVisibleSubPackage(PsiPackage subPackage, PbFile curFile){
-        PbFile[] importedFiles = getImportedFiles(curFile,true);
+    public static boolean isVisibleSubPackage(PsiPackage subPackage, PbFile curFile) {
         String qSubPackageName = subPackage.getQualifiedName();
-        if(curFile.getPackageName().startsWith(qSubPackageName)){
+        if (curFile.getPackageName().startsWith(qSubPackageName)) {
             return true;
         }
-        for(PbFile importedFile : importedFiles){
-            String qPackageName = importedFile.getPackageName();
-            if(qPackageName.startsWith(qSubPackageName)){
+        PbFile[] importedFiles = getImportedFiles(curFile, true);
+        for (PbFile importedFile : importedFiles) {            
+            if (importedFile.getPackageName().startsWith(qSubPackageName)) {
                 return true;
             }
         }

@@ -229,6 +229,10 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return null;
     }
 
+    @Override
+    public boolean isLeafReference() {
+        return !(getParent() instanceof PbRef);
+    }
 
     public ReferenceKind getKind() {
         //todo caching kind
@@ -327,20 +331,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                         return ResolveUtil.resolveInScope(PsiUtil.getRootScope(ref),ref);
                     } else {    // foo
                         PsiElement upperScope = PsiUtil.getUpperScope(ref);
-                        int i = 0;
                         while(upperScope != null){
-                            if(i==100){
-                                LOG.info("upper scope: " + upperScope.getText());
-                                assert false;
-                            }
                             PsiElement resolveResult = ResolveUtil.resolveInScope(upperScope,ref);
                             if(resolveResult != null){
                                 return resolveResult;
-                            }
-                            i++;
+                            }                            
                             upperScope = PsiUtil.getUpperScope(upperScope);
-                        }
-                        return null;
+                        }                        
                     }
                 }
                 break;

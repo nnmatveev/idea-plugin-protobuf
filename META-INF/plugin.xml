@@ -43,6 +43,6 @@
                     implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
         <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.ProtobufCommenter"/>
         <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
-        <annotator language="Protobuf" implementationClass="protobuf.annotator.ProtobufAnnotator"/>
+        <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
     </extensions>
 </idea-plugin>

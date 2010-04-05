@@ -3,6 +3,8 @@ package protobuf.lang.psi.impl.definitions;
 import com.intellij.lang.ASTNode;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.PbExtendDef;
+import protobuf.lang.psi.api.members.PbFieldType;
+import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.auxiliary.PbBlockHolderImpl;
 
 /**
@@ -16,8 +18,8 @@ public class PbExtendDefImpl extends PbBlockHolderImpl implements PbExtendDef {
         super(node);
     }
 
-    public String toString(){
-        return "extend definition";
+    @Override
+    public PbRef getTypeRef() {
+        return findChildByClass(PbRef.class);        
     }
-       
 }

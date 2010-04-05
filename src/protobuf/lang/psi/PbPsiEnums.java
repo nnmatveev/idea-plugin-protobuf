@@ -76,4 +76,9 @@ public class PbPsiEnums {
         CORD,
         STRING_PIECE
     }
+
+    public enum NameTokenType {
+        IDENTIFIER,
+        KEYWORD        
+    }
 }
