@@ -21,6 +21,10 @@ import javax.print.DocFlavor;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author: Nikolay Matveev
@@ -35,11 +39,17 @@ public class PbCompiler implements SourceGeneratingCompiler {
     private static final String PROTOC_EXE = "protoc.exe";
 
     //regexp
+    //private static final Pattern NEW_LINE = Pattern.compile("\r\n");
+
+    //private static final Matcher REGULAR_ERROR_IN_FILE_MATCHER = Pattern.compile("[^:]*:[^:]:[^:].*").matcher("");
 
     Project myProject;
 
+    String myUrlBase;
+
     public PbCompiler(Project project) {
         myProject = project;
+        myUrlBase = "file://" + myProject.getBaseDir().getPath() + "/";
     }
 
     @Override
@@ -65,14 +75,16 @@ public class PbCompiler implements SourceGeneratingCompiler {
     public GenerationItem[] generate(CompileContext compileContext, GenerationItem[] generationItems, VirtualFile outputRootDirectory) {
         final String pathToCompiler = getPathToCompiler();
         final String baseDir = myProject.getBaseDir().getPath();
-        final String commandBase = pathToCompiler + " --proto_path=" + baseDir + " --java_out=" + baseDir + " ";
+        final String commandBase = pathToCompiler + " --proto_path=" + baseDir + " --java_out=" + baseDir + " --error_format=gcc" + " ";
         if (generationItems.length > 0) {
             for (GenerationItem item : generationItems) {
                 try {
-                    Process proc = Runtime.getRuntime().exec(commandBase + item.getPath());                    
+                    Process proc = Runtime.getRuntime().exec(commandBase + item.getPath());
                     processStreams(compileContext, proc.getInputStream(), proc.getErrorStream());
+                    proc.destroy();
                 } catch (IOException e) {
                     e.printStackTrace();
+                } finally {
                 }
             }
         }
@@ -115,38 +127,26 @@ public class PbCompiler implements SourceGeneratingCompiler {
     }
 
     private void processStreams(CompileContext context, InputStream inp, InputStream err) {
-        try {            
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inp));            
-            while(reader.ready()){
-                processLine(context,reader.readLine());                
+        try {
+            String[] errorLines = StreamUtil.readText(err).split("\r\n");
+            for (String line : errorLines) {
+                processLine(context, line);
             }
-            reader.close();
-            inp.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void processLine(CompileContext context, String line){
-        //dispatch regexpese will be done
-        processErrorLine(context,line);    
-    }
+    private void processLine(CompileContext context, String line) {
+        if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
+            String[] r = line.split(":");
+            context.addMessage(CompilerMessageCategory.ERROR, r[3], myUrlBase + r[0], Integer.parseInt(r[1]), Integer.parseInt(r[2]));
+        } else if (line.matches("[^:]*:[^:]*")) {
+            String[] r = line.split(":");
+            context.addMessage(CompilerMessageCategory.ERROR, r[1], myUrlBase + r[0], -1, -1);
+        } else {
+            context.addMessage(CompilerMessageCategory.ERROR, line, null, -1, -1);
+        }
 
-    private void processErrorLine(CompileContext context, String line){
-        String errorText = null;
-        String url = null;
-        int lineNum = 0;
-        int columnNum = 0;
-        int ind1 = line.indexOf(':');
-        url = line.substring(0,ind1);
-        int ind2 = line.indexOf(':',ind1);
-        lineNum = Integer.parseInt(line.substring(ind1,ind2));
-        ind1 = line.indexOf(':',ind2);
-        columnNum = Integer.parseInt(line.substring(ind2,ind1));
-        errorText = line.substring(ind1);
-//        if(errorText !=null && url != null && lineNum!=0&& columnNum!=0){
-//            context.addMessage(CompilerMessageCategory.ERROR,errorText,url,lineNum,columnNum);
-        //}
-        context.addMessage(CompilerMessageCategory.ERROR,errorText,url,lineNum,columnNum);
     }
 }
