@@ -4,6 +4,10 @@ import com.intellij.lang.ASTNode;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
+import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
@@ -127,5 +131,11 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
         LOG.info("package name: " + pbFile.getPackageName());
         LOG.info("file url:" + pbFile.getVirtualFile().getUrl());
         //todo: complete
+        Project project = file.getProject();
+        ProjectRootManager rootManager = ProjectRootManager.getInstance(project);
+        VirtualFile[] files = rootManager.getContentSourceRoots();
+        for (VirtualFile vfile : files) {
+            LOG.info("source path: " + vfile.getPath());
+        }
     }
 }

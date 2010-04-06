@@ -11,6 +11,6 @@ import com.intellij.openapi.project.Project;
 public class PbCompilerSettingsFactory implements CompilerSettingsFactory {
     @Override
     public Configurable create(Project project) {
-        return new PbCompilerConfigurable(PbCompilerSettings.getInstance(),project);
+        return new PbCompilerConfigurable(PbCompilerApplicationSettings.getInstance(),project);
     }
 }

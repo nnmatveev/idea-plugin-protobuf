@@ -1,7 +1,6 @@
 package protobuf.compiler;
 
 import com.intellij.openapi.compiler.CompilerManager;
-import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
 import org.jetbrains.annotations.NotNull;
@@ -21,11 +20,15 @@ public class PbCompilerLoader implements ProjectComponent {
 
     @Override
     public void projectOpened() {
-        PbCompilerSettings settings = PbCompilerSettings.getInstance();
-        if(settings.COMPILE_PROTO){
+        PbCompilerApplicationSettings appSettings = PbCompilerApplicationSettings.getInstance();
+        PbCompilerProjectSettings projectSettings = PbCompilerProjectSettings.getInstance(myProject);
+        if(projectSettings.COMPILE_PROTO){
             CompilerManager compilerManager = CompilerManager.getInstance(myProject);
             compilerManager.addCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
             CompilerManager.getInstance(myProject).addCompiler(new PbCompiler(myProject));
+        }
+        if(projectSettings.OUTPUT_SOURCE_DIRECTORY.length() == 0){
+            //load default value
         }
     }
 

@@ -18,7 +18,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     boolean myIsTestSource;
 
     public PbGenerationItem(VirtualFile file, Module module, boolean isTestSource) {
-        myModule = module;
+        myModule = module;       
         myFile = file;
         myIsTestSource = isTestSource;
     }

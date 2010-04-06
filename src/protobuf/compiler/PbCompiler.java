@@ -11,20 +11,12 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.StreamUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbBundle;
 
-import javax.print.DocFlavor;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * author: Nikolay Matveev
@@ -75,6 +67,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
     public GenerationItem[] generate(CompileContext compileContext, GenerationItem[] generationItems, VirtualFile outputRootDirectory) {
         final String pathToCompiler = getPathToCompiler();
         final String baseDir = myProject.getBaseDir().getPath();
+        final String outputDirectory;
+        //myProject.getM
+        ProjectRootManager rootManager = ProjectRootManager.getInstance(myProject);        
+        rootManager.getContentSourceRoots();
         final String commandBase = pathToCompiler + " --proto_path=" + baseDir + " --java_out=" + baseDir + " --error_format=gcc" + " ";
         if (generationItems.length > 0) {
             for (GenerationItem item : generationItems) {
@@ -104,17 +100,26 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public boolean validateConfiguration(CompileScope compileScope) {
+        PbCompilerApplicationSettings compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
+        PbCompilerProjectSettings compilerProjectSettings = myProject.getComponent(PbCompilerProjectSettings.class);
+        //check path to compiler
         final String pathToCompiler = getPathToCompiler();
         File compilerFile = new File(pathToCompiler);
         if (!compilerFile.exists()) {
             Messages.showErrorDialog("protoc not found in stated path: " + pathToCompiler, "Protocol Buffers");
             return false;
         }
+        //check that output source directory is a project source directory
+        ProjectRootManager rootManager = ProjectRootManager.getInstance(myProject);
+        VirtualFile[] sourceDirectories = rootManager.getContentSourceRoots();
+        for(VirtualFile sourceDirectory : sourceDirectories){
+            //sourceDirectory.
+        }
         return true;
     }
 
     private String getPathToCompiler() {
-        PbCompilerSettings compilerSettings = ApplicationManager.getApplication().getComponent(PbCompilerSettings.class);
+        PbCompilerApplicationSettings compilerSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
         final String pathToCompiler;
         if (SystemInfo.isWindows) {
             pathToCompiler = compilerSettings.PATH_TO_COMPILER + "\\" + PROTOC_EXE;

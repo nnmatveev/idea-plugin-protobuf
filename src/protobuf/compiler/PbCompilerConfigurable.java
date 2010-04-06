@@ -16,14 +16,17 @@ import javax.swing.*;
 public class PbCompilerConfigurable implements Configurable {
     private JCheckBox enableCompilationCheckBox;
     private JTextField pathField;
+    private JTextField outputSourceField;
     private JPanel settingsPanel;
 
-    PbCompilerSettings mySettings;
+    PbCompilerApplicationSettings myAppSettings;
+    PbCompilerProjectSettings myProjectSettings;
     Project myProject;
 
-    public PbCompilerConfigurable(PbCompilerSettings settings, Project project) {
-        mySettings = settings;
+    public PbCompilerConfigurable(PbCompilerApplicationSettings settings, Project project) {
+        myAppSettings = settings;
         myProject = project;
+        myProjectSettings = project.getComponent(PbCompilerProjectSettings.class);
     }
 
     @Nls
@@ -49,17 +52,18 @@ public class PbCompilerConfigurable implements Configurable {
 
     @Override
     public boolean isModified() {
-        return mySettings.COMPILE_PROTO != enableCompilationCheckBox.isSelected() ||
-                !mySettings.PATH_TO_COMPILER.equals(pathField.getText());
+        return myProjectSettings.COMPILE_PROTO != enableCompilationCheckBox.isSelected() ||
+                !myAppSettings.PATH_TO_COMPILER.equals(pathField.getText())||
+                !myProjectSettings.OUTPUT_SOURCE_DIRECTORY.equals(outputSourceField.getText());
     }
 
     @Override
     public void apply() throws ConfigurationException {
-        if (enableCompilationCheckBox.isSelected() && !mySettings.COMPILE_PROTO) {
+        if (enableCompilationCheckBox.isSelected() && !myProjectSettings.COMPILE_PROTO) {
             CompilerManager compilerManager = CompilerManager.getInstance(myProject);
             compilerManager.addCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
             CompilerManager.getInstance(myProject).addCompiler(new PbCompiler(myProject));
-        } else if (!enableCompilationCheckBox.isSelected() && mySettings.COMPILE_PROTO) {
+        } else if (!enableCompilationCheckBox.isSelected() && myProjectSettings.COMPILE_PROTO) {
             CompilerManager compilerManager = CompilerManager.getInstance(myProject);
             compilerManager.removeCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
             for(PbCompiler compiler : compilerManager.getCompilers(PbCompiler.class)){
@@ -67,14 +71,16 @@ public class PbCompilerConfigurable implements Configurable {
             }
         }
 
-        mySettings.COMPILE_PROTO = enableCompilationCheckBox.isSelected();
-        mySettings.PATH_TO_COMPILER = pathField.getText();
+        myAppSettings.PATH_TO_COMPILER = pathField.getText();
+        myProjectSettings.COMPILE_PROTO = enableCompilationCheckBox.isSelected();
+        myProjectSettings.OUTPUT_SOURCE_DIRECTORY = outputSourceField.getText();
     }
 
     @Override
     public void reset() {
-        enableCompilationCheckBox.setSelected(mySettings.COMPILE_PROTO);
-        pathField.setText(mySettings.PATH_TO_COMPILER);
+        enableCompilationCheckBox.setSelected(myProjectSettings.COMPILE_PROTO);
+        outputSourceField.setText(myProjectSettings.OUTPUT_SOURCE_DIRECTORY);
+        pathField.setText(myAppSettings.PATH_TO_COMPILER);
     }
 
     @Override
