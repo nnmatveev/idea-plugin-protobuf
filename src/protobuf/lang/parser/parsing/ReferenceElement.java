@@ -48,10 +48,10 @@ public class ReferenceElement {
         builder.match(DOT);
         do {
             if (builder.match(IK, "identifier.expected")) {
-                marker.done(TYPE_REF);
+                marker.done(CUSTOM_TYPE_REF);
                 marker = marker.precede();
             } else {
-                marker.done(TYPE_REF);
+                marker.done(CUSTOM_TYPE_REF);
                 marker = marker.precede();
                 break;
             }

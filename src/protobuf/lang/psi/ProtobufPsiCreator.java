@@ -22,7 +22,7 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
 
         if(element.equals(REF)) return new PbRefImpl(node);
 
-        if(element.equals(TYPE_REF)) return new PbRefImpl(node);
+        if(element.equals(CUSTOM_TYPE_REF)) return new PbRefImpl(node);
         
         if(element.equals(IMPORT_DEF)) return new PbImportDefImpl(node);
         if(element.equals(IMPORT_REF)) return new PbRefImpl(node);

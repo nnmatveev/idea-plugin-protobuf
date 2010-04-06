@@ -10,7 +10,7 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
 
     ProtobufElementType REF = new ProtobufElementType("Reference");
 
-    ProtobufElementType TYPE_REF = new ProtobufElementType("Reference");
+    ProtobufElementType CUSTOM_TYPE_REF = new ProtobufElementType("Reference");
 
     ProtobufElementType PACKAGE_DEF = new ProtobufElementType("Package definition");
     ProtobufElementType PACKAGE_REF = new ProtobufElementType("Package reference");
@@ -58,6 +58,6 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     TokenSet SKIPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
     TokenSet BLOCKS = TokenSet.create(MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
-    TokenSet DEFS = TokenSet.create(MESSAGE_DEF,ENUM_DEF,SERVICE_DEF,SERVICE_METHOD_DEF,EXTEND_DEF,EXTENSIONS_DEF,IMPORT_DEF,PACKAGE_DEF,FIELD_DEF,OPTION_DEF,ENUM_CONST_DEF);   
+    TokenSet DEFS = TokenSet.create(MESSAGE_DEF,ENUM_DEF,SERVICE_DEF,SERVICE_METHOD_DEF,EXTEND_DEF,EXTENSIONS_DEF,IMPORT_DEF,PACKAGE_DEF,FIELD_DEF,OPTION_DEF,ENUM_CONST_DEF);
 
 }

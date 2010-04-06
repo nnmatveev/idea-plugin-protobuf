@@ -48,5 +48,7 @@
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
 
         <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
+
+        <completion.contributor language="Protobuf" implementationClass="protobuf.lang.completion.PbCompletionContributor"/>
     </extensions>
 </idea-plugin>

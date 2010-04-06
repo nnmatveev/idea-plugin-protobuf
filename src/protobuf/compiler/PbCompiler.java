@@ -161,6 +161,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     }
 
     private String getBaseDir() {
+        //todo [low] problems may occurs when source path is separated from project 
         return myProject.getBaseDir().getPath();
     }
 
@@ -176,7 +177,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     }
 
     private void processLine(CompileContext context, String line) {
-        //todo [low] rewrite with patters and matchers
+        //todo [low] rewrite with patterns and matchers
         if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
             String[] r = line.split(":");
             context.addMessage(CompilerMessageCategory.ERROR, r[3], myUrlBase + r[0], Integer.parseInt(r[1]), Integer.parseInt(r[2]));

@@ -4,7 +4,10 @@ import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.*;
+import com.intellij.psi.JavaPsiFacade;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiReference;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
@@ -20,9 +23,10 @@ import protobuf.lang.psi.api.members.PbFieldType;
 import protobuf.lang.psi.api.members.PbOptionRefSeq;
 import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
-import protobuf.lang.psi.utils.PsiUtil;
-import protobuf.lang.resolve.ResolveUtil;
-import protobuf.util.TextUtil;
+import protobuf.lang.psi.utils.PbPsiUtil;
+import protobuf.util.PbTextUtil;
+
+import protobuf.lang.resolve.PbResolveUtil;
 
 import static protobuf.lang.ProtobufElementTypes.*;
 
@@ -34,11 +38,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     private final static Logger LOG = Logger.getInstance(PbRefImpl.class.getName());
 
-    private static final ExperimentalResolver expResolver = new ExperimentalResolver();
+    private static final ExperimentalResolver expResolver = new ExperimentalResolver();        
 
     @Override
     public String toString() {
-        switch (getKind()) {
+        switch (getRefKind()) {
             case PACKAGE: {
                 return "package reference";
             }
@@ -49,7 +53,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 return "message or group reference";
             }
             case MESSAGE_OR_ENUM_OR_GROUP: {
-                return "message or enum reference";
+                return "message or enum or group reference";
             }
             case MESSAGE_OR_PACKAGE_OR_GROUP: {
                 return "message or package or group reference";
@@ -91,7 +95,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PbRef getQualifier() {
-        switch (getKind()) {
+        switch (getRefKind()) {
             case DIRECTORY: {
                 return null;
             }
@@ -109,7 +113,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     /*
-    switch (getKind()) {
+    switch (getRefKind()) {
             case DIRECTORY: {
             }
             case PACKAGE: {
@@ -134,7 +138,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public String getReferenceName() {
-        switch (getKind()) {
+        /*switch (getRefKind()) {
             case DIRECTORY:
             case PACKAGE:
             case MESSAGE_OR_GROUP:
@@ -143,7 +147,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_OR_GROUP_FIELD:            
             case EXTEND_FIELD: {
             }
-        }
+        } */
         PsiElement psi = findChildByType(ProtobufTokenTypes.IK);
         return psi != null ? psi.getText() : null;
     }
@@ -155,7 +159,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public TextRange getRangeInElement() {
-        switch (getKind()) {
+        switch (getRefKind()) {
             case DIRECTORY: {
             }
             case PACKAGE:
@@ -178,6 +182,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public Object[] getVariants() {
+        LOG.info("getVariants invoked");
         return ArrayUtil.EMPTY_OBJECT_ARRAY;
     }
 
@@ -203,7 +208,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public String getCanonicalText() {
-        switch (getKind()) {
+        switch (getRefKind()) {
             case DIRECTORY: {
             }
             case PACKAGE: {
@@ -223,8 +228,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
             }
         }
-        if (getKind().equals(ReferenceKind.DIRECTORY)) {
-            return TextUtil.trim(getText(), '"');
+        if (getRefKind().equals(ReferenceKind.DIRECTORY)) {
+            return PbTextUtil.trim(getText(), '"');
         }
         return null;
     }
@@ -234,11 +239,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return !(getParent() instanceof PbRef);
     }
 
-    public ReferenceKind getKind() {
+    public ReferenceKind getRefKind() {
         //todo caching kind
         PsiElement parent = getParent();
         if (parent instanceof PbRef) {
-            ReferenceKind parentKind = ((PbRefImpl) parent).getKind();
+            ReferenceKind parentKind = ((PbRefImpl) parent).getRefKind();
             assert parentKind != null;
             switch (parentKind) {
                 case DIRECTORY: {
@@ -297,16 +302,79 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return null;
     }
 
+    public ReferenceKind getCompletionKind() {
+        //todo caching kind
+        PsiElement parent = getParent();
+        if (parent instanceof PbRef) {
+            ReferenceKind parentKind = ((PbRefImpl) parent).getRefKind();
+            assert parentKind != null;
+            switch (parentKind) {
+                case DIRECTORY: {
+                    return ReferenceKind.DIRECTORY;
+                }
+                case PACKAGE: {
+                    return ReferenceKind.PACKAGE;
+                }
+                case MESSAGE_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
+                }
+                case MESSAGE_OR_ENUM_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
+                }
+                case MESSAGE_OR_PACKAGE_OR_GROUP: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
+                }
+                case EXTEND_FIELD: {
+                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
+                }
+                case MESSAGE_OR_GROUP_FIELD: {
+                    if (findChildByType(CLOSE_PARANT) != null) {
+                        return ReferenceKind.EXTEND_FIELD;
+                    }
+                    return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
+                }
+                default:{
+                    assert false;
+                }
+            }
+
+        }
+        if (parent instanceof PbExtendDef) {
+            return ReferenceKind.MESSAGE_OR_GROUP;
+        }
+        if (parent instanceof PbFieldType) {
+            return ReferenceKind.MESSAGE_OR_ENUM_OR_GROUP;
+        }
+        if (parent instanceof PbOptionRefSeq) {
+            if (findChildByType(CLOSE_PARANT) != null) {
+                return ReferenceKind.EXTEND_FIELD;
+            }
+            return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
+        }
+        if (parent instanceof PbPackageDef) {
+            return ReferenceKind.PACKAGE;
+        }
+        if (parent instanceof PbImportDef) {
+            return ReferenceKind.DIRECTORY;
+        }
+        //todo 'enum constants as value of options and fields', imports
+
+        if (parent instanceof PbServiceMethodDef) {
+            return ReferenceKind.MESSAGE_OR_GROUP;
+        }
+        return null;
+    }
+
     public static class ExperimentalResolver implements ResolveCache.Resolver {
 
         public PsiElement resolve(PsiReference refElement, boolean b) {
             final PbRefImpl ref = (PbRefImpl) refElement;
-            final ReferenceKind refKind = ref.getKind();            
+            final ReferenceKind refKind = ref.getRefKind();
             final PbRef qualifier = ref.getQualifier();
             switch (refKind) {
                 case DIRECTORY: {
-                    LOG.info("directory: " + TextUtil.trim(ref.getText(), '"'));
-                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(TextUtil.trim(ref.getText(), '"'));
+                    LOG.info("directory: " + PbTextUtil.trim(ref.getText(), '"'));
+                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(PbTextUtil.trim(ref.getText(), '"'));
                     if (vfile != null) {
                         PsiFile pfile = ref.getManager().findFile(vfile);
                         return pfile;
@@ -314,7 +382,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     return null;
                 }
                 case PACKAGE: {
-                    String qualifiedName = PsiUtil.getQualifiedReferenceText(ref);
+                    String qualifiedName = PbPsiUtil.getQualifiedReferenceText(ref);
                     JavaPsiFacade facade = JavaPsiFacade.getInstance(ref.getManager().getProject());
                     return facade.findPackage(qualifiedName);
                 }
@@ -325,18 +393,18 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     if (qualifier != null) {    //foo.bar                        
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
-                            return ResolveUtil.resolveInScope(PsiUtil.getScope(resolvedElement),ref);                            
+                            return PbResolveUtil.resolveInScope(PbPsiUtil.getScope(resolvedElement),ref);
                         }
                     } else if (ref.findChildByType(DOT) != null) {  //.foo
-                        return ResolveUtil.resolveInScope(PsiUtil.getRootScope(ref),ref);
+                        return PbResolveUtil.resolveInScope(PbPsiUtil.getRootScope(ref),ref);
                     } else {    // foo
-                        PsiElement upperScope = PsiUtil.getUpperScope(ref);
+                        PsiElement upperScope = PbPsiUtil.getUpperScope(ref);
                         while(upperScope != null){
-                            PsiElement resolveResult = ResolveUtil.resolveInScope(upperScope,ref);
+                            PsiElement resolveResult = PbResolveUtil.resolveInScope(upperScope,ref);
                             if(resolveResult != null){
                                 return resolveResult;
                             }                            
-                            upperScope = PsiUtil.getUpperScope(upperScope);
+                            upperScope = PbPsiUtil.getUpperScope(upperScope);
                         }                        
                     }
                 }
@@ -345,7 +413,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     if (qualifier != null) {                        
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
-                            return ResolveUtil.resolveInScope(PsiUtil.getTypeScope(resolvedElement),ref);                            
+                            return PbResolveUtil.resolveInScope(PbPsiUtil.getTypeScope(resolvedElement),ref);
                         }
                     }
                 }

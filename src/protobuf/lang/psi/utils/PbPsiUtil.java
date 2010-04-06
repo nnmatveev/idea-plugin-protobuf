@@ -2,7 +2,6 @@ package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.*;
-import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
@@ -12,20 +11,14 @@ import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbFileImpl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import static protobuf.lang.ProtobufElementTypes.ENUM_DEF;
-import static protobuf.lang.ProtobufElementTypes.GROUP_DEF;
-import static protobuf.lang.ProtobufElementTypes.MESSAGE_DEF;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 9, 2010
  */
-public class PsiUtil {
+public abstract class PbPsiUtil {
 
-    private final static Logger LOG = Logger.getInstance(PsiUtil.class.getName());
+    private final static Logger LOG = Logger.getInstance(PbPsiUtil.class.getName());
 
     public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 

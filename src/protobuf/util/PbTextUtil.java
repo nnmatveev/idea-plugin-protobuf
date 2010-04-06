@@ -5,7 +5,7 @@ package protobuf.util;
  * Date: Mar 27, 2010
  */
 
-public class TextUtil {
+public abstract class PbTextUtil {
     public static String trim(String str, char c) {
         int start = 0;
         int end = str.length() - 1;
