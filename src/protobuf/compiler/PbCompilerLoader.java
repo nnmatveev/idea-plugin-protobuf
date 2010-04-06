@@ -3,6 +3,8 @@ package protobuf.compiler;
 import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.components.ProjectComponent;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.roots.ProjectRootManager;
+import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
 import protobuf.file.ProtobufFileType;
 
@@ -20,15 +22,11 @@ public class PbCompilerLoader implements ProjectComponent {
 
     @Override
     public void projectOpened() {
-        PbCompilerApplicationSettings appSettings = PbCompilerApplicationSettings.getInstance();
         PbCompilerProjectSettings projectSettings = PbCompilerProjectSettings.getInstance(myProject);
-        if(projectSettings.COMPILE_PROTO){
+        if (projectSettings.COMPILE_PROTO) {
             CompilerManager compilerManager = CompilerManager.getInstance(myProject);
             compilerManager.addCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
             CompilerManager.getInstance(myProject).addCompiler(new PbCompiler(myProject));
-        }
-        if(projectSettings.OUTPUT_SOURCE_DIRECTORY.length() == 0){
-            //load default value
         }
     }
 
@@ -38,15 +36,18 @@ public class PbCompilerLoader implements ProjectComponent {
 
     @NotNull
     @Override
-    public String getComponentName() {
+    public String getComponentName
+            () {
         return "PbCompilerLoader";
     }
 
     @Override
-    public void initComponent() {        
+    public void initComponent
+            () {
     }
 
     @Override
-    public void disposeComponent() {
+    public void disposeComponent
+            () {
     }
 }

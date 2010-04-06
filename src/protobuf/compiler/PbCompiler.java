@@ -10,12 +10,19 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.StreamUtil;
+import com.intellij.openapi.vfs.LocalFileSystem;
+import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.vfs.VirtualFileManager;
+import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbBundle;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 /**
@@ -37,10 +44,18 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     Project myProject;
 
+
+    PbCompilerApplicationSettings compilerAppSettings;
+    PbCompilerProjectSettings compilerProjectSettings;
+
     String myUrlBase;
 
     public PbCompiler(Project project) {
         myProject = project;
+
+        compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
+        compilerProjectSettings = myProject.getComponent(PbCompilerProjectSettings.class);
+
         myUrlBase = "file://" + myProject.getBaseDir().getPath() + "/";
     }
 
@@ -65,22 +80,17 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public GenerationItem[] generate(CompileContext compileContext, GenerationItem[] generationItems, VirtualFile outputRootDirectory) {
-        final String pathToCompiler = getPathToCompiler();
-        final String baseDir = myProject.getBaseDir().getPath();
-        final String outputDirectory;
-        //myProject.getM
-        ProjectRootManager rootManager = ProjectRootManager.getInstance(myProject);        
-        rootManager.getContentSourceRoots();
-        final String commandBase = pathToCompiler + " --proto_path=" + baseDir + " --java_out=" + baseDir + " --error_format=gcc" + " ";
+        //todo [medium] if files located not in project root dir, problem may occur
+        final String commandBase = getPathToCompiler() + "" + " --proto_path=" + getBaseDir() + " --java_out=" + compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY + " --error_format=gcc" + " ";
         if (generationItems.length > 0) {
             for (GenerationItem item : generationItems) {
+                Process proc;
                 try {
-                    Process proc = Runtime.getRuntime().exec(commandBase + item.getPath());
+                    proc = Runtime.getRuntime().exec(commandBase + item.getPath());
                     processStreams(compileContext, proc.getInputStream(), proc.getErrorStream());
                     proc.destroy();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
                 }
             }
         }
@@ -100,35 +110,58 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public boolean validateConfiguration(CompileScope compileScope) {
-        PbCompilerApplicationSettings compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
-        PbCompilerProjectSettings compilerProjectSettings = myProject.getComponent(PbCompilerProjectSettings.class);
         //check path to compiler
         final String pathToCompiler = getPathToCompiler();
         File compilerFile = new File(pathToCompiler);
         if (!compilerFile.exists()) {
-            Messages.showErrorDialog("protoc not found in stated path: " + pathToCompiler, "Protocol Buffers");
+            Messages.showErrorDialog(PbBundle.message(
+                    "compiler.validate.error.path.to.protoc", pathToCompiler),
+                    PbBundle.message("compiler.validate.error.title"));
+            return false;
+        }
+        //check that output source directory exists
+        VirtualFile outputDirectory = LocalFileSystem.getInstance().findFileByIoFile(new File(compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY));
+        if (outputDirectory == null || !outputDirectory.exists()) {
+            Messages.showErrorDialog(PbBundle.message(
+                    "compiler.validate.error.ouput.source.directory.not.exists", compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY),
+                    PbBundle.message("compiler.validate.error.title"));
             return false;
         }
         //check that output source directory is a project source directory
         ProjectRootManager rootManager = ProjectRootManager.getInstance(myProject);
         VirtualFile[] sourceDirectories = rootManager.getContentSourceRoots();
-        for(VirtualFile sourceDirectory : sourceDirectories){
-            //sourceDirectory.
+        boolean isSourceDirectory = false;
+        for (VirtualFile sourceDirectory : sourceDirectories) {
+            if (sourceDirectory.equals(outputDirectory)) {
+                isSourceDirectory = true;
+                break;
+            }
+        }
+        if (!isSourceDirectory) {
+            Messages.showErrorDialog(PbBundle.message(
+                    "compiler.validate.error.ouput.source.directory.not.source", compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY),
+                    PbBundle.message("compiler.validate.error.title"));
+            return false;
         }
         return true;
     }
 
-    private String getPathToCompiler() {
-        PbCompilerApplicationSettings compilerSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
-        final String pathToCompiler;
+    private String getCompilerExecutableName() {
         if (SystemInfo.isWindows) {
-            pathToCompiler = compilerSettings.PATH_TO_COMPILER + "\\" + PROTOC_EXE;
+            return PROTOC_EXE;
         } else if (SystemInfo.isLinux) {
-            pathToCompiler = compilerSettings.PATH_TO_COMPILER + "\\" + PROTOC_EXE;
+            return PROTOC_EXE;
         } else {
-            pathToCompiler = compilerSettings.PATH_TO_COMPILER + "\\" + PROTOC_EXE;
+            return PROTOC_EXE;
         }
-        return pathToCompiler;
+    }
+
+    private String getPathToCompiler() {
+        return compilerAppSettings.PATH_TO_COMPILER + getCompilerExecutableName();
+    }
+
+    private String getBaseDir() {
+        return myProject.getBaseDir().getPath();
     }
 
     private void processStreams(CompileContext context, InputStream inp, InputStream err) {
@@ -143,6 +176,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     }
 
     private void processLine(CompileContext context, String line) {
+        //todo [low] rewrite with patters and matchers
         if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
             String[] r = line.split(":");
             context.addMessage(CompilerMessageCategory.ERROR, r[3], myUrlBase + r[0], Integer.parseInt(r[1]), Integer.parseInt(r[2]));

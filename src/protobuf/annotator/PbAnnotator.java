@@ -136,6 +136,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
         VirtualFile[] files = rootManager.getContentSourceRoots();
         for (VirtualFile vfile : files) {
             LOG.info("source path: " + vfile.getPath());
+            LOG.info("source url: " + vfile.getUrl());
         }
     }
 }
