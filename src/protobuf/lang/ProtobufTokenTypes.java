@@ -11,105 +11,106 @@ import protobuf.lang.ProtobufElementType;
  */
 public interface ProtobufTokenTypes {     
 
-    IElementType IDENTIFIER = new ProtobufElementType("identifier");
+    IElementType IDENTIFIER = new ProtobufElementType("IDENTIFIER");
     TokenSet IDENTIFIERS = TokenSet.create(IDENTIFIER);
 
-    IElementType SEMICOLON = new ProtobufElementType(";");
-    IElementType DOT = new ProtobufElementType(".");
-    IElementType COMMA = new ProtobufElementType(",");
+    IElementType SEMICOLON = new ProtobufElementType("SEMICOLON");
+    IElementType DOT = new ProtobufElementType("DOT");
+    IElementType COMMA = new ProtobufElementType("COMMA");
     
-    IElementType EQUAL = new ProtobufElementType("=");
+    IElementType EQUAL = new ProtobufElementType("EQUAL");
+
+    IElementType MINUS = new ProtobufElementType("MINUS");
 
     IElementType BAD_CHARACTER = TokenType.BAD_CHARACTER;
     TokenSet BAD_CHARACTERS = TokenSet.create(BAD_CHARACTER);
 
-    IElementType NEW_LINE = new ProtobufElementType("new line");
     IElementType WHITE_SPACE = TokenType.WHITE_SPACE;
-    TokenSet WHITE_SPACES = TokenSet.create(WHITE_SPACE,NEW_LINE);
+    TokenSet WHITE_SPACES = TokenSet.create(WHITE_SPACE);
 
-    IElementType LINE_COMMENT = new ProtobufElementType("line comment");
-    IElementType C_STYLE_COMMENT = new ProtobufElementType("c style comment");
-    TokenSet COMMENTS = TokenSet.create(LINE_COMMENT,C_STYLE_COMMENT);       
+    IElementType LINE_COMMENT = new ProtobufElementType("LINE_COMMENT");
+    IElementType C_STYLE_COMMENT = new ProtobufElementType("C_STYLE_COMMENT");
+    IElementType WRONG_C_STYLE_COMMENT = new ProtobufElementType("WRONG_C_STYLE_COMMENT");
+    TokenSet COMMENTS = TokenSet.create(LINE_COMMENT,C_STYLE_COMMENT,WRONG_C_STYLE_COMMENT);        
 
-    IElementType STRING_LITERAL = new ProtobufElementType("string literal");
-    TokenSet STRING_LITERALS = TokenSet.create(STRING_LITERAL);
-
-    IElementType WRONG_STRING_LITERAL = new ProtobufElementType("wrong string literal");
+    IElementType STRING_LITERAL = new ProtobufElementType("STRING_LITERAL");
+    IElementType WRONG_STRING_LITERAL = new ProtobufElementType("WRONG_STRING_LITERAL");
+    TokenSet STRING_LITERALS = TokenSet.create(STRING_LITERAL,WRONG_STRING_LITERAL);
     TokenSet WRONG_STRING_LITERALS = TokenSet.create(WRONG_STRING_LITERAL);
 
     //braces
-    IElementType OPEN_BLOCK = new ProtobufElementType("{");
-    IElementType CLOSE_BLOCK = new ProtobufElementType("}");
-    IElementType OPEN_BRACE = new ProtobufElementType("[");
-    IElementType CLOSE_BRACE = new ProtobufElementType("]");
-    IElementType OPEN_PARANT = new ProtobufElementType("(");
-    IElementType CLOSE_PARANT = new ProtobufElementType(")");
+    IElementType OPEN_BLOCK = new ProtobufElementType("OPEN_BLOCK");
+    IElementType CLOSE_BLOCK = new ProtobufElementType("CLOSE_BLOCK");
+    IElementType OPEN_BRACE = new ProtobufElementType("OPEN_BRACE");
+    IElementType CLOSE_BRACE = new ProtobufElementType("CLOSE_BRACE");
+    IElementType OPEN_PARANT = new ProtobufElementType("OPEN_PARANT");
+    IElementType CLOSE_PARANT = new ProtobufElementType("CLOSE_PARANT");
     TokenSet BRACES = TokenSet.create(OPEN_BLOCK,CLOSE_BLOCK,OPEN_BRACE,CLOSE_BRACE,OPEN_PARANT,CLOSE_PARANT);
 
     //Numbers
-    IElementType NUM_INT = new ProtobufElementType("num integer");
-    IElementType NUM_DOUBLE = new ProtobufElementType("num double");
+    IElementType NUM_INT = new ProtobufElementType("NUM_INT");
+    IElementType NUM_DOUBLE = new ProtobufElementType("NUM_DOUBLE");
     TokenSet NUMBERS = TokenSet.create(NUM_INT,NUM_DOUBLE);
 
 
 //keywords    
 
     //definitions
-    IElementType IMPORT = new ProtobufElementType("import");
-    IElementType PACKAGE = new ProtobufElementType("package");
-    IElementType MESSAGE = new ProtobufElementType("message");
-    IElementType EXTEND = new ProtobufElementType("extend");
-    IElementType SERVICE = new ProtobufElementType("service");
-    IElementType OPTION = new ProtobufElementType("option");
-    IElementType ENUM = new ProtobufElementType("members");
+    IElementType IMPORT = new ProtobufElementType("IMPORT");
+    IElementType PACKAGE = new ProtobufElementType("PACKAGE");
+    IElementType MESSAGE = new ProtobufElementType("MESSAGE");
+    IElementType EXTEND = new ProtobufElementType("EXTEND");
+    IElementType SERVICE = new ProtobufElementType("SERVICE");
+    IElementType OPTION = new ProtobufElementType("OPTION");
+    IElementType ENUM = new ProtobufElementType("ENUM");
     TokenSet DEFINITIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM); //keywords
 
 
-    IElementType RPC = new ProtobufElementType("rpc");
-    IElementType RETURNS = new ProtobufElementType("returns");
-    IElementType EXTENSIONS = new ProtobufElementType("extensions");
+    IElementType RPC = new ProtobufElementType("RPC");
+    IElementType RETURNS = new ProtobufElementType("RETURNS");
+    IElementType EXTENSIONS = new ProtobufElementType("EXTENSIONS");
     //--
 
     //special words
-    IElementType TO = new ProtobufElementType("to");
-    IElementType MAX = new ProtobufElementType("max");
+    IElementType TO = new ProtobufElementType("TO");
+    IElementType MAX = new ProtobufElementType("MAX");
 
     //boolean values
-    IElementType TRUE = new ProtobufElementType("true");
-    IElementType FALSE = new ProtobufElementType("false");
-    TokenSet BOOL_VALUES = TokenSet.create(TRUE,FALSE); //keyword
+    IElementType TRUE = new ProtobufElementType("TRUE");
+    IElementType FALSE = new ProtobufElementType("FALSE");
+    TokenSet BOOL_VALUES = TokenSet.create(TRUE,FALSE); //keywords
 
     //spec field label
-    IElementType REQUIRED = new ProtobufElementType("required");
-    IElementType OPTIONAL = new ProtobufElementType("optional");
-    IElementType REPEATED = new ProtobufElementType("repeated");
-    TokenSet FIELD_LABELS = TokenSet.create(REQUIRED,OPTIONAL,REPEATED); //keyword
+    IElementType REQUIRED = new ProtobufElementType("REQUIRED");
+    IElementType OPTIONAL = new ProtobufElementType("OPTIONAL");
+    IElementType REPEATED = new ProtobufElementType("REPEATED");
+    TokenSet FIELD_LABELS = TokenSet.create(REQUIRED,OPTIONAL,REPEATED); //keywords
 
 
-    IElementType GROUP = new ProtobufElementType("group");  TokenSet GROUP_SET = TokenSet.create(GROUP); //hack for lookAhead
+    IElementType GROUP = new ProtobufElementType("GROUP");  TokenSet GROUP_SET = TokenSet.create(GROUP); //hack for lookAhead
     
     //Built-in types
-    IElementType DOUBLE = new ProtobufElementType("double");
-    IElementType FLOAT = new ProtobufElementType("float");
-    IElementType INT32 = new ProtobufElementType("int32");
-    IElementType INT64 = new ProtobufElementType("int64");
-    IElementType UINT32 = new ProtobufElementType("uint32");
-    IElementType UINT64 = new ProtobufElementType("uint64");
-    IElementType SINT32 = new ProtobufElementType("sint32");
-    IElementType SINT64 = new ProtobufElementType("sint64");
-    IElementType FIXED32 = new ProtobufElementType("fixed32");
-    IElementType FIXED64 = new ProtobufElementType("fixed64");
-    IElementType SFIXED32 = new ProtobufElementType("sfixed32");
-    IElementType SFIXED64 = new ProtobufElementType("sfixed64");
-    IElementType BOOL = new ProtobufElementType("bool");
-    IElementType STRING = new ProtobufElementType("string");
-    IElementType BYTES = new ProtobufElementType("bytes");
+    IElementType DOUBLE = new ProtobufElementType("DOUBLE");
+    IElementType FLOAT = new ProtobufElementType("FLOAT");
+    IElementType INT32 = new ProtobufElementType("INT32");
+    IElementType INT64 = new ProtobufElementType("INT64");
+    IElementType UINT32 = new ProtobufElementType("UINT32");
+    IElementType UINT64 = new ProtobufElementType("UINT64");
+    IElementType SINT32 = new ProtobufElementType("SINT32");
+    IElementType SINT64 = new ProtobufElementType("SINT64");
+    IElementType FIXED32 = new ProtobufElementType("FIXED32");
+    IElementType FIXED64 = new ProtobufElementType("FIXED64");
+    IElementType SFIXED32 = new ProtobufElementType("SFIXED32");
+    IElementType SFIXED64 = new ProtobufElementType("SFIXED4");
+    IElementType BOOL = new ProtobufElementType("BOOL");
+    IElementType STRING = new ProtobufElementType("STRING");
+    IElementType BYTES = new ProtobufElementType("BYTES");
     TokenSet BUILT_IN_TYPES = TokenSet.create(DOUBLE,FLOAT,INT32,INT64,
                                                 UINT32,UINT64,SINT32,SINT64,
                                                 FIXED32,FIXED64,SFIXED32,
-                                                SFIXED64,BOOL,STRING,BYTES);  //keyword
+                                                SFIXED64,BOOL,STRING,BYTES);  //keywords
 
-    TokenSet OTHER_KEYWORDS = TokenSet.create(RPC,RETURNS,GROUP,EXTENSIONS,TO,MAX);//keyword
+    TokenSet OTHER_KEYWORDS = TokenSet.create(RPC,RETURNS,GROUP,EXTENSIONS,TO,MAX);//keywords
 
     //Options
     //--File settings

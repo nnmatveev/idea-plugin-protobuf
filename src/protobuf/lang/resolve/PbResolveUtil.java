@@ -7,6 +7,7 @@ import static protobuf.lang.psi.PbPsiEnums.*;
 
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.PsiPackage;
+import com.intellij.psi.scope.PsiScopeProcessor;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.*;
@@ -19,11 +20,14 @@ import protobuf.lang.psi.utils.PbPsiUtil;
  */
 public abstract class PbResolveUtil {
 
-    private final static Logger LOG = Logger.getInstance(PbResolveUtil.class.getName());
+    private final static Logger LOG = Logger.getInstance(PbResolveUtil.class.getName());    
 
     public static PsiElement resolveInScope(final PsiElement scope, final PbRef ref) {
         ReferenceKind kind = ref.getRefKind();
         String refName = ref.getReferenceName();
+        if(refName == null){
+            return null;
+        }
         if (scope instanceof PsiPackage) {
             switch (kind) {
                 case DIRECTORY:

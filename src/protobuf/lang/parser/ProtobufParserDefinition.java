@@ -13,7 +13,7 @@ import com.intellij.psi.tree.TokenSet;
 import protobuf.file.ProtobufFileElementType;
 import protobuf.file.ProtobufFileType;
 import protobuf.lang.ProtobufTokenTypes;
-import protobuf.lang.lexer.ProtobufMergingLexer;
+import protobuf.lang.lexer.PbMergingLexer;
 import protobuf.lang.psi.ProtobufPsiCreator;
 import protobuf.lang.psi.impl.PbFileImpl;
 
@@ -26,7 +26,7 @@ public class ProtobufParserDefinition implements ParserDefinition {
 
 
     public Lexer createLexer(Project project) {
-        return new ProtobufMergingLexer();
+        return new PbMergingLexer();
     }
 
     public PsiParser createParser(Project project) {

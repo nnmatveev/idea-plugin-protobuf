@@ -20,7 +20,7 @@ import protobuf.lang.ProtobufTokenTypes;
 
 
 EOL = \r|\n|\r\n
-WHITE_SPACE = " " | \t | \f | {EOL}
+WHITE_SPACE = " "|\t|\f
 INPUT_CHARACTER = [^\r\n]
 
 DIGIT = [0-9]
@@ -30,26 +30,30 @@ LETTER = [:letter:]|"_"
 IDENTIFIER = ({LETTER})({LETTER}|{DIGIT})*
 
 LINE_COMMENT = "/""/"{INPUT_CHARACTER}*
-C_STYLE_COMMENT="/*"((.|{EOL})*?)"*/"
 
-HEX_INT32="-"?"0""x"{HEX_DIGIT}{8}
-HEX_INT64="-"?"0""x"{HEX_DIGIT}{16}
+C_STYLE_COMMENT="/*"([^"*"]|{EOL}|("*"+([^"*""/"]|{EOL})))*"*/"
+WRONG_C_STYLE_COMMENT="/*"([^"*"]|{EOL}|("*"+([^"*""/"]|{EOL})))*"*"?
 
-NUM_INT = "-"?{DIGIT}{DIGIT}*
-NUM_DOUBLE = ("-"?(({DIGIT}+(("."{DIGIT}+)|((e|E)"-"?{DIGIT}+)))|("inf"))|("nan"))
+HEX_INT="0x"{HEX_DIGIT}+
+
+NUM_INT = {DIGIT}{DIGIT}*
+NUM_DOUBLE = ({DIGIT}+(("."{DIGIT}+)|((e|E)"-"?{DIGIT}+)))
 
 STRING_DOUBLE_QUOTED = \"(\\\"|[^\"\r\n])*(\")
 STRING_SINGLE_QUOTED = \'(\\\'|[^\'\r\n])*(\')
 
-WRONG_STRING_DOUBLE_QUOTED = \"[^\"]*(\r\n)
-WRONG_STRING_SINGLE_QUOTED = \'[^\']*(\r\n)
+WRONG_STRING_DOUBLE_QUOTED = \"[^\"\r\n]*
+WRONG_STRING_SINGLE_QUOTED = \'[^\'\r\n]*
 
 
 %%
 
+//comments
 {LINE_COMMENT}                      {return (LINE_COMMENT);}
 {C_STYLE_COMMENT}                   {return (C_STYLE_COMMENT);}
+{WRONG_C_STYLE_COMMENT}             {return (WRONG_C_STYLE_COMMENT);}
 
+//strings
 {STRING_DOUBLE_QUOTED}              {return (STRING_LITERAL);}
 {STRING_SINGLE_QUOTED}              {return (STRING_LITERAL);}
 
@@ -57,12 +61,12 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\']*(\r\n)
 {WRONG_STRING_SINGLE_QUOTED}        {return (WRONG_STRING_LITERAL);}
 
 {WHITE_SPACE}                       {return (WHITE_SPACE);}
+{EOL}                               {return (WHITE_SPACE);}
 
-{HEX_INT64}                         {return (NUM_INT);}
-{HEX_INT32}                         {return (NUM_INT);}
+//numbers
+{HEX_INT}                           {return (NUM_INT);}
 {NUM_INT}                           {return (NUM_INT);}
 {NUM_DOUBLE}                        {return (NUM_DOUBLE);}
-
 
 
 "("                                 {return (OPEN_PARANT);}
@@ -76,6 +80,7 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\']*(\r\n)
 "="                                 {return (EQUAL);}
 ";"                                 {return (SEMICOLON);}
 ","                                 {return (COMMA);}
+"-"                                 {return (MINUS);}
 
 "import"                            {return (IMPORT);}
 "package"                           {return (PACKAGE);}
@@ -118,7 +123,6 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\']*(\r\n)
 
 
 {IDENTIFIER}                        {return (IDENTIFIER);}
-
 
 .                                   {return BAD_CHARACTER;}
 

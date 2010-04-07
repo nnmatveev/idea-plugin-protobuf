@@ -1,10 +1,8 @@
 package protobuf.highlighter;
 
 import com.intellij.openapi.editor.SyntaxHighlighterColors;
-import com.intellij.openapi.editor.colors.CodeInsightColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
 import com.intellij.openapi.editor.markup.TextAttributes;
-import com.intellij.openapi.fileTypes.SyntaxHighlighter;
 
 import java.awt.*;
 
@@ -17,6 +15,7 @@ public class DefaultHighlighter{
     //static final String TEXT_ID = "program text";
     static final String LINE_COMMENT_ID = "line comment";
     static final String C_STYLE_COMMENT_ID = "line comment";
+    static final String WRONG_C_STYLE_COMMENT_ID = "line comment";
     static final String STRING_ID = "string";
     static final String WRONG_STRING_ID = "wrong string";
     static final String BAD_CHARACTER_ID = "bad character";
@@ -24,8 +23,7 @@ public class DefaultHighlighter{
     static final String KEYWORD_ID = "keyword";
     //static final String ENUM_CONSTANT_ID = "enum constant";
 
-    static final TextAttributes LINE_COMMENT_ATTR = SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes();
-    static final TextAttributes C_STYLE_COMMENT_ATTR = SyntaxHighlighterColors.JAVA_BLOCK_COMMENT.getDefaultAttributes();
+    static final TextAttributes COMMENT_ATTR = SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes();    
     static final TextAttributes STRING_ATTR = SyntaxHighlighterColors.STRING.getDefaultAttributes();
     static final TextAttributes WRONG_STRING_ATTR = SyntaxHighlighterColors.STRING.getDefaultAttributes();
     static final TextAttributes NUMBER_ATTR = SyntaxHighlighterColors.NUMBER.getDefaultAttributes();
@@ -59,8 +57,7 @@ public class DefaultHighlighter{
     
 
 
-    public static TextAttributesKey LINE_COMMENT_ATTR_KEY = TextAttributesKey.createTextAttributesKey(LINE_COMMENT_ID, LINE_COMMENT_ATTR);
-    public static TextAttributesKey C_STYLE_COMMENT_ATTR_KEY = TextAttributesKey.createTextAttributesKey(C_STYLE_COMMENT_ID, C_STYLE_COMMENT_ATTR);
+    public static TextAttributesKey LINE_COMMENT_ATTR_KEY = TextAttributesKey.createTextAttributesKey(LINE_COMMENT_ID, COMMENT_ATTR);
     public static TextAttributesKey STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey(STRING_ID, STRING_ATTR);
     public static TextAttributesKey WRONG_STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey(WRONG_STRING_ID, WRONG_STRING_ATTR);
     public static TextAttributesKey BAD_CHARACTER_ATTR_KEY = TextAttributesKey.createTextAttributesKey(BAD_CHARACTER_ID, BAD_CHARACTER_ATTR);

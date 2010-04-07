@@ -5,6 +5,22 @@ package protobuf.lang.psi;
  * Date: Apr 3, 2010
  */
 public class PbPsiEnums {
+
+    public enum ReferenceKind {
+        DIRECTORY,
+        PACKAGE,
+        MESSAGE_OR_GROUP,
+        MESSAGE_OR_ENUM_OR_GROUP,
+        MESSAGE_OR_PACKAGE_OR_GROUP,
+        MESSAGE_OR_GROUP_FIELD,
+        EXTEND_FIELD,
+        ENUM_CONSTANT
+    }
+
+    public enum CompletionKind {
+        //complete
+    }
+
     public enum FieldLabel {
         REQUIRED,
         REPEATED,
@@ -30,18 +46,7 @@ public class PbPsiEnums {
         SFIXED64,
         SINT32,
         SINT64,
-    }
-
-    public enum ReferenceKind {
-        DIRECTORY,
-        PACKAGE,
-        MESSAGE_OR_GROUP,
-        MESSAGE_OR_ENUM_OR_GROUP,
-        MESSAGE_OR_PACKAGE_OR_GROUP,
-        MESSAGE_OR_GROUP_FIELD,
-        EXTEND_FIELD,        
-        ENUM_CONSTANT
-    }
+    }       
 
     public enum FileOption {
         JAVA_PACKAGE,

@@ -8,8 +8,8 @@ import java.io.Reader;
  * author: Nikolay Matveev
  * Date: Mar 7, 2010
  */
-public class ProtobufFlexLexer extends FlexAdapter {
-    public ProtobufFlexLexer() {
+public class PbFlexLexer extends FlexAdapter {
+    public PbFlexLexer() {
         super(new _ProtobufLexer((Reader) null));
     }
 }

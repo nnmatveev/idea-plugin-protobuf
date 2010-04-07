@@ -68,7 +68,15 @@ public class EnumDefinition implements ProtobufElementTypes {
         PsiBuilder.Marker enumConstantkMarker = builder.mark();
         builder.matchAs(IK,NAME,"identifier.expected");
         builder.match(EQUAL,"equal.expected");
-        builder.matchAs(NUM_INT,VALUE,"num.integer.expected");
+        builder.match(MINUS);
+        if(builder.compareToken(MINUS)){
+            PsiBuilder.Marker marker = builder.mark();
+            builder.match(MINUS);
+            builder.match(NUM_INT,"num.integer.expected");
+            marker.done(VALUE);
+        } else {
+            builder.matchAs(NUM_INT,VALUE,"num.integer.expected");
+        }
         FieldDefinition.parseOptions(builder);                            
         builder.match(SEMICOLON,"semicolon.expected");
         enumConstantkMarker.done(ENUM_CONST_DEF);

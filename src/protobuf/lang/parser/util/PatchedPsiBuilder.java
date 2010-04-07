@@ -77,11 +77,29 @@ public class PatchedPsiBuilder {
         return false;
     }
 
+    public boolean match(String tokenText) {
+        if (tokenText.equals(myBuilder.getTokenText())) {
+            myBuilder.advanceLexer();
+            return true;
+        }
+        return false;
+    }
+
+    public boolean match(String tokenText, String errorMessage) {
+        if (tokenText.equals(myBuilder.getTokenText())) {
+            myBuilder.advanceLexer();
+            return true;
+        } else {
+            myBuilder.error(PbBundle.message(errorMessage));
+        }
+        return false;
+    }
+
     public void match() {
         myBuilder.advanceLexer();
     }
 
-    public boolean eof() {       
+    public boolean eof() {
         return myBuilder.eof();
     }
 

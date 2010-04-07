@@ -1,0 +1,18 @@
+//---STRING_DOUBLE_QUOTED
+""
+"	~!@#$%^&*()_+azAz09"
+"	"
+"abc
+"
+//---STRING_SINGLE_QUOTED
+''
+'	~!@#$%^&*()_+azAz09'
+'	'
+'abc
+'
+//---WRONG_STRING_DOUBLE_QUOTED
+"
+"	~!@#$%^&*()_+azAz09
+//---WRONG_STRING_SINGLE_QUOTED
+'
+'	~!@#$%^&*()_+azAz09

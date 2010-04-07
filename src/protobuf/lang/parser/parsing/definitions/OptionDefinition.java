@@ -41,13 +41,37 @@ public class OptionDefinition implements ProtobufElementTypes {
             PsiBuilder.Marker optionNameMarker = builder.mark();
             builder.match(IK);
             optionNameMarker.done(OPTION_NAME);
-        } else if (!ReferenceElement.parseForCustomOption(builder)) {            
+        } else if (!ReferenceElement.parseForCustomOption(builder)) {
             optionAssigmentMarker.rollbackTo();
             return false;
         }
         builder.match(EQUAL, "equal.expected");
-        builder.match(CONSTANT_LITERALS, "constant.literal.expected");
+        if (!parseOptionValue(builder)) {
+            builder.error("value.expected");
+        }        
         optionAssigmentMarker.done(OPTION_ASSIGMENT);
+        return true;
+    }
+
+    public static boolean parseOptionValue(PatchedPsiBuilder builder) {
+        PsiBuilder.Marker marker = builder.mark();
+        long a = 0x12345678;
+        if (builder.match(NUMBERS)) {
+        } else if (builder.match(MINUS)) {            
+            if (builder.match(NUMBERS)) {
+            } else if (builder.match("inf")) {
+            } else if (builder.match("nan")) {
+            } else {
+                builder.error("number.expexted");
+            }
+        } else if (builder.match(BOOL_VALUES)) {
+        } else if (builder.match(IK)) {
+        } else if (builder.match(STRING_LITERALS)) {
+        } else {
+            marker.drop();
+            return false;
+        }
+        marker.done(VALUE);
         return true;
     }
 }

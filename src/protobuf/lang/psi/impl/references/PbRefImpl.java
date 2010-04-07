@@ -302,66 +302,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return null;
     }
 
-    public ReferenceKind getCompletionKind() {
-        //todo caching kind
-        PsiElement parent = getParent();
-        if (parent instanceof PbRef) {
-            ReferenceKind parentKind = ((PbRefImpl) parent).getRefKind();
-            assert parentKind != null;
-            switch (parentKind) {
-                case DIRECTORY: {
-                    return ReferenceKind.DIRECTORY;
-                }
-                case PACKAGE: {
-                    return ReferenceKind.PACKAGE;
-                }
-                case MESSAGE_OR_GROUP: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
-                }
-                case MESSAGE_OR_ENUM_OR_GROUP: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
-                }
-                case MESSAGE_OR_PACKAGE_OR_GROUP: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
-                }
-                case EXTEND_FIELD: {
-                    return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
-                }
-                case MESSAGE_OR_GROUP_FIELD: {
-                    if (findChildByType(CLOSE_PARANT) != null) {
-                        return ReferenceKind.EXTEND_FIELD;
-                    }
-                    return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
-                }
-                default:{
-                    assert false;
-                }
-            }
-
-        }
-        if (parent instanceof PbExtendDef) {
-            return ReferenceKind.MESSAGE_OR_GROUP;
-        }
-        if (parent instanceof PbFieldType) {
-            return ReferenceKind.MESSAGE_OR_ENUM_OR_GROUP;
-        }
-        if (parent instanceof PbOptionRefSeq) {
-            if (findChildByType(CLOSE_PARANT) != null) {
-                return ReferenceKind.EXTEND_FIELD;
-            }
-            return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
-        }
-        if (parent instanceof PbPackageDef) {
-            return ReferenceKind.PACKAGE;
-        }
-        if (parent instanceof PbImportDef) {
-            return ReferenceKind.DIRECTORY;
-        }
-        //todo 'enum constants as value of options and fields', imports
-
-        if (parent instanceof PbServiceMethodDef) {
-            return ReferenceKind.MESSAGE_OR_GROUP;
-        }
+    public CompletionKind getCompletionKind() {
+        //todo complete
         return null;
     }
 
@@ -373,6 +315,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             final PbRef qualifier = ref.getQualifier();
             switch (refKind) {
                 case DIRECTORY: {
+                    //todo check for wrong string literal
                     LOG.info("directory: " + PbTextUtil.trim(ref.getText(), '"'));
                     VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(PbTextUtil.trim(ref.getText(), '"'));
                     if (vfile != null) {

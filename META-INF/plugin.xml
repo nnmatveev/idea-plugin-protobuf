@@ -47,8 +47,6 @@
         <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
 
-        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
-
-        <completion.contributor language="Protobuf" implementationClass="protobuf.lang.completion.PbCompletionContributor"/>
+        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>       
     </extensions>
 </idea-plugin>

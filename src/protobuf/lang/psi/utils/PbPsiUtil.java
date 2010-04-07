@@ -2,6 +2,7 @@ package protobuf.lang.psi.utils;
 
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.*;
+import com.intellij.psi.scope.PsiScopeProcessor;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
@@ -20,9 +21,15 @@ public abstract class PbPsiUtil {
 
     private final static Logger LOG = Logger.getInstance(PbPsiUtil.class.getName());
 
+    public static PsiElement[] EMPTY_PSI_ARRAY = new PsiElement[0];
+
     public static PbFile[] EMPTY_FILE_ARRAY = new PbFile[0];
 
     public static PsiPackage[] EMPTY_PACKAGE_ARRAY = new PsiPackage[0];
+
+    public static void treeWalkUp(PsiScopeProcessor processor, PsiElement curElement) {
+
+    }
 
     public static String getQualifiedReferenceText(PbRef ref) {
         StringBuilder sbuilder = new StringBuilder();
@@ -64,12 +71,12 @@ public abstract class PbPsiUtil {
             PbPsiElement scope = (PbPsiElement) element.getParent();
             int i = 0;
             while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
-                scope = (PbPsiElement) scope.getParent();                
+                scope = (PbPsiElement) scope.getParent();
             }
             if (scope instanceof PbFile) {
                 JavaPsiFacade facade = JavaPsiFacade.getInstance(scope.getManager().getProject());
                 return facade.findPackage(((PbFile) scope).getPackageName());
-            }           
+            }
             return scope;
         }
         assert false;
@@ -102,7 +109,7 @@ public abstract class PbPsiUtil {
             return null;
         }
         if (element instanceof PbGroupDef) {
-            return ((PbGroupDef) element).getBlock();                        
+            return ((PbGroupDef) element).getBlock();
         }
         if (element instanceof PbExtendDef) {
             return ((PbExtendDef) element).getBlock();
@@ -148,7 +155,7 @@ public abstract class PbPsiUtil {
             return true;
         }
         PbFile[] importedFiles = getImportedFiles(curFile, true);
-        for (PbFile importedFile : importedFiles) {            
+        for (PbFile importedFile : importedFiles) {
             if (importedFile.getPackageName().startsWith(qSubPackageName)) {
                 return true;
             }

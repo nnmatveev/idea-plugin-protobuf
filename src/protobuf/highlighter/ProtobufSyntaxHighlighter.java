@@ -6,7 +6,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.ProtobufTokenTypes;
-import protobuf.lang.lexer.ProtobufMergingLexer;
+import protobuf.lang.lexer.PbMergingLexer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,7 +20,7 @@ public class ProtobufSyntaxHighlighter extends SyntaxHighlighterBase{
     private static final Map<IElementType, TextAttributesKey> ATTRIBUTES = new HashMap<IElementType, TextAttributesKey>();
 
     static {
-        fillMap(ATTRIBUTES, ProtobufTokenTypes.COMMENTS, DefaultHighlighter.LINE_COMMENT_ATTR_KEY);        
+        fillMap(ATTRIBUTES, ProtobufTokenTypes.COMMENTS, DefaultHighlighter.LINE_COMMENT_ATTR_KEY);
         fillMap(ATTRIBUTES,ProtobufTokenTypes.STRING_LITERALS, DefaultHighlighter.STRING_ATTR_KEY);
         fillMap(ATTRIBUTES,ProtobufTokenTypes.WRONG_STRING_LITERALS, DefaultHighlighter.WRONG_STRING_ATTR_KEY);
         fillMap(ATTRIBUTES,ProtobufTokenTypes.BAD_CHARACTERS, DefaultHighlighter.BAD_CHARACTER_ATTR_KEY);
@@ -30,7 +30,7 @@ public class ProtobufSyntaxHighlighter extends SyntaxHighlighterBase{
 
     @NotNull
     public Lexer getHighlightingLexer() {        
-        return new ProtobufMergingLexer();
+        return new PbMergingLexer();
     }
 
     @NotNull
