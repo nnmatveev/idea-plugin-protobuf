@@ -1,0 +1,46 @@
+message a{
+optional group Idea = 5{
+}
+repeated group Idea=5[default=true]{
+}
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('a')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      GROUP_DECL
+        PsiElement(OPTIONAL)('optional')
+        PsiElement(GROUP)('group')
+        NAME
+          PsiElement(IDENTIFIER)('Idea')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        MESSAGE_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      GROUP_DECL
+        PsiElement(REPEATED)('repeated')
+        PsiElement(GROUP)('group')
+        NAME
+          PsiElement(IDENTIFIER)('Idea')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        OPTION_LIST
+          PsiElement(OPEN_BRACE)('[')
+          OPTION_ASSIGMENT
+            NAME
+              PsiElement(IDENTIFIER)('default')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(TRUE)('true')
+          PsiElement(CLOSE_BRACE)(']')
+        MESSAGE_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(CLOSE_BLOCK)('}')

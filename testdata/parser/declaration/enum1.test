@@ -1,0 +1,20 @@
+enum A{
+}
+enum enum{
+}
+------
+PROTO_FILE
+  ENUM_DECL
+    PsiElement(ENUM)('enum')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    ENUM_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  ENUM_DECL
+    PsiElement(ENUM)('enum')
+    NAME
+      PsiElement(ENUM)('enum')
+    ENUM_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')

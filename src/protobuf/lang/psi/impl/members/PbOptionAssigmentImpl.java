@@ -12,9 +12,4 @@ public class PbOptionAssigmentImpl extends PbPsiElementImpl implements PbOptionA
     public PbOptionAssigmentImpl(ASTNode node){
         super(node);
     }
-
-    public String toString(){
-        return "Option assigment";
-    }
-
 }

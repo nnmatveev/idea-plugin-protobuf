@@ -1,0 +1,11 @@
+package com.intellij;
+------
+PROTO_FILE
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('com')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('intellij')
+    PsiElement(SEMICOLON)(';')

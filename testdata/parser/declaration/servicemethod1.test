@@ -1,0 +1,44 @@
+service A {
+rpc B(C) returns(D);
+rpc B(C) returns(D){
+}
+}
+------
+PROTO_FILE
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      SERVICE_METHOD_DECL
+        PsiElement(RPC)('rpc')
+        NAME
+          PsiElement(IDENTIFIER)('B')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('C')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(RETURNS)('returns')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('D')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(SEMICOLON)(';')
+      SERVICE_METHOD_DECL
+        PsiElement(RPC)('rpc')
+        NAME
+          PsiElement(IDENTIFIER)('B')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('C')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(RETURNS)('returns')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('D')
+        PsiElement(CLOSE_PARANT)(')')
+        SERVICE_METHOD_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(CLOSE_BLOCK)('}')

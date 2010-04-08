@@ -1,0 +1,52 @@
+service A {
+rpc A(B) returns (C){
+option a = 5;
+;
+
+option a = 5;
+}
+}
+------
+PROTO_FILE
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      SERVICE_METHOD_DECL
+        PsiElement(RPC)('rpc')
+        NAME
+          PsiElement(IDENTIFIER)('A')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('B')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(RETURNS)('returns')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('C')
+        PsiElement(CLOSE_PARANT)(')')
+        SERVICE_METHOD_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          OPTION_DECL
+            PsiElement(OPTION)('option')
+            OPTION_ASSIGMENT
+              NAME
+                PsiElement(IDENTIFIER)('a')
+              PsiElement(EQUAL)('=')
+              VALUE
+                PsiElement(NUM_INT)('5')
+            PsiElement(SEMICOLON)(';')
+          PsiElement(SEMICOLON)(';')
+          OPTION_DECL
+            PsiElement(OPTION)('option')
+            OPTION_ASSIGMENT
+              NAME
+                PsiElement(IDENTIFIER)('a')
+              PsiElement(EQUAL)('=')
+              VALUE
+                PsiElement(NUM_INT)('5')
+            PsiElement(SEMICOLON)(';')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(CLOSE_BLOCK)('}')

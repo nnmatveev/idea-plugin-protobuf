@@ -12,8 +12,4 @@ public class PbExtensionsDefImpl extends PbPsiElementImpl implements PbExtension
     public PbExtensionsDefImpl(ASTNode node){
         super(node);
     }
-
-    public String toString(){
-        return "extensions definition";
-    }
 }

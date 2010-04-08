@@ -1,0 +1,8 @@
+import "a";
+------
+PROTO_FILE
+  IMPORT_DECL
+    PsiElement(IMPORT)('import')
+    DIR_REF
+      PsiElement(STRING_LITERAL)('"a"')
+    PsiElement(SEMICOLON)(';')

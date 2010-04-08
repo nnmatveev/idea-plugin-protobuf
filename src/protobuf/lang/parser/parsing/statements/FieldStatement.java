@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.parser.parsing.ReferenceElement;
@@ -10,7 +10,7 @@ import static protobuf.lang.ProtobufElementTypes.*;
  * author: Nikolay Matveev
  * Date: Mar 25, 2010
  */
-public class FieldDefinition {
+public class FieldStatement {
 
     public static boolean parse(PatchedPsiBuilder builder) {
         if (!builder.compareToken(FIELD_LABELS)) {
@@ -23,11 +23,11 @@ public class FieldDefinition {
             builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            parseOptions(builder);
-            if (!MessageDefinition.parseMessageBlock(builder)) {
+            parseOptionList(builder);
+            if (!MessageStatement.parseMessageBlock(builder)) {
                 builder.error("group.block.expected");
             }            
-            messageMarker.done(GROUP_DEF);
+            messageMarker.done(GROUP_DECL);
 
         } else {
             PsiBuilder.Marker messageMarker = builder.mark();            
@@ -36,9 +36,9 @@ public class FieldDefinition {
             builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            parseOptions(builder);
+            parseOptionList(builder);
             builder.match(SEMICOLON, "semicolon.expected");
-            messageMarker.done(FIELD_DEF);
+            messageMarker.done(FIELD_DECL);
         }
         return true;
     }
@@ -57,14 +57,14 @@ public class FieldDefinition {
     }
     
     //done
-    public static boolean parseOptions(PatchedPsiBuilder builder) {
+    public static boolean parseOptionList(PatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BRACE)) {
             return false;
         }
         PsiBuilder.Marker optionsMarker = builder.mark();
         builder.match(OPEN_BRACE);
-        do {
-            if (OptionDefinition.parseOptionAssigment(builder)) {
+        do {            
+            if (OptionStatement.parseOptionAssigment(builder)) {
             } else {
                 builder.error("option.assigment.expected");
                 break;

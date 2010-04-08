@@ -5,3 +5,15 @@ intellij	idea	9.0
 idea plugin	
 
 	protobuf
+------
+IDENTIFIER#intellij
+WHITE_SPACE#\t
+IDENTIFIER#idea
+WHITE_SPACE#\t
+NUM_DOUBLE#9.0
+WHITE_SPACE#\r\n\r\n\r\n\r\n
+IDENTIFIER#idea
+WHITE_SPACE#\_
+IDENTIFIER#plugin
+WHITE_SPACE#\t\r\n\r\n\t
+IDENTIFIER#protobuf

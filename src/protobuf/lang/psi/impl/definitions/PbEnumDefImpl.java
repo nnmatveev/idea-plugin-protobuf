@@ -18,10 +18,6 @@ public class PbEnumDefImpl extends PbBlockHolderImpl implements PbEnumDef {
         super(node);
     }
 
-    public String toString(){
-        return "enum definition";
-    }
-
     public PsiElement setName(@NonNls String s) throws IncorrectOperationException {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
     }

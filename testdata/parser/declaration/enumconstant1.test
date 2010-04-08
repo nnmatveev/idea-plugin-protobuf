@@ -1,0 +1,38 @@
+enum a{
+CONST=5;
+ALIAS=-5;
+option CONS=4;
+}
+------
+PROTO_FILE
+  ENUM_DECL
+    PsiElement(ENUM)('enum')
+    NAME
+      PsiElement(IDENTIFIER)('a')
+    ENUM_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      ENUM_CONST_DECL
+        NAME
+          PsiElement(IDENTIFIER)('CONST')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        PsiElement(SEMICOLON)(';')
+      ENUM_CONST_DECL
+        NAME
+          PsiElement(IDENTIFIER)('ALIAS')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(MINUS)('-')
+          PsiElement(NUM_INT)('5')
+        PsiElement(SEMICOLON)(';')
+      OPTION_DECL
+        PsiElement(OPTION)('option')
+        OPTION_ASSIGMENT
+          NAME
+            PsiElement(IDENTIFIER)('CONS')
+          PsiElement(EQUAL)('=')
+          VALUE
+            PsiElement(NUM_INT)('4')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

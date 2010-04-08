@@ -30,11 +30,6 @@ public class PbGroupDefImpl extends PbPsiElementImpl implements PbGroupDef {
     }
 
     @Override
-    public String toString() {
-        return "Group definition";
-    }
-
-    @Override
     public String getName() {
         PbNameImpl name = findChildByClass(PbNameImpl.class);
         if (name != null) {

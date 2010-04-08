@@ -35,7 +35,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
     @Override
     public String toString() {
-        return "protobuf file";
+        return "PROTO_FILE";
     }
 
     @Override

@@ -1,0 +1,85 @@
+message A{
+message B{
+}
+enum C{
+}
+extend d.e{
+}
+option name = 15;
+extensions 10 to max;
+optional int32 a = 15;
+optional group G = 15{
+}
+;
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      MESSAGE_DECL
+        PsiElement(MESSAGE)('message')
+        NAME
+          PsiElement(IDENTIFIER)('B')
+        MESSAGE_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      ENUM_DECL
+        PsiElement(ENUM)('enum')
+        NAME
+          PsiElement(IDENTIFIER)('C')
+        ENUM_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      EXTEND_DECL
+        PsiElement(EXTEND)('extend')
+        MESSAGE_OR_GROUP_REF
+          MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+            PsiElement(IDENTIFIER)('d')
+          PsiElement(DOT)('.')
+          PsiElement(IDENTIFIER)('e')
+        EXTEND_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      OPTION_DECL
+        PsiElement(OPTION)('option')
+        OPTION_ASSIGMENT
+          NAME
+            PsiElement(IDENTIFIER)('name')
+          PsiElement(EQUAL)('=')
+          VALUE
+            PsiElement(NUM_INT)('15')
+        PsiElement(SEMICOLON)(';')
+      EXTENSIONS_DECL
+        PsiElement(EXTENSIONS)('extensions')
+        EXTENSIONS_RANGE
+          PsiElement(NUM_INT)('10')
+          PsiElement(TO)('to')
+          PsiElement(MAX)('max')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('15')
+        PsiElement(SEMICOLON)(';')
+      GROUP_DECL
+        PsiElement(OPTIONAL)('optional')
+        PsiElement(GROUP)('group')
+        NAME
+          PsiElement(IDENTIFIER)('G')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('15')
+        MESSAGE_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

@@ -1,0 +1,73 @@
+message a{
+optional int32 a = 1;
+optional int32 a = 1[default=true];
+optional int32 a = 1[default=true,(idea)=idea];
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('a')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        OPTION_LIST
+          PsiElement(OPEN_BRACE)('[')
+          OPTION_ASSIGMENT
+            NAME
+              PsiElement(IDENTIFIER)('default')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(TRUE)('true')
+          PsiElement(CLOSE_BRACE)(']')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        OPTION_LIST
+          PsiElement(OPEN_BRACE)('[')
+          OPTION_ASSIGMENT
+            NAME
+              PsiElement(IDENTIFIER)('default')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(TRUE)('true')
+          PsiElement(COMMA)(',')
+          OPTION_ASSIGMENT
+            NAME
+              OPTION_REF_SEQ
+                EXTEND_FIELD_REF
+                  PsiElement(OPEN_PARANT)('(')
+                  PsiElement(IDENTIFIER)('idea')
+                  PsiElement(CLOSE_PARANT)(')')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(IDENTIFIER)('idea')
+          PsiElement(CLOSE_BRACE)(']')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

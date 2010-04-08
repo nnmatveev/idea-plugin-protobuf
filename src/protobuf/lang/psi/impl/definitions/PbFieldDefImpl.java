@@ -33,11 +33,6 @@ public class PbFieldDefImpl extends PbPsiElementImpl implements PbFieldDef {
     }
 
     @Override
-    public String toString() {
-        return "field definition";
-    }
-
-    @Override
     public String getName() {
         return findChildByClass(PbNameImpl.class).getText();
     }

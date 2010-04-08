@@ -1,52 +1,50 @@
 package protobuf.lang.lexer;
 
 import com.intellij.lexer.Lexer;
-import com.intellij.openapi.application.PathManager;
-import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.testFramework.LexerTestCase;
 import com.intellij.testFramework.UsefulTestCase;
-import org.jetbrains.annotations.NonNls;
 import protobuf.util.PbTestUtil;
+import protobuf.util.TestPath;
 
-import java.io.File;
 import java.io.IOException;
 
 /**
  * author: Nikolay Matveev
- * Date: Apr 7, 2010
  */
-public abstract class PbLexerTestCase extends UsefulTestCase {
 
-    protected void doTest(@NonNls String text,String path) {
-        Lexer lexer = createLexer();
-        lexer.start(text);
-        String result = "";
-        while (true) {
-            IElementType tokenType = lexer.getTokenType();
-            if (tokenType == null) {
-                break;
-            }
-            String tokenText = getTokenText(lexer);
-            String tokenTypeName = tokenType.toString();
-            String line = tokenTypeName + "#" + tokenText + "\n";
-            result += line;
-            lexer.advance();
-        }
-        assertSameLinesWithFile(PbTestUtil.getTestDataPath() + "/lexer/" + path +  getTestName(true) + ".txt", result);
+public class PbLexerTestCase extends UsefulTestCase {
+
+    protected String getBasePath() {
+        return PbTestUtil.getTestDataPath() + TestPath.LEXER_TEST_DIR;
     }
 
-    protected void doFileTest(@NonNls String fileExt, String path) {
-        String fileName = PbTestUtil.getTestDataPath() + "/lexer/"  + path + getTestName(true) + "." + fileExt;
-        String text = "";
+    protected void doTest(Lexer lexer) {
+        doTest(lexer, getTestName(true).replace('$', '/') + ".test");
+    }
+
+    protected void doTest(Lexer lexer, String filePath) {
         try {
-            text = new String(FileUtil.loadFileText(new File(fileName))).trim();
+            Pair<String, String> pair = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + filePath);
+            lexer.start(pair.getFirst());
+            String result = "";
+            while (true) {
+                IElementType tokenType = lexer.getTokenType();
+                if (tokenType == null) {
+                    break;
+                }
+                String tokenText = getTokenText(lexer);
+                String tokenTypeName = tokenType.toString();
+                String line = tokenTypeName + "#" + tokenText + "\r\n";
+                result += line;
+                lexer.advance();
+            }
+            assertEquals(pair.getSecond()+"\r\n", result);
+            System.out.println("abc");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        catch (IOException e) {
-            fail("can't load file " + fileName + ": " + e.getMessage());
-        }
-        doTest(text,path);
     }
 
     private static String getTokenText(Lexer lexer) {
@@ -59,5 +57,27 @@ public abstract class PbLexerTestCase extends UsefulTestCase {
         return text;
     }
 
-    protected abstract Lexer createLexer();
+    public void testFlex$common(){
+        doTest(new PbFlexLexer());
+    }
+
+    public void testFlex$comments(){
+        doTest(new PbFlexLexer());
+    }
+
+    public void testFlex$keywords(){
+        doTest(new PbFlexLexer());
+    }
+    
+    public void testFlex$numbers(){
+        doTest(new PbFlexLexer());
+    }
+
+    public void testFlex$string(){
+        doTest(new PbFlexLexer());
+    }
+
+    public void testMerging(){
+        doTest(new PbMergingLexer());
+    }
 }

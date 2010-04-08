@@ -1,0 +1,35 @@
+extend a{
+optional int32 a = 5;
+optional group G = 5{
+}
+}
+------
+PROTO_FILE
+  EXTEND_DECL
+    PsiElement(EXTEND)('extend')
+    MESSAGE_OR_GROUP_REF
+      PsiElement(IDENTIFIER)('a')
+    EXTEND_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        PsiElement(SEMICOLON)(';')
+      GROUP_DECL
+        PsiElement(OPTIONAL)('optional')
+        PsiElement(GROUP)('group')
+        NAME
+          PsiElement(IDENTIFIER)('G')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        MESSAGE_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(CLOSE_BLOCK)('}')

@@ -8,56 +8,50 @@ import com.intellij.psi.tree.TokenSet;
  */
 public interface ProtobufElementTypes extends ProtobufTokenTypes {
 
-    ProtobufElementType REF = new ProtobufElementType("Reference");
+    ProtobufElementType CUSTOM_TYPE_REF = new ProtobufElementType("CUTOM_TYPE_REF");
+    ProtobufElementType BLOCK = new ProtobufElementType("BLOCK");
 
-    ProtobufElementType CUSTOM_TYPE_REF = new ProtobufElementType("Reference");
+    ProtobufElementType PACKAGE_DECL = new ProtobufElementType("PACKAGE_DECL");
+    ProtobufElementType PACKAGE_REF = new ProtobufElementType("PACKAGE_REF");
 
-    ProtobufElementType PACKAGE_DEF = new ProtobufElementType("Package definition");
-    ProtobufElementType PACKAGE_REF = new ProtobufElementType("Package reference");
+    ProtobufElementType OPTION_DECL = new ProtobufElementType("OPTION_DECL");
+    ProtobufElementType OPTION_REF = new ProtobufElementType("OPTION_REF");
+    ProtobufElementType OPTION_REF_SEQ = new ProtobufElementType("OPTION_REF_SEQ");
+    ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("OPTION_ASSIGMENT");
 
-    ProtobufElementType OPTION_DEF = new ProtobufElementType("Option definition");
-    ProtobufElementType OPTION_NAME = new ProtobufElementType("Option name");
-    ProtobufElementType OPTION_REF = new ProtobufElementType("Option reference");
-    ProtobufElementType OPTION_REF_SEQ = new ProtobufElementType("Option reference sequence");
-    ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("Optionassigment");
-
-    ProtobufElementType IMPORT_DEF = new ProtobufElementType("Import definition");
+    ProtobufElementType IMPORT_DECL = new ProtobufElementType("IMPORT_DECL");
     ProtobufElementType IMPORT_REF = new ProtobufElementType("Import reference");
 
-    ProtobufElementType SERVICE_DEF = new ProtobufElementType("Service definition");
-    ProtobufElementType SERVICE_BLOCK = new ProtobufElementType("Service block");
-    ProtobufElementType SERVICE_METHOD_DEF = new ProtobufElementType("Service method");
-    ProtobufElementType SERVICE_METHOD_BLOCK = new ProtobufElementType("Service method block");
+    ProtobufElementType SERVICE_DECL = new ProtobufElementType("SERVICE_DECL");
+    ProtobufElementType SERVICE_BLOCK = new ProtobufElementType("SERVICE_BLOCK");
+    ProtobufElementType SERVICE_METHOD_DECL = new ProtobufElementType("SERVICE_METHOD_DECL");
+    ProtobufElementType SERVICE_METHOD_BLOCK = new ProtobufElementType("SERVICE_METHOD_BLOCK");
 
-    ProtobufElementType EXTEND_DEF = new ProtobufElementType("Extend definition");
-    ProtobufElementType EXTEND_BLOCK = new ProtobufElementType("Extend block");
+    ProtobufElementType EXTEND_DECL = new ProtobufElementType("EXTEND_DECL");
+    ProtobufElementType EXTEND_BLOCK = new ProtobufElementType("EXTEND_BLOCK");
 
-    ProtobufElementType MESSAGE_DEF = new ProtobufElementType("Message definition");
-    ProtobufElementType MESSAGE_NAME = new ProtobufElementType("Message definition");
-    ProtobufElementType MESSAGE_BLOCK = new ProtobufElementType("Message block");
+    ProtobufElementType MESSAGE_DECL = new ProtobufElementType("MESSAGE_DECL");
+    ProtobufElementType MESSAGE_BLOCK = new ProtobufElementType("MESSAGE_BLOCK");
     
-    ProtobufElementType FIELD_DEF = new ProtobufElementType("Field definition");
-    ProtobufElementType FIELD_TYPE = new ProtobufElementType("Field type");
-    ProtobufElementType FIELD_LABEL = new ProtobufElementType("Field label");
-    ProtobufElementType OPTION_LIST = new ProtobufElementType("Field settings");
-    ProtobufElementType GROUP_DEF = new ProtobufElementType("Group field definition");
-    ProtobufElementType GROUP_BLOCK = new ProtobufElementType("group block");
+    ProtobufElementType FIELD_DECL = new ProtobufElementType("FIELD_DECL");
+    ProtobufElementType FIELD_TYPE = new ProtobufElementType("FIELD_TYPE");
+    ProtobufElementType GROUP_DECL = new ProtobufElementType("GROUP_DECL");
+    ProtobufElementType OPTION_LIST = new ProtobufElementType("OPTION_LIST");
 
-    ProtobufElementType ENUM_DEF = new ProtobufElementType("Enum definition");
-    ProtobufElementType ENUM_NAME = new ProtobufElementType("Enum name");
-    ProtobufElementType ENUM_BLOCK = new ProtobufElementType("Enum block");    
-    ProtobufElementType ENUM_CONST_DEF = new ProtobufElementType("Enum constant");
+    ProtobufElementType ENUM_DECL = new ProtobufElementType("ENUM_DECL");
+    ProtobufElementType ENUM_BLOCK = new ProtobufElementType("ENUM_BLOCK");
+    ProtobufElementType ENUM_CONST_DECL = new ProtobufElementType("ENUM_CONST_DECL");
 
 
-    ProtobufElementType EXTENSIONS_DEF = new ProtobufElementType("Extensions definition");
-    ProtobufElementType EXTENSIONS_RANGE = new ProtobufElementType("Extensions range");
+    ProtobufElementType EXTENSIONS_DECL = new ProtobufElementType("EXTENSIONS_DECL");
+    ProtobufElementType EXTENSIONS_RANGE = new ProtobufElementType("EXTENSIONS_RANGE");
 
-    ProtobufElementType NAME = new ProtobufElementType("Name");
-    ProtobufElementType VALUE = new ProtobufElementType("Value");
+    ProtobufElementType NAME = new ProtobufElementType("NAME");
+    ProtobufElementType VALUE = new ProtobufElementType("VALUE");
     
     TokenSet SKIPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
-    TokenSet BLOCKS = TokenSet.create(MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
-    TokenSet DEFS = TokenSet.create(MESSAGE_DEF,ENUM_DEF,SERVICE_DEF,SERVICE_METHOD_DEF,EXTEND_DEF,EXTENSIONS_DEF,IMPORT_DEF,PACKAGE_DEF,FIELD_DEF,OPTION_DEF,ENUM_CONST_DEF);
+    TokenSet BLOCKS = TokenSet.create(BLOCK,MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
+    TokenSet DEFS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, PACKAGE_DECL, FIELD_DECL, OPTION_DECL, ENUM_CONST_DECL);
 
 }

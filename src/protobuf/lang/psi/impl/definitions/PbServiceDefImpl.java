@@ -12,8 +12,4 @@ public class PbServiceDefImpl extends PbPsiElementImpl implements PbServiceDef {
     public PbServiceDefImpl(ASTNode node){
         super(node);
     }
-
-    public String toString(){
-        return "service definition";
-    }
 }

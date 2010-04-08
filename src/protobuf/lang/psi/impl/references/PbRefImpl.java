@@ -44,25 +44,25 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     public String toString() {
         switch (getRefKind()) {
             case PACKAGE: {
-                return "package reference";
+                return "PACKAGE_REF";
             }
             case DIRECTORY: {
-                return "directory reference";
+                return "DIR_REF";
             }
             case MESSAGE_OR_GROUP: {
-                return "message or group reference";
+                return "MESSAGE_OR_GROUP_REF";
             }
             case MESSAGE_OR_ENUM_OR_GROUP: {
-                return "message or enum or group reference";
+                return "MESSAGE_OR_ENUM_GROUP_REF";
             }
             case MESSAGE_OR_PACKAGE_OR_GROUP: {
-                return "message or package or group reference";
+                return "MESSAGE_OR_PACAKAGE_OR_GROUP_REF";
             }
             case MESSAGE_OR_GROUP_FIELD: {
-                return "message field reference";
+                return "MESSAGE_OR_GROUP_FIELD_REF";
             }
             case EXTEND_FIELD: {
-                return "extend field reference";
+                return "EXTEND_FIELD_REF";
             }            
         }
         assert false;

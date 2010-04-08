@@ -1,0 +1,62 @@
+enum foo{
+}
+package foo;
+import "a";
+service foo{
+}
+option a = 1;
+extend foo{
+}
+message foo{
+}
+;
+------
+PROTO_FILE
+  ENUM_DECL
+    PsiElement(ENUM)('enum')
+    NAME
+      PsiElement(IDENTIFIER)('foo')
+    ENUM_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PsiElement(IDENTIFIER)('foo')
+    PsiElement(SEMICOLON)(';')
+  IMPORT_DECL
+    PsiElement(IMPORT)('import')
+    DIR_REF
+      PsiElement(STRING_LITERAL)('"a"')
+    PsiElement(SEMICOLON)(';')
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(IDENTIFIER)('foo')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  OPTION_DECL
+    PsiElement(OPTION)('option')
+    OPTION_ASSIGMENT
+      NAME
+        PsiElement(IDENTIFIER)('a')
+      PsiElement(EQUAL)('=')
+      VALUE
+        PsiElement(NUM_INT)('1')
+    PsiElement(SEMICOLON)(';')
+  EXTEND_DECL
+    PsiElement(EXTEND)('extend')
+    MESSAGE_OR_GROUP_REF
+      PsiElement(IDENTIFIER)('foo')
+    EXTEND_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('foo')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  PsiElement(SEMICOLON)(';')

@@ -12,8 +12,4 @@ public class PbServiceMethodDefImpl extends PbPsiElementImpl implements PbServic
     public PbServiceMethodDefImpl(ASTNode node){
         super(node);
     }
-
-    public String toString(){
-        return "service method definition";
-    }
 }

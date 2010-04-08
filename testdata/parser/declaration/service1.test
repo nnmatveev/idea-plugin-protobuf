@@ -1,0 +1,20 @@
+service a{
+}
+service service{
+}
+------
+PROTO_FILE
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(IDENTIFIER)('a')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(SERVICE)('service')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')

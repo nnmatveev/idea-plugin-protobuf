@@ -1,0 +1,37 @@
+message A{
+extensions 10 to 239;
+extensions 10 to max, 100 to 15, 11 to 27;
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      EXTENSIONS_DECL
+        PsiElement(EXTENSIONS)('extensions')
+        EXTENSIONS_RANGE
+          PsiElement(NUM_INT)('10')
+          PsiElement(TO)('to')
+          PsiElement(NUM_INT)('239')
+        PsiElement(SEMICOLON)(';')
+      EXTENSIONS_DECL
+        PsiElement(EXTENSIONS)('extensions')
+        EXTENSIONS_RANGE
+          PsiElement(NUM_INT)('10')
+          PsiElement(TO)('to')
+          PsiElement(MAX)('max')
+        PsiElement(COMMA)(',')
+        EXTENSIONS_RANGE
+          PsiElement(NUM_INT)('100')
+          PsiElement(TO)('to')
+          PsiElement(NUM_INT)('15')
+        PsiElement(COMMA)(',')
+        EXTENSIONS_RANGE
+          PsiElement(NUM_INT)('11')
+          PsiElement(TO)('to')
+          PsiElement(NUM_INT)('27')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

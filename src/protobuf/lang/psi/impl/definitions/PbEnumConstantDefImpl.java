@@ -18,9 +18,5 @@ public class PbEnumConstantDefImpl extends PbPsiElementImpl implements PbEnumCon
     @Override
     public void accept(ProtobufPsiElementVisitor visitor) {
         visitor.visitEnumConstantDefinition(this);
-    }
-
-    public String toString(){
-        return "enum constant definition";
-    }       
+    }     
 }

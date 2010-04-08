@@ -1,0 +1,62 @@
+package foo;
+package foo.bar;
+package foo.bar.baz;
+package foo;
+package foo. bar;
+package foo .bar;
+package foo . bar;
+------
+PROTO_FILE
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PsiElement(IDENTIFIER)('foo')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PACKAGE_REF
+          PsiElement(IDENTIFIER)('foo')
+        PsiElement(DOT)('.')
+        PsiElement(IDENTIFIER)('bar')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('baz')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PsiElement(IDENTIFIER)('foo')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    PsiElement(SEMICOLON)(';')
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    PsiElement(SEMICOLON)(';')

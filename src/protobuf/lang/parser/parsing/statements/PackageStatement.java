@@ -1,6 +1,5 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
-import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
 import protobuf.lang.ProtobufElementTypes;
 import protobuf.lang.parser.parsing.ReferenceElement;
@@ -15,7 +14,7 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  PbPackageDef ::= 'package' IDENTIFIER('.'IDENTIFIER)* ';'
 
 // done
-public class PackageDefinition implements ProtobufElementTypes {
+public class PackageStatement implements ProtobufElementTypes {
     public static boolean parse(PatchedPsiBuilder builder) {
         if (!builder.compareToken(PACKAGE)) {
             return false;
@@ -26,7 +25,7 @@ public class PackageDefinition implements ProtobufElementTypes {
             builder.error("identifier.expected");
         }
         builder.match(SEMICOLON,"semicolon.expected");
-        outerMarker.done(PACKAGE_DEF);
+        outerMarker.done(PACKAGE_DECL);
         return true;
     }
 }

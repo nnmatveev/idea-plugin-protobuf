@@ -1,0 +1,65 @@
+extend foo{
+}
+extend foo.bar{
+optional foo.bar a = 5;
+}
+service foo{
+rpc rpc(foo) returns (foo.bar);
+}
+------
+PROTO_FILE
+  EXTEND_DECL
+    PsiElement(EXTEND)('extend')
+    MESSAGE_OR_GROUP_REF
+      PsiElement(IDENTIFIER)('foo')
+    EXTEND_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  EXTEND_DECL
+    PsiElement(EXTEND)('extend')
+    MESSAGE_OR_GROUP_REF
+      MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    EXTEND_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          MESSAGE_OR_ENUM_GROUP_REF
+            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+              PsiElement(IDENTIFIER)('foo')
+            PsiElement(DOT)('.')
+            PsiElement(IDENTIFIER)('bar')
+        NAME
+          PsiElement(IDENTIFIER)('a')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('5')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')
+  SERVICE_DECL
+    PsiElement(SERVICE)('service')
+    NAME
+      PsiElement(IDENTIFIER)('foo')
+    SERVICE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      SERVICE_METHOD_DECL
+        PsiElement(RPC)('rpc')
+        NAME
+          PsiElement(RPC)('rpc')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          PsiElement(IDENTIFIER)('foo')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(RETURNS)('returns')
+        PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_GROUP_REF
+          MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+            PsiElement(IDENTIFIER)('foo')
+          PsiElement(DOT)('.')
+          PsiElement(IDENTIFIER)('bar')
+        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

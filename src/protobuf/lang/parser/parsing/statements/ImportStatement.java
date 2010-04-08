@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.ProtobufElementTypes;
@@ -14,7 +14,7 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  PbImportDef ::= 'import' STRING_LITERAL ';'
 
 //done    
-public class ImportDefinition implements ProtobufElementTypes {
+public class ImportStatement implements ProtobufElementTypes {
     public static boolean parse(PatchedPsiBuilder builder) {
         if(!builder.compareToken(IMPORT)) {
             return false;
@@ -23,7 +23,7 @@ public class ImportDefinition implements ProtobufElementTypes {
         builder.match(IMPORT);
         ReferenceElement.parseForImport(builder);        
         builder.match(SEMICOLON,"semicolon.expected");
-        marker.done(IMPORT_DEF);
+        marker.done(IMPORT_DECL);
         return true;                
   }
 }

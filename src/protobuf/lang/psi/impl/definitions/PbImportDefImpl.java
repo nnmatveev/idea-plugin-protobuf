@@ -22,10 +22,6 @@ public class PbImportDefImpl extends PbPsiElementImpl implements PbImportDef {
         visitor.visitImportDefinition(this);
     }
 
-    public String toString() {
-        return "import definition";
-    }
-
     @Override
     public PbFile getAliasedFile() {
         PbRef ref = this.findChildByClass(PbRef.class);

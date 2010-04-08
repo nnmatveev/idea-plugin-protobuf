@@ -4,3 +4,17 @@ cr0c0d1le
 0xcrocodile
 nan
 inf
+------
+IDENTIFIER#crocodile
+WHITE_SPACE#\r\n
+IDENTIFIER#cr0c0d1le
+WHITE_SPACE#\r\n
+NUM_INT#0
+IDENTIFIER#crocodile
+WHITE_SPACE#\r\n
+NUM_INT#0xc
+IDENTIFIER#rocodile
+WHITE_SPACE#\r\n
+IDENTIFIER#nan
+WHITE_SPACE#\r\n
+IDENTIFIER#inf

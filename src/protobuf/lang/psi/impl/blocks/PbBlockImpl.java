@@ -20,10 +20,5 @@ public class PbBlockImpl extends PbPsiElementImpl implements PbBlock {
 
     public PbBlockImpl(ASTNode node) {
         super(node);
-    }
-
-    @Override
-    public String toString() {
-        return "Block";
-    }    
+    }       
 }

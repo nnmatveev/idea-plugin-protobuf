@@ -14,10 +14,6 @@ public class PbOptionListImpl extends PbPsiElementImpl implements PbOptionList {
         super(node);
     }
 
-    public String toString(){
-        return "Options list";
-    }
-
     public PbOptionAssigment[] getOptions() {
         return findChildrenByClass(PbOptionAssigmentImpl.class);
     }

@@ -87,7 +87,7 @@ public class ReferenceElement {
         }
         refMarker.drop();
         refSeqMarker.done(OPTION_REF_SEQ);
-        nameMarker.done(OPTION_NAME);
+        nameMarker.done(NAME);
         return true;
     }
 

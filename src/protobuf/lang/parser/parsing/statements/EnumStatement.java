@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.ProtobufElementTypes;
@@ -15,18 +15,18 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  enumStatement ::= PbOptionDef | enumConstant | ';'
 //  enumConstant ::=  IDENTIFIER '=' NUM_INT fieldOptions? ';'
 
-public class EnumDefinition implements ProtobufElementTypes {
+public class EnumStatement implements ProtobufElementTypes {
     public static boolean parse(PatchedPsiBuilder builder) {
         if (!builder.compareToken(ENUM)) {
             return false;
         }
         PsiBuilder.Marker enumMarker = builder.mark();
         builder.match(ENUM);
-        builder.matchAs(IK,ENUM_NAME, "identifier.expected");
+        builder.matchAs(IK,NAME, "identifier.expected");
         if(!parseEnumBlock(builder)){
             builder.error("enum.block.expected");
         }        
-        enumMarker.done(ENUM_DEF);
+        enumMarker.done(ENUM_DECL);
         return true;
     }
     //done
@@ -50,7 +50,7 @@ public class EnumDefinition implements ProtobufElementTypes {
     public static boolean parseEnumStatement(PatchedPsiBuilder builder) {
         //PsiBuilder.Marker enumStatementMarker = builder.mark();
         if(builder.match(SEMICOLON)){
-        } else if(OptionDefinition.parse(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
+        } else if(OptionStatement.parse(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
         } else if(parseEnumConstant(builder)){      //
         } else {
             //enumStatementMarker.drop();
@@ -68,7 +68,6 @@ public class EnumDefinition implements ProtobufElementTypes {
         PsiBuilder.Marker enumConstantkMarker = builder.mark();
         builder.matchAs(IK,NAME,"identifier.expected");
         builder.match(EQUAL,"equal.expected");
-        builder.match(MINUS);
         if(builder.compareToken(MINUS)){
             PsiBuilder.Marker marker = builder.mark();
             builder.match(MINUS);
@@ -77,9 +76,9 @@ public class EnumDefinition implements ProtobufElementTypes {
         } else {
             builder.matchAs(NUM_INT,VALUE,"num.integer.expected");
         }
-        FieldDefinition.parseOptions(builder);                            
+        FieldStatement.parseOptionList(builder);
         builder.match(SEMICOLON,"semicolon.expected");
-        enumConstantkMarker.done(ENUM_CONST_DEF);
+        enumConstantkMarker.done(ENUM_CONST_DECL);
         return true;
     }
 

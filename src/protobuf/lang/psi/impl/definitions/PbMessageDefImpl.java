@@ -26,10 +26,6 @@ public class PbMessageDefImpl extends PbBlockHolderImpl implements PbMessageDef 
         visitor.visitMessageDefinition(this);
     }
     
-    @Override
-    public String toString() {
-        return "message definition";
-    }
 
     public PbFieldDef[] getFields() {
         return findChildrenByClass(PbFieldDefImpl.class);

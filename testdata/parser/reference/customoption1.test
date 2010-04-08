@@ -1,0 +1,42 @@
+option (foo.bar).bar.baz.(foo).(.foo.bar.foo) = 5;
+------
+PROTO_FILE
+  OPTION_DECL
+    PsiElement(OPTION)('option')
+    OPTION_ASSIGMENT
+      NAME
+        OPTION_REF_SEQ
+          MESSAGE_OR_GROUP_FIELD_REF
+            MESSAGE_OR_GROUP_FIELD_REF
+              EXTEND_FIELD_REF
+                MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+                  PsiElement(OPEN_PARANT)('(')
+                  PsiElement(IDENTIFIER)('foo')
+                PsiElement(DOT)('.')
+                PsiElement(IDENTIFIER)('bar')
+                PsiElement(CLOSE_PARANT)(')')
+              PsiElement(DOT)('.')
+              PsiElement(IDENTIFIER)('bar')
+            PsiElement(DOT)('.')
+            PsiElement(IDENTIFIER)('baz')
+          PsiElement(DOT)('.')
+          EXTEND_FIELD_REF
+            PsiElement(OPEN_PARANT)('(')
+            PsiElement(IDENTIFIER)('foo')
+            PsiElement(CLOSE_PARANT)(')')
+          PsiElement(DOT)('.')
+          EXTEND_FIELD_REF
+            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+              MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+                PsiElement(OPEN_PARANT)('(')
+                PsiElement(DOT)('.')
+                PsiElement(IDENTIFIER)('foo')
+              PsiElement(DOT)('.')
+              PsiElement(IDENTIFIER)('bar')
+            PsiElement(DOT)('.')
+            PsiElement(IDENTIFIER)('foo')
+            PsiElement(CLOSE_PARANT)(')')
+      PsiElement(EQUAL)('=')
+      VALUE
+        PsiElement(NUM_INT)('5')
+    PsiElement(SEMICOLON)(';')

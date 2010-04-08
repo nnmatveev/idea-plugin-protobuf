@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.ProtobufElementTypes;
@@ -24,18 +24,18 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  userDefinedType ::= '.'? IDENTIFIER('.'IDENTIFIER)*    
 
 //done
-public class MessageDefinition implements ProtobufElementTypes {
+public class MessageStatement implements ProtobufElementTypes {
     public static boolean parse(PatchedPsiBuilder builder) {
         if (!builder.compareToken(MESSAGE)) {
             return false;
         }
         PsiBuilder.Marker messageMarker = builder.mark();
         builder.match(MESSAGE);
-        builder.matchAs(IK,MESSAGE_NAME,"identifier.expected");
+        builder.matchAs(IK,NAME,"identifier.expected");
         if (!parseMessageBlock(builder)) {
             builder.error("message.block.expected");
         }
-        messageMarker.done(MESSAGE_DEF);
+        messageMarker.done(MESSAGE_DECL);
         return true;
     }
 
@@ -46,7 +46,7 @@ public class MessageDefinition implements ProtobufElementTypes {
             return false;
         }
         PsiBuilder.Marker blockMarker = builder.mark();
-        builder.match(); //matching OPEN_BLOCK
+        builder.match(OPEN_BLOCK); //matching OPEN_BLOCK
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
             if (!parseMessageStatement(builder)) {
                 builder.eatError("unexpected.token");
@@ -62,17 +62,17 @@ public class MessageDefinition implements ProtobufElementTypes {
     public static boolean parseMessageStatement(PatchedPsiBuilder builder) {
         //PsiBuilder.Marker statementMarker = builder.mark();
         if (builder.match(SEMICOLON)) {
-        } else if (MessageDefinition.parse(builder)) {
+        } else if (MessageStatement.parse(builder)) {
 
-        } else if (EnumDefinition.parse(builder)) {
+        } else if (EnumStatement.parse(builder)) {
             
-        } else if (ExtendDefinition.parse(builder)) {
+        } else if (ExtendStatement.parse(builder)) {
 
-        } else if (OptionDefinition.parse(builder)) {
+        } else if (OptionStatement.parse(builder)) {
             
         } else if (parseExtensions(builder)) {
 
-        } else if (FieldDefinition.parse(builder)) {            
+        } else if (FieldStatement.parse(builder)) {
         } else {
             //statementMarker.drop();
             return false;
@@ -91,7 +91,6 @@ public class MessageDefinition implements ProtobufElementTypes {
         builder.match(EXTENSIONS);
         PsiBuilder.Marker rangeMarker;
         boolean isRangeMatched;
-
         do {
             isRangeMatched = false;
             rangeMarker = builder.mark();
@@ -109,7 +108,7 @@ public class MessageDefinition implements ProtobufElementTypes {
         } while (!builder.eof() && builder.match(COMMA));
 
         if (isRangeMatched) builder.match(SEMICOLON, "semicolon.expected");
-        extMarker.done(EXTENSIONS_DEF);
+        extMarker.done(EXTENSIONS_DECL);
         return true;
     }
 

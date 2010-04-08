@@ -55,7 +55,7 @@ public interface ProtobufTokenTypes {
 
 //keywords    
 
-    //definitions
+    //statements
     IElementType IMPORT = new ProtobufElementType("IMPORT");
     IElementType PACKAGE = new ProtobufElementType("PACKAGE");
     IElementType MESSAGE = new ProtobufElementType("MESSAGE");

@@ -14,10 +14,6 @@ public class PbPackageDefImpl extends PbPsiElementImpl implements PbPackageDef {
         super(node);
     }
 
-    public String toString(){
-        return "package definition";
-    }
-
     @Override
     public String getPackageName() {
         final PbRef packageRef = findChildByClass(PbRef.class);

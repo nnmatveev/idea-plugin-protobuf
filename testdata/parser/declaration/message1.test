@@ -1,0 +1,20 @@
+message A {
+}
+message message {
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('A')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(MESSAGE)('message')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      PsiElement(CLOSE_BLOCK)('}')

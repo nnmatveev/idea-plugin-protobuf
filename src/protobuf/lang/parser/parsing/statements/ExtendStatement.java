@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.definitions;
+package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.ProtobufElementTypes;
@@ -15,7 +15,7 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  extendBlock ::= (messageField ';')*
 
     //done
-public class ExtendDefinition implements ProtobufElementTypes {
+public class ExtendStatement implements ProtobufElementTypes {
     public static boolean parse(PatchedPsiBuilder builder) {
         if (!builder.compareToken(EXTEND)) {
             return false;
@@ -28,7 +28,7 @@ public class ExtendDefinition implements ProtobufElementTypes {
         if (!parseExtendBlock(builder)) {
             builder.error("open.block.expected");
         }
-        extendMarker.done(EXTEND_DEF);
+        extendMarker.done(EXTEND_DECL);
         return true;
     }
 
@@ -40,7 +40,7 @@ public class ExtendDefinition implements ProtobufElementTypes {
         PsiBuilder.Marker extendBlockMarker = builder.mark();
         builder.match(OPEN_BLOCK);
         while(!builder.eof() && !builder.compareToken(CLOSE_BLOCK)){
-            if(!FieldDefinition.parse(builder)){
+            if(!FieldStatement.parse(builder)){
                 builder.eatError("unexpected.token");
             }
         }

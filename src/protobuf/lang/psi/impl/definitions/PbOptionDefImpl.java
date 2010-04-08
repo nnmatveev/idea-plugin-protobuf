@@ -12,9 +12,5 @@ public class PbOptionDefImpl extends PbPsiElementImpl implements PbOptionDef {
     public PbOptionDefImpl(ASTNode node){
         super(node);
     }
-
-    public String toString(){
-        return "option definition";
-    }
 }
 

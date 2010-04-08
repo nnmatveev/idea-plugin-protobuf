@@ -1,0 +1,195 @@
+message a{
+repeated bool bool = 1;
+repeated string string = 1;
+repeated bytes bytes = 1;
+repeated double double = 1;
+repeated float float = 1;
+repeated int32 int32 = 1;
+repeated int64 int64 = 1;
+repeated uint32 uint32 = 1;
+repeated uint64 uint64 = 1;
+repeated fixed32 fixed32 = 1;
+repeated fixed64 fixed64 = 1;
+repeated sfixed32 sfixed32 = 1;
+repeated sfixed64 sfixed64 = 1;
+repeated sint32 sint32 = 1;
+repeated sint64 sint64 = 1;
+
+optional com.intellij.IDEA IDEA = 1;
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    NAME
+      PsiElement(IDENTIFIER)('a')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(BOOL)('bool')
+        NAME
+          PsiElement(BOOL)('bool')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(STRING)('string')
+        NAME
+          PsiElement(STRING)('string')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(BYTES)('bytes')
+        NAME
+          PsiElement(BYTES)('bytes')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(DOUBLE)('double')
+        NAME
+          PsiElement(DOUBLE)('double')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(FLOAT)('float')
+        NAME
+          PsiElement(FLOAT)('float')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        NAME
+          PsiElement(INT32)('int32')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(INT64)('int64')
+        NAME
+          PsiElement(INT64)('int64')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(UINT32)('uint32')
+        NAME
+          PsiElement(UINT32)('uint32')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(UINT64)('uint64')
+        NAME
+          PsiElement(UINT64)('uint64')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(FIXED32)('fixed32')
+        NAME
+          PsiElement(FIXED32)('fixed32')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(FIXED64)('fixed64')
+        NAME
+          PsiElement(FIXED64)('fixed64')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(SFIXED32)('sfixed32')
+        NAME
+          PsiElement(SFIXED32)('sfixed32')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(SFIXED4)('sfixed64')
+        NAME
+          PsiElement(SFIXED4)('sfixed64')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(SINT32)('sint32')
+        NAME
+          PsiElement(SINT32)('sint32')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(REPEATED)('repeated')
+        FIELD_TYPE
+          PsiElement(SINT64)('sint64')
+        NAME
+          PsiElement(SINT64)('sint64')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          MESSAGE_OR_ENUM_GROUP_REF
+            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+              MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+                PsiElement(IDENTIFIER)('com')
+              PsiElement(DOT)('.')
+              PsiElement(IDENTIFIER)('intellij')
+            PsiElement(DOT)('.')
+            PsiElement(IDENTIFIER)('IDEA')
+        NAME
+          PsiElement(IDENTIFIER)('IDEA')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')

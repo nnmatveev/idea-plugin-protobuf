@@ -45,8 +45,8 @@ public class PbPsiEnums {
         SFIXED32,
         SFIXED64,
         SINT32,
-        SINT64,
-    }       
+        SINT64
+    }
 
     public enum FileOption {
         JAVA_PACKAGE,
