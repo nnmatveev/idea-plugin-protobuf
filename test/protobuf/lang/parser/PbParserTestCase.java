@@ -35,7 +35,7 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
 
     protected void doTest(String fileName) {
         try {
-            final Pair<String, String> testMaterial = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + fileName);
+            final Pair<String, String> testMaterial = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + fileName,true);
             final PsiFile psiFile = PbTestUtil.createPseudoProtoFile(getProject(), fileName, testMaterial.getFirst());
             final String psiTree = DebugUtil.psiToString(psiFile, true, false);
             assertEquals(StringUtil.convertLineSeparators(testMaterial.getSecond()), StringUtil.convertLineSeparators(psiTree.trim()));

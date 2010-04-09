@@ -37,9 +37,9 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>
-        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.ProtobufSyntaxHighlighter"/>
+        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighting.ProtobufSyntaxHighlighter"/>
 
-        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.ProtobufBraceMatcher"/>
+        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighting.ProtobufBraceMatcher"/>
         <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.ProtobufParserDefinition"/>
         <lang.formatter language="Protobuf"
                         implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>

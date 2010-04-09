@@ -13,7 +13,7 @@ int32 a
 
 
 
-optional int32 a=1[deafult=true,deprecated=false];
+optional int32 a=1[default=true,deprecated=false];
 }
 ------
 message A {

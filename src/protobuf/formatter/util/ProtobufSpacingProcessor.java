@@ -81,7 +81,7 @@ public class ProtobufSpacingProcessor {
             //    System.out.println("NO_SPACING_WITH_ONE_NEW_LINE");
                 return NO_SPACING_WITH_ONE_NEW_LINE;
             }
-            System.out.println("SPACING_IN_BLOCK");
+            //System.out.println("SPACING_IN_BLOCK");
             return SPACING_IN_BLOCK;
         }
 

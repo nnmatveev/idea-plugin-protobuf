@@ -1,18 +1,15 @@
 package protobuf.annotator;
 
-import com.intellij.lang.ASTNode;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
-import protobuf.highlighter.DefaultHighlighter;
+import protobuf.highlighting.DefaultHighlighter;
 import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
@@ -23,14 +20,13 @@ import protobuf.lang.psi.api.members.PbName;
 import protobuf.lang.psi.api.references.PbRef;
 import protobuf.util.PbBundle;
 
-import static protobuf.lang.ProtobufElementTypes.*;
-
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator {
+
 
     private final static Logger LOG = Logger.getInstance(PbAnnotator.class.getName());
 
@@ -41,7 +37,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
         if (psiElement instanceof PbPsiElement) {
             ((PbPsiElement) psiElement).accept(this);
         }
-        myHolder = null;
+        myHolder = null;        
     }
 
     //todo: check that the tag value is not in [19000, 19999]

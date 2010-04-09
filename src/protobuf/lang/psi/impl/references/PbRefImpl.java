@@ -206,7 +206,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     @Override
-    public PsiElement resolve() {
+    public PsiElement resolve() {        
         return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
     }
 
@@ -332,8 +332,6 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     PsiFile psiFile = null;
                     PsiFile[] foundFiles = FilenameIndex.getFilesByName(ref.getProject(),fileName,ref.getResolveScope());
                     for(PsiFile foundFile : foundFiles ){
-                        System.out.println("foundFile path: " + foundFile.getVirtualFile().getPath());
-                        LOG.info("foundFile path: " + foundFile.getVirtualFile().getPath());
                         if(foundFile.getVirtualFile().getPath().equals("/"+relativePath)){
                             psiFile = foundFile;
                         }
@@ -342,8 +340,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
                     //real code
                     VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
-                    if (vfile != null) {
-                        System.out.println("file found");
+                    if (vfile != null) {                        
                         PsiFile pfile = ref.getManager().findFile(vfile);
                         return pfile;
                     } else {

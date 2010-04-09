@@ -146,6 +146,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
         return true;
     }
 
+    //todo for linux and mac
     private String getCompilerExecutableName() {
         if (SystemInfo.isWindows) {
             return PROTOC_EXE;
@@ -167,7 +168,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     private void processStreams(CompileContext context, InputStream inp, InputStream err) {
         try {
-            String[] errorLines = StreamUtil.readText(err).split("\r\n");
+            String[] errorLines = StreamUtil.readText(err).trim().split("\r\n");
             for (String line : errorLines) {
                 processLine(context, line);
             }

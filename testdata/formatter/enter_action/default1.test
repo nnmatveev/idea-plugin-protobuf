@@ -1,0 +1,8 @@
+message a{
+    optional<caret>string a = 5; 
+}
+------
+message a{
+    optional
+    <caret>string a = 5; 
+}

@@ -76,9 +76,6 @@ public class ProtobufBlock implements Block {
         if (BLOCKS.contains(myNode.getElementType())) {
             return new ChildAttributes(Indent.getNormalIndent(), null);
         }
-        if (OPTION_LIST.equals(myNode.getElementType())) {
-            return new ChildAttributes(Indent.getContinuationIndent(), null);
-        }
         return new ChildAttributes(Indent.getNoneIndent(), null);
     }
 

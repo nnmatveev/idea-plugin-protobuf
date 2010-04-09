@@ -1,0 +1,6 @@
+message a {<caret>
+}
+------
+message a {
+    <caret>
+}

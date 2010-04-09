@@ -27,11 +27,15 @@ public abstract class PbTestUtil {
         return PLUGIN_PATH + TEST_DATA_PATH;
     }
 
-    public static Pair<String, String> getSimpleTestMaterialsFromFile(final String filePath) throws IOException {
+    public static Pair<String, String> getSimpleTestMaterialsFromFile(final String filePath, boolean convertSeparators) throws IOException {
         Pair<String, String> results;
         String content = new String(FileUtil.loadFileText(new File(filePath)));
-        String[] temp = content.split("------");        
-        results = new Pair<String, String>(temp[0].trim(), temp[1].trim());
+        String[] temp = content.split("------");
+        if(convertSeparators){
+            results = new Pair<String, String>(StringUtil.convertLineSeparators(temp[0].trim()),StringUtil.convertLineSeparators(temp[1].trim()));
+        } else{
+            results = new Pair<String, String>(temp[0].trim(), temp[1].trim());
+        }
         return results;
     }
 

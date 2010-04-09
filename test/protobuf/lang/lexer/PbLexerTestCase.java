@@ -28,7 +28,7 @@ public class PbLexerTestCase extends UsefulTestCase {
 
     protected void doTest(Lexer lexer, String filePath) {
         try {
-            Pair<String, String> pair = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + filePath);
+            Pair<String, String> pair = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + filePath,false);
             lexer.start(pair.getFirst());
             String result = "";
             while (true) {
@@ -42,8 +42,7 @@ public class PbLexerTestCase extends UsefulTestCase {
                 result += line;
                 lexer.advance();
             }
-            assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\r\n"), StringUtil.convertLineSeparators(result));
-            System.out.println("abc");
+            assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\r\n"), StringUtil.convertLineSeparators(result));            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,7 +74,7 @@ public class PbLexerTestCase extends UsefulTestCase {
         doTest(new PbFlexLexer());
     }
 
-    public void testFlex$string() {
+    public void testFlex$strings() {
         doTest(new PbFlexLexer());
     }
 

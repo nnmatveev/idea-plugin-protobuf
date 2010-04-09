@@ -1,4 +1,4 @@
-package protobuf.highlighter;
+package protobuf.highlighting;
 
 import com.intellij.openapi.editor.SyntaxHighlighterColors;
 import com.intellij.openapi.editor.colors.TextAttributesKey;
