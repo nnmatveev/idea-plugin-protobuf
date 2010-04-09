@@ -48,8 +48,8 @@ public class ProtobufBlock implements Block {
     }
 
     public List<Block> getSubBlocks() {
-        if(mySubBlock == null){
-            mySubBlock = ProtobufBlockGenerator.generateSubBlocks(this,myAlignment,myWrap,mySettings);
+        if (mySubBlock == null) {
+            mySubBlock = ProtobufBlockGenerator.generateSubBlocks(this, myAlignment, myWrap, mySettings);
         }
         return mySubBlock;
     }
@@ -66,16 +66,17 @@ public class ProtobufBlock implements Block {
         return myAlignment;
     }
 
-    public Spacing getSpacing(Block block1, Block block2) {
-        return ProtobufSpacingProcessor.getSpacing(this,(ProtobufBlock) block1, (ProtobufBlock) block2, mySettings);
+    public Spacing getSpacing(Block block1, Block block2) {        
+        return ProtobufSpacingProcessor.getSpacing(this, (ProtobufBlock) block1, (ProtobufBlock) block2, mySettings);
     }
 
     //  todo: [low] make it more complete
+
     public ChildAttributes getChildAttributes(int i) {
-        if(BLOCKS.contains(myNode.getElementType())){
+        if (BLOCKS.contains(myNode.getElementType())) {
             return new ChildAttributes(Indent.getNormalIndent(), null);
         }
-        if(OPTION_LIST.equals(myNode.getElementType())){
+        if (OPTION_LIST.equals(myNode.getElementType())) {
             return new ChildAttributes(Indent.getContinuationIndent(), null);
         }
         return new ChildAttributes(Indent.getNoneIndent(), null);

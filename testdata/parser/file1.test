@@ -26,7 +26,7 @@ PROTO_FILE
     PsiElement(SEMICOLON)(';')
   IMPORT_DECL
     PsiElement(IMPORT)('import')
-    DIR_REF
+    FILE_REF
       PsiElement(STRING_LITERAL)('"a"')
     PsiElement(SEMICOLON)(';')
   SERVICE_DECL

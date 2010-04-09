@@ -20,7 +20,7 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("OPTION_ASSIGMENT");
 
     ProtobufElementType IMPORT_DECL = new ProtobufElementType("IMPORT_DECL");
-    ProtobufElementType IMPORT_REF = new ProtobufElementType("Import reference");
+    ProtobufElementType IMPORT_REF = new ProtobufElementType("IMPORT_REF");
 
     ProtobufElementType SERVICE_DECL = new ProtobufElementType("SERVICE_DECL");
     ProtobufElementType SERVICE_BLOCK = new ProtobufElementType("SERVICE_BLOCK");

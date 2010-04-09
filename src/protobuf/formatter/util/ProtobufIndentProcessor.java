@@ -18,30 +18,21 @@ import static protobuf.lang.ProtobufElementTypes.*;
 public class ProtobufIndentProcessor {
 
     private final static Logger LOG = Logger.getInstance(ProtobufIndentProcessor.class.getName());
-    
-    public static Indent getChildIndent(ProtobufBlock block, ASTNode childNode){
+
+    public static Indent getChildIndent(ProtobufBlock block, ASTNode childNode) {
         ASTNode curNode = block.getNode();
         PsiElement curPsi = curNode.getPsi();
 
-        if(curPsi instanceof PbFileImpl){
-            LOG.info("in file:" + childNode.getElementType());
+        if (curPsi instanceof PbFileImpl) {
             return Indent.getNoneIndent();
         }
 
-        if(curPsi instanceof PbBlock){
-            LOG.info("in block:" + childNode.getElementType());
-            if(childNode.getElementType().equals(OPEN_BLOCK) || childNode.getElementType().equals(CLOSE_BLOCK)){
+        if (curPsi instanceof PbBlock) {
+            if (childNode.getElementType().equals(OPEN_BLOCK) || childNode.getElementType().equals(CLOSE_BLOCK)) {
                 return Indent.getNoneIndent();
             }
             return Indent.getNormalIndent();
         }
-        if(curPsi instanceof PbOptionListImpl){
-            LOG.info("in options list:" + childNode.getElementType());
-            if(childNode.getElementType().equals(OPEN_BRACE)){
-                return Indent.getNoneIndent();
-            }
-            return Indent.getContinuationIndent();
-        }        
         return Indent.getNoneIndent();
     }
 }

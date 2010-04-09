@@ -30,7 +30,7 @@ public class ProtobufBlockGenerator {
         return subBlocks;
     }
 
-    private static boolean canBeCorrectBlock(com.intellij.lang.ASTNode node) {
+    private static boolean canBeCorrectBlock(com.intellij.lang.ASTNode node) {        
         return node.getText().trim().length() > 0;
     }
 }

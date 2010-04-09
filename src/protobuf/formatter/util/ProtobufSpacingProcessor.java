@@ -1,11 +1,12 @@
 package protobuf.formatter.util;
 
 import com.intellij.formatting.Spacing;
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
+import com.intellij.psi.tree.IElementType;
 import protobuf.formatter.ProtobufBlock;
-import protobuf.lang.psi.api.blocks.PbBlock;
-import protobuf.lang.psi.impl.PbFileImpl;
+import protobuf.lang.psi.api.PbFile;
 
 import static protobuf.lang.ProtobufElementTypes.*;
 
@@ -15,86 +16,108 @@ import static protobuf.lang.ProtobufElementTypes.*;
  */
 public class ProtobufSpacingProcessor {
 
+    private final static Logger LOG = Logger.getInstance(ProtobufSpacingProcessor.class.getName());
+
+    private static final Spacing DEFAULT_SPACING = Spacing.createSpacing(1, 1, 0, false, 0);
+
     private static final Spacing NO_SPACING = Spacing.createSpacing(0, 0, 0, false, 0);
     private static final Spacing ONE_SPACE = Spacing.createSpacing(1, 1, 0, false, 0);
-    private static final Spacing NO_SPACING_WITH_MAYBE_NEW_LINE = Spacing.createSpacing(0, 0, 0, true, 1);
-    private static final Spacing NO_SPACING_WITH_A_NEW_LINE = Spacing.createSpacing(0, 0, 1, true, 1);
-    private static final Spacing NO_SPACING_WITH_TWO_NEW_LINES = Spacing.createSpacing(0, 0, 2, true, 2);
-    private static final Spacing NO_SPACING_WITH_EXISTED_LINES = Spacing.createSpacing(0, 0, 0, true, 100);   
+    private static final Spacing SPACING_IN_FILE = Spacing.createSpacing(0, 0, 2, true, 4);
+    private static final Spacing SPACING_IN_BLOCK = Spacing.createSpacing(0, 0, 1, true, 3);
+    private static final Spacing NO_SPACING_WITH_EXISTED_LINES = Spacing.createSpacing(0, 0, 0, true, 30);
+    private static final Spacing ONE_SPACING_WITH_EXISTED_LINES = Spacing.createSpacing(1, 1, 0, true, 30);
+    private static final Spacing NO_SPACING_WITH_ONE_NEW_LINE = Spacing.createSpacing(0, 0, 1, true, 1);
+    private static final Spacing NO_SPACING_WITH_ONE_EXISTED_LINE = Spacing.createSpacing(0, 0, 0, true, 1);
 
-    //todo [low] add parent to determine context
     public static Spacing getSpacing(ProtobufBlock parent, ProtobufBlock child1, ProtobufBlock child2, CodeStyleSettings settings) {
+        /*System.out.println("------------");
+        System.out.println("parent: " + parent.getNode().getElementType());
+        System.out.println("child1: " + child1.getNode().getElementType());
+        System.out.println("child2: " + child2.getNode().getElementType());
+        System.out.println("------------");*/
+
         //Comments
-        if (child1.getNode().getPsi() instanceof PsiComment) {
-            return NO_SPACING_WITH_EXISTED_LINES;
+        if (child1.getNode().getPsi() instanceof PsiComment || child2.getNode().getPsi() instanceof PsiComment) {
+            //System.out.println("NO_SPACING_WITH_EXISTED_LINES");
+            return ONE_SPACING_WITH_EXISTED_LINES;
+        }
+
+        //In option list
+        if (sameType(parent, OPTION_LIST)) {
+            //braces
+            if (child1.getNode().getElementType().equals(OPEN_BRACE)) {
+              //  System.out.println("NO_SPACING_WITH_ONE_EXISTED_LINE");
+                return NO_SPACING;
+            }
+            if (child2.getNode().getElementType().equals(CLOSE_BRACE)) {
+              //  System.out.println("NO_SPACING_WITH_ONE_EXISTED_LINE");
+                return NO_SPACING;
+            }
+            //commma
+            if (child2.getNode().getElementType().equals(COMMA)) {
+              //  System.out.println("NO_SPACING");
+                return NO_SPACING;
+            }
+
+            if (child1.getNode().getElementType().equals(COMMA)) {
+              //  System.out.println("ONE_SPACE");
+                return ONE_SPACE;
+            }
+        }
+
+        //in file
+        if (parent.getNode().getPsi() instanceof PbFile) {
+            //System.out.println("SPACING_IN_FILE");
+            return SPACING_IN_FILE;
+        }
+
+        //in block
+        if (BLOCKS.contains(getType(parent))) {
+            if (sameType(child1, OPEN_BLOCK)) {
+            //    System.out.println("NO_SPACING_WITH_ONE_NEW_LINE");
+                return NO_SPACING_WITH_ONE_NEW_LINE;
+            }
+            if (sameType(child2, CLOSE_BLOCK)) {
+            //    System.out.println("NO_SPACING_WITH_ONE_NEW_LINE");
+                return NO_SPACING_WITH_ONE_NEW_LINE;
+            }
+            System.out.println("SPACING_IN_BLOCK");
+            return SPACING_IN_BLOCK;
         }
 
         //'.'
-        if (child1.getNode().getElementType().equals(DOT) || child2.getNode().getElementType().equals(DOT)) {
+        if (sameType(child1, DOT) || sameType(child2, DOT)) {
+            //System.out.println("NO_SPACING");
             return NO_SPACING;
         }
-        
+
         //';'
         if (child2.getNode().getElementType().equals(SEMICOLON)) {
+            //System.out.println("NO_SPACING");
             return NO_SPACING;
         }
 
         //Braces
-        if (child1.getNode().getElementType().equals(OPEN_BRACE)) {
-            return NO_SPACING_WITH_MAYBE_NEW_LINE;
-        }
-        if (child2.getNode().getElementType().equals(CLOSE_BRACE)) {
-            return NO_SPACING_WITH_MAYBE_NEW_LINE;
-        }
 
         //Parants
         if (child1.getNode().getElementType().equals(OPEN_PARANT)) {
+            //System.out.println("NO_SPACING");
             return NO_SPACING;
         }
         if (child2.getNode().getElementType().equals(CLOSE_PARANT)) {
+           //System.out.println("NO_SPACING");
             return NO_SPACING;
         }
 
-        //Comma
-        if (child2.getNode().getElementType().equals(COMMA)) {
-            return NO_SPACING;
-        }
+        //System.out.println("DEFAULT_SPACING");
+        return DEFAULT_SPACING;
+    }
 
-        if (child1.getNode().getElementType().equals(COMMA)) {
-            return NO_SPACING_WITH_MAYBE_NEW_LINE;
-        }
+    private static boolean sameType(ProtobufBlock block, IElementType type) {
+        return block.getNode().getElementType().equals(type);
+    }
 
-        //Blocks
-        if (child2.getNode().getPsi() instanceof PbBlock) {
-            return ONE_SPACE;
-        }
-
-        if (child1.getNode().getElementType().equals(OPEN_BLOCK)) {
-            return NO_SPACING_WITH_A_NEW_LINE;
-        }
-
-        if (child2.getNode().getElementType().equals(CLOSE_BLOCK)) {
-            return NO_SPACING_WITH_A_NEW_LINE;
-        }
-
-        if(parent.getNode().getPsi() instanceof PbFileImpl && DEFS.contains(child1.getNode().getElementType())){
-            return NO_SPACING_WITH_TWO_NEW_LINES;
-        }
-
-        if(BLOCKS.contains(parent.getNode().getElementType()) && DEFS.contains(child2.getNode().getElementType())){
-                return NO_SPACING_WITH_A_NEW_LINE;
-        }
-        //todo [low] handle in context
-        //Top level statements
-        //if (child1.getNode().getPsi() instanceof PbToplevelDefinition) {
-        //    return NO_SPACING_WITH_TWO_NEW_LINES;
-        //}
-
-        //Block statements
-        //if (child2.getNode().getPsi() instanceof PbBlockDefinition) {
-        //    return NO_SPACING_WITH_A_NEW_LINE;
-        //}
-        
-        return Spacing.createSpacing(1, 1, 0, false, 100);
+    private static IElementType getType(ProtobufBlock block) {
+        return block.getNode().getElementType();
     }
 }

@@ -1,0 +1,26 @@
+message
+A{
+optional int32
+a=1;optional
+int32 a
+=1[default=true];
+
+
+
+
+
+
+
+
+
+optional int32 a=1[deafult=true,deprecated=false];
+}
+------
+message A {
+    optional int32 a = 1;
+    optional int32 a = 1 [default = true];
+
+
+
+    optional int32 a = 1 [default = true, deprecated = false];
+}

@@ -1,0 +1,11 @@
+message a {
+    optional int32 a = 5
+    [
+                        default=true,
+                        deprecated=false
+                        ];
+}
+------
+message a {
+    optional int32 a = 5 [default = true, deprecated = false];
+}

@@ -51,7 +51,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 return "PACKAGE_REF";
             }
             case FILE: {
-                return "DIR_REF";
+                return "FILE_REF";
             }
             case MESSAGE_OR_GROUP: {
                 return "MESSAGE_OR_GROUP_REF";
@@ -328,29 +328,27 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     }
                     final String fileName = new File(relativePath).getName();
 
-                    System.out.println("relative path: " + relativePath);
                     //test code
-                    boolean found;
                     PsiFile psiFile = null;
                     PsiFile[] foundFiles = FilenameIndex.getFilesByName(ref.getProject(),fileName,ref.getResolveScope());
                     for(PsiFile foundFile : foundFiles ){
                         System.out.println("foundFile path: " + foundFile.getVirtualFile().getPath());
-                        
+                        LOG.info("foundFile path: " + foundFile.getVirtualFile().getPath());
                         if(foundFile.getVirtualFile().getPath().equals("/"+relativePath)){
                             psiFile = foundFile;
                         }
                     }
-                    return psiFile;
+                    if(psiFile != null) return psiFile; //todo avoid such hacking
 
                     //real code
-                    /*VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
+                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
                     if (vfile != null) {
                         System.out.println("file found");
                         PsiFile pfile = ref.getManager().findFile(vfile);
                         return pfile;
                     } else {
                         return null;
-                    }*/
+                    }
                 }
                 case PACKAGE: {
                     String qualifiedName = PbPsiUtil.getQualifiedReferenceText(ref);

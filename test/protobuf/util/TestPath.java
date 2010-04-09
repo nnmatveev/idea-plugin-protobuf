@@ -13,5 +13,6 @@ public interface TestPath {
     public static final String LEXER_TEST_DIR = "lexer/";
     public static final String PARSER_TEST_DIR = "parser/";
     public static final String RESOLVE_TEST_DIR = "resolve/";
+    public static final String FORMATTER_TEST_DIR = "formatter/";
     
 }

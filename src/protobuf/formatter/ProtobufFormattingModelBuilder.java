@@ -25,11 +25,11 @@ public class ProtobufFormattingModelBuilder implements FormattingModelBuilder {
         assert containingFile != null : psiElement.getContainingFile();
         ASTNode fileNode = containingFile.getNode();
         assert fileNode != null;
-        ProtobufBlock block = new ProtobufBlock(fileNode,null, Indent.getAbsoluteNoneIndent(),null,codeStyleSettings);
-        return FormattingModelProvider.createFormattingModelForPsiFile(containingFile,block,codeStyleSettings);       
+        ProtobufBlock block = new ProtobufBlock(fileNode, null, Indent.getAbsoluteNoneIndent(), null, codeStyleSettings);
+        return FormattingModelProvider.createFormattingModelForPsiFile(containingFile, block, codeStyleSettings);
     }
 
     public TextRange getRangeAffectingIndent(PsiFile psiFile, int i, ASTNode astNode) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }
