@@ -5,6 +5,8 @@ import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.testFramework.UsefulTestCase;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 import protobuf.util.PbTestUtil;
 import protobuf.util.TestPath;
 
@@ -40,7 +42,7 @@ public class PbLexerTestCase extends UsefulTestCase {
                 result += line;
                 lexer.advance();
             }
-            assertEquals(pair.getSecond()+"\r\n", result);
+            assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\r\n"), StringUtil.convertLineSeparators(result));
             System.out.println("abc");
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,27 +59,27 @@ public class PbLexerTestCase extends UsefulTestCase {
         return text;
     }
 
-    public void testFlex$common(){
+    public void testFlex$common() {
         doTest(new PbFlexLexer());
     }
 
-    public void testFlex$comments(){
+    public void testFlex$comments() {
         doTest(new PbFlexLexer());
     }
 
-    public void testFlex$keywords(){
-        doTest(new PbFlexLexer());
-    }
-    
-    public void testFlex$numbers(){
+    public void testFlex$keywords() {
         doTest(new PbFlexLexer());
     }
 
-    public void testFlex$string(){
+    public void testFlex$numbers() {
         doTest(new PbFlexLexer());
     }
 
-    public void testMerging(){
+    public void testFlex$string() {
+        doTest(new PbFlexLexer());
+    }
+
+    public void testMerging() {
         doTest(new PbMergingLexer());
     }
 }

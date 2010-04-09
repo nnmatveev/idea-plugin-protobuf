@@ -1,0 +1,4 @@
+import "src/my/b.proto";
+
+extend m<ref>y.Abc{
+}

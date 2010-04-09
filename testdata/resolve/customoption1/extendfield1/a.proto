@@ -1,0 +1,8 @@
+message Abc{
+}
+
+extend Abc{
+o<aim>ptional int32 abc = 5;
+}
+
+option (a<ref>bc) = 18;

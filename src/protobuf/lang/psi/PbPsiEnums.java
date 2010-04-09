@@ -7,7 +7,7 @@ package protobuf.lang.psi;
 public class PbPsiEnums {
 
     public enum ReferenceKind {
-        DIRECTORY,
+        FILE,
         PACKAGE,
         MESSAGE_OR_GROUP,
         MESSAGE_OR_ENUM_OR_GROUP,

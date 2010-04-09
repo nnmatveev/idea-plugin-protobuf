@@ -1,0 +1,6 @@
+message Abc{
+optional D<ref>ef Def = 1;
+}
+
+m<aim>essage Def{
+}

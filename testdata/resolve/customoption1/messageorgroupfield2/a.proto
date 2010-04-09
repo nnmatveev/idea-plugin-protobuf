@@ -1,0 +1,13 @@
+message Abc{
+optional Def foo = 5;
+}
+
+extend Abc{
+optional Abc foo = 5;
+}
+
+option (foo).foo.f<ref>oo = 18;
+
+message Def{
+o<aim>ptional int32 foo = 5;
+}

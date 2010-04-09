@@ -5,6 +5,7 @@ import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.util.IncorrectOperationException;
@@ -41,5 +42,9 @@ public abstract class PbTestUtil {
                 text,
                 LocalTimeCounter.currentTime(),
                 true);
+    }
+
+    public static String loadFromFile(final String filePath) throws IOException {        
+        return StringUtil.convertLineSeparators(new String(FileUtil.loadFileText(new File(filePath))));
     }
 }

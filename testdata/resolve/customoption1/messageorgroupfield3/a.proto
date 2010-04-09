@@ -1,0 +1,11 @@
+message Abc{
+optional Def foo = 5;
+o<aim>ptional group Bar = 1{
+}
+}
+
+extend Abc{
+optional Abc foo = 5;
+}
+
+option (foo).b<ref>ar = 18;

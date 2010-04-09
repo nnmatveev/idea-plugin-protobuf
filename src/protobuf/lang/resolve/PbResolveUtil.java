@@ -7,7 +7,6 @@ import static protobuf.lang.psi.PbPsiEnums.*;
 
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.PsiPackage;
-import com.intellij.psi.scope.PsiScopeProcessor;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.blocks.PbBlock;
 import protobuf.lang.psi.api.definitions.*;
@@ -30,7 +29,7 @@ public abstract class PbResolveUtil {
         }
         if (scope instanceof PsiPackage) {
             switch (kind) {
-                case DIRECTORY:
+                case FILE:
                 case PACKAGE: {
 
                 }
@@ -91,7 +90,7 @@ public abstract class PbResolveUtil {
 
         } else if (scope instanceof PbBlock || scope instanceof PbFile) {
             switch (kind) {
-                case DIRECTORY:
+                case FILE:
                 case PACKAGE: {
                     assert false;
                 }

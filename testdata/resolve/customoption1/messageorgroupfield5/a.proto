@@ -1,0 +1,12 @@
+message Abc{
+optional Bar foo = 5;
+optional group Bar = 1{
+o<aim>ptional int32 foo = 5;
+}
+}
+
+extend Abc{
+optional Abc foo = 5;
+}
+
+option (foo).bar.f<ref>oo = 18;

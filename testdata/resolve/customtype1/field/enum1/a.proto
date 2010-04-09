@@ -1,0 +1,8 @@
+message Abc{
+optional D<ref>ef Def = 1;
+}
+
+
+e<aim>num Def{
+    IDEA = 5;
+}

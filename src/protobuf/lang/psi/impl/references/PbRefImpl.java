@@ -9,6 +9,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
+import com.intellij.psi.search.FilenameIndex;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
@@ -24,9 +25,12 @@ import protobuf.lang.psi.api.members.PbOptionRefSeq;
 import protobuf.lang.psi.api.references.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
+import protobuf.util.PbFileUtil;
 import protobuf.util.PbTextUtil;
 
 import protobuf.lang.resolve.PbResolveUtil;
+
+import java.io.File;
 
 import static protobuf.lang.ProtobufElementTypes.*;
 
@@ -38,7 +42,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     private final static Logger LOG = Logger.getInstance(PbRefImpl.class.getName());
 
-    private static final ExperimentalResolver expResolver = new ExperimentalResolver();        
+    private static final ExperimentalResolver expResolver = new ExperimentalResolver();
 
     @Override
     public String toString() {
@@ -46,7 +50,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case PACKAGE: {
                 return "PACKAGE_REF";
             }
-            case DIRECTORY: {
+            case FILE: {
                 return "DIR_REF";
             }
             case MESSAGE_OR_GROUP: {
@@ -63,7 +67,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             }
             case EXTEND_FIELD: {
                 return "EXTEND_FIELD_REF";
-            }            
+            }
         }
         assert false;
         return null;
@@ -96,7 +100,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     @Override
     public PbRef getQualifier() {
         switch (getRefKind()) {
-            case DIRECTORY: {
+            case FILE: {
                 return null;
             }
             case PACKAGE:
@@ -106,7 +110,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_OR_GROUP_FIELD:
             case EXTEND_FIELD: {
                 return findChildByClass(PbRef.class);
-            }            
+            }
         }
         assert false;
         return null;
@@ -114,7 +118,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     /*
     switch (getRefKind()) {
-            case DIRECTORY: {
+            case FILE: {
             }
             case PACKAGE: {
             }
@@ -139,7 +143,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     @Override
     public String getReferenceName() {
         /*switch (getRefKind()) {
-            case DIRECTORY:
+            case FILE:
             case PACKAGE:
             case MESSAGE_OR_GROUP:
             case MESSAGE_OR_ENUM_OR_GROUP:
@@ -160,7 +164,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     @Override
     public TextRange getRangeInElement() {
         switch (getRefKind()) {
-            case DIRECTORY: {
+            case FILE: {
             }
             case PACKAGE:
             case MESSAGE_OR_GROUP:
@@ -175,7 +179,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 }
 
             }
-            break;           
+            break;
         }
         return new TextRange(0, getTextLength());
     }
@@ -203,13 +207,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PsiElement resolve() {
-        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);        
+        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
     }
 
     @Override
     public String getCanonicalText() {
         switch (getRefKind()) {
-            case DIRECTORY: {
+            case FILE: {
             }
             case PACKAGE: {
             }
@@ -223,12 +227,12 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             }
             case MESSAGE_OR_GROUP_FIELD: {
 
-            }            
+            }
             case EXTEND_FIELD: {
 
             }
         }
-        if (getRefKind().equals(ReferenceKind.DIRECTORY)) {
+        if (getRefKind().equals(ReferenceKind.FILE)) {
             return PbTextUtil.trim(getText(), '"');
         }
         return null;
@@ -246,8 +250,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             ReferenceKind parentKind = ((PbRefImpl) parent).getRefKind();
             assert parentKind != null;
             switch (parentKind) {
-                case DIRECTORY: {
-                    return ReferenceKind.DIRECTORY;
+                case FILE: {
+                    return ReferenceKind.FILE;
                 }
                 case PACKAGE: {
                     return ReferenceKind.PACKAGE;
@@ -270,8 +274,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     }
                     return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
                 }
-                default:{
-                    assert false;
+                default: {
+                    assert false;      
                 }
             }
 
@@ -286,19 +290,19 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             if (findChildByType(CLOSE_PARANT) != null) {
                 return ReferenceKind.EXTEND_FIELD;
             }
-            return ReferenceKind.MESSAGE_OR_GROUP_FIELD;            
+            return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
         }
         if (parent instanceof PbPackageDef) {
             return ReferenceKind.PACKAGE;
         }
         if (parent instanceof PbImportDef) {
-            return ReferenceKind.DIRECTORY;
+            return ReferenceKind.FILE;
         }
         //todo 'enum constants as value of options and fields', imports
 
         if (parent instanceof PbServiceMethodDef) {
             return ReferenceKind.MESSAGE_OR_GROUP;
-        }        
+        }
         return null;
     }
 
@@ -314,15 +318,39 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             final ReferenceKind refKind = ref.getRefKind();
             final PbRef qualifier = ref.getQualifier();
             switch (refKind) {
-                case DIRECTORY: {
-                    //todo check for wrong string literal
-                    LOG.info("directory: " + PbTextUtil.trim(ref.getText(), '"'));
-                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(PbTextUtil.trim(ref.getText(), '"'));
+                case FILE: {                    
+                    final String relativePath = ref.getText().substring(1,ref.getText().length()-1);
+                    if (relativePath.length() == 0) {
+                        return null;
+                    }
+                    if(PbFileUtil.isPathToDirectory(relativePath)){
+                        return null;
+                    }
+                    final String fileName = new File(relativePath).getName();
+
+                    System.out.println("relative path: " + relativePath);
+                    //test code
+                    boolean found;
+                    PsiFile psiFile = null;
+                    PsiFile[] foundFiles = FilenameIndex.getFilesByName(ref.getProject(),fileName,ref.getResolveScope());
+                    for(PsiFile foundFile : foundFiles ){
+                        System.out.println("foundFile path: " + foundFile.getVirtualFile().getPath());
+                        
+                        if(foundFile.getVirtualFile().getPath().equals("/"+relativePath)){
+                            psiFile = foundFile;
+                        }
+                    }
+                    return psiFile;
+
+                    //real code
+                    /*VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
                     if (vfile != null) {
+                        System.out.println("file found");
                         PsiFile pfile = ref.getManager().findFile(vfile);
                         return pfile;
-                    }
-                    return null;
+                    } else {
+                        return null;
+                    }*/
                 }
                 case PACKAGE: {
                     String qualifiedName = PbPsiUtil.getQualifiedReferenceText(ref);
@@ -336,31 +364,31 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     if (qualifier != null) {    //foo.bar                        
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
-                            return PbResolveUtil.resolveInScope(PbPsiUtil.getScope(resolvedElement),ref);
+                            return PbResolveUtil.resolveInScope(PbPsiUtil.getScope(resolvedElement), ref);
                         }
                     } else if (ref.findChildByType(DOT) != null) {  //.foo
-                        return PbResolveUtil.resolveInScope(PbPsiUtil.getRootScope(ref),ref);
+                        return PbResolveUtil.resolveInScope(PbPsiUtil.getRootScope(ref), ref);
                     } else {    // foo
                         PsiElement upperScope = PbPsiUtil.getUpperScope(ref);
-                        while(upperScope != null){
-                            PsiElement resolveResult = PbResolveUtil.resolveInScope(upperScope,ref);
-                            if(resolveResult != null){
+                        while (upperScope != null) {
+                            PsiElement resolveResult = PbResolveUtil.resolveInScope(upperScope, ref);
+                            if (resolveResult != null) {
                                 return resolveResult;
-                            }                            
+                            }
                             upperScope = PbPsiUtil.getUpperScope(upperScope);
-                        }                        
+                        }
                     }
                 }
                 break;
                 case MESSAGE_OR_GROUP_FIELD: {
-                    if (qualifier != null) {                        
+                    if (qualifier != null) {
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
-                            return PbResolveUtil.resolveInScope(PbPsiUtil.getTypeScope(resolvedElement),ref);
+                            return PbResolveUtil.resolveInScope(PbPsiUtil.getTypeScope(resolvedElement), ref);
                         }
                     }
                 }
-                break;                                
+                break;
             }
             return null;
         }

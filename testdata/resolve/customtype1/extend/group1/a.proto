@@ -1,0 +1,7 @@
+message Abc{
+o<aim>ptional group Abc = 1{
+}
+}
+
+extend Abc.A<ref>bc{
+}

@@ -1,0 +1,8 @@
+service Abc{
+rpc Abc(Def) returns (Def.X<ref>YZ);
+}
+
+message Def{
+o<aim>ptional group XYZ = 1{
+}
+}
