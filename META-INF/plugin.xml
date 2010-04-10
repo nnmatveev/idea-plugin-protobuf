@@ -38,15 +38,15 @@
     <extensions defaultExtensionNs="com.intellij">
         <fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>
         <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighting.ProtobufSyntaxHighlighter"/>
+        <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
+        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
 
         <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighting.ProtobufBraceMatcher"/>
         <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.ProtobufParserDefinition"/>
-        <lang.formatter language="Protobuf"
-                        implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
+        <lang.formatter language="Protobuf" implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
         <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.ProtobufCommenter"/>
         <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
-        <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
-
-        <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>       
+        <lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
+        <lang.refactoringSupport language="Protobuf" implementationClass="protobuf.refactoring.PbRefactoringSupportProvider"/>
     </extensions>
 </idea-plugin>

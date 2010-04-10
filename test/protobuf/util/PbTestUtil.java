@@ -21,7 +21,10 @@ import static protobuf.util.TestPath.*;
  * author: Nikolay Matveev
  * Date: Apr 7, 2010
  */
-public abstract class PbTestUtil { 
+public abstract class PbTestUtil {
+    public static final String REF_MARKER = "<ref>";
+    public static final String AIM_MARKER = "<aim>";
+    public static final String CARET_MARKER = "<caret>";
 
     public static String getTestDataPath() {
         return PLUGIN_PATH + TEST_DATA_PATH;

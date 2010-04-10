@@ -27,80 +27,65 @@ option idea = idea;
 option idea = "idea";
 ------
 PROTO_FILE
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('java_package')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(STRING_LITERAL)('"java.java"')
+    PsiElement(IDENTIFIER)('java_package')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(STRING_LITERAL)('"java.java"')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('java_outer_classname')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(STRING_LITERAL)('"java"')
+    PsiElement(IDENTIFIER)('java_outer_classname')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(STRING_LITERAL)('"java"')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('java_multiple_files')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(TRUE)('true')
+    PsiElement(IDENTIFIER)('java_multiple_files')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(TRUE)('true')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('optimize_for')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(IDENTIFIER)('SPEED')
+    PsiElement(IDENTIFIER)('optimize_for')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(IDENTIFIER)('SPEED')
     PsiElement(SEMICOLON)(';')
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('a')
+    PsiElement(IDENTIFIER)('a')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
-      OPTION_DECL
+      OPTION_ASSIGNMENT
         PsiElement(OPTION)('option')
-        OPTION_ASSIGMENT
-          NAME
-            PsiElement(IDENTIFIER)('message_set_wire_format')
-          PsiElement(EQUAL)('=')
-          VALUE
-            PsiElement(TRUE)('true')
+        PsiElement(IDENTIFIER)('message_set_wire_format')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(TRUE)('true')
         PsiElement(SEMICOLON)(';')
-      OPTION_DECL
+      OPTION_ASSIGNMENT
         PsiElement(OPTION)('option')
-        OPTION_ASSIGMENT
-          NAME
-            PsiElement(IDENTIFIER)('no_standard_descriptor_accessor')
-          PsiElement(EQUAL)('=')
-          VALUE
-            PsiElement(TRUE)('true')
+        PsiElement(IDENTIFIER)('no_standard_descriptor_accessor')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(TRUE)('true')
         PsiElement(SEMICOLON)(';')
       FIELD_DECL
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
         OPTION_LIST
           PsiElement(OPEN_BRACE)('[')
-          OPTION_ASSIGMENT
-            NAME
-              PsiElement(IDENTIFIER)('default')
+          OPTION_ASSIGNMENT
+            PsiElement(IDENTIFIER)('default')
             PsiElement(EQUAL)('=')
             VALUE
               PsiElement(TRUE)('true')
@@ -110,16 +95,14 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
         OPTION_LIST
           PsiElement(OPEN_BRACE)('[')
-          OPTION_ASSIGMENT
-            NAME
-              PsiElement(IDENTIFIER)('deprecated')
+          OPTION_ASSIGNMENT
+            PsiElement(IDENTIFIER)('deprecated')
             PsiElement(EQUAL)('=')
             VALUE
               PsiElement(TRUE)('true')
@@ -129,16 +112,14 @@ PROTO_FILE
         PsiElement(REQUIRED)('required')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
         OPTION_LIST
           PsiElement(OPEN_BRACE)('[')
-          OPTION_ASSIGMENT
-            NAME
-              PsiElement(IDENTIFIER)('ctype')
+          OPTION_ASSIGNMENT
+            PsiElement(IDENTIFIER)('ctype')
             PsiElement(EQUAL)('=')
             VALUE
               PsiElement(IDENTIFIER)('STRING')
@@ -148,116 +129,94 @@ PROTO_FILE
         PsiElement(REQUIRED)('required')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
         OPTION_LIST
           PsiElement(OPEN_BRACE)('[')
-          OPTION_ASSIGMENT
-            NAME
-              PsiElement(IDENTIFIER)('experimental_map_key')
+          OPTION_ASSIGNMENT
+            PsiElement(IDENTIFIER)('experimental_map_key')
             PsiElement(EQUAL)('=')
             VALUE
               PsiElement(STRING_LITERAL)('"name"')
           PsiElement(CLOSE_BRACE)(']')
         PsiElement(SEMICOLON)(';')
       PsiElement(CLOSE_BLOCK)('}')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        OPTION_REF_SEQ
-          EXTEND_FIELD_REF
-            PsiElement(OPEN_PARANT)('(')
-            PsiElement(IDENTIFIER)('idea')
-            PsiElement(CLOSE_PARANT)(')')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(NUM_INT)('1')
+    OPTION_REF_SEQ
+      EXTEND_FIELD_REF
+        PsiElement(OPEN_PARANT)('(')
+        PsiElement(IDENTIFIER)('idea')
+        PsiElement(CLOSE_PARANT)(')')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(NUM_INT)('1')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(NUM_INT)('1')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(NUM_INT)('1')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(MINUS)('-')
-        PsiElement(NUM_INT)('1')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(MINUS)('-')
+      PsiElement(NUM_INT)('1')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(MINUS)('-')
-        PsiElement(IDENTIFIER)('inf')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(MINUS)('-')
+      PsiElement(IDENTIFIER)('inf')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(MINUS)('-')
-        PsiElement(IDENTIFIER)('nan')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(MINUS)('-')
+      PsiElement(IDENTIFIER)('nan')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(IDENTIFIER)('nan')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(IDENTIFIER)('nan')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(IDENTIFIER)('inf')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(IDENTIFIER)('inf')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(TRUE)('true')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(TRUE)('true')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(IDENTIFIER)('idea')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(IDENTIFIER)('idea')
     PsiElement(SEMICOLON)(';')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('idea')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(STRING_LITERAL)('"idea"')
+    PsiElement(IDENTIFIER)('idea')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(STRING_LITERAL)('"idea"')
     PsiElement(SEMICOLON)(';')

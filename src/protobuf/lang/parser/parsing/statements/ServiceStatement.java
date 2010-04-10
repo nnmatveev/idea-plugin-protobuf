@@ -24,7 +24,8 @@ public class ServiceStatement implements ProtobufElementTypes {
         }
         PsiBuilder.Marker serviceMarker = builder.mark();
         builder.match(SERVICE);
-        builder.matchAs(IK, NAME, "identifier.expected");
+        builder.match(IK, "identifier.expected");
+        //builder.matchAs(IK, NAME, "identifier.expected");
         if (!parseServiceBlock(builder)) {
             builder.error("service.block.expected");
         }
@@ -43,7 +44,7 @@ public class ServiceStatement implements ProtobufElementTypes {
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
             if (builder.match(SEMICOLON)) {
             } else if (parseServiceMethod(builder)) {
-            } else if (OptionStatement.parse(builder)) {
+            } else if (OptionStatement.parseSeparateOption(builder)) {
             } else {
                 builder.eatError("unexpected.token");
             }
@@ -61,7 +62,8 @@ public class ServiceStatement implements ProtobufElementTypes {
         }
         PsiBuilder.Marker serviceStatementMarker = builder.mark();
         builder.match(RPC);
-        builder.matchAs(IK,NAME, "identifier.expected");
+        builder.match(IK, "identifier.expected");
+        //builder.matchAs(IK,NAME, "identifier.expected");
         builder.match(OPEN_PARANT, "open.parant.expected");
         if (!ReferenceElement.parseForCustomType(builder)) {
             builder.error("user.defined.type.expected");
@@ -90,7 +92,7 @@ public class ServiceStatement implements ProtobufElementTypes {
         builder.match(OPEN_BLOCK);
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
             if (builder.match(SEMICOLON)) {
-            } else if (OptionStatement.parse(builder)) {
+            } else if (OptionStatement.parseSeparateOption(builder)) {
             } else {
                 builder.eatError("unexpected.token");
             }

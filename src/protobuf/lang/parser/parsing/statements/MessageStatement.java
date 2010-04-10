@@ -31,7 +31,8 @@ public class MessageStatement implements ProtobufElementTypes {
         }
         PsiBuilder.Marker messageMarker = builder.mark();
         builder.match(MESSAGE);
-        builder.matchAs(IK,NAME,"identifier.expected");
+        //builder.matchAs(IK,NAME,"identifier.expected");
+        builder.match(IK,"identifier.expected");
         if (!parseMessageBlock(builder)) {
             builder.error("message.block.expected");
         }
@@ -68,7 +69,7 @@ public class MessageStatement implements ProtobufElementTypes {
             
         } else if (ExtendStatement.parse(builder)) {
 
-        } else if (OptionStatement.parse(builder)) {
+        } else if (OptionStatement.parseSeparateOption(builder)) {
             
         } else if (parseExtensions(builder)) {
 

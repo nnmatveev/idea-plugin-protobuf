@@ -1,0 +1,5 @@
+package com;
+
+import "src/a.proto";
+
+option (i<ref>nt32) = 5;

@@ -14,10 +14,9 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     ProtobufElementType PACKAGE_DECL = new ProtobufElementType("PACKAGE_DECL");
     ProtobufElementType PACKAGE_REF = new ProtobufElementType("PACKAGE_REF");
 
-    ProtobufElementType OPTION_DECL = new ProtobufElementType("OPTION_DECL");
     ProtobufElementType OPTION_REF = new ProtobufElementType("OPTION_REF");
     ProtobufElementType OPTION_REF_SEQ = new ProtobufElementType("OPTION_REF_SEQ");
-    ProtobufElementType OPTION_ASSIGMENT = new ProtobufElementType("OPTION_ASSIGMENT");
+    ProtobufElementType OPTION_ASSIGNMENT = new ProtobufElementType("OPTION_ASSIGNMENT");
 
     ProtobufElementType IMPORT_DECL = new ProtobufElementType("IMPORT_DECL");
     ProtobufElementType IMPORT_REF = new ProtobufElementType("IMPORT_REF");
@@ -45,13 +44,12 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
 
     ProtobufElementType EXTENSIONS_DECL = new ProtobufElementType("EXTENSIONS_DECL");
     ProtobufElementType EXTENSIONS_RANGE = new ProtobufElementType("EXTENSIONS_RANGE");
-
-    ProtobufElementType NAME = new ProtobufElementType("NAME");
+    
     ProtobufElementType VALUE = new ProtobufElementType("VALUE");
     
     TokenSet SKIPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
     TokenSet BLOCKS = TokenSet.create(BLOCK,MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
-    TokenSet DEFS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, PACKAGE_DECL, FIELD_DECL, OPTION_DECL, ENUM_CONST_DECL);
+    TokenSet DECLS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, PACKAGE_DECL, FIELD_DECL, ENUM_CONST_DECL,GROUP_DECL);
 
 }

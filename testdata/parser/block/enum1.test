@@ -7,22 +7,18 @@ a=5;
 PROTO_FILE
   ENUM_DECL
     PsiElement(ENUM)('enum')
-    NAME
-      PsiElement(IDENTIFIER)('A')
+    PsiElement(IDENTIFIER)('A')
     ENUM_BLOCK
       PsiElement(OPEN_BLOCK)('{')
-      OPTION_DECL
+      OPTION_ASSIGNMENT
         PsiElement(OPTION)('option')
-        OPTION_ASSIGMENT
-          NAME
-            PsiElement(IDENTIFIER)('java')
-          PsiElement(EQUAL)('=')
-          VALUE
-            PsiElement(TRUE)('true')
+        PsiElement(IDENTIFIER)('java')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(TRUE)('true')
         PsiElement(SEMICOLON)(';')
       ENUM_CONST_DECL
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('5')

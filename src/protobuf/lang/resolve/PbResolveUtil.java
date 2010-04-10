@@ -8,9 +8,9 @@ import static protobuf.lang.psi.PbPsiEnums.*;
 import com.intellij.psi.PsiNamedElement;
 import com.intellij.psi.PsiPackage;
 import protobuf.lang.psi.api.*;
-import protobuf.lang.psi.api.blocks.PbBlock;
-import protobuf.lang.psi.api.definitions.*;
-import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.api.block.PbBlock;
+import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
@@ -104,7 +104,7 @@ public abstract class PbResolveUtil {
                             }
                         }
                     }
-                    LOG.info(refName + " : MESSAGE_OR_PACKAGE_OR_GROUP not resolved in " + (scope instanceof PbFile ? "PbFile" : ("PbBlock: " + ((PbBlock) scope).getParent().getText())));
+                    //LOG.info(refName + " : MESSAGE_OR_PACKAGE_OR_GROUP not resolved in " + (scope instanceof PbFile ? "PbFile" : ("PbBlock: " + ((PbBlock) scope).getParent().getText())));
                 }
                 break;
                 case MESSAGE_OR_ENUM_OR_GROUP: {
@@ -130,7 +130,7 @@ public abstract class PbResolveUtil {
                             for (PsiElement extendChild : extendChildren) {
                                 if (extendChild instanceof PbFieldDef && refName.equals(((PbFieldDef) extendChild).getName())) {
                                     return extendChild;
-                                } else if (extendChild instanceof PbGroupDef && refName.equals(((PbGroupDef) extendChild).getLowerCaseName())) {
+                                } else if (extendChild instanceof PbGroupDef && refName.equals(((PbGroupDef) extendChild).getFieldName())) {
                                     return extendChild;
                                 }
                             }
@@ -146,7 +146,7 @@ public abstract class PbResolveUtil {
                             if (refName.equals(((PsiNamedElement) child).getName())) {
                                 return child;
                             }
-                        } else if (child instanceof PbGroupDef && refName.equals(((PbGroupDef) child).getLowerCaseName())) {                            
+                        } else if (child instanceof PbGroupDef && refName.equals(((PbGroupDef) child).getFieldName())) {
                             return child;
                         }
                     }

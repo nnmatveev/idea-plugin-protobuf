@@ -16,21 +16,18 @@ optional group G = 15{
 PROTO_FILE
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('A')
+    PsiElement(IDENTIFIER)('A')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       MESSAGE_DECL
         PsiElement(MESSAGE)('message')
-        NAME
-          PsiElement(IDENTIFIER)('B')
+        PsiElement(IDENTIFIER)('B')
         MESSAGE_BLOCK
           PsiElement(OPEN_BLOCK)('{')
           PsiElement(CLOSE_BLOCK)('}')
       ENUM_DECL
         PsiElement(ENUM)('enum')
-        NAME
-          PsiElement(IDENTIFIER)('C')
+        PsiElement(IDENTIFIER)('C')
         ENUM_BLOCK
           PsiElement(OPEN_BLOCK)('{')
           PsiElement(CLOSE_BLOCK)('}')
@@ -44,14 +41,12 @@ PROTO_FILE
         EXTEND_BLOCK
           PsiElement(OPEN_BLOCK)('{')
           PsiElement(CLOSE_BLOCK)('}')
-      OPTION_DECL
+      OPTION_ASSIGNMENT
         PsiElement(OPTION)('option')
-        OPTION_ASSIGMENT
-          NAME
-            PsiElement(IDENTIFIER)('name')
-          PsiElement(EQUAL)('=')
-          VALUE
-            PsiElement(NUM_INT)('15')
+        PsiElement(IDENTIFIER)('name')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('15')
         PsiElement(SEMICOLON)(';')
       EXTENSIONS_DECL
         PsiElement(EXTENSIONS)('extensions')
@@ -64,8 +59,7 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('15')
@@ -73,8 +67,7 @@ PROTO_FILE
       GROUP_DECL
         PsiElement(OPTIONAL)('optional')
         PsiElement(GROUP)('group')
-        NAME
-          PsiElement(IDENTIFIER)('G')
+        PsiElement(IDENTIFIER)('G')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('15')

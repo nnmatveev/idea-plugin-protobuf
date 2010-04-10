@@ -6,7 +6,7 @@ import com.intellij.formatting.Wrap;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import protobuf.formatter.ProtobufBlock;
-import protobuf.lang.psi.api.blocks.PbBlock;
+import protobuf.lang.psi.api.block.PbBlock;
 
 import java.util.ArrayList;
 import java.util.List;

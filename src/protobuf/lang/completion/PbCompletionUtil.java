@@ -1,7 +1,7 @@
 package protobuf.lang.completion;
 
 import com.intellij.psi.PsiElement;
-import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**

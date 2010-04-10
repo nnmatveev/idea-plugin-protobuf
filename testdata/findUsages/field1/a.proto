@@ -1,0 +1,7 @@
+message message{}
+
+extend message{
+optional int32 int32 = 5;
+}
+
+option (int32) = 8;

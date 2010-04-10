@@ -15,8 +15,7 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('5')
@@ -24,8 +23,7 @@ PROTO_FILE
       GROUP_DECL
         PsiElement(OPTIONAL)('optional')
         PsiElement(GROUP)('group')
-        NAME
-          PsiElement(IDENTIFIER)('G')
+        PsiElement(IDENTIFIER)('G')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('5')

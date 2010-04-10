@@ -4,7 +4,7 @@ import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
 import com.intellij.psi.scope.PsiScopeProcessor;
-import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.api.reference.PbRef;
 
 /**
  * author: Nikolay Matveev

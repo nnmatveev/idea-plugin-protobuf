@@ -22,7 +22,8 @@ public class EnumStatement implements ProtobufElementTypes {
         }
         PsiBuilder.Marker enumMarker = builder.mark();
         builder.match(ENUM);
-        builder.matchAs(IK,NAME, "identifier.expected");
+        builder.match(IK,"identifier.expected");
+        //builder.matchAs(IK,NAME, "identifier.expected");
         if(!parseEnumBlock(builder)){
             builder.error("enum.block.expected");
         }        
@@ -50,7 +51,7 @@ public class EnumStatement implements ProtobufElementTypes {
     public static boolean parseEnumStatement(PatchedPsiBuilder builder) {
         //PsiBuilder.Marker enumStatementMarker = builder.mark();
         if(builder.match(SEMICOLON)){
-        } else if(OptionStatement.parse(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
+        } else if(OptionStatement.parseSeparateOption(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
         } else if(parseEnumConstant(builder)){      //
         } else {
             //enumStatementMarker.drop();
@@ -66,7 +67,8 @@ public class EnumStatement implements ProtobufElementTypes {
             return false;
         }
         PsiBuilder.Marker enumConstantkMarker = builder.mark();
-        builder.matchAs(IK,NAME,"identifier.expected");
+        builder.match(IK,"identifier.expected");
+        //builder.matchAs(IK,NAME,"identifier.expected");
         builder.match(EQUAL,"equal.expected");
         if(builder.compareToken(MINUS)){
             PsiBuilder.Marker marker = builder.mark();
@@ -76,7 +78,7 @@ public class EnumStatement implements ProtobufElementTypes {
         } else {
             builder.matchAs(NUM_INT,VALUE,"num.integer.expected");
         }
-        FieldStatement.parseOptionList(builder);
+        OptionStatement.parseOptionList(builder);
         builder.match(SEMICOLON,"semicolon.expected");
         enumConstantkMarker.done(ENUM_CONST_DECL);
         return true;

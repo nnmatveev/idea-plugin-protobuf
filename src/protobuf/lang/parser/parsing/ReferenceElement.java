@@ -64,7 +64,6 @@ public class ReferenceElement {
         if (!builder.compareToken(OPEN_PARANT)) {
             return false;
         }
-        PsiBuilder.Marker nameMarker = builder.mark();
         PsiBuilder.Marker refSeqMarker = builder.mark();
         PsiBuilder.Marker refMarker = builder.mark();
         parseOptionPart(builder);
@@ -87,7 +86,6 @@ public class ReferenceElement {
         }
         refMarker.drop();
         refSeqMarker.done(OPTION_REF_SEQ);
-        nameMarker.done(NAME);
         return true;
     }
 

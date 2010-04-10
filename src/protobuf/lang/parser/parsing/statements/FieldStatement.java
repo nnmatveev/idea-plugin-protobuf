@@ -20,10 +20,11 @@ public class FieldStatement {
             PsiBuilder.Marker messageMarker = builder.mark();
             builder.match(FIELD_LABELS);
             builder.match(GROUP);
-            builder.matchAs(IK, NAME, "identifier.expected");
+            builder.match(IK,"identifier.expected");
+            //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            parseOptionList(builder);
+            OptionStatement.parseOptionList(builder);
             if (!MessageStatement.parseMessageBlock(builder)) {
                 builder.error("group.block.expected");
             }            
@@ -33,10 +34,11 @@ public class FieldStatement {
             PsiBuilder.Marker messageMarker = builder.mark();            
             builder.match(FIELD_LABELS);
             parseType(builder);
-            builder.matchAs(IK, NAME, "identifier.expected");
+            builder.match(IK, "identifier.expected");
+            //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            parseOptionList(builder);
+            OptionStatement.parseOptionList(builder);
             builder.match(SEMICOLON, "semicolon.expected");
             messageMarker.done(FIELD_DECL);
         }
@@ -57,21 +59,4 @@ public class FieldStatement {
     }
     
     //done
-    public static boolean parseOptionList(PatchedPsiBuilder builder) {
-        if (!builder.compareToken(OPEN_BRACE)) {
-            return false;
-        }
-        PsiBuilder.Marker optionsMarker = builder.mark();
-        builder.match(OPEN_BRACE);
-        do {            
-            if (OptionStatement.parseOptionAssigment(builder)) {
-            } else {
-                builder.error("option.assigment.expected");
-                break;
-            }
-        } while (!builder.eof() && builder.match(COMMA));
-        builder.match(CLOSE_BRACE, "close.brace.expected");
-        optionsMarker.done(OPTION_LIST);
-        return true;
-    }
 }

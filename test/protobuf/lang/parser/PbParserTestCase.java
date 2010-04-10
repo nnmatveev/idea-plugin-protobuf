@@ -5,8 +5,6 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.impl.DebugUtil;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 import protobuf.util.PbTestUtil;
 import protobuf.util.TestPath;
 
@@ -47,7 +45,7 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
     //file
     public void testFile1(){}
 
-    //declarations
+    //declaration
     public void testDeclaration$enum1(){}
     public void testDeclaration$enumconstant1(){}
     public void testDeclaration$extend1(){}
@@ -61,21 +59,21 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
     public void testDeclaration$service1(){}
     public void testDeclaration$servicemethod1(){}
 
-    //blocks
+    //block
     public void testBlock$enum1(){}
     public void testBlock$extend1(){}
     public void testBlock$message1(){}
     public void testBlock$service1(){}
     public void testBlock$servicemethod1(){}
 
-    //members
+    //member
     public void testMember$fieldtype1(){}
     public void testMember$fieldlabel1(){}
     public void testMember$optionassigment1(){}
     public void testMember$optionlist1(){}
     public void testMember$optionrefseq1(){}
 
-    //references
+    //reference
     public void testReference$customoption1(){}
     public void testReference$customtype1(){}
     public void testReference$import1(){}

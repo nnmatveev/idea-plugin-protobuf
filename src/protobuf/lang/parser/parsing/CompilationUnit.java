@@ -14,11 +14,11 @@ import protobuf.lang.parser.parsing.statements.*;
     
 public class CompilationUnit implements ProtobufElementTypes {
     public static void parse(PatchedPsiBuilder builder) {
-        //parse root level statements
+        //parseSeparateOption root level statements
         while (!builder.eof()) {
             if (PackageStatement.parse(builder)) {
             } else if (ImportStatement.parse(builder)) {
-            } else if (OptionStatement.parse(builder)) {
+            } else if (OptionStatement.parseSeparateOption(builder)) {
             } else if (ExtendStatement.parse(builder)) {
             } else if (ServiceStatement.parse(builder)) {
             } else if (MessageStatement.parse(builder)) {

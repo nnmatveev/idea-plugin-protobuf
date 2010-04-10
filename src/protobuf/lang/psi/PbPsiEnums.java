@@ -2,7 +2,6 @@ package protobuf.lang.psi;
 
 /**
  * author: Nikolay Matveev
- * Date: Apr 3, 2010
  */
 public class PbPsiEnums {
 
@@ -28,7 +27,7 @@ public class PbPsiEnums {
     }
 
     public enum FieldType {
-        BUILT_IN_TYPE,        
+        BUILT_IN_TYPE,
         CUSTOM_TYPE,
 
         BOOL,
@@ -46,6 +45,11 @@ public class PbPsiEnums {
         SFIXED64,
         SINT32,
         SINT64
+    }
+
+    public enum OptionType {
+        BUILT_IN_OPTION,
+        CUSTOM_OPTION
     }
 
     public enum FileOption {
@@ -82,8 +86,7 @@ public class PbPsiEnums {
         STRING_PIECE
     }
 
-    public enum NameTokenType {
-        IDENTIFIER,
-        KEYWORD        
+    public enum ValueType {
+
     }
 }

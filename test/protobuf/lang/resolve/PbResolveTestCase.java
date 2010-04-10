@@ -21,9 +21,6 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
 
     private final static Logger LOG = Logger.getInstance(PbResolveTestCase.class.getName());
 
-    public static final String REF_MARKER = "<ref>";
-    public static final String AIM_MARKER = "<aim>";
-
     @Override
     protected String getBasePath() {
         return PbTestUtil.getTestDataPath() + TestPath.RESOLVE_TEST_DIR;
@@ -56,30 +53,30 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             int aimOffset;
             if (refFile.equals(aimFile)) {
                 String fileText = StringUtil.convertLineSeparators(VfsUtil.loadText(refFile));
-                refOffset = fileText.indexOf(REF_MARKER);
-                aimOffset = fileText.indexOf(AIM_MARKER);
+                refOffset = fileText.indexOf(PbTestUtil.REF_MARKER);
+                aimOffset = fileText.indexOf(PbTestUtil.AIM_MARKER);
                 assertTrue(refOffset > -1);
                 assertTrue(aimOffset > -1);
                 assertTrue(refOffset != aimOffset);
                 if (refOffset < aimOffset) {
-                    fileText = fileText.substring(0, refOffset) + fileText.substring(refOffset + REF_MARKER.length());
-                    aimOffset = fileText.indexOf(AIM_MARKER);
-                    fileText = fileText.substring(0, aimOffset) + fileText.substring(aimOffset + AIM_MARKER.length());
+                    fileText = fileText.substring(0, refOffset) + fileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
+                    aimOffset = fileText.indexOf(PbTestUtil.AIM_MARKER);
+                    fileText = fileText.substring(0, aimOffset) + fileText.substring(aimOffset + PbTestUtil.AIM_MARKER.length());
                 } else {
-                    fileText = fileText.substring(0, aimOffset) + fileText.substring(aimOffset + AIM_MARKER.length());
-                    refOffset = fileText.indexOf(REF_MARKER);
-                    fileText = fileText.substring(0, refOffset) + fileText.substring(refOffset + REF_MARKER.length());
+                    fileText = fileText.substring(0, aimOffset) + fileText.substring(aimOffset + PbTestUtil.AIM_MARKER.length());
+                    refOffset = fileText.indexOf(PbTestUtil.REF_MARKER);
+                    fileText = fileText.substring(0, refOffset) + fileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
                 }
                 VfsUtil.saveText(refFile, fileText);
             } else {
                 String refFileText = StringUtil.convertLineSeparators(VfsUtil.loadText(refFile));
                 String aimFileText = StringUtil.convertLineSeparators(VfsUtil.loadText(aimFile));
-                refOffset = refFileText.indexOf(REF_MARKER);
-                aimOffset = aimFileText.indexOf(AIM_MARKER);
+                refOffset = refFileText.indexOf(PbTestUtil.REF_MARKER);
+                aimOffset = aimFileText.indexOf(PbTestUtil.AIM_MARKER);
                 assertTrue(refOffset > -1);
                 assertTrue(aimOffset > -1);
-                refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + REF_MARKER.length());
-                aimFileText = aimFileText.substring(0, aimOffset) + aimFileText.substring(aimOffset + AIM_MARKER.length());
+                refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
+                aimFileText = aimFileText.substring(0, aimOffset) + aimFileText.substring(aimOffset + PbTestUtil.AIM_MARKER.length());
                 VfsUtil.saveText(refFile, refFileText);
                 VfsUtil.saveText(aimFile, aimFileText);
             }
@@ -121,9 +118,9 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             assertNotNull("ref file not found", refFile);
             int refOffset;
             String refFileText = StringUtil.convertLineSeparators(VfsUtil.loadText(refFile));
-            refOffset = refFileText.indexOf(REF_MARKER);
+            refOffset = refFileText.indexOf(PbTestUtil.REF_MARKER);
             assertTrue(refOffset > -1);
-            refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + REF_MARKER.length());
+            refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
             VfsUtil.saveText(refFile, refFileText);
             PsiManager psiManager = myFixture.getPsiManager();
             PsiFile psiRefFile = psiManager.findFile(refFile);
@@ -161,9 +158,9 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             assertNotNull("ref file not found", refFile);
             int refOffset;
             String refFileText = StringUtil.convertLineSeparators(VfsUtil.loadText(refFile));
-            refOffset = refFileText.indexOf(REF_MARKER);
+            refOffset = refFileText.indexOf(PbTestUtil.REF_MARKER);
             assertTrue(refOffset > -1);
-            refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + REF_MARKER.length());
+            refFileText = refFileText.substring(0, refOffset) + refFileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
             VfsUtil.saveText(refFile, refFileText);
             PsiManager psiManager = myFixture.getPsiManager();
             PsiFile psiRefFile = psiManager.findFile(refFile);

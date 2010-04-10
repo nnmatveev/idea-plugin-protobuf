@@ -7,7 +7,6 @@ import protobuf.file.ProtobufFileType;
 
 /**
  * author: Nikolay Matveev
- * Date: Mar 5, 2010
  */
 public class ProtobufFileTypeLoader extends FileTypeFactory {
     @Override

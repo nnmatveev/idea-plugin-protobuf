@@ -1,4 +1,4 @@
-package protobuf.highlighting;
+package protobuf.highlighter;
 
 import com.intellij.lang.BracePair;
 import com.intellij.lang.PairedBraceMatcher;

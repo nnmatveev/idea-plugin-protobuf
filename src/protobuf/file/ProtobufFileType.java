@@ -10,7 +10,6 @@ import javax.swing.*;
 
 /**
  * author: Nikolay Matveev
- * Date: Mar 5, 2010
  */
 public class ProtobufFileType extends LanguageFileType {
 

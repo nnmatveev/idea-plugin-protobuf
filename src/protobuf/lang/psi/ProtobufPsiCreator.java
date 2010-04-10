@@ -5,11 +5,11 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import protobuf.lang.ProtobufElementTypes;
 import protobuf.lang.psi.impl.*;
-import protobuf.lang.psi.impl.blocks.PbBlockImpl;
-import protobuf.lang.psi.impl.definitions.*;
-import protobuf.lang.psi.impl.members.*;
-import protobuf.lang.psi.impl.members.PbOptionAssigmentImpl;
-import protobuf.lang.psi.impl.references.PbRefImpl;
+import protobuf.lang.psi.impl.block.PbBlockImpl;
+import protobuf.lang.psi.impl.declaration.*;
+import protobuf.lang.psi.impl.member.*;
+import protobuf.lang.psi.impl.member.PbOptionAssignmentImpl;
+import protobuf.lang.psi.impl.reference.PbRefImpl;
 
 /**
  * author: Nikolay Matveev
@@ -28,17 +28,16 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
         if(element.equals(PACKAGE_DECL)) return new PbPackageDefImpl(node);
         if(element.equals(PACKAGE_REF)) return new PbRefImpl(node);
 
-        if(element.equals(OPTION_DECL)) return new PbOptionDefImpl(node);
+        if(element.equals(OPTION_LIST)) return new PbOptionListImpl(node);
         if(element.equals(OPTION_REF)) return new PbRefImpl(node);
         if(element.equals(OPTION_REF_SEQ)) return new PbOptionRefSeqImpl(node);
-        if(element.equals(OPTION_ASSIGMENT)) return new PbOptionAssigmentImpl(node);
+        if(element.equals(OPTION_ASSIGNMENT)) return new PbOptionAssignmentImpl(node);
 
         if(element.equals(MESSAGE_DECL)) return new PbMessageDefImpl(node);
         if(element.equals(MESSAGE_BLOCK)) return new PbBlockImpl(node);
         
         if(element.equals(FIELD_DECL)) return new PbFieldDefImpl(node);
         if(element.equals(FIELD_TYPE)) return new PbFieldTypeImpl(node);
-        if(element.equals(OPTION_LIST)) return new PbOptionListImpl(node);
 
         if(element.equals(GROUP_DECL)) return new PbGroupDefImpl(node);
 
@@ -53,8 +52,7 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
 
         if(element.equals(EXTEND_DECL)) return new PbExtendDefImpl(node);
         if(element.equals(EXTEND_BLOCK)) return new PbBlockImpl(node);
-
-        if(element.equals(NAME)) return new PbNameImpl(node);
+        
         if(element.equals(VALUE)) return new PbValueImpl(node);
 
         

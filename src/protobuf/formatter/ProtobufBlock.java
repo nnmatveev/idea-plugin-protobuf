@@ -5,19 +5,13 @@ import static protobuf.lang.ProtobufElementTypes.*;
 import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import protobuf.formatter.util.ProtobufBlockGenerator;
-import protobuf.formatter.util.ProtobufIndentProcessor;
 import protobuf.formatter.util.ProtobufSpacingProcessor;
-import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.blocks.PbBlock;
-import protobuf.lang.psi.api.members.PbOptionList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -5,9 +5,8 @@ import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import protobuf.formatter.ProtobufBlock;
-import protobuf.lang.psi.api.blocks.PbBlock;
+import protobuf.lang.psi.api.block.PbBlock;
 import protobuf.lang.psi.impl.PbFileImpl;
-import protobuf.lang.psi.impl.members.PbOptionListImpl;
 
 import static protobuf.lang.ProtobufElementTypes.*;
 

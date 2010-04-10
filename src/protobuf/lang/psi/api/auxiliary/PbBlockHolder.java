@@ -1,6 +1,6 @@
 package protobuf.lang.psi.api.auxiliary;
 
-import protobuf.lang.psi.api.blocks.PbBlock;
+import protobuf.lang.psi.api.block.PbBlock;
 
 /**
  * author: Nikolay Matveev

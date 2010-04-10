@@ -1,0 +1,15 @@
+message message {
+    extensions 10 to 1000;
+    optional group Group = 5 {
+        extensions 10 to max;
+        optional int32 int32 = 5;
+    }
+}
+extend google.protobuf.FileOptions{
+    optional message option = 10000;
+}
+extend google.protobuf.FileOptions{
+    optional message.Group string = 12345;
+}
+option (option).g<ref>roup.int32 = 5;
+option (string).int32 = 5;

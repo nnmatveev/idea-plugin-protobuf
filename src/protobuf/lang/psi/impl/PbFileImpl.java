@@ -4,10 +4,11 @@ import com.intellij.extapi.psi.PsiFileBase;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
+import com.intellij.psi.PsiElement;
 import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.definitions.*;
+import protobuf.lang.psi.api.declaration.*;
 
 import java.util.ArrayList;
 
@@ -54,6 +55,16 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         return findChildrenByClass(PbImportDef.class);
     }
 
+    @Override
+    public PbMessageDef getDummyMessage() {
+        return findChildByClass(PbMessageDef.class);
+    }
+
+    @Override
+    public PsiElement getContext() {
+        return super.getContext();    //To change body of overridden methods use File | Settings | File Templates.
+    }
+
     public PbFile[] getImportedFiles(boolean onlyAliased) {
         PbImportDef[] importDefs = getImportDefinitions();
         ArrayList<PbFile> importFiles = new ArrayList<PbFile>(importDefs.length);
@@ -65,16 +76,5 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
         }
         return importFiles.toArray(new PbFileImpl[importFiles.size()]);
-    }
-
-    public PbFileImpl[] getImportedFilesByPackageName(String packageName) {
-        PbFile[] importedFiles = getImportedFiles(true);
-        ArrayList<PbFile> suitableImportedFiles = new ArrayList<PbFile>();
-        for (PbFile file : importedFiles) {
-            if (file.getPackageName().equals(packageName)) {
-                suitableImportedFiles.add(file);
-            }
-        }
-        return suitableImportedFiles.toArray(new PbFileImpl[suitableImportedFiles.size()]);
-    }
+    }   
 }

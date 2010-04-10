@@ -4,11 +4,7 @@ import com.intellij.ide.fileTemplates.FileTemplate;
 import com.intellij.ide.fileTemplates.FileTemplateManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.util.io.FileUtil;
 import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**            
  * author: Nikolay Matveev
@@ -35,8 +31,13 @@ public class ProtobufLoader implements ApplicationComponent {
         FileTemplateManager fileTemplateManager = FileTemplateManager.getInstance();
         FileTemplate template = fileTemplateManager.getTemplate("Proto File");
         if(template == null){
-            template = fileTemplateManager.addTemplate("Proto File", "proto");            
-            template.setText("#parse(\"File Header.java\")\n #if ( $PACKAGE_NAME != \"\" )package ${PACKAGE_NAME} ;#end");
+            template = fileTemplateManager.addTemplate("Proto File", "proto");                        
+            template.setText(
+                    "#parseSeparateOption(\"File Header.java\")\n" +
+                    "#if ( $PACKAGE_NAME != \"\" )package ${PACKAGE_NAME} ;#end\n" +
+                    "\n" +
+                    "option java_package=\"${PACKAGE_NAME}\";"
+            );
         }
     }
 }

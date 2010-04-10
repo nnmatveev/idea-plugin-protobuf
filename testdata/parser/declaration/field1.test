@@ -7,16 +7,14 @@ optional int32 c = 1[default=true];
 PROTO_FILE
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('A')
+    PsiElement(IDENTIFIER)('A')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       FIELD_DECL
         PsiElement(REQUIRED)('required')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -25,8 +23,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('b')
+        PsiElement(IDENTIFIER)('b')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -35,16 +32,14 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('c')
+        PsiElement(IDENTIFIER)('c')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
         OPTION_LIST
           PsiElement(OPEN_BRACE)('[')
-          OPTION_ASSIGMENT
-            NAME
-              PsiElement(IDENTIFIER)('default')
+          OPTION_ASSIGNMENT
+            PsiElement(IDENTIFIER)('default')
             PsiElement(EQUAL)('=')
             VALUE
               PsiElement(TRUE)('true')

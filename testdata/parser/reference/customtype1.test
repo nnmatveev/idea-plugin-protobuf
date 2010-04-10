@@ -32,8 +32,7 @@ PROTO_FILE
               PsiElement(IDENTIFIER)('foo')
             PsiElement(DOT)('.')
             PsiElement(IDENTIFIER)('bar')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('5')
@@ -41,14 +40,12 @@ PROTO_FILE
       PsiElement(CLOSE_BLOCK)('}')
   SERVICE_DECL
     PsiElement(SERVICE)('service')
-    NAME
-      PsiElement(IDENTIFIER)('foo')
+    PsiElement(IDENTIFIER)('foo')
     SERVICE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       SERVICE_METHOD_DECL
         PsiElement(RPC)('rpc')
-        NAME
-          PsiElement(RPC)('rpc')
+        PsiElement(RPC)('rpc')
         PsiElement(OPEN_PARANT)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('foo')

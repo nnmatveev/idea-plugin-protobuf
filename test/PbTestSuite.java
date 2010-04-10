@@ -1,5 +1,6 @@
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import protobuf.findUsages.PbFindUsagesTestCase;
 import protobuf.formatter.PbEnterActionTestCase;
 import protobuf.formatter.PbReformatTestCase;
 import protobuf.lang.lexer.PbLexerTestCase;
@@ -16,7 +17,8 @@ import protobuf.lang.resolve.PbResolveTestCase;
         PbParserTestCase.class,
         PbResolveTestCase.class,
         PbReformatTestCase.class,
-        PbEnterActionTestCase.class
+        PbEnterActionTestCase.class,
+        PbFindUsagesTestCase.class
 })
 public class PbTestSuite {
 }

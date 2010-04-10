@@ -7,23 +7,19 @@ service A {
 PROTO_FILE
   SERVICE_DECL
     PsiElement(SERVICE)('service')
-    NAME
-      PsiElement(IDENTIFIER)('A')
+    PsiElement(IDENTIFIER)('A')
     SERVICE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
-      OPTION_DECL
+      OPTION_ASSIGNMENT
         PsiElement(OPTION)('option')
-        OPTION_ASSIGMENT
-          NAME
-            PsiElement(IDENTIFIER)('B')
-          PsiElement(EQUAL)('=')
-          VALUE
-            PsiElement(NUM_INT)('12')
+        PsiElement(IDENTIFIER)('B')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('12')
         PsiElement(SEMICOLON)(';')
       SERVICE_METHOD_DECL
         PsiElement(RPC)('rpc')
-        NAME
-          PsiElement(IDENTIFIER)('A')
+        PsiElement(IDENTIFIER)('A')
         PsiElement(OPEN_PARANT)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('B')

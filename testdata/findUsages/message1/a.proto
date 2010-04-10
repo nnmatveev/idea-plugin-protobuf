@@ -1,0 +1,11 @@
+import "src/com/b.proto";
+
+
+service service{
+rpc Foo(com.message) returns (com.message);
+}
+
+message B{
+optional com.m<ref>essage a = 5;
+}
+

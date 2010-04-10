@@ -1,0 +1,10 @@
+import "src/com/b.proto";
+
+message message {
+    optional com.enum a = 5;
+
+    message abc{
+        optional com.e<ref>num b = 5;
+    }
+}
+

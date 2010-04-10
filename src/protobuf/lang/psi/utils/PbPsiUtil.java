@@ -1,15 +1,21 @@
 package protobuf.lang.psi.utils;
 
+import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
 import com.intellij.psi.scope.PsiScopeProcessor;
+import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
+import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
-import protobuf.lang.psi.api.blocks.PbBlock;
-import protobuf.lang.psi.api.definitions.*;
-import protobuf.lang.psi.api.references.PbRef;
+import protobuf.lang.psi.api.block.PbBlock;
+import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.impl.PbFileImpl;
+
+import static protobuf.lang.ProtobufElementTypes.*;
 
 import java.util.ArrayList;
 
@@ -53,7 +59,52 @@ public abstract class PbPsiUtil {
         return true;
     }
 
-    //new methods
+    public static boolean sameType(PsiElement element, IElementType type) {
+        return type.equals(element.getNode().getElementType());
+    }
+
+    public static PsiElement getChild(final PsiElement parent, int position, boolean ignoreWhiteSpaces, boolean ignoreComments, boolean ignoreErrors) {
+        PsiElement curChild = parent.getFirstChild();
+        int i = 0;
+        while (i <= position && curChild != null) {
+            if (WHITE_SPACES.contains(curChild.getNode().getElementType())) {
+                if (!ignoreWhiteSpaces) i++;
+                curChild = curChild.getNextSibling();
+            } else if (COMMENTS.contains(curChild.getNode().getElementType())) {
+                if (!ignoreComments) i++;
+                curChild = curChild.getNextSibling();
+            } else if (curChild instanceof PsiErrorElement) {
+                if (!ignoreErrors) {
+                    return null;
+                }
+                i++;
+                curChild = curChild.getNextSibling();
+            } else {
+                if (i == position) return curChild;
+                i++;
+                curChild = curChild.getNextSibling();
+            }
+        }
+        return null;
+    }
+
+    public static ASTNode createSimpleNodeWithText(String text, Project project){
+        assert !text.contains(" "):"name cannot contain white spaces";
+        PsiFileFactory psiFileFactory = PsiFileFactory.getInstance(project);
+        PbFile dummyFile = (PbFile)psiFileFactory.createFileFromText("DUMMY_SET_NAME", ProtobufFileType.PROTOBUF_FILE_TYPE,"message " + text + " {}");
+        PbMessageDef dummyMessage = (PbMessageDef)PbPsiUtil.getChild(dummyFile,0,true,true,false);
+        PsiElement newNameElement = dummyMessage.getNameElement();
+        return newNameElement.getNode();
+    }
+
+ /*   public static String getQualifiedName(PsiNamedElement element){
+            
+    }
+    */
+
+    //public static getContext
+
+    //resolving methods
 
     public static PsiElement getRootScope(final PsiElement element) {
         return JavaPsiFacade.getInstance(element.getManager().getProject()).findPackage("");

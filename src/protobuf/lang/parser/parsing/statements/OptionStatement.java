@@ -19,37 +19,52 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 
 //done
 public class OptionStatement implements ProtobufElementTypes {
-    public static boolean parse(PatchedPsiBuilder builder) {
+    
+    public static boolean parseSeparateOption(PatchedPsiBuilder builder) {
         if (!builder.compareToken(OPTION)) {
             return false;
         }
-        PsiBuilder.Marker optionMarker = builder.mark();
+        PsiBuilder.Marker optionAssigmentMarker = builder.mark();
         builder.match(OPTION);
         if (!parseOptionAssigment(builder)) {
             builder.error("option.assigment.expected");
         }
         builder.match(SEMICOLON, "semicolon.expected");
-        optionMarker.done(OPTION_DECL);
+        optionAssigmentMarker.done(OPTION_ASSIGNMENT);        
         return true;
     }
 
-    //done
+    public static boolean parseOptionList(PatchedPsiBuilder builder) {
+        if (!builder.compareToken(OPEN_BRACE)) {
+            return false;
+        }
+        PsiBuilder.Marker optionsMarker = builder.mark();
+        builder.match(OPEN_BRACE);
+        do {
+            PsiBuilder.Marker optionAssigmentMarker = builder.mark();
+            if (parseOptionAssigment(builder)) {
+                optionAssigmentMarker.done(OPTION_ASSIGNMENT);
+            } else {
+                optionAssigmentMarker.drop();
+                builder.error("option.assigment.expected");
+                break;
+            }
+        } while (!builder.eof() && builder.match(COMMA));
+        builder.match(CLOSE_BRACE, "close.brace.expected");
+        optionsMarker.done(OPTION_LIST);
+        return true;
+    }
 
     public static boolean parseOptionAssigment(PatchedPsiBuilder builder) {
-        PsiBuilder.Marker optionAssigmentMarker = builder.mark();
         if (builder.compareToken(IK)) {
-            PsiBuilder.Marker optionNameMarker = builder.mark();
-            builder.match(IK);
-            optionNameMarker.done(NAME);
-        } else if (!ReferenceElement.parseForCustomOption(builder)) {
-            optionAssigmentMarker.drop();
+            builder.match(IK);            
+        } else if (!ReferenceElement.parseForCustomOption(builder)) {            
             return false;
         }
         builder.match(EQUAL, "equal.expected");
         if (!parseOptionValue(builder)) {
             builder.error("value.expected");
         }
-        optionAssigmentMarker.done(OPTION_ASSIGMENT);
         return true;
     }
 
@@ -73,4 +88,5 @@ public class OptionStatement implements ProtobufElementTypes {
         marker.done(VALUE);
         return true;
     }
+
 }

@@ -21,16 +21,14 @@ optional com.intellij.IDEA IDEA = 1;
 PROTO_FILE
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('a')
+    PsiElement(IDENTIFIER)('a')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       FIELD_DECL
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(BOOL)('bool')
-        NAME
-          PsiElement(BOOL)('bool')
+        PsiElement(BOOL)('bool')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -39,8 +37,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(STRING)('string')
-        NAME
-          PsiElement(STRING)('string')
+        PsiElement(STRING)('string')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -49,8 +46,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(BYTES)('bytes')
-        NAME
-          PsiElement(BYTES)('bytes')
+        PsiElement(BYTES)('bytes')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -59,8 +55,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(DOUBLE)('double')
-        NAME
-          PsiElement(DOUBLE)('double')
+        PsiElement(DOUBLE)('double')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -69,8 +64,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(FLOAT)('float')
-        NAME
-          PsiElement(FLOAT)('float')
+        PsiElement(FLOAT)('float')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -79,8 +73,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(INT32)('int32')
+        PsiElement(INT32)('int32')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -89,8 +82,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(INT64)('int64')
-        NAME
-          PsiElement(INT64)('int64')
+        PsiElement(INT64)('int64')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -99,8 +91,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(UINT32)('uint32')
-        NAME
-          PsiElement(UINT32)('uint32')
+        PsiElement(UINT32)('uint32')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -109,8 +100,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(UINT64)('uint64')
-        NAME
-          PsiElement(UINT64)('uint64')
+        PsiElement(UINT64)('uint64')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -119,8 +109,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(FIXED32)('fixed32')
-        NAME
-          PsiElement(FIXED32)('fixed32')
+        PsiElement(FIXED32)('fixed32')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -129,8 +118,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(FIXED64)('fixed64')
-        NAME
-          PsiElement(FIXED64)('fixed64')
+        PsiElement(FIXED64)('fixed64')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -139,8 +127,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(SFIXED32)('sfixed32')
-        NAME
-          PsiElement(SFIXED32)('sfixed32')
+        PsiElement(SFIXED32)('sfixed32')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -149,8 +136,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(SFIXED4)('sfixed64')
-        NAME
-          PsiElement(SFIXED4)('sfixed64')
+        PsiElement(SFIXED4)('sfixed64')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -159,8 +145,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(SINT32)('sint32')
-        NAME
-          PsiElement(SINT32)('sint32')
+        PsiElement(SINT32)('sint32')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -169,8 +154,7 @@ PROTO_FILE
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(SINT64)('sint64')
-        NAME
-          PsiElement(SINT64)('sint64')
+        PsiElement(SINT64)('sint64')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -186,8 +170,7 @@ PROTO_FILE
               PsiElement(IDENTIFIER)('intellij')
             PsiElement(DOT)('.')
             PsiElement(IDENTIFIER)('IDEA')
-        NAME
-          PsiElement(IDENTIFIER)('IDEA')
+        PsiElement(IDENTIFIER)('IDEA')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')

@@ -14,8 +14,7 @@ message foo{
 PROTO_FILE
   ENUM_DECL
     PsiElement(ENUM)('enum')
-    NAME
-      PsiElement(IDENTIFIER)('foo')
+    PsiElement(IDENTIFIER)('foo')
     ENUM_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       PsiElement(CLOSE_BLOCK)('}')
@@ -31,19 +30,16 @@ PROTO_FILE
     PsiElement(SEMICOLON)(';')
   SERVICE_DECL
     PsiElement(SERVICE)('service')
-    NAME
-      PsiElement(IDENTIFIER)('foo')
+    PsiElement(IDENTIFIER)('foo')
     SERVICE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       PsiElement(CLOSE_BLOCK)('}')
-  OPTION_DECL
+  OPTION_ASSIGNMENT
     PsiElement(OPTION)('option')
-    OPTION_ASSIGMENT
-      NAME
-        PsiElement(IDENTIFIER)('a')
-      PsiElement(EQUAL)('=')
-      VALUE
-        PsiElement(NUM_INT)('1')
+    PsiElement(IDENTIFIER)('a')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(NUM_INT)('1')
     PsiElement(SEMICOLON)(';')
   EXTEND_DECL
     PsiElement(EXTEND)('extend')
@@ -54,8 +50,7 @@ PROTO_FILE
       PsiElement(CLOSE_BLOCK)('}')
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('foo')
+    PsiElement(IDENTIFIER)('foo')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       PsiElement(CLOSE_BLOCK)('}')

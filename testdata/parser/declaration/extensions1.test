@@ -6,8 +6,7 @@ extensions 10 to max, 100 to 15, 11 to 27;
 PROTO_FILE
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('A')
+    PsiElement(IDENTIFIER)('A')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       EXTENSIONS_DECL

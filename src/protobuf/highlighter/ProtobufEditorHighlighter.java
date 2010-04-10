@@ -1,4 +1,4 @@
-package protobuf.highlighting;
+package protobuf.highlighter;
 
 import com.intellij.openapi.editor.colors.EditorColorsScheme;
 import com.intellij.openapi.editor.ex.util.LexerEditorHighlighter;

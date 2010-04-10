@@ -7,16 +7,14 @@ required int32 a = 1;
 PROTO_FILE
   MESSAGE_DECL
     PsiElement(MESSAGE)('message')
-    NAME
-      PsiElement(IDENTIFIER)('a')
+    PsiElement(IDENTIFIER)('a')
     MESSAGE_BLOCK
       PsiElement(OPEN_BLOCK)('{')
       FIELD_DECL
         PsiElement(REPEATED)('repeated')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -25,8 +23,7 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
@@ -35,8 +32,7 @@ PROTO_FILE
         PsiElement(REQUIRED)('required')
         FIELD_TYPE
           PsiElement(INT32)('int32')
-        NAME
-          PsiElement(IDENTIFIER)('a')
+        PsiElement(IDENTIFIER)('a')
         PsiElement(EQUAL)('=')
         VALUE
           PsiElement(NUM_INT)('1')
