@@ -2,6 +2,7 @@ package protobuf.lang.psi;
 
 import com.intellij.psi.PsiElementVisitor;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 
 /**
@@ -12,7 +13,7 @@ public abstract class ProtobufPsiElementVisitor extends PsiElementVisitor {
 
     public abstract void visitImportDefinition(PbImportDef element);
 
-    public abstract void visitPackageDefinition(PbImportDef element);
+    public abstract void visitPackageDefinition(PbPackageDef element);
 
     public abstract void visitMessageDefinition(PbMessageDef element);
 
@@ -30,5 +31,7 @@ public abstract class ProtobufPsiElementVisitor extends PsiElementVisitor {
 
     public abstract void visitServiceMethodDefinition(PbServiceMethodDef element);
 
-    public abstract void visitRef(PbRef element);    
+    public abstract void visitRef(PbRef element);
+
+    public abstract void visitValue(PbValue element);
 }

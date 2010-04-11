@@ -19,7 +19,7 @@ import java.io.IOException;
 public class PbLexerTestCase extends UsefulTestCase {
 
     protected String getBasePath() {
-        return PbTestUtil.getTestDataPath() + TestPath.LEXER_TEST_DIR;
+        return PbTestUtil.getTestDataPath() + "lexer/";
     }
 
     protected void doTest(Lexer lexer) {
@@ -43,7 +43,8 @@ public class PbLexerTestCase extends UsefulTestCase {
                 lexer.advance();
             }
             assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\r\n"), StringUtil.convertLineSeparators(result));            
-        } catch (IOException e) {
+        } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }

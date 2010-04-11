@@ -45,17 +45,18 @@ public class PbReformatTestCase extends PbFormatterTestCase {
                 }
             });                                    
             assertEquals(StringUtil.convertLineSeparators(testMaterial.getSecond()), psiFile.getText());
-        } catch (IOException e) {
+        } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }
 
 
     public void testField1() {doTest();}
-    public void testFileSpacing1() {doTest();}
-    public void testFileSpacing2() {doTest();}
-    public void testBlockSpacing1() {doTest();}
-    public void testBlockSpacing2() {doTest();}
-    public void testOptionList1() {doTest();}
+    public void testFilespacing1() {doTest();}
+    public void testFilespacing2() {doTest();}
+    public void testBlockspacing1() {doTest();}
+    public void testBlockspacing2() {doTest();}
+    public void testOptionlist1() {doTest();}
 
 }

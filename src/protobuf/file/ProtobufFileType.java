@@ -15,6 +15,7 @@ public class ProtobufFileType extends LanguageFileType {
 
     public static final ProtobufFileType PROTOBUF_FILE_TYPE = new ProtobufFileType();
     public static final Language PROTOBUF_LANGUAGE = PROTOBUF_FILE_TYPE.getLanguage();
+    public static final String[] DEFAULT_ASSOCIATED_EXTENSIONS = new String[]{"proto"};
 
     private ProtobufFileType(){
         super(new ProtobufLanguage());
@@ -22,12 +23,12 @@ public class ProtobufFileType extends LanguageFileType {
 
     @NotNull
     public String getName() {
-        return "Protobuf";  //To change body of implemented methods use File | Settings | File Templates.
+        return "Protobuf";
     }
 
     @NotNull
     public String getDescription() {
-        return "Protocol Buffers file";  //To change body of implemented methods use File | Settings | File Templates.
+        return "Protocol Buffers file";
     }
 
     @NotNull

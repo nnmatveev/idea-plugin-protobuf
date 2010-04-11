@@ -2,20 +2,20 @@
 <project version="4">
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="3756ec80-ea06-446d-88e3-5133096e171a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todo" afterPath="$PROJECT_DIR$/src/todo" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" afterPath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todo" afterPath="$PROJECT_DIR$/src/todo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" afterPath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/api/references/PbOptionRef.java" />
     </list>
     <ignored path="idea-plugin-protobuf.iws" />
@@ -81,320 +81,97 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProtobufLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/ProtobufLoader.java">
+      <file leaf-file-name="PbLexerTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="39" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
+            <state line="45" column="17" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <file leaf-file-name="PbEnterActionTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="181" column="0" selection-start="10588" selection-end="10588" vertical-scroll-proportion="0.005484461">
+            <state line="36" column="42" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="0" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="81" selection-start="259" selection-end="259" vertical-scroll-proportion="-0.48832685">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PbTestUtil.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/util/PbTestUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="82" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="tag#component#0;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#component#0;tag#project#0" expanded="false" />
-                <element signature="tag#component#2;tag#project#0" expanded="false" />
-                <element signature="tag#component#3;tag#project#0" expanded="false" />
-                <element signature="tag#component#4;tag#project#0" expanded="false" />
-                <element signature="tag#component#5;tag#project#0" expanded="false" />
-                <element signature="tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-                <element signature="tag#breakpoint#0;tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-                <element signature="tag#breakpoint#1;tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-                <element signature="tag#component#6;tag#project#0" expanded="false" />
-                <element signature="tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-                <element signature="tag#component#9;tag#project#0" expanded="false" />
-                <element signature="tag#FindUsagesManager#0;tag#component#9;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#component#10;tag#project#0" expanded="false" />
-                <element signature="tag#array#0;tag#option#0;tag#component#10;tag#project#0" expanded="false" />
-                <element signature="tag#component#11;tag#project#0" expanded="false" />
-                <element signature="tag#component#12;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#component#12;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#option#0;tag#component#12;tag#project#0" expanded="false" />
-                <element signature="tag#component#13;tag#project#0" expanded="false" />
-                <element signature="tag#component#14;tag#project#0" expanded="false" />
-                <element signature="tag#component#15;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#component#15;tag#project#0" expanded="false" />
-                <element signature="tag#component#16;tag#project#0" expanded="false" />
-                <element signature="tag#component#17;tag#project#0" expanded="false" />
-                <element signature="tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#navigator#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#0;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#0;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#3;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#3;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#4;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#3;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#4;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#5;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#3;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#4;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#5;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#6;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#3;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#4;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#0;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#1;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#PATH_ELEMENT#2;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#pane#2;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-                <element signature="tag#component#19;tag#project#0" expanded="false" />
-                <element signature="tag#component#20;tag#project#0" expanded="false" />
-                <element signature="tag#component#21;tag#project#0" expanded="false" />
-                <element signature="tag#key#0;tag#component#21;tag#project#0" expanded="false" />
-                <element signature="tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#0;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#1;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#1;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#2;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#2;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#option#15;tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#4;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#4;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#5;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#5;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#option#11;tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#method#0;tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#7;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#RunnerSettings#0;tag#configuration#7;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#configuration#8;tag#component#22;tag#project#0" expanded="false" />
-                <element signature="tag#component#24;tag#project#0" expanded="false" />
-                <element signature="tag#component#25;tag#project#0" expanded="false" />
-                <element signature="tag#todo-panel#0;tag#component#25;tag#project#0" expanded="false" />
-                <element signature="tag#todo-panel#1;tag#component#25;tag#project#0" expanded="false" />
-                <element signature="tag#todo-panel#2;tag#component#25;tag#project#0" expanded="false" />
-                <element signature="tag#component#26;tag#project#0" expanded="false" />
-                <element signature="tag#layout#0;tag#component#26;tag#project#0" expanded="false" />
-                <element signature="tag#component#27;tag#project#0" expanded="false" />
-                <element signature="tag#component#28;tag#project#0" expanded="false" />
-                <element signature="tag#component#29;tag#project#0" expanded="false" />
-                <element signature="tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#0;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#0;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#1;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#1;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#2;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#2;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#3;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#3;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#4;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#4;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#5;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#5;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#9;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#9;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#provider#0;tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#provider#0;tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-                <element signature="tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-                <element signature="tag#component#32;tag#project#0" expanded="false" />
-                <element signature="tag#General#0;tag#component#32;tag#project#0" expanded="false" />
-                <element signature="tag#Classdiagram#0;tag#component#32;tag#project#0" expanded="false" />
-                <element signature="tag#Dependencydiagram#0;tag#component#32;tag#project#0" expanded="false" />
-                <element signature="tag#Packagediagram#0;tag#component#32;tag#project#0" expanded="false" />
+                <element signature="docComment;class#PbTestUtil#0" expanded="false" />
+                <element signature="method#getTestDataPath#0;class#PbTestUtil#0" expanded="false" />
+                <element signature="method#getSimpleTestMaterialsFromFile#0;class#PbTestUtil#0" expanded="false" />
+                <element signature="method#createPseudoProtoFile#0;class#PbTestUtil#0" expanded="false" />
+                <element signature="method#loadFromFile#0;class#PbTestUtil#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProtobufFileElementType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileElementType.java">
+      <file leaf-file-name="TestPath.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/util/TestPath.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
+            <state line="9" column="64" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProtobufFileType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileType.java">
+      <file leaf-file-name="PbTestSuite.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/PbTestSuite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="315" selection-end="315" vertical-scroll-proportion="0.0">
+            <state line="24" column="13" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProtobufFileTypeLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileTypeLoader.java">
+      <file leaf-file-name="PbReformatTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
+            <state line="46" column="65" selection-start="1923" selection-end="1923" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompilationUnit.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/CompilationUnit.java">
+      <file leaf-file-name="PbRenameTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/refactoring/rename/PbRenameTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
+            <state line="18" column="13" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReferenceElement.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java">
+      <file leaf-file-name="PbFormatterTestCase.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plugin.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="43" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="idea-plugin-protobuf.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/idea-plugin-protobuf.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProtobufLanguage.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/protobuf/ProtobufLanguage.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="22" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
+            <state line="25" column="22" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -420,15 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/todo" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/api/references/PbOptionRef.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" />
         <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java" />
         <option value="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" />
         <option value="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" />
@@ -436,6 +204,15 @@
         <option value="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" />
         <option value="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/test/protobuf/util/TestPath.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/lang/resolve/PbResolveTestCase.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/lang/parser/PbParserTestCase.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java" />
+        <option value="$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java" />
+        <option value="$PROJECT_DIR$/README" />
+        <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
       </list>
     </option>
   </component>
@@ -481,6 +258,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
@@ -505,7 +283,6 @@
       <pane id="PackagesPane">
         <subPane />
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -516,15 +293,15 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="org.intellij.lang.jflex.options.JFlexConfigurable" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="PsiViewer.ProjectComponent">
     <option name="HIGHLIGHT" value="false" />
@@ -556,6 +333,28 @@
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="idea-plugin-protobuf" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="PbTestSuite" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="snapshooter" />
+      <module name="idea-plugin-protobuf" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="PbTestSuite" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-Didea.platform.prefix=Idea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
       <envs />
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
@@ -605,6 +404,7 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
       <option name="PROPERTIES_FILE" />
       <envs />
       <properties />
@@ -683,7 +483,7 @@
       <module name="idea-plugin-protobuf" />
       <option name="VM_PARAMETERS" value=" -Xms128m -Xmx512m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <log_file path="C:/Users/Nikolay/.IntelliJIdea90/system/plugins-sandbox/system/log/idea.log" checked="true" skipped="true" show_all="false" alias="IDEA LOG" />
+      <log_file path="/home/nikolay/.IdeaIC90/system/plugins-sandbox/system/log/idea.log" checked="true" skipped="true" show_all="false" alias="IDEA LOG" />
       <RunnerSettings RunnerId="JProfiler">
         <option name="WINDOW" value="false" />
         <option name="JVMPI" value="false" />
@@ -693,9 +493,10 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Application.Test1" />
-      <item index="1" class="java.lang.String" itemvalue="Plugin.new" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.PbTestSuite" />
+      <item index="2" class="java.lang.String" itemvalue="Plugin.new" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -715,7 +516,7 @@
     <option name="DETECT_NESTED_COPIES" value="false" />
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <configuration useDefault="true">C:\Users\Nikolay\AppData\Roaming\Subversion</configuration>
+    <configuration useDefault="true">/home/nikolay/.subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
   </component>
@@ -740,34 +541,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="0" />
-    <editor active="false" />
+    <frame x="1021" y="25" width="1372" height="720" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20440729" sideWeight="0.8973064" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57239056" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="25" y="153" width="1316" height="432" />
-      <window_info id="Structure101" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20707071" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24074075" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24035087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24579124" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.33838382" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969605" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16329966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23211567" sideWeight="0.9877193" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31610942" sideWeight="0.17845118" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26975685" sideWeight="0.6043771" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.8097643" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="PsiViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25835866" sideWeight="0.8973064" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure101" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="simpleUML" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26975685" sideWeight="0.6043771" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27963525" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44107744" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16329966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -805,330 +606,144 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/com/intellij/ide/fileTemplates/impl/FileTemplateManagerImpl.class">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="198" column="61" selection-start="14422" selection-end="14422" vertical-scroll-proportion="0.407045" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="48" selection-start="704" selection-end="704" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/idea.jar!/com/intellij/openapi/components/impl/ComponentManagerImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="166" column="0" selection-start="9486" selection-end="9486" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/PackageDefinition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="13" selection-start="440" selection-end="440" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="69" selection-start="1466" selection-end="1466" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="74" selection-start="598" selection-end="598" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/idea-plugin-protobuf.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/ProtobufLanguage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="22" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileElementType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="177" selection-end="177" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/CompilationUnit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="43" selection-start="1020" selection-end="1020" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileTypeLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="286" selection-end="286" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/file/ProtobufFileType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="315" selection-end="315" vertical-scroll-proportion="0.0">
+        <state line="181" column="0" selection-start="16646" selection-end="16646" vertical-scroll-proportion="2.0833333">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/protobuf/ProtobufLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="39" selection-start="673" selection-end="673" vertical-scroll-proportion="0.0">
+        <state line="21" column="39" selection-start="721" selection-end="721" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/test/protobuf/findUsages/PbFindUsagesTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="0" selection-start="10588" selection-end="10588" vertical-scroll-proportion="0.005484461">
+        <state line="25" column="13" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/openapi.jar!/com/intellij/ide/plugins/IdeaPluginDescriptorImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="185" column="0" selection-start="8797" selection-end="8797" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/resolve/PbResolveTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="142" column="6" selection-start="6918" selection-end="6918" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="tag#component#0;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#component#0;tag#project#0" expanded="false" />
-            <element signature="tag#component#2;tag#project#0" expanded="false" />
-            <element signature="tag#component#3;tag#project#0" expanded="false" />
-            <element signature="tag#component#4;tag#project#0" expanded="false" />
-            <element signature="tag#component#5;tag#project#0" expanded="false" />
-            <element signature="tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-            <element signature="tag#breakpoint#0;tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-            <element signature="tag#breakpoint#1;tag#breakpoint_any#0;tag#component#5;tag#project#0" expanded="false" />
-            <element signature="tag#component#6;tag#project#0" expanded="false" />
-            <element signature="tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#0;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#1;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#2;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#3;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#4;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#5;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#6;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#7;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#8;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#0;tag#file#9;tag#leaf#0;tag#component#8;tag#project#0" expanded="false" />
-            <element signature="tag#component#9;tag#project#0" expanded="false" />
-            <element signature="tag#FindUsagesManager#0;tag#component#9;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#component#10;tag#project#0" expanded="false" />
-            <element signature="tag#array#0;tag#option#0;tag#component#10;tag#project#0" expanded="false" />
-            <element signature="tag#component#11;tag#project#0" expanded="false" />
-            <element signature="tag#component#12;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#component#12;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#option#0;tag#component#12;tag#project#0" expanded="false" />
-            <element signature="tag#component#13;tag#project#0" expanded="false" />
-            <element signature="tag#component#14;tag#project#0" expanded="false" />
-            <element signature="tag#component#15;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#component#15;tag#project#0" expanded="false" />
-            <element signature="tag#component#16;tag#project#0" expanded="false" />
-            <element signature="tag#component#17;tag#project#0" expanded="false" />
-            <element signature="tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#navigator#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#0;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#0;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#1;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#2;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#3;tag#PATH#3;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#3;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#4;tag#PATH#4;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#3;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#4;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#5;tag#PATH#5;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#3;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#4;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#5;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#6;tag#PATH#6;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#3;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#4;tag#PATH#7;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#8;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#0;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#1;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#PATH_ELEMENT#2;tag#PATH#9;tag#subPane#0;tag#pane#1;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#pane#2;tag#panes#0;tag#component#18;tag#project#0" expanded="false" />
-            <element signature="tag#component#19;tag#project#0" expanded="false" />
-            <element signature="tag#component#20;tag#project#0" expanded="false" />
-            <element signature="tag#component#21;tag#project#0" expanded="false" />
-            <element signature="tag#key#0;tag#component#21;tag#project#0" expanded="false" />
-            <element signature="tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#0;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#1;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#1;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#2;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#2;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#option#15;tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#3;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#4;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#4;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#5;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#5;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#option#11;tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#method#0;tag#configuration#6;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#7;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#RunnerSettings#0;tag#configuration#7;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#configuration#8;tag#component#22;tag#project#0" expanded="false" />
-            <element signature="tag#component#24;tag#project#0" expanded="false" />
-            <element signature="tag#component#25;tag#project#0" expanded="false" />
-            <element signature="tag#todo-panel#0;tag#component#25;tag#project#0" expanded="false" />
-            <element signature="tag#todo-panel#1;tag#component#25;tag#project#0" expanded="false" />
-            <element signature="tag#todo-panel#2;tag#component#25;tag#project#0" expanded="false" />
-            <element signature="tag#component#26;tag#project#0" expanded="false" />
-            <element signature="tag#layout#0;tag#component#26;tag#project#0" expanded="false" />
-            <element signature="tag#component#27;tag#project#0" expanded="false" />
-            <element signature="tag#component#28;tag#project#0" expanded="false" />
-            <element signature="tag#component#29;tag#project#0" expanded="false" />
-            <element signature="tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#0;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#0;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#1;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#1;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#2;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#2;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#3;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#3;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#4;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#4;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#5;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#5;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#6;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#7;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#8;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#9;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#9;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#10;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#11;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#12;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#13;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#14;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#provider#0;tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#provider#0;tag#entry#15;tag#component#30;tag#project#0" expanded="false" />
-            <element signature="tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#0;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#1;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#2;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#list#0;tag#option#0;tag#SplitterProportionsDataImpl#0;tag#splitter-proportions#0;tag#UIState#0;tag#state#3;tag#states#0;tag#component#31;tag#project#0" expanded="false" />
-            <element signature="tag#component#32;tag#project#0" expanded="false" />
-            <element signature="tag#General#0;tag#component#32;tag#project#0" expanded="false" />
-            <element signature="tag#Classdiagram#0;tag#component#32;tag#project#0" expanded="false" />
-            <element signature="tag#Dependencydiagram#0;tag#component#32;tag#project#0" expanded="false" />
-            <element signature="tag#Packagediagram#0;tag#component#32;tag#project#0" expanded="false" />
+            <element signature="docComment;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#getBasePath#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#setUp#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#doSimpleRefAimTest#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#doSimpleRefPackageTest#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#doSimpleRefFileTest#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$field$enum1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$field$group1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$field$message1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$servicemethod$group1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$servicemethod$message1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$extend$group1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomType1$extend$message1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$extendfield1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$messageorgroupfield1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$messageorgroupfield2#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$messageorgroupfield3#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$messageorgroupfield4#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testCustomOption1$messageorgroupfield5#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testPackage1$messageorpackageorgroup1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testPackage1$package1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="method#testFile1$file1#0;class#PbResolveTestCase#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/parser/PbParserTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="17" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="45" column="17" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/refactoring/rename/PbRenameTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="13" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="65" selection-start="1923" selection-end="1923" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="22" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="42" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/PbTestSuite.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/util/PbTestUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="82" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="docComment;class#PbTestUtil#0" expanded="false" />
+            <element signature="method#getTestDataPath#0;class#PbTestUtil#0" expanded="false" />
+            <element signature="method#getSimpleTestMaterialsFromFile#0;class#PbTestUtil#0" expanded="false" />
+            <element signature="method#createPseudoProtoFile#0;class#PbTestUtil#0" expanded="false" />
+            <element signature="method#loadFromFile#0;class#PbTestUtil#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/protobuf/util/TestPath.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="64" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="0" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="81" selection-start="259" selection-end="259" vertical-scroll-proportion="-0.48832685">
+          <folding />
         </state>
       </provider>
     </entry>

@@ -1,5 +1,6 @@
 package protobuf.compiler;
 
+import com.intellij.compiler.impl.CompilerUtil;
 import com.intellij.openapi.compiler.GeneratingCompiler;
 import com.intellij.openapi.compiler.ValidityState;
 import com.intellij.openapi.module.Module;
@@ -24,7 +25,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     }
 
     @Override
-    public String getPath() {
+    public String getPath() {        
         return myFile.getPath();
     }
 

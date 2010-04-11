@@ -1,0 +1,21 @@
+message message {
+    optional int32 i<caret>nt32 = 1;
+}
+
+
+extend google.protobuf.FileOptions {
+    optional message optional = 10000;
+}
+
+option (optional).int32 = 5;
+------
+message message {
+    optional int32 NewName = 1;
+}
+
+
+extend google.protobuf.FileOptions {
+    optional message optional = 10000;
+}
+
+option (optional).NewName = 5;

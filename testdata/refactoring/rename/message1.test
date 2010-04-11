@@ -1,0 +1,19 @@
+message m<caret>essage{
+}
+
+extend message{
+}
+
+message service{
+optional message message = 1;
+}
+------
+message NewName{
+}
+
+extend NewName{
+}
+
+message service{
+optional NewName message = 1;
+}

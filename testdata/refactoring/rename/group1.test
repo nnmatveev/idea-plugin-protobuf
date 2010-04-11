@@ -1,0 +1,31 @@
+message message {
+    optional group G<caret>roup = 5 {
+        optional string a = 5;
+    }
+}
+
+message service {
+    optional message.Group option = 7;
+}
+
+extend google.protobuf.FileOptions {
+    optional message optional = 10000;
+}
+
+option (optional).group.a = "string";
+------
+message message {
+    optional group NewName = 5 {
+        optional string a = 5;
+    }
+}
+
+message service {
+    optional message.NewName option = 7;
+}
+
+extend google.protobuf.FileOptions {
+    optional message optional = 10000;
+}
+
+option (optional).newname.a = "string";

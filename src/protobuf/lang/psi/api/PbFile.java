@@ -16,8 +16,5 @@ public interface PbFile extends PsiFile, PbPsiElement{
 
     String getPackageName();
 
-    PbImportDef[] getImportDefinitions();
-
-    PbMessageDef getDummyMessage();
-
+    PbImportDef[] getImportDefinitions();   
 }

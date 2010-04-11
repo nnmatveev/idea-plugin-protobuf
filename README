@@ -1,0 +1,5 @@
+HOW TO run tests:
+1. Set variable PLUGIN_PATH in "protobuf.util.TestPath" to path to plugin directory in your file system(have to end with "/")
+2. To run all tests, run PbTestSuite class in directory 'test'
+
+KNOWN ISSUES:

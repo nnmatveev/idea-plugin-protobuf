@@ -3,19 +3,16 @@ package protobuf.annotator;
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.Annotator;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ProjectRootManager;
-import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
 import protobuf.highlighter.DefaultHighlighter;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
-import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
+import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.util.PbBundle;
 
@@ -43,11 +40,16 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     }
 
     @Override
+    public void visitFile(PsiFile file) {
+        super.visitFile(file);
+    }
+
+    @Override
     public void visitImportDefinition(PbImportDef element) {
     }
 
     @Override
-    public void visitPackageDefinition(PbImportDef element) {
+    public void visitPackageDefinition(PbPackageDef element) {
 
     }
 
@@ -94,7 +96,6 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     @Override
     public void visitMessageDefinition(PbMessageDef message) {
         fixHighlighting(message);
-        //checkForWellformed(message);
     }
 
     @Override
@@ -108,27 +109,26 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
 
     @Override
     public void visitRef(PbRef element) {
+        fixHighlighting(element);
         if (element.resolve() == null) {
             if (element.isLastInChainReference()) {
                 myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
             } else {
                 myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
             }
-        } else {
-            fixHighlighting(element);
         }
     }
 
     @Override
-    public void visitFile(PsiFile file) {
-        super.visitFile(file);
+    public void visitValue(PbValue element) {
+        fixHighlighting(element);
     }
 
     private void fixHighlighting(PsiElement element) {
         if (element instanceof PbNamedElement) {
             PsiElement nameElement = ((PbNamedElement) element).getNameElement();
             if (nameElement != null) {
-                if (!sameType(nameElement, IDENTIFIER)) {
+                if (!sameType(nameElement, IDENTIFIER)) {                    
                     myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
                 }
             }
@@ -139,8 +139,10 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
                     myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
                 }
             }
+        } else if(element instanceof PbValue){
+            //todo [medium]
         } else {
-            //todo [medium] for values, etc...
+            //todo [medium] maybe something else needs in fix highlighting
         }
 
     }

@@ -11,6 +11,6 @@ import protobuf.file.ProtobufFileType;
 public class ProtobufFileTypeLoader extends FileTypeFactory {
     @Override
     public void createFileTypes(@NotNull FileTypeConsumer fileTypeConsumer) {
-        fileTypeConsumer.consume(ProtobufFileType.PROTOBUF_FILE_TYPE,"proto");
+        fileTypeConsumer.consume(ProtobufFileType.PROTOBUF_FILE_TYPE,"proto;");        
     }
 }

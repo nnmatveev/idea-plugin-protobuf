@@ -24,7 +24,7 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
 
     @Override
     protected String getBasePath() {
-        return PbTestUtil.getTestDataPath() + TestPath.PARSER_TEST_DIR;
+        return PbTestUtil.getTestDataPath() +"parser/";
     }
 
     public void doTest() {
@@ -37,7 +37,8 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
             final PsiFile psiFile = PbTestUtil.createPseudoProtoFile(getProject(), fileName, testMaterial.getFirst());
             final String psiTree = DebugUtil.psiToString(psiFile, true, false);
             assertEquals(StringUtil.convertLineSeparators(testMaterial.getSecond()), StringUtil.convertLineSeparators(psiTree.trim()));
-        } catch (IOException e) {
+        } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }

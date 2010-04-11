@@ -6,6 +6,7 @@ import protobuf.formatter.PbReformatTestCase;
 import protobuf.lang.lexer.PbLexerTestCase;
 import protobuf.lang.parser.PbParserTestCase;
 import protobuf.lang.resolve.PbResolveTestCase;
+import protobuf.refactoring.rename.PbRenameTestCase;
 
 /**
  * author: Nikolay Matveev
@@ -18,7 +19,8 @@ import protobuf.lang.resolve.PbResolveTestCase;
         PbResolveTestCase.class,
         PbReformatTestCase.class,
         PbEnterActionTestCase.class,
-        PbFindUsagesTestCase.class
+        PbFindUsagesTestCase.class,
+        PbRenameTestCase.class
 })
 public class PbTestSuite {
 }

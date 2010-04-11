@@ -23,7 +23,7 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
 
     @Override
     protected String getBasePath() {
-        return PbTestUtil.getTestDataPath() + TestPath.RESOLVE_TEST_DIR;
+        return PbTestUtil.getTestDataPath() + "resolve/";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
         super.setUp();
         myFixture.setTestDataPath(getBasePath());
         final String dirName = getTestName(true).replace('$', '/');
-        assertTrue(new File(getBasePath() + dirName).exists());
+        assertTrue(getBasePath() + dirName + " - directory not existed",new File(getBasePath() + dirName).exists());
         myFixture.copyDirectoryToProject(dirName, "");
     }
 
@@ -97,9 +97,8 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             } else {
                 assertFalse(aim.equals(resolved));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }
@@ -137,9 +136,8 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             } else {
                 assertFalse(aimPackage.equals(resolved));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }
@@ -177,9 +175,8 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
             } else {
                 assertFalse(aimFile.equals(((PsiFile)resolved).getVirtualFile()));
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }
@@ -217,41 +214,41 @@ public class PbResolveTestCase extends LightCodeInsightFixtureTestCase {
 
     //custom option
 
-    public void testCustomOption1$ExtendField1() {
+    public void testCustomOption1$extendfield1() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
-    public void testCustomOption1$MessageOrGroupField1() {
+    public void testCustomOption1$messageorgroupfield1() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
-    public void testCustomOption1$MessageOrGroupField2() {
+    public void testCustomOption1$messageorgroupfield2() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
-    public void testCustomOption1$MessageOrGroupField3() {
+    public void testCustomOption1$messageorgroupfield3() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
-    public void testCustomOption1$MessageOrGroupField4() {
+    public void testCustomOption1$messageorgroupfield4() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
-    public void testCustomOption1$MessageOrGroupField5() {
+    public void testCustomOption1$messageorgroupfield5() {
         doSimpleRefAimTest("a.proto", "a.proto", true);
     }
 
     //package
 
-    public void testPackage1$MessageOrPackageOrGroup1() {
+    public void testPackage1$messageorpackageorgroup1() {
         doSimpleRefPackageTest("a.proto", "my", true);
     }
-    public void testPackage1$Package1() {
+    public void testPackage1$package1() {
         doSimpleRefPackageTest("com/intellij/a.proto", "com.intellij", true);
     }
 
     //file
-    public void testFile1$File1() {
+    public void testFile1$file1() {
         doSimpleRefFileTest("a.proto", "com/intellij/b.proto", true);
     }
 

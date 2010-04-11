@@ -1,6 +1,7 @@
 package protobuf.compiler;
 
 import com.intellij.compiler.CompilerConfiguration;
+import com.intellij.compiler.impl.CompilerUtil;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.*;
 import com.intellij.openapi.diagnostic.Logger;
@@ -11,18 +12,12 @@ import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.StreamUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
-import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.openapi.vfs.VirtualFileManager;
-import com.intellij.psi.PsiManager;
 import org.jetbrains.annotations.NotNull;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbBundle;
 
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 
 /**
@@ -35,7 +30,8 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     private static final GenerationItem[] EMPTY_GENERATION_ITEM_ARRAY = new GenerationItem[]{};
 
-    private static final String PROTOC_EXE = "protoc.exe";
+    private static final String PROTOC_WINDOWS = "protoc.exe";
+    private static final String PROTOC_LINUX = "protoc";
 
     //regexp
     //private static final Pattern NEW_LINE = Pattern.compile("\r\n");
@@ -67,9 +63,9 @@ public class PbCompiler implements SourceGeneratingCompiler {
         VirtualFile[] files = compileScope.getFiles(ProtobufFileType.PROTOBUF_FILE_TYPE, false);
         ArrayList<GenerationItem> generationItems = new ArrayList<GenerationItem>(files.length);
         for (VirtualFile file : files) {
-            //if (!compilerConfiguration.isExcludedFromCompilation(file) || ) {
-            generationItems.add(new PbGenerationItem(file, compileContext.getModuleByFile(file), fileIndex.isInTestSourceContent(file)));
-            //}
+            if (!compilerConfiguration.isExcludedFromCompilation(file)) {
+                generationItems.add(new PbGenerationItem(file, compileContext.getModuleByFile(file), fileIndex.isInTestSourceContent(file)));
+            }
         }
         if (generationItems.size() > 0) {
             return generationItems.toArray(new GenerationItem[generationItems.size()]);
@@ -93,7 +89,8 @@ public class PbCompiler implements SourceGeneratingCompiler {
                     e.printStackTrace();
                 }
             }
-        }
+        }        
+        CompilerUtil.refreshIOFile(new File(compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY));
         return EMPTY_GENERATION_ITEM_ARRAY;
     }
 
@@ -110,6 +107,13 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public boolean validateConfiguration(CompileScope compileScope) {
+        //check if compiler supports current operation system
+        if(getCompilerExecutableName() == null){
+            Messages.showErrorDialog(PbBundle.message(
+                    "compiler.validate.error.unsupported.os"),
+                    PbBundle.message("compiler.validate.error.title"));
+            return false;
+        }
         //check path to compiler
         final String pathToCompiler = getPathToCompiler();
         File compilerFile = new File(pathToCompiler);
@@ -147,14 +151,14 @@ public class PbCompiler implements SourceGeneratingCompiler {
     }
 
     //todo for linux and mac
+
     private String getCompilerExecutableName() {
         if (SystemInfo.isWindows) {
-            return PROTOC_EXE;
+            return PROTOC_WINDOWS;
         } else if (SystemInfo.isLinux) {
-            return PROTOC_EXE;
-        } else {
-            return PROTOC_EXE;
+            return PROTOC_LINUX;
         }
+        return null;
     }
 
     private String getPathToCompiler() {
@@ -185,6 +189,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
         } else if (line.matches("[^:]*:[^:]*")) {
             String[] r = line.split(":");
             context.addMessage(CompilerMessageCategory.ERROR, r[1], myUrlBase + r[0], -1, -1);
+        } else if (line.length() == 0) {
         } else {
             context.addMessage(CompilerMessageCategory.ERROR, line, null, -1, -1);
         }

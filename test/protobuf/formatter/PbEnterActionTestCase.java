@@ -32,9 +32,9 @@ public class PbEnterActionTestCase extends PbFormatterTestCase {
             final Pair<String, String> testMaterial = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + fileName,true);
             myFixture.configureByText(ProtobufFileType.PROTOBUF_FILE_TYPE, testMaterial.getFirst());
             myFixture.type('\n');
-            System.out.println(myFixture.getFile().getText());
             myFixture.checkResult(testMaterial.getSecond());
         } catch (IOException e) {
+            assertTrue("exception",false);
             e.printStackTrace();
         }
     }

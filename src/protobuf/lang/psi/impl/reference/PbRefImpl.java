@@ -191,10 +191,14 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     @Override
-    public PsiElement handleElementRename(String newName) throws IncorrectOperationException {
+    public PsiElement handleElementRename(final String newName) throws IncorrectOperationException {
         PsiElement nameElement = getReferenceNameElement();
         if (nameElement != null) {
-            nameElement.getNode().getTreeParent().replaceChild(nameElement.getNode(),PbPsiUtil.createSimpleNodeWithText(newName,getProject()));
+            if(getRefKind() == ReferenceKind.MESSAGE_OR_GROUP_FIELD && (resolve() instanceof PbGroupDef)){
+                nameElement.getNode().getTreeParent().replaceChild(nameElement.getNode(),PbPsiUtil.createSimpleNodeWithText(newName.toLowerCase(),getProject()));
+            }else{
+                nameElement.getNode().getTreeParent().replaceChild(nameElement.getNode(),PbPsiUtil.createSimpleNodeWithText(newName,getProject()));
+            }
             return this;
         }
         throw new IncorrectOperationException();
@@ -348,7 +352,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     }
                     final String fileName = new File(relativePath).getName();
 
-                    //test code
+                    //hack for test code
                     PsiFile psiFile = null;
                     PsiFile[] foundFiles = FilenameIndex.getFilesByName(ref.getProject(), fileName, ref.getResolveScope());
                     for (PsiFile foundFile : foundFiles) {

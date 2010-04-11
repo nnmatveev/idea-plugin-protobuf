@@ -5,6 +5,8 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
+import com.intellij.util.IncorrectOperationException;
+import org.jetbrains.annotations.NotNull;
 import protobuf.file.ProtobufFileType;
 import protobuf.lang.psi.ProtobufPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
@@ -22,7 +24,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
     public PbFileImpl(FileViewProvider viewProvider) {
         super(viewProvider, ProtobufFileType.PROTOBUF_FILE_TYPE.getLanguage());
-    }
+    }  
 
     @Override
     public FileType getFileType() {
@@ -56,13 +58,8 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
     }
 
     @Override
-    public PbMessageDef getDummyMessage() {
-        return findChildByClass(PbMessageDef.class);
-    }
-
-    @Override
     public PsiElement getContext() {
-        return super.getContext();    //To change body of overridden methods use File | Settings | File Templates.
+        return super.getContext();
     }
 
     public PbFile[] getImportedFiles(boolean onlyAliased) {

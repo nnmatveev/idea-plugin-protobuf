@@ -24,7 +24,6 @@ public abstract class PbFormatterTestCase extends LightCodeInsightFixtureTestCas
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-
         Assert.assertNull(myTempSettings);
         CodeStyleSettings settings = CodeStyleSettingsManager.getSettings(getProject());
         myTempSettings = settings.clone();
