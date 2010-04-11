@@ -45,15 +45,11 @@ public class PbCompiler implements SourceGeneratingCompiler {
     PbCompilerApplicationSettings compilerAppSettings;
     PbCompilerProjectSettings compilerProjectSettings;
 
-    String myUrlBase;
-
     public PbCompiler(Project project) {
         myProject = project;
 
         compilerAppSettings = ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
         compilerProjectSettings = myProject.getComponent(PbCompilerProjectSettings.class);
-
-        myUrlBase = "file://" + myProject.getBaseDir().getPath() + "/";
     }
 
     @Override
@@ -84,13 +80,13 @@ public class PbCompiler implements SourceGeneratingCompiler {
                 Process proc;
                 try {
                     proc = Runtime.getRuntime().exec(commandBase + item.getPath());
-                    processStreams(compileContext, proc.getInputStream(), proc.getErrorStream());
+                    processStreams(compileContext, proc.getInputStream(), proc.getErrorStream(), (PbGenerationItem)item);
                     proc.destroy();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
-        }        
+        }
         CompilerUtil.refreshIOFile(new File(compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY));
         return EMPTY_GENERATION_ITEM_ARRAY;
     }
@@ -109,7 +105,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     @Override
     public boolean validateConfiguration(CompileScope compileScope) {
         //check if compiler supports current operation system
-        if(getCompilerExecutableName() == null){
+        if (getCompilerExecutableName() == null) {
             Messages.showErrorDialog(PbBundle.message(
                     "compiler.validate.error.unsupported.os"),
                     PbBundle.message("compiler.validate.error.title"));
@@ -171,27 +167,27 @@ public class PbCompiler implements SourceGeneratingCompiler {
         return myProject.getBaseDir().getPath();
     }
 
-    private void processStreams(CompileContext context, InputStream inp, InputStream err) {
+    private void processStreams(CompileContext context, InputStream inp, InputStream err, PbGenerationItem item) {
         try {
             String[] errorLines = StreamUtil.readText(err).trim().split("\n");
             for (String line : errorLines) {
-                processLine(context, line);
+                processLine(context, line.trim(), item);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void processLine(CompileContext context, String line) {        
-        if (ERROR_IN_LINE_MATCHER.reset(line).matches()) {            
-            String[] r = line.split(":");            
-            context.addMessage(CompilerMessageCategory.ERROR, r[3], myUrlBase + r[0], Integer.parseInt(r[1]), Integer.parseInt(r[2]));
-        } else if (ERROR_IN_FILE_MATCHER.reset(line).matches()) {
+    private void processLine(CompileContext context, String line, PbGenerationItem item) {
+        if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
             String[] r = line.split(":");
-            context.addMessage(CompilerMessageCategory.ERROR, r[1], myUrlBase + r[0], -1, -1);
+            context.addMessage(CompilerMessageCategory.ERROR, r[3], item.getUrl(), Integer.parseInt(r[1]), Integer.parseInt(r[2]));            
+        } else if (line.matches("[^:]*:[^:]*")) {
+            String[] r = line.split(":");
+            context.addMessage(CompilerMessageCategory.ERROR, r[1], item.getUrl(), -1, -1);
         } else if (line.length() == 0) {
         } else {
-            context.addMessage(CompilerMessageCategory.ERROR, line, null, -1, -1);
+            context.addMessage(CompilerMessageCategory.ERROR, line, item.getUrl(), -1, -1);
         }
 
     }

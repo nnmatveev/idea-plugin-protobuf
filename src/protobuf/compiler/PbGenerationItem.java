@@ -43,4 +43,8 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     public boolean isTestSource() {
         return myIsTestSource;
     }
+
+    public String getUrl(){
+        return myFile.getUrl();
+    }
 }
