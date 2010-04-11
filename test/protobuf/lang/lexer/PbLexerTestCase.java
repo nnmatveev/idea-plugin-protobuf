@@ -28,7 +28,7 @@ public class PbLexerTestCase extends UsefulTestCase {
 
     protected void doTest(Lexer lexer, String filePath) {
         try {
-            Pair<String, String> pair = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + filePath,false);
+            Pair<String, String> pair = PbTestUtil.getSimpleTestMaterialsFromFile(getBasePath() + filePath,true);
             lexer.start(pair.getFirst());
             String result = "";
             while (true) {
@@ -38,11 +38,11 @@ public class PbLexerTestCase extends UsefulTestCase {
                 }
                 String tokenText = getTokenText(lexer);
                 String tokenTypeName = tokenType.toString();
-                String line = tokenTypeName + "#" + tokenText + "\r\n";
+                String line = tokenTypeName + "#" + tokenText + "\n";
                 result += line;
                 lexer.advance();
             }
-            assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\r\n"), StringUtil.convertLineSeparators(result));            
+            assertEquals(StringUtil.convertLineSeparators(pair.getSecond() + "\n"), StringUtil.convertLineSeparators(result));
         } catch (Exception e) {
             assertTrue("exception",false);
             e.printStackTrace();

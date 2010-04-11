@@ -11,9 +11,9 @@ WHITE_SPACE#\t
 IDENTIFIER#idea
 WHITE_SPACE#\t
 NUM_DOUBLE#9.0
-WHITE_SPACE#\r\n\r\n\r\n\r\n
+WHITE_SPACE#\n\n\n\n
 IDENTIFIER#idea
 WHITE_SPACE#\_
 IDENTIFIER#plugin
-WHITE_SPACE#\t\r\n\r\n\t
+WHITE_SPACE#\t\n\n\t
 IDENTIFIER#protobuf

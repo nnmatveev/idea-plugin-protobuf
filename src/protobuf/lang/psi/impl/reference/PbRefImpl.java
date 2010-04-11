@@ -365,8 +365,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     //real code
                     VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
                     if (vfile != null) {
-                        PsiFile pfile = ref.getManager().findFile(vfile);
-                        return pfile;
+                        return ref.getManager().findFile(vfile);
                     } else {
                         return null;
                     }
