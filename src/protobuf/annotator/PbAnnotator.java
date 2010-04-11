@@ -18,6 +18,7 @@ import protobuf.util.PbBundle;
 
 import static protobuf.lang.psi.utils.PbPsiUtil.sameType;
 import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.psi.PbPsiEnums.*;
 
 
 /**
@@ -120,6 +121,11 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     }
 
     @Override
+    public void visitExtensionsDefinition(PbExtensionsDef element) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public void visitValue(PbValue element) {
         fixHighlighting(element);
     }
@@ -140,7 +146,18 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
                 }
             }
         } else if(element instanceof PbValue){
-            //todo [medium]
+            ValueType type = ((PbValue)element).getType();
+            switch(type){
+                case NUM_INT:
+                case NUM_DOUBLE:{
+                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(DefaultHighlighter.NUMBER_ATTR_KEY);
+                }
+                break;
+                case ENUM_CONSTANT:{
+                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(protobuf.highlighter.DefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
+                }
+                break;
+            }
         } else {
             //todo [medium] maybe something else needs in fix highlighting
         }

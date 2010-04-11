@@ -2,21 +2,20 @@
 <project version="4">
   <component name="ChangeListManager" verified="true">
     <list default="true" readonly="true" id="3756ec80-ea06-446d-88e3-5133096e171a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/EnumDefinition.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/definitions/PbEnumDefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbPackageRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/utils/PsiUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbTypeRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/resolve/ResolveUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/todo" afterPath="$PROJECT_DIR$/src/todo" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" afterPath="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/api/references/PbOptionRef.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README" afterPath="$PROJECT_DIR$/README" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/api/member/PbValue.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/api/member/PbValue.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java" afterPath="$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testdata/formatter/reformat/option1.test" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/highlighter/DefaultHighlighter.java" afterPath="$PROJECT_DIR$/src/protobuf/highlighter/DefaultHighlighter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/PbPsiEnums.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/PbPsiEnums.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/annotator/PbAnnotator.java" afterPath="$PROJECT_DIR$/src/protobuf/annotator/PbAnnotator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/declaration/PbExtensionsDefImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/declaration/PbExtensionsDefImpl.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiElementVisitor.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiElementVisitor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/ProtobufTokenTypes.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/ProtobufTokenTypes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufSpacingProcessor.java" afterPath="$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufSpacingProcessor.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/runConfigurations/idea_plugin_protobuf.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/member/PbValueImpl.java" afterPath="$PROJECT_DIR$/src/protobuf/lang/psi/impl/member/PbValueImpl.java" />
     </list>
     <ignored path="idea-plugin-protobuf.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -81,97 +80,91 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="PbLexerTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java">
+      <file leaf-file-name="ProtobufSpacingProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufSpacingProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="17" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
+            <state line="68" column="32" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PbEnterActionTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java">
+      <file leaf-file-name="DefaultHighlighter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/highlighter/DefaultHighlighter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="42" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
+            <state line="44" column="8" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PbPsiEnums.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/PbPsiEnums.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="13" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PbOptionAssignment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/api/member/PbOptionAssignment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="17" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PbOptionAssignmentImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/impl/member/PbOptionAssignmentImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="13" selection-start="505" selection-end="505" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="0" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
+            <state line="27" column="33" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.8547486">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plugin.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
+      <file leaf-file-name="PbCompiler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/compiler/PbCompiler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="81" selection-start="259" selection-end="259" vertical-scroll-proportion="-0.48832685">
+            <state line="160" column="0" selection-start="6807" selection-end="6807" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PbTestUtil.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/util/PbTestUtil.java">
+      <file leaf-file-name="PbRefImpl.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/impl/reference/PbRefImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="82" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="docComment;class#PbTestUtil#0" expanded="false" />
-                <element signature="method#getTestDataPath#0;class#PbTestUtil#0" expanded="false" />
-                <element signature="method#getSimpleTestMaterialsFromFile#0;class#PbTestUtil#0" expanded="false" />
-                <element signature="method#createPseudoProtoFile#0;class#PbTestUtil#0" expanded="false" />
-                <element signature="method#loadFromFile#0;class#PbTestUtil#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TestPath.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/util/TestPath.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="64" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+            <state line="355" column="20" selection-start="10870" selection-end="10870" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PbTestSuite.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/PbTestSuite.java">
+      <file leaf-file-name="ProtobufBlockGenerator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufBlockGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
+            <state line="17" column="13" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PbReformatTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java">
+      <file leaf-file-name="ProtobufIndentProcessor.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufIndentProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="65" selection-start="1923" selection-end="1923" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PbRenameTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/refactoring/rename/PbRenameTestCase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="13" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PbFormatterTestCase.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="22" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
+            <state line="16" column="13" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -197,22 +190,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/references/PbOptionRefImpl.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/ProtobufElementTypes.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiCreator.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/definitions/OptionDefinition.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/lang/parser/parsing/ReferenceElement.java" />
-        <option value="$PROJECT_DIR$/src/protobuf/ProtobufLoader.java" />
-        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
-        <option value="$PROJECT_DIR$/test/protobuf/util/TestPath.java" />
-        <option value="$PROJECT_DIR$/test/protobuf/lang/resolve/PbResolveTestCase.java" />
-        <option value="$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java" />
-        <option value="$PROJECT_DIR$/test/protobuf/lang/parser/PbParserTestCase.java" />
-        <option value="$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java" />
         <option value="$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java" />
         <option value="$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java" />
-        <option value="$PROJECT_DIR$/README" />
         <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/ProtobufTokenTypes.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/ProtobufPsiElementVisitor.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/declaration/PbExtensionsDefImpl.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/api/member/PbValue.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/impl/member/PbValueImpl.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/lang/psi/PbPsiEnums.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/annotator/PbAnnotator.java" />
+        <option value="$PROJECT_DIR$/testdata/formatter/reformat/optionlist1.test" />
+        <option value="$PROJECT_DIR$/testdata/formatter/reformat/option1.test" />
+        <option value="$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufSpacingProcessor.java" />
+        <option value="$PROJECT_DIR$/src/protobuf/highlighter/DefaultHighlighter.java" />
+        <option value="$PROJECT_DIR$/README" />
       </list>
     </option>
   </component>
@@ -259,7 +252,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -280,6 +272,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
       <pane id="PackagesPane">
         <subPane />
       </pane>
@@ -293,15 +286,15 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="org.intellij.lang.jflex.options.JFlexConfigurable" />
+    <property name="options.lastSelected" value="protobuf.compiler.PbCompilerConfigurable" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="PsiViewer.ProjectComponent">
     <option name="HIGHLIGHT" value="false" />
@@ -320,7 +313,7 @@
       <recent name="protobuf.lang.psi.api" />
     </key>
   </component>
-  <component name="RunManager" selected="Plugin.new">
+  <component name="RunManager" selected="Plugin.idea-plugin-protobuf">
     <configuration default="false" name="Test1" type="Application" factoryName="Application" temporary="true">
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="protobuf.experiments.Test1" />
@@ -356,6 +349,65 @@
         <value defaultName="moduleWithDependencies" />
       </option>
       <envs />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="PbReformatTestCase.testOption1" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="snapshooter" />
+      <module name="idea-plugin-protobuf" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="protobuf.formatter" />
+      <option name="MAIN_CLASS_NAME" value="protobuf.formatter.PbReformatTestCase" />
+      <option name="METHOD_NAME" value="testOption1" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="PbReformatTestCase" type="JUnit" factoryName="JUnit" temporary="true">
+      <extension name="snapshooter" />
+      <module name="idea-plugin-protobuf" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="PACKAGE_NAME" value="protobuf.formatter" />
+      <option name="MAIN_CLASS_NAME" value="protobuf.formatter.PbReformatTestCase" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-Didea.platform.prefix=Idea" />
+      <option name="PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <RunnerSettings RunnerId="JProfiler">
+        <option name="WINDOW" value="false" />
+        <option name="JVMPI" value="false" />
+        <option name="INTERPRETED" value="false" />
+      </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
@@ -404,7 +456,6 @@
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="moduleWithDependencies" />
       </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
       <option name="PROPERTIES_FILE" />
       <envs />
       <properties />
@@ -479,24 +530,12 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="false" name="new" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
-      <module name="idea-plugin-protobuf" />
-      <option name="VM_PARAMETERS" value=" -Xms128m -Xmx512m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" value="" />
-      <log_file path="/home/nikolay/.IdeaIC90/system/plugins-sandbox/system/log/idea.log" checked="true" skipped="true" show_all="false" alias="IDEA LOG" />
-      <RunnerSettings RunnerId="JProfiler">
-        <option name="WINDOW" value="false" />
-        <option name="JVMPI" value="false" />
-        <option name="INTERPRETED" value="false" />
-      </RunnerSettings>
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.Test1" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.PbTestSuite" />
-      <item index="2" class="java.lang.String" itemvalue="Plugin.new" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.PbReformatTestCase.testOption1" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.PbReformatTestCase" />
+      <item index="4" class="java.lang.String" itemvalue="Plugin.idea-plugin-protobuf" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -516,7 +555,7 @@
     <option name="DETECT_NESTED_COPIES" value="false" />
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
-    <configuration useDefault="true">/home/nikolay/.subversion</configuration>
+    <configuration useDefault="true">C:\Users\Nikolay\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
     <supportedVersion>125</supportedVersion>
   </component>
@@ -541,22 +580,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1021" y="25" width="1372" height="720" extended-state="6" />
-    <editor active="true" />
+    <frame x="1" y="0" width="1373" height="754" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20440729" sideWeight="0.8973064" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44032258" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.57239056" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" x="25" y="153" width="1316" height="432" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.20707071" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24035087" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24032257" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24579124" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32978722" sideWeight="0.33838382" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39969605" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23211567" sideWeight="0.9877193" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16329966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32976282" sideWeight="0.6016129" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.0" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.38709676" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="PsiViewer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25835866" sideWeight="0.8973064" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure101" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32996634" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -566,9 +608,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27963525" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.44107744" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="JProfiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16329966" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -606,143 +645,116 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/annotator/PbAnnotator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="181" column="0" selection-start="16646" selection-end="16646" vertical-scroll-proportion="2.0833333">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/protobuf/ProtobufLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="39" selection-start="721" selection-end="721" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/findUsages/PbFindUsagesTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="13" selection-start="811" selection-end="811" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/openapi.jar!/com/intellij/ide/plugins/IdeaPluginDescriptorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="0" selection-start="8797" selection-end="8797" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/resolve/PbResolveTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="6" selection-start="6918" selection-end="6918" vertical-scroll-proportion="0.0">
+        <state line="158" column="22" selection-start="5822" selection-end="5822" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="docComment;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#getBasePath#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#setUp#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#doSimpleRefAimTest#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#doSimpleRefPackageTest#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#doSimpleRefFileTest#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$field$enum1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$field$group1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$field$message1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$servicemethod$group1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$servicemethod$message1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$extend$group1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomType1$extend$message1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$extendfield1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$messageorgroupfield1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$messageorgroupfield2#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$messageorgroupfield3#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$messageorgroupfield4#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testCustomOption1$messageorgroupfield5#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testPackage1$messageorpackageorgroup1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testPackage1$package1#0;class#PbResolveTestCase#0" expanded="false" />
-            <element signature="method#testFile1$file1#0;class#PbResolveTestCase#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/parser/PbParserTestCase.java">
+    <entry file="file://$PROJECT_DIR$/testdata/formatter/reformat/optionlist1.test">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="17" selection-start="1330" selection-end="1330" vertical-scroll-proportion="0.0">
+        <state line="4" column="40" selection-start="121" selection-end="121" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/lang/lexer/PbLexerTestCase.java">
+    <entry file="file://$PROJECT_DIR$/testdata/formatter/reformat/option1.test">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="17" selection-start="1576" selection-end="1576" vertical-scroll-proportion="0.0">
+        <state line="2" column="16" selection-start="43" selection-end="43" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/refactoring/rename/PbRenameTestCase.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/ProtobufBlock.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="13" selection-start="543" selection-end="543" vertical-scroll-proportion="0.0">
+        <state line="20" column="13" selection-start="580" selection-end="580" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbReformatTestCase.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="65" selection-start="1923" selection-end="1923" vertical-scroll-proportion="0.0">
+        <state line="46" column="60" selection-start="1882" selection-end="1882" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbFormatterTestCase.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/ProtobufFormattingModelBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="22" selection-start="723" selection-end="723" vertical-scroll-proportion="0.0">
+        <state line="18" column="13" selection-start="579" selection-end="579" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/formatter/PbEnterActionTestCase.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufBlockGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="42" selection-start="1268" selection-end="1268" vertical-scroll-proportion="0.0">
+        <state line="17" column="13" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/PbTestSuite.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufIndentProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="731" selection-end="731" vertical-scroll-proportion="0.0">
+        <state line="16" column="13" selection-start="441" selection-end="441" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/util/PbTestUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/formatter/util/ProtobufSpacingProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="82" selection-start="872" selection-end="872" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="docComment;class#PbTestUtil#0" expanded="false" />
-            <element signature="method#getTestDataPath#0;class#PbTestUtil#0" expanded="false" />
-            <element signature="method#getSimpleTestMaterialsFromFile#0;class#PbTestUtil#0" expanded="false" />
-            <element signature="method#createPseudoProtoFile#0;class#PbTestUtil#0" expanded="false" />
-            <element signature="method#loadFromFile#0;class#PbTestUtil#0" expanded="false" />
-          </folding>
+        <state line="68" column="32" selection-start="3096" selection-end="3096" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/protobuf/util/TestPath.java">
+    <entry file="file://$PROJECT_DIR$/src/protobuf/highlighter/DefaultHighlighter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="64" selection-start="243" selection-end="243" vertical-scroll-proportion="0.0">
+        <state line="44" column="8" selection-start="1970" selection-end="1970" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/PbPsiEnums.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="5" column="13" selection-start="76" selection-end="76" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/api/member/PbOptionAssignment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="17" selection-start="254" selection-end="254" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/impl/member/PbOptionAssignmentImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="13" selection-start="505" selection-end="505" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protobuf/lang/psi/impl/reference/PbRefImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="355" column="20" selection-start="10870" selection-end="10870" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/protobuf/compiler/PbCompiler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="0" selection-start="6807" selection-end="6807" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/META-INF/plugin.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="81" selection-start="259" selection-end="259" vertical-scroll-proportion="-0.48832685">
+        <state line="27" column="33" selection-start="1716" selection-end="1716" vertical-scroll-proportion="0.8547486">
           <folding />
         </state>
       </provider>

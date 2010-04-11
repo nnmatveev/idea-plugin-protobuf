@@ -87,6 +87,10 @@ public class PbPsiEnums {
     }
 
     public enum ValueType {
-
+        BOOL,
+        NUM_INT,
+        NUM_DOUBLE,
+        STRING,
+        ENUM_CONSTANT
     }
 }

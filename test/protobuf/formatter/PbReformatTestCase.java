@@ -43,7 +43,8 @@ public class PbReformatTestCase extends PbFormatterTestCase {
                 public void run() {
                     CodeStyleManager.getInstance(psiFile.getProject()).reformatText(psiFile, myTextRange.getStartOffset(), myTextRange.getEndOffset());
                 }
-            });                                    
+            });
+            System.out.println(DebugUtil.psiTreeToString(psiFile,true));
             assertEquals(StringUtil.convertLineSeparators(testMaterial.getSecond()), psiFile.getText());
         } catch (Exception e) {
             assertTrue("exception",false);
@@ -58,5 +59,6 @@ public class PbReformatTestCase extends PbFormatterTestCase {
     public void testBlockspacing1() {doTest();}
     public void testBlockspacing2() {doTest();}
     public void testOptionlist1() {doTest();}
+    public void testOption1() {doTest();}
 
 }

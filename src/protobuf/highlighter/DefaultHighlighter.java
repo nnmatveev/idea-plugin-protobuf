@@ -24,7 +24,7 @@ public class DefaultHighlighter{
 
     //AttributesFlyweight.create(
 
-    static final TextAttributes TEXT_ATTR = new TextAttributes(new Color(0,0,0), null, null, null, Font.ITALIC);
+    static final TextAttributes TEXT_ATTR = new TextAttributes(new Color(0,0,0), null, null, null, Font.PLAIN);
     static final TextAttributes COMMENT_ATTR = SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes();    
     static final TextAttributes STRING_ATTR = SyntaxHighlighterColors.STRING.getDefaultAttributes();
     static final TextAttributes WRONG_STRING_ATTR = SyntaxHighlighterColors.STRING.getDefaultAttributes();
@@ -35,10 +35,15 @@ public class DefaultHighlighter{
         BAD_CHARACTER_ATTR.setForegroundColor(new Color(255,0,0));
     }
     static final TextAttributes KEYWORD_ATTR = SyntaxHighlighterColors.KEYWORD.getDefaultAttributes().clone();
-    static{
+    /*static{
         KEYWORD_ATTR.setForegroundColor(new Color(0,0,67));
-        KEYWORD_ATTR.setFontType(Font.BOLD);
-    }
+        KEYWORD_ATTR.setFontType(Font.PLAIN);
+    } */
+    /*static{
+        KEYWORD_ATTR.setForegroundColor(new Color(85,86,0));
+        KEYWORD_ATTR.setFontType(Font.PLAIN);
+    } */
+
     static final TextAttributes ENUM_CONSTANT_ATTR = new TextAttributes();
     static{
         ENUM_CONSTANT_ATTR.setForegroundColor(new Color(102,14,122));

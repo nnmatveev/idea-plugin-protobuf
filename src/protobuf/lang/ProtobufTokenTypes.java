@@ -17,9 +17,7 @@ public interface ProtobufTokenTypes {
     IElementType SEMICOLON = new ProtobufElementType("SEMICOLON");
     IElementType DOT = new ProtobufElementType("DOT");
     IElementType COMMA = new ProtobufElementType("COMMA");
-    
     IElementType EQUAL = new ProtobufElementType("EQUAL");
-
     IElementType MINUS = new ProtobufElementType("MINUS");
 
     IElementType BAD_CHARACTER = TokenType.BAD_CHARACTER;
@@ -63,7 +61,7 @@ public interface ProtobufTokenTypes {
     IElementType SERVICE = new ProtobufElementType("SERVICE");
     IElementType OPTION = new ProtobufElementType("OPTION");
     IElementType ENUM = new ProtobufElementType("ENUM");
-    TokenSet DEFINITIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM); //keywords
+    TokenSet DECLARATIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM); //keywords
 
 
     IElementType RPC = new ProtobufElementType("RPC");
@@ -140,7 +138,7 @@ public interface ProtobufTokenTypes {
                                         /*FIELD_OPTIONS,*/
                                         FIELD_LABELS,
                                         BOOL_VALUES,
-                                        DEFINITIONS,
+            DECLARATIONS,
                                         OTHER_KEYWORDS
                                         );
     TokenSet IK = TokenSet.orSet(IDENTIFIERS,KEYWORDS);

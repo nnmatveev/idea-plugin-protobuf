@@ -65,6 +65,13 @@ public class ProtobufSpacingProcessor {
             }
         }
 
+        //In option assignment
+        if(sameType(parent,VALUE)){
+            if(sameType(child1,MINUS)){
+                return NO_SPACING;
+            }
+        }
+
         //in file
         if (parent.getNode().getPsi() instanceof PbFile) {
             //System.out.println("SPACING_IN_FILE");

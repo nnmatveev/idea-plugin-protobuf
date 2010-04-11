@@ -33,5 +33,7 @@ public abstract class ProtobufPsiElementVisitor extends PsiElementVisitor {
 
     public abstract void visitRef(PbRef element);
 
+    public abstract void visitExtensionsDefinition(PbExtensionsDef element);
+
     public abstract void visitValue(PbValue element);
 }

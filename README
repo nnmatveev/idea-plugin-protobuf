@@ -1,5 +1,28 @@
+USEFUL LINKS:
+1. Protocol Buffers brief and only documentation - http://code.google.com/intl/ru/apis/protocolbuffers/docs/overview.html
+
 HOW TO run tests:
 1. Set variable PLUGIN_PATH in "protobuf.util.TestPath" to path to plugin directory in your file system(have to end with "/")
-2. To run all tests, run PbTestSuite class in directory 'test'
+2. To run all tests, run PbTestSuite class in project directory 'test'
+
+HOW TO use compiler:
+1. File->Settings->Compiler(Project Settings)->Protocol Buffers compiler
+2. "Path to protoc" field have to contain only path to parent directory of protoc and ends with "/"
+But if something was set up wrong, plugin wouldn't allow to execute compilation and show warginig message
+
+AUTHOR NOTES:
+1. Protocol Buffers language haven't any reserved keywords, thus I have to be tricky in some places.
+2. [protobuf.lang.psi.impl.reference.PbRefImpl:355:21] Using LightCodeFixtureTextCase leads to problems with temp directory, thus I have to use such hack to make method works both in real and test mode.
+3. [protobuf.compiler.PbCompiler:161:1] I can't try my plugin on Mac and I know nothing about Macintosh, thus I leave this works only for Windows and Linux(and have tested for both).
+
 
 KNOWN ISSUES:
+1. Problems with fixing highlighting:
+    1. While annotating I can change a color of the bold text, but cannot apply Font.PLAIN attribute(but Font.ITALIC works)
+    2. I try to fix a lot of highlighting misses, but in some cases it is still incorrect. For example if anybody creates enum with enum constant named "true" and then specified it as a option value. I believe that it is exotic.
+
+
+2. Compiler:
+    I don't know how compiler will behave if the "output source directory" located separate from project
+
+3.  a lot of to do in the code...
