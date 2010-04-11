@@ -26,6 +26,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         super(viewProvider, ProtobufFileType.PROTOBUF_FILE_TYPE.getLanguage());
     }  
 
+    @NotNull
     @Override
     public FileType getFileType() {
         return ProtobufFileType.PROTOBUF_FILE_TYPE;
@@ -72,6 +73,6 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
             }
 
         }
-        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
+        return importFiles.toArray(new PbFile[importFiles.size()]);
     }   
 }

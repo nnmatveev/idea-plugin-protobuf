@@ -30,8 +30,8 @@ public class ProtobufLoader implements ApplicationComponent {
     }
 
     private void registerFileTypes() {
-        FileType[] registeredFileTypes = FileTypeManager.getInstance().getRegisteredFileTypes();
-        /*for(FileType fileType : registeredFileTypes){
+        /*FileType[] registeredFileTypes = FileTypeManager.getInstance().getRegisteredFileTypes();
+        for(FileType fileType : registeredFileTypes){
             if(fileType.equals(ProtobufFileType.PROTOBUF_FILE_TYPE)){
                 return;
             }

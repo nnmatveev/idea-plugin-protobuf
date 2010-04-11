@@ -12,18 +12,6 @@ import java.awt.*;
  */
 public class DefaultHighlighter{
 
-    //static final String TEXT_ID = "program text";
-    static final String LINE_COMMENT_ID = "line comment";
-    static final String C_STYLE_COMMENT_ID = "line comment";
-    static final String WRONG_C_STYLE_COMMENT_ID = "line comment";
-    static final String STRING_ID = "string";
-    static final String WRONG_STRING_ID = "wrong string";
-    static final String BAD_CHARACTER_ID = "bad character";
-    static final String NUMBER_ID = "number";
-    static final String KEYWORD_ID = "keyword";    
-
-    //AttributesFlyweight.create(
-
     static final TextAttributes TEXT_ATTR = new TextAttributes(new Color(0,0,0), null, null, null, Font.PLAIN);
     static final TextAttributes COMMENT_ATTR = SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes();    
     static final TextAttributes STRING_ATTR = SyntaxHighlighterColors.STRING.getDefaultAttributes();
@@ -37,10 +25,6 @@ public class DefaultHighlighter{
     static final TextAttributes KEYWORD_ATTR = SyntaxHighlighterColors.KEYWORD.getDefaultAttributes().clone();
     /*static{
         KEYWORD_ATTR.setForegroundColor(new Color(0,0,67));
-        KEYWORD_ATTR.setFontType(Font.PLAIN);
-    } */
-    /*static{
-        KEYWORD_ATTR.setForegroundColor(new Color(85,86,0));
         KEYWORD_ATTR.setFontType(Font.PLAIN);
     } */
 
@@ -57,12 +41,12 @@ public class DefaultHighlighter{
 
 
     public static TextAttributesKey TEXT_ATTR_KEY = TextAttributesKey.createTextAttributesKey("default text", TEXT_ATTR);
-    public static TextAttributesKey LINE_COMMENT_ATTR_KEY = TextAttributesKey.createTextAttributesKey(LINE_COMMENT_ID, COMMENT_ATTR);
-    public static TextAttributesKey STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey(STRING_ID, STRING_ATTR);
-    public static TextAttributesKey WRONG_STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey(WRONG_STRING_ID, WRONG_STRING_ATTR);
-    public static TextAttributesKey BAD_CHARACTER_ATTR_KEY = TextAttributesKey.createTextAttributesKey(BAD_CHARACTER_ID, BAD_CHARACTER_ATTR);
-    public static TextAttributesKey NUMBER_ATTR_KEY = TextAttributesKey.createTextAttributesKey(NUMBER_ID,NUMBER_ATTR);
-    public static TextAttributesKey KEYWORD_ATTR_KEY = TextAttributesKey.createTextAttributesKey(KEYWORD_ID,KEYWORD_ATTR);
+    public static TextAttributesKey LINE_COMMENT_ATTR_KEY = TextAttributesKey.createTextAttributesKey("line comment", COMMENT_ATTR);
+    public static TextAttributesKey STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey("string", STRING_ATTR);
+    public static TextAttributesKey WRONG_STRING_ATTR_KEY = TextAttributesKey.createTextAttributesKey("wrong string", WRONG_STRING_ATTR);
+    public static TextAttributesKey BAD_CHARACTER_ATTR_KEY = TextAttributesKey.createTextAttributesKey("bad characted", BAD_CHARACTER_ATTR);
+    public static TextAttributesKey NUMBER_ATTR_KEY = TextAttributesKey.createTextAttributesKey("number",NUMBER_ATTR);
+    public static TextAttributesKey KEYWORD_ATTR_KEY = TextAttributesKey.createTextAttributesKey("keyword",KEYWORD_ATTR);
     public static TextAttributesKey ENUM_CONSTANT_ATTR_KEY = TextAttributesKey.createTextAttributesKey("enum constant",ENUM_CONSTANT_ATTR);
     public static TextAttributesKey ERROR_INFO_ATTR_KEY = TextAttributesKey.createTextAttributesKey("error",ERROR_INFO_ATTR);
 }

@@ -19,6 +19,8 @@ import protobuf.util.PbBundle;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * author: Nikolay Matveev
@@ -33,10 +35,9 @@ public class PbCompiler implements SourceGeneratingCompiler {
     private static final String PROTOC_WINDOWS = "protoc.exe";
     private static final String PROTOC_LINUX = "protoc";
 
-    //regexp
-    //private static final Pattern NEW_LINE = Pattern.compile("\r\n");
 
-    //private static final Matcher REGULAR_ERROR_IN_FILE_MATCHER = Pattern.compile("[^:]*:[^:]:[^:].*").matcher("");
+    private static final Matcher ERROR_IN_LINE_MATCHER = Pattern.compile("[^:]*:[0-9]*:[0-9]*:.*").matcher("");
+    private static final Matcher ERROR_IN_FILE_MATCHER = Pattern.compile("[^:]*:[^:]*").matcher("");
 
     Project myProject;
 
@@ -77,7 +78,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     @Override
     public GenerationItem[] generate(CompileContext compileContext, GenerationItem[] generationItems, VirtualFile outputRootDirectory) {
         //todo [medium] if files located not in project root dir, problem may occur
-        final String commandBase = getPathToCompiler() + "" + " --proto_path=" + getBaseDir() + " --java_out=" + compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY + " --error_format=gcc" + " ";
+        final String commandBase = getPathToCompiler() + "" + " --proto_path=" + getBaseDir() + " --java_out=" + compilerProjectSettings.OUTPUT_SOURCE_DIRECTORY + " ";
         if (generationItems.length > 0) {
             for (GenerationItem item : generationItems) {
                 Process proc;
@@ -172,7 +173,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     private void processStreams(CompileContext context, InputStream inp, InputStream err) {
         try {
-            String[] errorLines = StreamUtil.readText(err).trim().split("\r\n");
+            String[] errorLines = StreamUtil.readText(err).trim().split("\n");
             for (String line : errorLines) {
                 processLine(context, line);
             }
@@ -181,12 +182,11 @@ public class PbCompiler implements SourceGeneratingCompiler {
         }
     }
 
-    private void processLine(CompileContext context, String line) {
-        //todo [low] rewrite with patterns and matchers
-        if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
-            String[] r = line.split(":");
+    private void processLine(CompileContext context, String line) {        
+        if (ERROR_IN_LINE_MATCHER.reset(line).matches()) {            
+            String[] r = line.split(":");            
             context.addMessage(CompilerMessageCategory.ERROR, r[3], myUrlBase + r[0], Integer.parseInt(r[1]), Integer.parseInt(r[2]));
-        } else if (line.matches("[^:]*:[^:]*")) {
+        } else if (ERROR_IN_FILE_MATCHER.reset(line).matches()) {
             String[] r = line.split(":");
             context.addMessage(CompilerMessageCategory.ERROR, r[1], myUrlBase + r[0], -1, -1);
         } else if (line.length() == 0) {

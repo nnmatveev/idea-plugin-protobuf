@@ -119,8 +119,7 @@ public abstract class PbPsiUtil {
             return facade.findPackage(((PbFile) element).getPackageName());
         }
         if (element instanceof PbPsiElement) {
-            PbPsiElement scope = (PbPsiElement) element.getParent();
-            int i = 0;
+            PbPsiElement scope = (PbPsiElement) element.getParent();            
             while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
                 scope = (PbPsiElement) scope.getParent();
             }
@@ -182,7 +181,7 @@ public abstract class PbPsiUtil {
         if (importFiles.size() == 0) {
             return EMPTY_FILE_ARRAY;
         }
-        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
+        return importFiles.toArray(new PbFile[importFiles.size()]);
     }
 
     public static PbFile[] getImportedFilesByPackageName(PbFile file, @NotNull String packageName) {
@@ -197,7 +196,7 @@ public abstract class PbPsiUtil {
         if (importFiles.size() == 0) {
             return EMPTY_FILE_ARRAY;
         }
-        return importFiles.toArray(new PbFileImpl[importFiles.size()]);
+        return importFiles.toArray(new PbFile[importFiles.size()]);
     }
 
     public static boolean isVisibleSubPackage(PsiPackage subPackage, PbFile curFile) {
