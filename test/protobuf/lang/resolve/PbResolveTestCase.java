@@ -7,7 +7,6 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 import java.io.File;
 import java.io.IOException;

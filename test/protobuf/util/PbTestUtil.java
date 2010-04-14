@@ -15,8 +15,6 @@ import protobuf.file.ProtobufFileType;
 import java.io.File;
 import java.io.IOException;
 
-import static protobuf.util.TestPath.*;
-
 /**
  * author: Nikolay Matveev
  * Date: Apr 7, 2010
@@ -24,10 +22,18 @@ import static protobuf.util.TestPath.*;
 public abstract class PbTestUtil {
     public static final String REF_MARKER = "<ref>";
     public static final String AIM_MARKER = "<aim>";
-    public static final String CARET_MARKER = "<caret>";
 
-    public static String getTestDataPath() {
-        return PLUGIN_PATH + TEST_DATA_PATH;
+    public static String testDataPath;
+    static{
+        try {
+            testDataPath = new File(".").getCanonicalPath() + "/testdata/";
+        } catch (IOException e) {            
+            testDataPath = null;
+        }
+    }
+
+    public static String getTestDataPath(){        
+        return testDataPath;        
     }
 
     public static Pair<String, String> getSimpleTestMaterialsFromFile(final String filePath, boolean convertSeparators) throws IOException {
@@ -53,5 +59,5 @@ public abstract class PbTestUtil {
 
     public static String loadFromFile(final String filePath) throws IOException {        
         return StringUtil.convertLineSeparators(new String(FileUtil.loadFileText(new File(filePath))));
-    }
+    }        
 }

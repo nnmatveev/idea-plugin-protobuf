@@ -4,11 +4,8 @@ import com.intellij.lexer.Lexer;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.testFramework.UsefulTestCase;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 import java.io.IOException;
 
@@ -16,7 +13,7 @@ import java.io.IOException;
  * author: Nikolay Matveev
  */
 
-public class PbLexerTestCase extends UsefulTestCase {
+public class PbLexerTestCase extends LightCodeInsightFixtureTestCase {
 
     protected String getBasePath() {
         return PbTestUtil.getTestDataPath() + "lexer/";

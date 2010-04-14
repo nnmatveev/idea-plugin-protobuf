@@ -6,7 +6,6 @@ import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import junit.framework.Assert;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 /**
  * author: Nikolay Matveev

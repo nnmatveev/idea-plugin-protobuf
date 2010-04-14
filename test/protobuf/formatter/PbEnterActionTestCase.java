@@ -9,7 +9,6 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 import java.io.IOException;
 

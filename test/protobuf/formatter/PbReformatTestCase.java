@@ -16,7 +16,6 @@ import com.intellij.util.IncorrectOperationException;
 import junit.framework.Assert;
 import protobuf.file.ProtobufFileType;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 import java.io.IOException;
 
@@ -44,7 +43,7 @@ public class PbReformatTestCase extends PbFormatterTestCase {
                     CodeStyleManager.getInstance(psiFile.getProject()).reformatText(psiFile, myTextRange.getStartOffset(), myTextRange.getEndOffset());
                 }
             });
-            System.out.println(DebugUtil.psiTreeToString(psiFile,true));
+            //System.out.println(DebugUtil.psiTreeToString(psiFile,true));
             assertEquals(StringUtil.convertLineSeparators(testMaterial.getSecond()), psiFile.getText());
         } catch (Exception e) {
             assertTrue("exception",false);

@@ -1,22 +1,17 @@
 package protobuf.findUsages;
 
-import com.intellij.openapi.roots.ContentIterator;
-import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.*;
 import com.intellij.psi.impl.DebugUtil;
 import com.intellij.psi.search.GlobalSearchScope;
-import com.intellij.psi.search.searches.MethodReferencesSearch;
 import com.intellij.psi.search.searches.ReferencesSearch;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import com.intellij.util.Query;
-import junit.framework.Assert;
 import protobuf.util.PbTestUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Collection;
 
 /**
@@ -48,8 +43,7 @@ public class PbFindUsagesTestCase extends LightCodeInsightFixtureTestCase {
         fileText = fileText.substring(0, refOffset) + fileText.substring(refOffset + PbTestUtil.REF_MARKER.length());
         VfsUtil.saveText(refFile, fileText);
         PsiManager psiManager = myFixture.getPsiManager();
-        PsiFile psiRefFile = psiManager.findFile(refFile);
-        System.out.println(DebugUtil.psiTreeToString(psiRefFile,true));
+        PsiFile psiRefFile = psiManager.findFile(refFile);        
         assertNotNull(psiRefFile);
         PsiReference ref = psiRefFile.findReferenceAt(refOffset);
         assertNotNull("Did not find reference", ref);

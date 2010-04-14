@@ -6,7 +6,6 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.impl.DebugUtil;
 import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
 import protobuf.util.PbTestUtil;
-import protobuf.util.TestPath;
 
 import java.io.IOException;
 
