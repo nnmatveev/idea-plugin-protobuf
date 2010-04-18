@@ -97,6 +97,15 @@ public abstract class PbPsiUtil {
         return newNameElement.getNode();
     }
 
+    public static ASTNode createReferenceNodeWithText(String text, Project project){
+        assert !text.contains(" "):"name cannot contain white spaces";
+        PsiFileFactory psiFileFactory = PsiFileFactory.getInstance(project);
+        PbFile dummyFile = (PbFile)psiFileFactory.createFileFromText("DUMMY_SET_NAME", ProtobufFileType.PROTOBUF_FILE_TYPE,"extend " + text + " {}");
+        PbExtendDef dummyExtend = (PbExtendDef)PbPsiUtil.getChild(dummyFile,0,true,true,false);
+        PbRef newRefElement = dummyExtend.getTypeRef();
+        return newRefElement.getNode();
+    }
+
  /*   public static String getQualifiedName(PsiNamedElement element){
             
     }

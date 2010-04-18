@@ -7,7 +7,6 @@ import java.util.ResourceBundle;
 
 /**
  * author: Nikolay Matveev
- * Date: Mar 12, 2010
  */
 public class PbBundle {
     private static final String BUNDLE_NAME = "protobuf.util.PbBundle";

@@ -23,6 +23,7 @@ import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.member.PbFieldType;
 import protobuf.lang.psi.api.member.PbOptionRefSeq;
+import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
@@ -69,6 +70,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case EXTEND_FIELD: {
                 return "EXTEND_FIELD_REF";
             }
+            case ENUM_CONSTANT: {
+                return "ENUM_CONSTANT_REF";
+            }
         }
         assert false;
         return null;
@@ -112,34 +116,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case EXTEND_FIELD: {
                 return findChildByClass(PbRef.class);
             }
+            case ENUM_CONSTANT:{
+                return null;
+            }
         }
         assert false;
         return null;
     }
-
-    /*
-    switch (getRefKind()) {
-            case FILE: {
-            }
-            case PACKAGE: {
-            }
-            case MESSAGE_OR_GROUP: {
-            }
-            case MESSAGE_OR_ENUM_OR_GROUP: {
-
-            }
-            case MESSAGE_OR_PACKAGE_OR_GROUP: {
-
-            }
-            case MESSAGE_OR_GROUP_FIELD: {
-
-            }
-            case EXTEND_FIELD: {
-
-            }
-        }
-     */
-
 
     @Override
     public String getReferenceName() {
@@ -172,8 +155,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_OR_ENUM_OR_GROUP:
             case MESSAGE_OR_PACKAGE_OR_GROUP:
             case MESSAGE_OR_GROUP_FIELD:
-            case EXTEND_FIELD: {
-                PsiElement refNameElement = findChildByType(IK);
+            case EXTEND_FIELD:
+            case ENUM_CONSTANT:{
+                PsiElement refNameElement = this.getReferenceNameElement();
                 if (refNameElement != null) {
                     final int offsetInParent = refNameElement.getStartOffsetInParent();
                     return new TextRange(offsetInParent, offsetInParent + refNameElement.getTextLength());
@@ -259,7 +243,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_OR_ENUM_OR_GROUP:
             case MESSAGE_OR_PACKAGE_OR_GROUP:
             case MESSAGE_OR_GROUP_FIELD:
-            case EXTEND_FIELD: {
+            case EXTEND_FIELD:
+            case ENUM_CONSTANT:{
                 return findChildByType(ProtobufTokenTypes.IK);
             }
         }
@@ -267,7 +252,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     public ReferenceKind getRefKind() {
-        //todo caching kind
+        //todo [low] is it possible to caching kind??
         PsiElement parent = getParent();
         if (parent instanceof PbRef) {
             ReferenceKind parentKind = ((PbRefImpl) parent).getRefKind();
@@ -297,6 +282,9 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     }
                     return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
                 }
+                case ENUM_CONSTANT: {
+                    assert false;
+                }
                 default: {
                     assert false;
                 }
@@ -321,11 +309,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         if (parent instanceof PbImportDef) {
             return ReferenceKind.FILE;
         }
-        //todo 'enum constants as value of options and fields', advanced imports
-
+        if (parent instanceof PbValue) {
+            return ReferenceKind.ENUM_CONSTANT;
+        }
         if (parent instanceof PbServiceMethodDef) {
             return ReferenceKind.MESSAGE_OR_GROUP;
         }
+        //todo advanced imports, dymanic option values(java_package)
         return null;
     }
 

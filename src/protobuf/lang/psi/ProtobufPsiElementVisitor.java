@@ -2,6 +2,8 @@ package protobuf.lang.psi;
 
 import com.intellij.psi.PsiElementVisitor;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbExtensionsRange;
+import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 
@@ -34,6 +36,10 @@ public abstract class ProtobufPsiElementVisitor extends PsiElementVisitor {
     public abstract void visitRef(PbRef element);
 
     public abstract void visitExtensionsDefinition(PbExtensionsDef element);
+
+    public abstract void visitExtensionsRange(PbExtensionsRange element);
+
+    public abstract void visitOptionAssignment(PbOptionAssignment element);
 
     public abstract void visitValue(PbValue element);
 }

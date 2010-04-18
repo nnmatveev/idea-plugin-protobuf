@@ -25,5 +25,20 @@ public abstract class PbTextUtil {
             newend--;
         }
         return str.substring(0,newend);
+    }        
+
+    public static boolean isStartsWithCapital(String text){
+        if(text.length() == 0){
+            return false;
+        }
+        char firstChar = text.charAt(0);
+        if(firstChar > 'A' && firstChar < 'Z'){
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean isCamelCase(String text){
+        return isStartsWithCapital(text);
     }
 }

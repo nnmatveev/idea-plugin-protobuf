@@ -52,6 +52,9 @@ public class ProtobufPsiCreator implements ProtobufElementTypes {
 
         if(element.equals(EXTEND_DECL)) return new PbExtendDefImpl(node);
         if(element.equals(EXTEND_BLOCK)) return new PbBlockImpl(node);
+
+        if(element.equals(EXTENSIONS_DECL)) return new PbExtensionsDefImpl(node);
+        if(element.equals(EXTENSIONS_RANGE)) return new PbExtensionsRangeImpl(node);
         
         if(element.equals(VALUE)) return new PbValueImpl(node);
 

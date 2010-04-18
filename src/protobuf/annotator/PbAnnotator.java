@@ -12,9 +12,12 @@ import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
+import protobuf.lang.psi.api.member.PbExtensionsRange;
+import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.util.PbBundle;
+import protobuf.util.PbTextUtil;
 
 import static protobuf.lang.psi.utils.PbPsiUtil.sameType;
 import static protobuf.lang.ProtobufElementTypes.*;
@@ -59,7 +62,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     //todo: check for the biggegst and smallest number: 1 - 536,870,911
     //todo: For historical reasons, repeated fields of basic numeric types aren't encoded as efficiently as they could be. New code should use the special option [packed=true] to get a more efficient encoding
     //inspections: http://code.google.com/intl/ru/apis/protocolbuffers/docs/proto.html#scalar
-
+    // Test message with CamelCase field names.  This violates Protocol Buffer standard style.
     @Override
     public void visitFieldDefinition(PbFieldDef field) {
         fixHighlighting(field);
@@ -84,10 +87,21 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     }
 
     //todo: fix for group definition http://code.google.com/intl/ru/apis/protocolbuffers/docs/proto.html#nested
-
     @Override
     public void visitGroupDefinition(PbGroupDef element) {
         fixHighlighting(element);
+
+        //inspection that using group is deprecated
+        myHolder.createWarningAnnotation(element.getNode(),PbBundle.message("inspection.groupdecl.deprecated"));
+
+        //inspection that group name should starts with capital letter
+        PsiElement nameElement = element.getNameElement();
+        if(nameElement != null){
+            String name = nameElement.getText();
+            if(!PbTextUtil.isStartsWithCapital(name)){
+                myHolder.createErrorAnnotation(element.getNode(),PbBundle.message("inspection.groupdecl.name.starts.with.capital"));
+            }
+        }        
     }
 
 
@@ -106,6 +120,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
 
     @Override
     public void visitExtendDefinition(PbExtendDef element) {
+        //check fields values(contains in extensions)
     }
 
     @Override
@@ -122,11 +137,39 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
 
     @Override
     public void visitExtensionsDefinition(PbExtensionsDef element) {
-        //To change body of implemented methods use File | Settings | File Templates.
+        //check ranges: not intersected
+    }
+
+    @Override
+    public void visitExtensionsRange(PbExtensionsRange element) {
+        //check ranges: first < second        
+    }
+
+    @Override
+    public void visitOptionAssignment(PbOptionAssignment element) {
+        OptionType type = element.getType();
+        switch(type){
+            case BUILT_IN_OPTION:{
+                //highlight name
+                //check value and context
+            }
+            break;
+            case CUSTOM_OPTION:{
+                //check value and constant
+                //replace value for reference if enum
+            }
+            break;
+        }
     }
 
     @Override
     public void visitValue(PbValue element) {
+        //check int for too big
+        //making value reference for constant value
+        /*if(element.getParent() instanceof PbOptionAssignment){
+
+        }*/
+        //fix highlighting
         fixHighlighting(element);
     }
 
@@ -141,7 +184,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
         } else if (element instanceof PbRef) {
             PsiElement nameElement = ((PbRef) element).getReferenceNameElement();
             if (nameElement != null) {
-                if (!sameType(nameElement, IDENTIFIER)) {
+                if (!sameType(nameElement, IDENTIFIER)) {//i.e it is keyword token
                     myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
                 }
             }
