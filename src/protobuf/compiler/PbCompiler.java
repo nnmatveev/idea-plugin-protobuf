@@ -34,6 +34,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     private static final String PROTOC_WINDOWS = "protoc.exe";
     private static final String PROTOC_LINUX = "protoc";
+    private static final String PROTOC_MAC = "protoc";
 
 
     private static final Matcher ERROR_IN_LINE_MATCHER = Pattern.compile("[^:]*:[0-9]*:[0-9]*:.*").matcher("");
@@ -154,6 +155,8 @@ public class PbCompiler implements SourceGeneratingCompiler {
             return PROTOC_WINDOWS;
         } else if (SystemInfo.isLinux) {
             return PROTOC_LINUX;
+        } else if(SystemInfo.isMac){
+            return PROTOC_MAC;
         }
         return null;
     }

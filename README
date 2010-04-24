@@ -1,3 +1,6 @@
+PLUGIN AUTHOR
+Matveev Nikolay
+
 USEFUL LINKS:
 1. Protocol Buffers brief and only documentation - http://code.google.com/intl/ru/apis/protocolbuffers/docs/overview.html
 
@@ -15,8 +18,7 @@ But if something was set up wrong, plugin wouldn't allow to execute compilation 
 AUTHOR NOTES:
 1. Protocol Buffers language haven't any reserved keywords, thus I have to be tricky in some places.
 2. [protobuf.lang.psi.impl.reference.PbRefImpl:355:21] Using LightCodeFixtureTextCase leads to problems with temp directory, thus I have to use such hack to make method works both in real and test mode.
-3. [protobuf.compiler.PbCompiler:161:1] I can't try my plugin on Mac and I know nothing about Macintosh, thus I leave this works only for Windows and Linux(and have tested for both).
-4. Plugin is idea.jar-dependent, because it uses very useful implementation of PsiElement - ASTWrapperPsiElement, testing of plugin bases on class LightCodeInsightFixtureTestCase extending UsefulTestCase in idea.jar and several not so important, but time-saving use cases.               
+3. Plugin is idea.jar-dependent, because it uses very useful implementation of PsiElement - ASTWrapperPsiElement, testing of plugin bases on class LightCodeInsightFixtureTestCase extending UsefulTestCase in idea.jar and several not so important, but time-saving use cases.               
 
 KNOWN ISSUES:
 1. Problems with fixing highlighting:
@@ -28,3 +30,9 @@ KNOWN ISSUES:
     I don't know how compiler will behave if the "output source directory" located separate from project
 
 3.  a lot of to do in the code...
+
+CONTRIBUTION AND PLUGIN WRITING STUDY
+All sources are available on http://github.com/nnmatveev/idea-plugin-protobuf
+License is absent.
+To contact author use the github mailbox.
+

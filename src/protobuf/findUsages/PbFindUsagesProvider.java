@@ -60,7 +60,7 @@ public class PbFindUsagesProvider implements FindUsagesProvider {
         if(!useFullName){
             return ((PsiNamedElement)psiElement).getName();
         }
-        //todo [medium] complete
+        //todo [medium] complete - fullname should be returned
         return ((PsiNamedElement)psiElement).getName();
     }
 
