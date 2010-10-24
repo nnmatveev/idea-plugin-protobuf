@@ -3,6 +3,8 @@ package protobuf.compiler;
 import com.intellij.compiler.CompilerSettingsFactory;
 import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.project.Project;
+import protobuf.settings.application.PbCompilerApplicationSettings;
+import protobuf.settings.application.PbCompilerConfigurable;
 
 /**
  * author: Nikolay Matveev

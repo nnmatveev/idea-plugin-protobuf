@@ -1,4 +1,4 @@
-package protobuf.compiler;
+package protobuf.settings.application;
 
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.*;
