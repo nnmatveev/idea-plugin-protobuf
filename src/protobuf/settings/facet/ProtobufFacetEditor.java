@@ -1,5 +1,6 @@
 package protobuf.settings.facet;
 
+import com.intellij.facet.Facet;
 import com.intellij.facet.ui.FacetEditorContext;
 import com.intellij.facet.ui.FacetEditorTab;
 import com.intellij.facet.ui.FacetValidatorsManager;
@@ -10,6 +11,8 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.Comparing;
 import com.intellij.openapi.util.io.FileUtil;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
+import protobuf.facet.ProtobufFacet;
 import protobuf.util.PbBundle;
 
 import javax.swing.*;
@@ -47,6 +50,11 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     }
 
     @Override
+    public void onFacetInitialized(@NotNull final Facet facet) {
+        ((ProtobufFacet)facet).updateCompilerOutputWatchRequest();
+    }
+
+    @Override
     public boolean isModified() {
         boolean compilationEnabled = commonSettingsEditor.getEnableCompilationCheckbox().isSelected();
         String outputPath = commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim();
@@ -69,14 +77,6 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     @Override
     public void disposeUIResources() {
         
-    }
-
-    public JPanel getMainPanel() {
-        return settingsPanel;
-    }
-
-    public ProtobufFacetCommonSettingsEditor getCommonSettingsEditor() {
-        return commonSettingsEditor;
     }
 
     public JCheckBox getEnableCompilationCheckbox() {

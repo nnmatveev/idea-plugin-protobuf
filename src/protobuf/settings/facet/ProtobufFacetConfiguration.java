@@ -26,7 +26,6 @@ import org.jdom.Element;
 public class ProtobufFacetConfiguration implements FacetConfiguration, PersistentStateComponent<ProtobufFacetSettings> {
 
     private boolean compilationEnabled = true;
-    //private String protocHomePath = "";
     private String compilerOutputPath = "";
 
     @Override
@@ -48,7 +47,6 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public ProtobufFacetSettings getState() {
         ProtobufFacetSettings settings = new ProtobufFacetSettings();
         settings.COMPILE_PROTO = compilationEnabled;
-        //settings.PROTOC_HOME = protocHomePath;
         settings.COMPILER_OUTPUT_SOURCE_DIRECTORY = compilerOutputPath;
         return settings;
     }
@@ -56,7 +54,6 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     @Override
     public void loadState(ProtobufFacetSettings settings) {
         compilationEnabled = settings.COMPILE_PROTO;
-        //protocHomePath = settings.PROTOC_HOME;
         compilerOutputPath = settings.COMPILER_OUTPUT_SOURCE_DIRECTORY;
     }
 
@@ -67,14 +64,6 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public void setIsCompilationEnabled(boolean value) {
         compilationEnabled = value;
     }
-    /*
-    public String getProtocHomePath() {
-        return protocHomePath;
-    }
-
-    public void setProtocHomePath(String value) {
-        protocHomePath = value;
-    }*/
 
     public String getCompilerOutputPath() {
         return compilerOutputPath;

@@ -25,6 +25,7 @@ public class ProtobufMultipleFacetSettingsEditor extends MultipleFacetSettingsEd
         commonSettingsEditor = new ProtobufFacetCommonSettingsEditor();
         helper = FacetEditorsFactory.getInstance().createMultipleFacetEditorHelper();
 
+        // Bind to the compilation enabled checkbox.
         helper.bind(commonSettingsEditor.getEnableCompilationCheckbox(), editors, new NotNullFunction<FacetEditor, JCheckBox>() {
             @NotNull
             public JCheckBox fun(final FacetEditor facetEditor) {
@@ -32,6 +33,7 @@ public class ProtobufMultipleFacetSettingsEditor extends MultipleFacetSettingsEd
             }
         });
 
+        // Bind to the output source directory text field.
         helper.bind(commonSettingsEditor.getProtobufCompilerOutputPathField().getTextField(), editors, new NotNullFunction<FacetEditor, JTextField>() {
             @NotNull
             public JTextField fun(final FacetEditor facetEditor) {

@@ -1,12 +1,13 @@
 package protobuf;
 
+import com.intellij.facet.FacetTypeRegistry;
 import com.intellij.ide.fileTemplates.FileTemplate;
 import com.intellij.ide.fileTemplates.FileTemplateManager;
 import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.diagnostic.Logger;
-import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.fileTypes.FileTypeManager;
 import org.jetbrains.annotations.NotNull;
+import protobuf.facet.ProtobufFacetType;
 import protobuf.file.ProtobufFileType;
 
 /**            
@@ -19,9 +20,11 @@ public class ProtobufLoader implements ApplicationComponent {
     public void initComponent() {
         registerFileTypes();
         registerTemplates();
+        FacetTypeRegistry.getInstance().registerFacetType(ProtobufFacetType.INSTANCE);
     }
 
     public void disposeComponent() {
+        FacetTypeRegistry.getInstance().unregisterFacetType(ProtobufFacetType.INSTANCE);
     }
 
     @NotNull
@@ -30,13 +33,7 @@ public class ProtobufLoader implements ApplicationComponent {
     }
 
     private void registerFileTypes() {
-        /*FileType[] registeredFileTypes = FileTypeManager.getInstance().getRegisteredFileTypes();
-        for(FileType fileType : registeredFileTypes){
-            if(fileType.equals(ProtobufFileType.PROTOBUF_FILE_TYPE)){
-                return;
-            }
-        } */
-        FileTypeManager.getInstance().registerFileType(ProtobufFileType.PROTOBUF_FILE_TYPE,ProtobufFileType.DEFAULT_ASSOCIATED_EXTENSIONS);
+        FileTypeManager.getInstance().registerFileType(ProtobufFileType.PROTOBUF_FILE_TYPE, ProtobufFileType.DEFAULT_ASSOCIATED_EXTENSIONS);
     }
 
     private void registerTemplates() {

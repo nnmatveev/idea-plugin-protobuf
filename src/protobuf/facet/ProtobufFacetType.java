@@ -28,17 +28,13 @@ import javax.swing.*;
 import java.util.Collection;
 
 /**
- * Created by IntelliJ IDEA.
- * User: travis
- * Date: Aug 18, 2010
- * Time: 5:41:25 PM
- * To change this template use File | Settings | File Templates.
+ * The FacetType for Protobuf facets.
+ * @author Travis Cripps
  */
 public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetConfiguration> {
 
     public static final FacetTypeId<ProtobufFacet> ID = new FacetTypeId<ProtobufFacet>("protobuf");
     public static final ProtobufFacetType INSTANCE = new ProtobufFacetType();
-    //public static final Icon SMALL_ICON = IconLoader.getIcon("/icons/protobuf-small.png");
 
     private ProtobufFacetType() {
         super(ID, "protobuf", PbBundle.message("facet.type.name.protobuf"));
@@ -60,13 +56,14 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
         super(protobufFacetFacetTypeId, stringId, presentableName);
     }
 
-
     public boolean isSuitableModuleType(ModuleType moduleType) {
         return moduleType instanceof JavaModuleType;
     }
 
     public void registerDetectors(final FacetDetectorRegistry<ProtobufFacetConfiguration> detectorRegistry) {
-        detectorRegistry.registerUniversalDetector(ProtobufFileType.PROTOBUF_FILE_TYPE , PlatformPatterns.virtualFile().withExtension(".proto"),
+        detectorRegistry.registerUniversalDetector(
+                ProtobufFileType.PROTOBUF_FILE_TYPE,
+                PlatformPatterns.virtualFile().withExtension(".proto"),
                 new ProtobufFacetDetector());
     }
 
@@ -79,7 +76,6 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
         return ProtobufIcons.FILE_TYPE;
     }
 
-
     public ProtobufDefaultFacetSettingsEditor createDefaultConfigurationEditor(@NotNull final Project project, @NotNull final ProtobufFacetConfiguration configuration) {
         return new ProtobufDefaultFacetSettingsEditor(project, configuration);
     }
@@ -89,6 +85,7 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
     }
 
     private static class ProtobufFacetDetector extends FacetDetector<VirtualFile, ProtobufFacetConfiguration> {
+
         public ProtobufFacetDetector() {
             super("protobuf-detector");
         }
@@ -99,12 +96,7 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
             }
             return new ProtobufFacetConfiguration();
         }
-
-        @Override
-        public void beforeFacetAdded(@NotNull final Facet facet,
-                                     final FacetModel facetModel, @NotNull final ModifiableRootModel modifiableRootModel) {
-            final ProtobufFacetConfiguration configuration = ((ProtobufFacet)facet).getConfiguration();
-            //ProtobufFacet.setupGwtSdkAndLibraries(configuration, modifiableRootModel, configuration.getSdk());
-        }
+        
     }
+    
 }
