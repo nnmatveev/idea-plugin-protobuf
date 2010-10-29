@@ -8,6 +8,7 @@ import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileScope;
 import com.intellij.openapi.compiler.CompilerMessageCategory;
 import com.intellij.openapi.compiler.SourceGeneratingCompiler;
+import com.intellij.openapi.compiler.TimestampValidityState;
 import com.intellij.openapi.compiler.ValidityState;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
@@ -146,7 +147,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public ValidityState createValidityState(DataInput dataInput) throws IOException {
-        return null;
+        return TimestampValidityState.load(dataInput);
     }
 
     @NotNull
@@ -194,8 +195,35 @@ public class PbCompiler implements SourceGeneratingCompiler {
                     return false;
                 }
 
-                // Check that the output source directory exists.
-                VirtualFile outputDirectory = LocalFileSystem.getInstance().findFileByIoFile(new File(outputPath));
+                // Check that the output source directory exists.  Try to create it if not.
+                File outputPathFile = new File(outputPath);
+                if (!outputPathFile.exists()) {
+                    // Create the directory -- I don't necessarily like the directory creation here.  It should probably
+                    // occur during the generate method, but in order to validate the directory as a source module,
+                    // we have to do it now.
+                    boolean creationSuccessful = false;
+                    try {
+                        creationSuccessful = outputPathFile.mkdirs();
+                    } catch (SecurityException se) {
+                        // Eat the exception
+                    }
+
+                    if (!creationSuccessful) {
+                        Messages.showErrorDialog(PbBundle.message(
+                                "compiler.validate.error.output.source.directory.not.created", outputPath, module.getName()),
+                                PbBundle.message("compiler.validate.error.title"));
+                        return false;
+                    }
+
+                } else if (!outputPathFile.isDirectory()) {
+                    Messages.showErrorDialog(PbBundle.message(
+                            "compiler.validate.error.output.source.directory.not.directory", outputPath, module.getName()),
+                            PbBundle.message("compiler.validate.error.title"));
+                }
+
+
+                // We might have just created the output directory, so we have to make sure to refresh IDEA's view of it.
+                VirtualFile outputDirectory = LocalFileSystem.getInstance().refreshAndFindFileByIoFile(outputPathFile);
                 if (outputDirectory == null || !outputDirectory.exists()) {
                     Messages.showErrorDialog(PbBundle.message(
                             "compiler.validate.error.output.source.directory.not.exists", outputPath),
@@ -208,8 +236,8 @@ public class PbCompiler implements SourceGeneratingCompiler {
                 VirtualFile[] sourceDirectories = rootManager.getSourceRoots();
                 boolean isSourceDirectory = false;
                 for (VirtualFile sourceDirectory : sourceDirectories) {
-                    String sourcePathUrl = sourceDirectory.getPresentableUrl();
-                    if (sourcePathUrl.equals(outputDirectory.getPresentableUrl())) {
+                    String sourcePathUrl = sourceDirectory.getPath();
+                    if (sourcePathUrl.equals(outputDirectory.getPath())) {
                         isSourceDirectory = true;
                         break;
                     }

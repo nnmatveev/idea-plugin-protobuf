@@ -2,6 +2,7 @@ package protobuf.compiler;
 
 import com.intellij.facet.FacetManager;
 import com.intellij.openapi.compiler.GeneratingCompiler;
+import com.intellij.openapi.compiler.TimestampValidityState;
 import com.intellij.openapi.compiler.ValidityState;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -40,9 +41,13 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
         return myFile.getParent().getPath();
     }
 
+    /**
+     * Uses a {@link TimestampValidityState} based on the last modified timestamp of the .proto file, so the compiler
+     * only generates the output source file when the .proto file changes.
+     */
     @Override
     public ValidityState getValidityState() {
-        return null;
+        return new TimestampValidityState(myFile.getModificationStamp());
     }
 
     @Override
