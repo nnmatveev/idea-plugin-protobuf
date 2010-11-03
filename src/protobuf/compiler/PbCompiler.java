@@ -76,7 +76,11 @@ public class PbCompiler implements SourceGeneratingCompiler {
         ArrayList<GenerationItem> generationItems = new ArrayList<GenerationItem>(files.length);
         for (VirtualFile file : files) {
             if (!compilerConfiguration.isExcludedFromCompilation(file)) {
-                generationItems.add(new PbGenerationItem(file, compileContext.getModuleByFile(file), fileIndex.isInTestSourceContent(file)));
+                Module module = compileContext.getModuleByFile(file);
+                ProtobufFacet facet = FacetManager.getInstance(module).getFacetByType(ProtobufFacetType.ID);
+                if (facet != null) { // Generate if a Protobuf facet has been created for the module.
+                    generationItems.add(new PbGenerationItem(file, module, fileIndex.isInTestSourceContent(file)));
+                }
             }
         }
         if (generationItems.size() > 0) {
