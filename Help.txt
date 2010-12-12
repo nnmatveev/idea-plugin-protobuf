@@ -1,0 +1,25 @@
+Configuring Protoc Compiler Settings
+
+1. Open IDEA's compiler preferences and navigate to the Protocol Buffers compiler settings:
+   File->Settings->Compiler(Project Settings)->Protocol Buffers compiler
+2. Click the widget to the right of the "Path to Protoc" text field to open a file chooser.  Navigate to the location
+   where you have installed the Google Protocol buffers compiler executable, protoc, and select the protoc file.  Click the 'OK' button to close the file chooser.
+3. Close the preferences.
+
+Configuring Facet Settings
+
+1. Open the project structure panel.
+2. Click on the 'Modules' entry in the list of 'Project Settings'.
+3. Create a facet for each module for which you want to generate Java source files from your .proto files:
+       a) Right click on a module, and choose 'Protobuf Facet' from submenu of the 'New' menu entry of the contextual
+       menu.
+       b) On the facet configuration screen, set the "Output source directory" to the directory where you wish to
+          generate the Java files corresponding to your .proto files for that module.
+          NOTE: The directory you choose for the "Output source directory" should also be configured as a source
+                directory for the module.  Please refer to IDEA's help files if you need assistance to do so.
+
+
+After configuring the Protobuf compiler and desired facets, compiling a project or a module that is configured with a
+Protobuf Facet will result in Java source files being generated from the .proto files in the affected modules.
+
+Enjoy!

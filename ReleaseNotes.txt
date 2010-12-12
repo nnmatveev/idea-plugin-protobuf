@@ -1,0 +1,6 @@
+==== 0.4
+Version 0.4 brings several enhancements to the plugin.  The largest change is the adoption of a Facet-based approach to
+managing the generation of Java source files from .proto files within a project.  This grants flexibility when working
+with complex projects, as the facet-based approach supports generating Java files to a module-specific location, rather
+than a single location per project.  This change will require users of previous versions of the plugin to reconfigure
+their settings in order to generate sources.
