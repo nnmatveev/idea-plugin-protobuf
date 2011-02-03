@@ -1,13 +1,21 @@
 package protobuf.compiler;
 
 import com.intellij.facet.FacetManager;
+import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.GeneratingCompiler;
 import com.intellij.openapi.compiler.TimestampValidityState;
 import com.intellij.openapi.compiler.ValidityState;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiManager;
 import protobuf.facet.ProtobufFacet;
 import protobuf.facet.ProtobufFacetType;
+import protobuf.lang.psi.api.PbFile;
+import protobuf.lang.psi.impl.PbFileImpl;
+
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * author: Nikolay Matveev
@@ -42,12 +50,32 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     }
 
     /**
-     * Uses a {@link TimestampValidityState} based on the last modified timestamp of the .proto file, so the compiler
-     * only generates the output source file when the .proto file changes.
+     * Uses a {@link PbGenerationItemValidityState} based on the last modified timestamp of the .proto file and whether
+     * the destination files exist, so the compiler only generates the output source file when the .proto file changes
+     * or the destination files do not exist.
      */
     @Override
     public ValidityState getValidityState() {
-        return new TimestampValidityState(myFile.getModificationStamp());
+        final PbFile pbFile = ApplicationManager.getApplication().runReadAction(new Computable<PbFile>() {
+            public PbFile compute() {
+                return (PbFile) PsiManager.getInstance(myModule.getProject()).findFile(myFile);
+            }
+        });
+        String packageName = ((PbFileImpl)pbFile).getJavaPackageName();
+        ArrayList<String> fileNames = pbFile.getJavaClassNames();
+        String sep = System.getProperty("file.separator");
+
+        boolean outputFilesExist = false;
+        String outputPath = getOutputPath() + sep + packageName.replaceAll("\\.", sep);
+        for (String fileName : fileNames) {
+            String path = outputPath + sep + fileName + ".java";
+            outputFilesExist = new File(path).exists();
+            if (!outputFilesExist) {
+                break;
+            }
+        }
+
+        return new PbGenerationItemValidityState(myFile.getModificationStamp(), outputFilesExist);
     }
 
     @Override
@@ -69,7 +97,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     }
 
     /**
-     * Determines whether generation should occur for this item, based on it's module's facet configuration.
+     * Determines whether generation should occur for this item, based on its module's facet configuration.
      * @return true if compilation is enabled in the facet configuration for the item's containing module
      */
     public boolean shouldGenerate() {
@@ -84,5 +112,6 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
     public String getOutputPath() {
         return facet.getConfiguration().getCompilerOutputPath();
     }
+
 
 }

@@ -151,7 +151,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public ValidityState createValidityState(DataInput dataInput) throws IOException {
-        return TimestampValidityState.load(dataInput);
+        return PbGenerationItemValidityState.load(dataInput);
     }
 
     @NotNull

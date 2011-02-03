@@ -10,4 +10,8 @@ import protobuf.lang.psi.api.PbPsiElement;
 public interface PbOptionAssignment extends PbPsiElement {
 
     PbPsiEnums.OptionType getType();
+
+    String getOptionName();
+
+    String getOptionValue();
 }
