@@ -45,6 +45,9 @@ public class PbGenerationItemValidityState implements ValidityState {
 
     /**
      * Loads the validity state from the specified stream.
+     * @param is - the inputStream of serialized data representing a PbGenerationItemValidityState.
+     * @return a PbGenerationItemValidityState
+     * @throws IOException if the inputStream can't be read
      */
     public static PbGenerationItemValidityState load(DataInput is) throws IOException {
         long lastModTimestamp = is.readLong();

@@ -4,12 +4,8 @@ import com.intellij.lang.ASTNode;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.PbPsiEnums;
-import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.block.PbBlock;
 import protobuf.lang.psi.api.member.PbOptionAssignment;
-import protobuf.lang.psi.api.member.PbOptionList;
 import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
