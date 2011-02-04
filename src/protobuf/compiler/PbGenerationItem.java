@@ -54,14 +54,26 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
      * or the destination files do not exist.
      */
     @Override
+    // Note that this method gets its information from inspecting the Psi element tree, so must use the runReadAction and
+    // Computable because it's not run from the normal thread that deals with them.
     public ValidityState getValidityState() {
         final PbFile pbFile = ApplicationManager.getApplication().runReadAction(new Computable<PbFile>() {
             public PbFile compute() {
                 return (PbFile) PsiManager.getInstance(myModule.getProject()).findFile(myFile);
             }
         });
-        String packageName = ((PbFileImpl)pbFile).getJavaPackageName();
-        ArrayList<String> fileNames = pbFile.getJavaClassNames();
+        //String packageName = ((PbFileImpl)pbFile).getJavaPackageName();
+        //ArrayList<String> fileNames = pbFile.getJavaClassNames();
+        final String packageName = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
+            public String compute() {
+                return ((PbFileImpl)pbFile).getJavaPackageName();
+            }
+        });
+        final ArrayList<String> fileNames = ApplicationManager.getApplication().runReadAction(new Computable<ArrayList<String>>() {
+            public ArrayList<String> compute() {
+                return pbFile.getJavaClassNames();
+            }
+        });
         String sep = System.getProperty("file.separator");
 
         boolean outputFilesExist = false;
