@@ -90,7 +90,6 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
      * of the .proto file.</p>
      * @return the Java class name(s)
      */
-    @Override
     public ArrayList<String> getJavaClassNames() {
         ArrayList<String> classNames = new ArrayList<String>();
         final PbOptionAssignment[] optionAssignments = findChildrenByClass(PbOptionAssignment.class);

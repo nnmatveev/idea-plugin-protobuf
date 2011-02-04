@@ -57,7 +57,9 @@ public class OptionStatement implements ProtobufElementTypes {
 
     public static boolean parseOptionAssigment(PatchedPsiBuilder builder) {
         if (builder.compareToken(IK)) {
-            builder.match(IK);            
+            if (!parseOptionName(builder)) {
+                builder.error("identifier.expected");
+            }
         } else if (!ReferenceElement.parseForCustomOption(builder)) {            
             return false;
         }
@@ -65,6 +67,17 @@ public class OptionStatement implements ProtobufElementTypes {
         if (!parseOptionValue(builder)) {
             builder.error("value.expected");
         }
+        return true;
+    }
+
+    public static boolean parseOptionName(PatchedPsiBuilder builder) {
+        PsiBuilder.Marker marker = builder.mark();
+        if (builder.match(IK)) {
+        } else {
+            marker.drop();
+            return false;
+        }
+        marker.done(IDENTIFIER);
         return true;
     }
 
@@ -76,7 +89,7 @@ public class OptionStatement implements ProtobufElementTypes {
             } else if (builder.match("inf")) {
             } else if (builder.match("nan")) {
             } else {
-                builder.error("number.expexted");
+                builder.error("number.expected");
             }
         } else if (builder.match(BOOL_VALUES)) {
         } else if (builder.match(IK)) {

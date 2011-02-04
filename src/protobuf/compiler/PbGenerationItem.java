@@ -62,20 +62,20 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
                 return (PbFile) PsiManager.getInstance(myModule.getProject()).findFile(myFile);
             }
         });
-        //String packageName = ((PbFileImpl)pbFile).getJavaPackageName();
-        //ArrayList<String> fileNames = pbFile.getJavaClassNames();
-        final String packageName = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
+        String packageName = ApplicationManager.getApplication().runReadAction(new Computable<String>() {
             public String compute() {
                 return ((PbFileImpl)pbFile).getJavaPackageName();
             }
         });
+        if (null == packageName) {
+            packageName = "";
+        }
         final ArrayList<String> fileNames = ApplicationManager.getApplication().runReadAction(new Computable<ArrayList<String>>() {
             public ArrayList<String> compute() {
-                return pbFile.getJavaClassNames();
+                return ((PbFileImpl)pbFile).getJavaClassNames();
             }
         });
         String sep = System.getProperty("file.separator");
-
         boolean outputFilesExist = false;
         String outputPath = getOutputPath() + sep + packageName.replaceAll("\\.", sep);
         for (String fileName : fileNames) {
