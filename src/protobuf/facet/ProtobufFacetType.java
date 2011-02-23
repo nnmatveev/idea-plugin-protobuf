@@ -1,7 +1,6 @@
 package protobuf.facet;
 
 import com.intellij.facet.Facet;
-import com.intellij.facet.FacetModel;
 import com.intellij.facet.FacetType;
 import com.intellij.facet.FacetTypeId;
 import com.intellij.facet.autodetecting.FacetDetector;
@@ -12,12 +11,11 @@ import com.intellij.openapi.module.JavaModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.roots.ModifiableRootModel;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.patterns.PlatformPatterns;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import protobuf.ProtobufIcons;
+import protobuf.PbIcons;
 import protobuf.file.ProtobufFileType;
 import protobuf.settings.facet.ProtobufDefaultFacetSettingsEditor;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
@@ -73,7 +71,7 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
     }
 
     public Icon getIcon() {
-        return ProtobufIcons.FILE_TYPE;
+        return PbIcons.FILE_TYPE;
     }
 
     public ProtobufDefaultFacetSettingsEditor createDefaultConfigurationEditor(@NotNull final Project project, @NotNull final ProtobufFacetConfiguration configuration) {

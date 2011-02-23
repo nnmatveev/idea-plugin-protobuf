@@ -12,7 +12,7 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nls;
-import protobuf.ProtobufIcons;
+import protobuf.PbIcons;
 import protobuf.compiler.PbCompiler;
 import protobuf.util.PbBundle;
 
@@ -45,7 +45,7 @@ public class PbCompilerConfigurable implements Configurable {
 
     @Override
     public Icon getIcon() {
-        return ProtobufIcons.FILE_TYPE;
+        return PbIcons.FILE_TYPE;
     }
 
     @Override

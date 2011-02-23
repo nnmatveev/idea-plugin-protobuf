@@ -3,7 +3,7 @@ package protobuf.file;
 import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NotNull;
-import protobuf.ProtobufIcons;
+import protobuf.PbIcons;
 import protobuf.ProtobufLanguage;
 
 import javax.swing.*;
@@ -37,6 +37,6 @@ public class ProtobufFileType extends LanguageFileType {
     }
 
     public Icon getIcon() {
-        return ProtobufIcons.FILE_TYPE;
+        return PbIcons.FILE_TYPE;
     }
 }
