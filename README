@@ -11,9 +11,6 @@ USEFUL LINKS:
 HOW TO compile plugin:
 1. Just add idea.jar to your IDEA SDK classpath(justification of it you can find in AUTHOR NOTE#4)
 
-HOW TO run tests:
-1. To run all tests, run PbTestSuite class in the project directory 'test'
-
 AUTHOR NOTES:
 1. Protocol Buffers language haven't any reserved keywords, thus I have to be tricky in some places.
 2. [protobuf.lang.psi.impl.reference.PbRefImpl:355:21] Using LightCodeFixtureTextCase leads to problems with temp
