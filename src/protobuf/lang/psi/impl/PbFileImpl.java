@@ -1,10 +1,8 @@
 package protobuf.lang.psi.impl;
 
 import com.intellij.extapi.psi.PsiFileBase;
-import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
@@ -51,16 +49,9 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
      * Gets the package definition declaration.
      * @return the package definition
      */
-    // Note that this method gets its information from inspecting the Psi element tree, so must use the runReadAction and
-    // Computable because it's not run from the normal thread that deals with them.
     @Override
     public PbPackageDef getPackageDefinition() {
-        final PbPackageDef packageDef = ApplicationManager.getApplication().runReadAction(new Computable<PbPackageDef>() {
-            public PbPackageDef compute() {
-                return findChildByClass(PbPackageDef.class);
-            }
-        });
-        return packageDef;
+        return findChildByClass(PbPackageDef.class);
     }
 
     /**
@@ -78,15 +69,9 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
      * and falling back to the regular package definition.
      * @return the Java package name
      */
-    // Note that this method gets its information from inspecting the Psi element tree, so must use the runReadAction and
-    // Computable because it's not run from the normal thread that deals with them.
     public String getJavaPackageName() {
         String packageName = getPackageName();
-        final PbOptionAssignment[] optionAssignments = ApplicationManager.getApplication().runReadAction(new Computable<PbOptionAssignment[]>() {
-            public PbOptionAssignment[] compute() {
-                return findChildrenByClass(PbOptionAssignment.class);
-            }
-        });
+        final PbOptionAssignment[] optionAssignments = findChildrenByClass(PbOptionAssignment.class);
         for (PbOptionAssignment assignment : optionAssignments) {
             if ("java_package".equals(assignment.getOptionName())) {
                 packageName = assignment.getOptionValue();
@@ -105,16 +90,10 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
      * of the .proto file.</p>
      * @return the Java class name(s)
      */
-    // Note that this method gets its information from inspecting the Psi element tree, so must use the runReadAction and
-    // Computable because it's not run from the normal thread that deals with them.
     @Override
     public ArrayList<String> getJavaClassNames() {
         ArrayList<String> classNames = new ArrayList<String>();
-        final PbOptionAssignment[] optionAssignments = ApplicationManager.getApplication().runReadAction(new Computable<PbOptionAssignment[]>() {
-            public PbOptionAssignment[] compute() {
-                return findChildrenByClass(PbOptionAssignment.class);
-            }
-        });
+        final PbOptionAssignment[] optionAssignments = findChildrenByClass(PbOptionAssignment.class);
         String name = getName();
         String fileName = name.substring(0, name.indexOf(".proto"));
         
@@ -129,11 +108,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         }
 
         if (useMultipleFiles) {
-            PbMessageDef[] messageDefs = ApplicationManager.getApplication().runReadAction(new Computable<PbMessageDef[]>() {
-                public PbMessageDef[] compute() {
-                    return findChildrenByClass(PbMessageDef.class);
-                }
-            });
+            PbMessageDef[] messageDefs = findChildrenByClass(PbMessageDef.class);
             for (PbMessageDef messageDef: messageDefs) {
                 classNames.add(messageDef.getName());
             }
@@ -147,16 +122,9 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
         return classNames;
     }
 
-    // Note that this method gets its information from inspecting the Psi element tree, so must use the runReadAction and
-    // Computable because it's not run from the normal thread that deals with them.
     @Override
     public PbImportDef[] getImportDefinitions() {
-        final PbImportDef[] importDefs = ApplicationManager.getApplication().runReadAction(new Computable<PbImportDef[]>() {
-            public PbImportDef[] compute() {
-                return findChildrenByClass(PbImportDef.class);
-            }
-        });
-        return importDefs;
+        return findChildrenByClass(PbImportDef.class);
     }
 
     @Override
