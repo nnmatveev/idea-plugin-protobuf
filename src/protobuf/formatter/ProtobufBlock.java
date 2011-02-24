@@ -1,7 +1,5 @@
 package protobuf.formatter;
 
-import static protobuf.lang.ProtobufElementTypes.*;
-
 import com.intellij.formatting.*;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.TextRange;
@@ -13,6 +11,9 @@ import protobuf.formatter.util.ProtobufBlockGenerator;
 import protobuf.formatter.util.ProtobufSpacingProcessor;
 
 import java.util.List;
+
+import static protobuf.lang.ProtobufElementTypes.BLOCKS;
+import static protobuf.lang.ProtobufElementTypes.SKIPPED_ELEMENTS;
 
 /**
  * author: Nikolay Matveev
@@ -79,7 +80,7 @@ public class ProtobufBlock implements Block {
 
     private static boolean isIncomplete(ASTNode node) {
         ASTNode lastChild = node.getLastChildNode();
-        while (lastChild != null && SKIPED_ELEMENTS.contains(lastChild.getElementType())) {
+        while (lastChild != null && SKIPPED_ELEMENTS.contains(lastChild.getElementType())) {
             lastChild = lastChild.getTreePrev();
         }
         return lastChild != null && (lastChild.getPsi() instanceof PsiErrorElement || isIncomplete(lastChild));

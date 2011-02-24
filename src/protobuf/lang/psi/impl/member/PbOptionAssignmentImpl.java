@@ -2,6 +2,8 @@ package protobuf.lang.psi.impl.member;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.util.text.StringUtil;
+import com.intellij.psi.PsiElement;
+import protobuf.lang.ProtobufElementTypes;
 import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.lang.psi.api.member.PbOptionRefSeq;
@@ -30,11 +32,15 @@ public class PbOptionAssignmentImpl extends PbPsiElementImpl implements PbOption
      */
     @Override
     public String getOptionName() {
-        String text = getText().trim();
-        if (text.startsWith("option")) { // This should always be true, but check just in case.
-            text = text.substring("option".length());
+        String text = null;
+        PsiElement identifier = this.findChildByType(ProtobufElementTypes.IDENTIFIER);
+        if (null == identifier) {
+            identifier = this.findChildByType(ProtobufElementTypes.OPTION_REF_SEQ); // Includes the surrounding parenthesis.
         }
-        return text.substring(0, text.indexOf("=")).trim();
+        if (identifier != null) {
+            text = identifier.getText().trim();
+        }
+        return text;
     }
 
     /**
@@ -43,12 +49,12 @@ public class PbOptionAssignmentImpl extends PbPsiElementImpl implements PbOption
      */
     @Override
     public String getOptionValue() {
-        String text = getText().trim();
-        String value = text.substring(text.lastIndexOf("=") + 1).trim();
-        if (value.endsWith(";")) {
-            value = value.substring(0, value.length() - 1).trim();
+        String value = null;
+        PsiElement val = this.findChildByType(ProtobufElementTypes.VALUE);
+        if (val != null) {
+            value = StringUtil.stripQuotesAroundValue(val.getText().trim());
         }
-        return StringUtil.stripQuotesAroundValue(value);
+        return value;
     }
     
 }

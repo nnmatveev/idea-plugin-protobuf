@@ -8,7 +8,7 @@ import com.intellij.psi.tree.TokenSet;
  */
 public interface ProtobufElementTypes extends ProtobufTokenTypes {
 
-    ProtobufElementType CUSTOM_TYPE_REF = new ProtobufElementType("CUTOM_TYPE_REF");
+    ProtobufElementType CUSTOM_TYPE_REF = new ProtobufElementType("CUSTOM_TYPE_REF");
     ProtobufElementType BLOCK = new ProtobufElementType("BLOCK");
 
     ProtobufElementType PACKAGE_DECL = new ProtobufElementType("PACKAGE_DECL");
@@ -47,7 +47,7 @@ public interface ProtobufElementTypes extends ProtobufTokenTypes {
     
     ProtobufElementType VALUE = new ProtobufElementType("VALUE");
     
-    TokenSet SKIPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
+    TokenSet SKIPPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
     TokenSet BLOCKS = TokenSet.create(BLOCK,MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
     TokenSet DECLS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, PACKAGE_DECL, FIELD_DECL, ENUM_CONST_DECL,GROUP_DECL);
