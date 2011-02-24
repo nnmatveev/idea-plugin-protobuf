@@ -284,7 +284,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     private void processLine(CompileContext context, String line, PbGenerationItem item) {
         if (line.matches("[^:]*:[0-9]*:[0-9]*:.*")) {
             String[] r = line.split(":");
-            context.addMessage(CompilerMessageCategory.ERROR, r[3], item.getUrl(), Integer.parseInt(r[1]), Integer.parseInt(r[2]));            
+            context.addMessage(CompilerMessageCategory.ERROR, r[3], item.getUrl(), Integer.parseInt(r[1]), Integer.parseInt(r[2]));
         } else if (line.matches("[^:]*:[^:]*")) {
             String[] r = line.split(":");
             context.addMessage(CompilerMessageCategory.ERROR, r[1], item.getUrl(), -1, -1);
