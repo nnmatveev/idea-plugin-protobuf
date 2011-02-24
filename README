@@ -8,6 +8,10 @@ USEFUL LINKS:
 1. Protocol Buffers brief and only documentation -
    http://code.google.com/intl/ru/apis/protocolbuffers/docs/overview.html
 
+CONFIGURE DEVELOPMENT
+1. Set 'IDEA sdk' as the name of the project IDEA plugin SDK
+2. Project Java language level is 1.6
+
 HOW TO compile plugin:
 1. Just add idea.jar to your IDEA SDK classpath(justification of it you can find in AUTHOR NOTE#4)
 
