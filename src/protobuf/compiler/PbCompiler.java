@@ -4,12 +4,7 @@ import com.intellij.compiler.CompilerConfiguration;
 import com.intellij.compiler.impl.CompilerUtil;
 import com.intellij.facet.FacetManager;
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.compiler.CompileContext;
-import com.intellij.openapi.compiler.CompileScope;
-import com.intellij.openapi.compiler.CompilerMessageCategory;
-import com.intellij.openapi.compiler.SourceGeneratingCompiler;
-import com.intellij.openapi.compiler.TimestampValidityState;
-import com.intellij.openapi.compiler.ValidityState;
+import com.intellij.openapi.compiler.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
@@ -151,7 +146,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public ValidityState createValidityState(DataInput dataInput) throws IOException {
-        return TimestampValidityState.load(dataInput);
+        return PbGenerationItemValidityState.load(dataInput);
     }
 
     @NotNull
