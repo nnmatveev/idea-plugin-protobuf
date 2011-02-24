@@ -57,27 +57,14 @@ public class OptionStatement implements ProtobufElementTypes {
 
     public static boolean parseOptionAssigment(PatchedPsiBuilder builder) {
         if (builder.compareToken(IK)) {
-            if (!parseOptionName(builder)) {
-                builder.error("identifier.expected");
-            }
-        } else if (!ReferenceElement.parseForCustomOption(builder)) {            
+            builder.match(IK);
+        } else if (!ReferenceElement.parseForCustomOption(builder)) {
             return false;
         }
         builder.match(EQUAL, "equal.expected");
         if (!parseOptionValue(builder)) {
             builder.error("value.expected");
         }
-        return true;
-    }
-
-    public static boolean parseOptionName(PatchedPsiBuilder builder) {
-        PsiBuilder.Marker marker = builder.mark();
-        if (builder.match(IK)) {
-        } else {
-            marker.drop();
-            return false;
-        }
-        marker.done(IDENTIFIER);
         return true;
     }
 

@@ -32,15 +32,14 @@ public class PbOptionAssignmentImpl extends PbPsiElementImpl implements PbOption
      */
     @Override
     public String getOptionName() {
-        String text = null;
-        PsiElement identifier = this.findChildByType(ProtobufElementTypes.IDENTIFIER);
-        if (null == identifier) {
-            identifier = this.findChildByType(ProtobufElementTypes.OPTION_REF_SEQ); // Includes the surrounding parenthesis.
+        PsiElement identifier = findChildByType(ProtobufElementTypes.IK);
+        if (identifier == null) {
+            identifier = findChildByType(ProtobufElementTypes.OPTION_REF_SEQ); // Includes the surrounding parenthesis.
         }
         if (identifier != null) {
-            text = identifier.getText().trim();
+            return identifier.getText().trim();
         }
-        return text;
+        return null;
     }
 
     /**
