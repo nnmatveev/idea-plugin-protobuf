@@ -10,7 +10,7 @@ import com.intellij.openapi.ui.TextComponentAccessor;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
-import protobuf.util.PbBundle;
+import protobuf.PbBundle;
 
 import javax.swing.*;
 

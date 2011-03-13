@@ -17,12 +17,12 @@ import com.intellij.openapi.util.io.StreamUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
+import protobuf.PbBundle;
 import protobuf.facet.PbFacet;
 import protobuf.facet.PbFacetType;
 import protobuf.file.PbFileType;
 import protobuf.settings.application.PbCompilerApplicationSettings;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
-import protobuf.util.PbBundle;
 
 import java.io.DataInput;
 import java.io.File;

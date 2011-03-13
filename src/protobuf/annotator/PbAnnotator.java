@@ -6,6 +6,7 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
+import protobuf.PbBundle;
 import protobuf.highlighter.PbDefaultHighlighter;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbPsiElement;
@@ -14,7 +15,6 @@ import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
-import protobuf.util.PbBundle;
 
 import static protobuf.lang.psi.utils.PbPsiUtil.sameType;
 import static protobuf.lang.PbElementTypes.*;

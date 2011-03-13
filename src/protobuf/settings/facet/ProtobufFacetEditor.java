@@ -12,8 +12,8 @@ import com.intellij.openapi.util.Comparing;
 import com.intellij.openapi.util.io.FileUtil;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
+import protobuf.PbBundle;
 import protobuf.facet.PbFacet;
-import protobuf.util.PbBundle;
 
 import javax.swing.*;
 

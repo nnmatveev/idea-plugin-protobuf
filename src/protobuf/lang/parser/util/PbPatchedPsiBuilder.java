@@ -3,7 +3,7 @@ package protobuf.lang.parser.util;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
-import protobuf.util.PbBundle;
+import protobuf.PbBundle;
 
 
 /**

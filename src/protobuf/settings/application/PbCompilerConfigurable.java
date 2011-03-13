@@ -14,7 +14,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nls;
 import protobuf.PbIcons;
 import protobuf.compiler.PbCompiler;
-import protobuf.util.PbBundle;
+import protobuf.PbBundle;
 
 import javax.swing.*;
 

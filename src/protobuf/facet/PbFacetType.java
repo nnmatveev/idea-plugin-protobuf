@@ -20,7 +20,7 @@ import protobuf.file.PbFileType;
 import protobuf.settings.facet.ProtobufDefaultFacetSettingsEditor;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
 import protobuf.settings.facet.ProtobufMultipleFacetSettingsEditor;
-import protobuf.util.PbBundle;
+import protobuf.PbBundle;
 
 import javax.swing.*;
 import java.util.Collection;
