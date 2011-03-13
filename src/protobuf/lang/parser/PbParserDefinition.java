@@ -18,7 +18,7 @@ import protobuf.lang.psi.PbPsiCreator;
 import protobuf.lang.psi.impl.PbFileImpl;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 7, 2010
  */
 public class PbParserDefinition implements ParserDefinition {

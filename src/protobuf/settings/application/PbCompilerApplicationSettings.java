@@ -6,7 +6,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 

@@ -4,7 +4,7 @@ import protobuf.lang.psi.PbPsiEnums;
 import protobuf.lang.psi.api.PbPsiElement;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public interface PbValue extends PbPsiElement {

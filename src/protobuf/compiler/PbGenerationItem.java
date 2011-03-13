@@ -17,7 +17,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public class PbGenerationItem implements GeneratingCompiler.GenerationItem {

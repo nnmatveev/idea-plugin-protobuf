@@ -6,7 +6,7 @@ import com.intellij.psi.tree.TokenSet;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 21, 2010
  */
 

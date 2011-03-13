@@ -6,7 +6,7 @@ import protobuf.file.PbFileType;
 import protobuf.util.PbTestUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbRenameTestCase extends LightCodeInsightFixtureTestCase {

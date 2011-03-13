@@ -3,7 +3,7 @@ package protobuf.lang;
 import com.intellij.psi.tree.TokenSet;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 public interface PbElementTypes extends PbTokenTypes {

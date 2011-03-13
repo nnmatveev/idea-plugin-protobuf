@@ -9,7 +9,7 @@ import protobuf.lang.psi.impl.PbPsiElementImpl;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public class PbValueImpl extends PbPsiElementImpl implements PbValue{

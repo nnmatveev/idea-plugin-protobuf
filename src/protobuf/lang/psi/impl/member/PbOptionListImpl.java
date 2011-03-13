@@ -6,7 +6,7 @@ import protobuf.lang.psi.api.member.PbOptionList;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
 /**
- * author: Nikolay Matveev 
+ * @author Nikolay Matveev
  */
 public class PbOptionListImpl extends PbPsiElementImpl implements PbOptionList {
     public PbOptionListImpl(ASTNode node){

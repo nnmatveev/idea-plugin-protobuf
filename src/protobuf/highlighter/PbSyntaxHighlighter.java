@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 5, 2010
  */
 public class PbSyntaxHighlighter extends SyntaxHighlighterBase{

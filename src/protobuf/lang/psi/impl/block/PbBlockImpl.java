@@ -6,7 +6,7 @@ import protobuf.lang.psi.api.block.PbBlock;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 2, 2010
  */
 public class PbBlockImpl extends PbPsiElementImpl implements PbBlock {

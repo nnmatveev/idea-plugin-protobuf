@@ -12,7 +12,7 @@ import protobuf.lang.psi.impl.member.PbOptionAssignmentImpl;
 import protobuf.lang.psi.impl.reference.PbRefImpl;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 public class PbPsiCreator implements PbElementTypes {

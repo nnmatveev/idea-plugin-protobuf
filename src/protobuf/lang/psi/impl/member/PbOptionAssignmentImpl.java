@@ -10,7 +10,7 @@ import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbOptionAssignmentImpl extends PbPsiElementImpl implements PbOptionAssignment {

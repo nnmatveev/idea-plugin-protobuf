@@ -1,7 +1,7 @@
 package protobuf.util;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 27, 2010
  */
 

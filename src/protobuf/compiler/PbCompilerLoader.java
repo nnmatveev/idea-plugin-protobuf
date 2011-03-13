@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import protobuf.file.PbFileType;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public class PbCompilerLoader implements ProjectComponent {

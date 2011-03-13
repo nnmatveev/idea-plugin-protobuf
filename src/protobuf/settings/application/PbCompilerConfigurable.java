@@ -19,7 +19,7 @@ import protobuf.PbBundle;
 import javax.swing.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public class PbCompilerConfigurable implements Configurable {

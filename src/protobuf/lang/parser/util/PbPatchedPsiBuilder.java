@@ -7,7 +7,7 @@ import protobuf.PbBundle;
 
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 10, 2010
  */
 public class PbPatchedPsiBuilder {

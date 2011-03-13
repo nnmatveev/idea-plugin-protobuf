@@ -7,7 +7,7 @@ import com.intellij.psi.scope.PsiScopeProcessor;
 import protobuf.lang.psi.api.reference.PbRef;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 4, 2010
  */
 public class PbResolveProcessor implements PsiScopeProcessor {

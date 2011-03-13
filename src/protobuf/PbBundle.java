@@ -6,7 +6,7 @@ import org.jetbrains.annotations.PropertyKey;
 import java.util.ResourceBundle;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbBundle {

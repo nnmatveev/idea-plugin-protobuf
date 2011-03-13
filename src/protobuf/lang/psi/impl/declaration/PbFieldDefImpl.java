@@ -15,7 +15,7 @@ import protobuf.lang.psi.impl.auxiliary.PbNamedElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbFieldDefImpl extends PbNamedElementImpl implements PbFieldDef {

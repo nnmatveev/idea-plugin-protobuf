@@ -8,7 +8,7 @@ import protobuf.file.PbFileType;
 import protobuf.util.PbTestUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public abstract class PbFormatterTestCase extends LightCodeInsightFixtureTestCase {

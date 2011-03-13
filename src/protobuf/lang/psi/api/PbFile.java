@@ -5,7 +5,7 @@ import protobuf.lang.psi.api.declaration.PbImportDef;
 import protobuf.lang.psi.api.declaration.PbPackageDef;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public interface PbFile extends PsiFile, PbPsiElement{        

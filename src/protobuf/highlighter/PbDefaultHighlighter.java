@@ -7,7 +7,7 @@ import com.intellij.openapi.editor.markup.TextAttributes;
 import java.awt.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 6, 2010
  */
 public class PbDefaultHighlighter {

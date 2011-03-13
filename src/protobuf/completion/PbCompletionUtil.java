@@ -5,7 +5,7 @@ import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public abstract class PbCompletionUtil {

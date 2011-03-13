@@ -7,7 +7,7 @@ import protobuf.settings.application.PbCompilerApplicationSettings;
 import protobuf.settings.application.PbCompilerConfigurable;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 5, 2010
  */
 public class PbCompilerSettingsFactory implements CompilerSettingsFactory {

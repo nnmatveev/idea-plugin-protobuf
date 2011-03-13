@@ -5,7 +5,7 @@ import protobuf.file.PbFileType;
 
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 5, 2010
  */
 public class PbElementType extends IElementType {

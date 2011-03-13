@@ -8,7 +8,7 @@ import protobuf.lang.psi.impl.auxiliary.PbNamedBlockHolderImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbMessageDefImpl extends PbNamedBlockHolderImpl implements PbMessageDef {

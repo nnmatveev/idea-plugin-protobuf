@@ -1,7 +1,7 @@
 package protobuf.lang.psi;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 public class PbPsiEnums {
 

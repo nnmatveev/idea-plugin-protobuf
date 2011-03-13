@@ -7,7 +7,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 25, 2010
  */
 public class FieldStatement {

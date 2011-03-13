@@ -14,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 7, 2010
  */
 public abstract class PbTestUtil {

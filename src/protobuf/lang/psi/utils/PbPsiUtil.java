@@ -19,7 +19,7 @@ import static protobuf.lang.PbElementTypes.*;
 import java.util.ArrayList;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 public abstract class PbPsiUtil {

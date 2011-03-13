@@ -9,7 +9,7 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import protobuf.util.PbTestUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbReformatTestCase extends PbFormatterTestCase {

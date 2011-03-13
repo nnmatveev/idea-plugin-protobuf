@@ -5,7 +5,7 @@ import com.intellij.psi.TokenType;
 import com.intellij.psi.tree.TokenSet;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 5, 2010
  */
 public interface PbTokenTypes {

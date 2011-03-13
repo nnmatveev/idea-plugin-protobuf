@@ -7,7 +7,7 @@ import com.intellij.psi.scope.PsiScopeProcessor;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Apr 7, 2010
  */
 public class PbVariantsProcessor implements PsiScopeProcessor {

@@ -10,7 +10,7 @@ import protobuf.lang.psi.impl.PbFileImpl;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbIndentProcessor {

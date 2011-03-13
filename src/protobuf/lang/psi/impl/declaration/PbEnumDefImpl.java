@@ -8,7 +8,7 @@ import protobuf.lang.psi.impl.auxiliary.PbNamedBlockHolderImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 10, 2010
  */
 public class PbEnumDefImpl extends PbNamedBlockHolderImpl implements PbEnumDef {

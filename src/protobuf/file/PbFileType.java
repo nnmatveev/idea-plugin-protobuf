@@ -9,7 +9,7 @@ import protobuf.PbLanguage;
 import javax.swing.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 public class PbFileType extends LanguageFileType {
 

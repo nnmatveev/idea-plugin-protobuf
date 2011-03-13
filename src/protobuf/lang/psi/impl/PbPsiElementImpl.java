@@ -11,7 +11,7 @@ import protobuf.lang.psi.api.member.PbOptionList;
 import protobuf.lang.psi.impl.member.PbOptionAssignmentImpl;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbPsiElementImpl extends ASTWrapperPsiElement implements PbPsiElement {

@@ -3,7 +3,7 @@ package protobuf.commenter;
 import com.intellij.lang.Commenter;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 14, 2010
  */
 public class PbCommenter implements Commenter {

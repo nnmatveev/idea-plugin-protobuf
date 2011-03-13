@@ -10,8 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import protobuf.facet.PbFacetType;
 import protobuf.file.PbFileType;
 
-/**            
- * author: Nikolay Matveev
+/**
+ * @author Nikolay Matveev
  */
 public class PbLoader implements ApplicationComponent {
 

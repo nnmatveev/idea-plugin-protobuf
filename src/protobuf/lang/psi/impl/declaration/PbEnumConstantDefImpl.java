@@ -8,7 +8,7 @@ import protobuf.lang.psi.impl.auxiliary.PbNamedElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 10, 2010
  */
 public class PbEnumConstantDefImpl extends PbNamedElementImpl implements PbEnumConstantDef {

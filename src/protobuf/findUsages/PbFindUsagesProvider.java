@@ -13,7 +13,7 @@ import protobuf.lang.psi.api.declaration.*;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 public class PbFindUsagesProvider implements FindUsagesProvider {
 

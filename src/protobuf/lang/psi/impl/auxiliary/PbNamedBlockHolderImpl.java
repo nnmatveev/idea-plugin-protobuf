@@ -5,7 +5,7 @@ import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.block.PbBlock;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public abstract class PbNamedBlockHolderImpl extends PbNamedElementImpl implements PbBlockHolder {

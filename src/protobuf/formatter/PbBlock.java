@@ -16,7 +16,7 @@ import static protobuf.lang.PbElementTypes.BLOCKS;
 import static protobuf.lang.PbElementTypes.SKIPPED_ELEMENTS;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 12, 2010
  */
 public class PbBlock implements Block {

@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.Collection;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbFindUsagesTestCase extends LightCodeInsightFixtureTestCase {

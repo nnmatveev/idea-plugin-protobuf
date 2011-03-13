@@ -5,7 +5,7 @@ import com.intellij.openapi.util.IconLoader;
 import javax.swing.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 5, 2010
  */
 public interface PbIcons {

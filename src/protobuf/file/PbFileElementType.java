@@ -4,7 +4,7 @@ import com.intellij.lang.Language;
 import com.intellij.psi.tree.IFileElementType;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 public class PbFileElementType extends IFileElementType {
     public PbFileElementType(Language language){

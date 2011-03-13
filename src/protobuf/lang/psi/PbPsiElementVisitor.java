@@ -6,7 +6,7 @@ import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 15, 2010
  */
 public abstract class PbPsiElementVisitor extends PsiElementVisitor {

@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import protobuf.lang.PbTokenTypes;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 6, 2010
  */
 public class PbBraceMatcher implements PairedBraceMatcher {

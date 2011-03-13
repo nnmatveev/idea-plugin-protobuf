@@ -4,7 +4,7 @@ import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.PbPsiElementVisitor;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 public interface PbPsiElement extends PsiElement {

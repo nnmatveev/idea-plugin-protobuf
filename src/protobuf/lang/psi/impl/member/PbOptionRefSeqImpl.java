@@ -5,7 +5,7 @@ import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
 /**
- * author: Nikolay Matveev 
+ * @author Nikolay Matveev
  */
 public class PbOptionRefSeqImpl extends PbPsiElementImpl implements PbOptionRefSeq {
     public PbOptionRefSeqImpl(ASTNode node){        

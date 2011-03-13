@@ -18,7 +18,7 @@ import protobuf.lang.psi.api.member.PbOptionAssignment;
 import java.util.ArrayList;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 public class PbFileImpl extends PsiFileBase implements PbFile {

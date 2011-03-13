@@ -9,7 +9,7 @@ import protobuf.lang.parser.parsing.CompilationUnit;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 7, 2010
  */
 public class PbParser implements PsiParser {

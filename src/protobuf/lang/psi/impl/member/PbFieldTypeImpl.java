@@ -7,7 +7,7 @@ import protobuf.lang.psi.impl.PbPsiElementImpl;
 import static protobuf.lang.psi.PbPsiEnums.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 11, 2010
  */
 public class PbFieldTypeImpl extends PbPsiElementImpl implements PbFieldType {

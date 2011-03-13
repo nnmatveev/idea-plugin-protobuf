@@ -14,7 +14,7 @@ import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 29, 2010
  */
 public abstract class PbResolveUtil {

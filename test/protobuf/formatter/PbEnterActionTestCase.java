@@ -7,7 +7,7 @@ import protobuf.util.PbTestUtil;
 import java.io.IOException;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public class PbEnterActionTestCase extends PbFormatterTestCase {

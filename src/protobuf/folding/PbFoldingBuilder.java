@@ -12,7 +12,7 @@ import java.util.List;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 15, 2010
  */
 public class PbFoldingBuilder implements FoldingBuilder {

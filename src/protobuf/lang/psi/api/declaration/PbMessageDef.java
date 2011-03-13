@@ -6,7 +6,7 @@ import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 11, 2010
  */
 public interface PbMessageDef extends PbPsiElement, PbNamedElement, PbBlockHolder {

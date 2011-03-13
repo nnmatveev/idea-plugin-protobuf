@@ -8,7 +8,7 @@ import protobuf.lang.psi.api.reference.PbRef;
 import static protobuf.lang.psi.PbPsiEnums.*;
 
 /**
- * author: Nikolay Matveev 
+ * @author Nikolay Matveev
  */
 public interface PbFieldDef extends PbPsiElement, PbNamedElement {
 

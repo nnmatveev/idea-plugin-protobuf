@@ -6,7 +6,7 @@ import protobuf.lang.parser.parsing.ReferenceElement;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 9, 2010
  */
 

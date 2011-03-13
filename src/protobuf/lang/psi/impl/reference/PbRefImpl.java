@@ -35,7 +35,7 @@ import java.io.File;
 import static protobuf.lang.PbElementTypes.*;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  * Date: Mar 30, 2010
  */
 public class PbRefImpl extends PbPsiElementImpl implements PbRef {

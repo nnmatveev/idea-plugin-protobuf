@@ -10,7 +10,7 @@ import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
 /**
- * author: Nikolay Matveev
+ * @author Nikolay Matveev
  */
 
 public abstract class PbNamedElementImpl extends PbPsiElementImpl implements PbNamedElement {
