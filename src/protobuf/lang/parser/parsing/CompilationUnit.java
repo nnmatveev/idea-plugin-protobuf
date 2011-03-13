@@ -1,7 +1,7 @@
 package protobuf.lang.parser.parsing;
 
-import protobuf.lang.ProtobufElementTypes;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.PbElementTypes;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 import protobuf.lang.parser.parsing.statements.*;
 
 /**
@@ -12,8 +12,8 @@ import protobuf.lang.parser.parsing.statements.*;
 //  ProtoDefinition :: = ( PbMessageDef | PbExtendDef | MembersDefinition | PbImportDef | package | option | service | ";" )*
 //  STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES 
     
-public class CompilationUnit implements ProtobufElementTypes {
-    public static void parse(PatchedPsiBuilder builder) {
+public class CompilationUnit implements PbElementTypes {
+    public static void parse(PbPatchedPsiBuilder builder) {
         //parseSeparateOption root level statements
         while (!builder.eof()) {
             if (PackageStatement.parse(builder)) {

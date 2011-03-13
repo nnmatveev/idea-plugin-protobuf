@@ -7,24 +7,24 @@ import com.intellij.openapi.components.ApplicationComponent;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileTypeManager;
 import org.jetbrains.annotations.NotNull;
-import protobuf.facet.ProtobufFacetType;
-import protobuf.file.ProtobufFileType;
+import protobuf.facet.PbFacetType;
+import protobuf.file.PbFileType;
 
 /**            
  * author: Nikolay Matveev
  */
-public class ProtobufLoader implements ApplicationComponent {
+public class PbLoader implements ApplicationComponent {
 
-    private final static Logger LOG = Logger.getInstance(ProtobufLoader.class.getName());
+    private final static Logger LOG = Logger.getInstance(PbLoader.class.getName());
 
     public void initComponent() {
         registerFileTypes();
         registerTemplates();
-        FacetTypeRegistry.getInstance().registerFacetType(ProtobufFacetType.INSTANCE);
+        FacetTypeRegistry.getInstance().registerFacetType(PbFacetType.INSTANCE);
     }
 
     public void disposeComponent() {
-        FacetTypeRegistry.getInstance().unregisterFacetType(ProtobufFacetType.INSTANCE);
+        FacetTypeRegistry.getInstance().unregisterFacetType(PbFacetType.INSTANCE);
     }
 
     @NotNull
@@ -33,7 +33,7 @@ public class ProtobufLoader implements ApplicationComponent {
     }
 
     private void registerFileTypes() {
-        FileTypeManager.getInstance().registerFileType(ProtobufFileType.PROTOBUF_FILE_TYPE, ProtobufFileType.DEFAULT_ASSOCIATED_EXTENSIONS);
+        FileTypeManager.getInstance().registerFileType(PbFileType.PROTOBUF_FILE_TYPE, PbFileType.DEFAULT_ASSOCIATED_EXTENSIONS);
     }
 
     private void registerTemplates() {

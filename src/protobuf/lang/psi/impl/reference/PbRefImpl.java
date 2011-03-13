@@ -3,7 +3,6 @@ package protobuf.lang.psi.impl.reference;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.TextRange;
-import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
@@ -14,11 +13,11 @@ import com.intellij.psi.search.FilenameIndex;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
-import protobuf.lang.ProtobufTokenTypes;
+import protobuf.lang.PbTokenTypes;
 
 import static protobuf.lang.psi.PbPsiEnums.*;
 
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.member.PbFieldType;
@@ -33,7 +32,7 @@ import protobuf.lang.resolve.PbResolveUtil;
 
 import java.io.File;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
@@ -79,7 +78,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitRef(this);
     }
 
@@ -153,7 +152,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case EXTEND_FIELD: {
             }
         } */
-        PsiElement psi = findChildByType(ProtobufTokenTypes.IK);
+        PsiElement psi = findChildByType(PbTokenTypes.IK);
         return psi != null ? psi.getText() : null;
     }
 
@@ -260,7 +259,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             case MESSAGE_OR_PACKAGE_OR_GROUP:
             case MESSAGE_OR_GROUP_FIELD:
             case EXTEND_FIELD: {
-                return findChildByType(ProtobufTokenTypes.IK);
+                return findChildByType(PbTokenTypes.IK);
             }
         }
         return null;

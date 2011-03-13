@@ -4,7 +4,7 @@ package protobuf.lang.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import protobuf.lang.ProtobufTokenTypes;
+import protobuf.lang.PbTokenTypes;
 
 
 /**
@@ -13,7 +13,7 @@ import protobuf.lang.ProtobufTokenTypes;
  * on 4/14/10 12:10 AM from the specification file
  * <tt>D:/develop/idea-plugin-protobuf/src/protobuf/lang/lexer/protobuf.flex</tt>
  */
-public class _ProtobufLexer implements FlexLexer, ProtobufTokenTypes {
+public class _ProtobufLexer implements FlexLexer, PbTokenTypes {
   /** initial size of the lookahead buffer */
   private static final int ZZ_BUFFERSIZE = 16384;
 

@@ -13,7 +13,7 @@ import com.intellij.openapi.util.WriteExternalException;
 import org.jdom.Element;
 
 /**
- * Facet configuration for a {@link protobuf.facet.ProtobufFacet}.
+ * Facet configuration for a {@link protobuf.facet.PbFacet}.
  * @author Travis Cripps
  */
 @State(

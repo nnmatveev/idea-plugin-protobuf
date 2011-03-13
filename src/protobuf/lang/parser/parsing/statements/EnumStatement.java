@@ -1,8 +1,8 @@
 package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.ProtobufElementTypes;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.PbElementTypes;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * author: Nikolay Matveev
@@ -15,8 +15,8 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  enumStatement ::= PbOptionDef | enumConstant | ';'
 //  enumConstant ::=  IDENTIFIER '=' NUM_INT fieldOptions? ';'
 
-public class EnumStatement implements ProtobufElementTypes {
-    public static boolean parse(PatchedPsiBuilder builder) {
+public class EnumStatement implements PbElementTypes {
+    public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(ENUM)) {
             return false;
         }
@@ -31,7 +31,7 @@ public class EnumStatement implements ProtobufElementTypes {
         return true;
     }
     //done
-    public static boolean parseEnumBlock(PatchedPsiBuilder builder) {
+    public static boolean parseEnumBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
             return false;
         }
@@ -48,7 +48,7 @@ public class EnumStatement implements ProtobufElementTypes {
     }
 
     
-    public static boolean parseEnumStatement(PatchedPsiBuilder builder) {
+    public static boolean parseEnumStatement(PbPatchedPsiBuilder builder) {
         //PsiBuilder.Marker enumStatementMarker = builder.mark();
         if(builder.match(SEMICOLON)){
         } else if(OptionStatement.parseSeparateOption(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
@@ -62,7 +62,7 @@ public class EnumStatement implements ProtobufElementTypes {
     }
 
     //done
-    public static boolean parseEnumConstant(PatchedPsiBuilder builder) {
+    public static boolean parseEnumConstant(PbPatchedPsiBuilder builder) {
         if(!builder.compareToken(IK)){
             return false;
         }

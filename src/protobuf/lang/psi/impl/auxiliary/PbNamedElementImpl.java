@@ -3,13 +3,9 @@ package protobuf.lang.psi.impl.auxiliary;
 import com.intellij.lang.ASTNode;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
-import com.intellij.psi.PsiFileFactory;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
-import protobuf.file.ProtobufFileType;
-import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
-import protobuf.lang.psi.api.declaration.PbMessageDef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 

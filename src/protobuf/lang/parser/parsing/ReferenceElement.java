@@ -1,9 +1,9 @@
 package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
@@ -11,7 +11,7 @@ import static protobuf.lang.ProtobufElementTypes.*;
  */
 public class ReferenceElement {
 
-    public static boolean parseForPackage(PatchedPsiBuilder builder) {
+    public static boolean parseForPackage(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(IK)) {
             return false;
         }
@@ -33,14 +33,14 @@ public class ReferenceElement {
         return true;
     }
 
-    public static boolean parseForImport(PatchedPsiBuilder builder) {
+    public static boolean parseForImport(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();
         builder.match(STRING_LITERAL, "string.literal.expected");
         marker.done(IMPORT_REF);
         return true;
     }
 
-    public static boolean parseForCustomType(PatchedPsiBuilder builder) {
+    public static boolean parseForCustomType(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(DOT) && !builder.compareToken(IK)) {
             return false;
         }
@@ -60,7 +60,7 @@ public class ReferenceElement {
         return true;
     }
 
-    public static boolean parseForCustomOption(PatchedPsiBuilder builder) {
+    public static boolean parseForCustomOption(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_PARANT)) {
             return false;
         }
@@ -89,7 +89,7 @@ public class ReferenceElement {
         return true;
     }
 
-    private static boolean parseOptionPart(PatchedPsiBuilder builder) {
+    private static boolean parseOptionPart(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();
         builder.match(OPEN_PARANT);
         builder.match(DOT);

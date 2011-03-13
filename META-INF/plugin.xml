@@ -33,7 +33,7 @@
 
     <application-components>
         <component>
-            <implementation-class>protobuf.ProtobufLoader</implementation-class>
+            <implementation-class>protobuf.PbLoader</implementation-class>
         </component>
         <component>
             <implementation-class>protobuf.settings.application.PbCompilerApplicationSettings</implementation-class>
@@ -53,15 +53,14 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!--<fileTypeFactory implementation="protobuf.file.ProtobufFileTypeLoader"/>-->
-        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.ProtobufSyntaxHighlighter"/>
+        <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
         <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
-        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.ProtobufBraceMatcher"/>
-        <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.ProtobufParserDefinition"/>
-        <lang.formatter language="Protobuf" implementationClass="protobuf.formatter.ProtobufFormattingModelBuilder"/>
-        <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.ProtobufCommenter"/>
-        <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.ProtobufFoldingBuilder"/>
+        <lang.braceMatcher language="Protobuf" implementationClass="protobuf.highlighter.PbBraceMatcher"/>
+        <lang.parserDefinition language="Protobuf" implementationClass="protobuf.lang.parser.PbParserDefinition"/>
+        <lang.formatter language="Protobuf" implementationClass="protobuf.formatter.PbFormattingModelBuilder"/>
+        <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.PbCommenter"/>
+        <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.PbFoldingBuilder"/>
         <lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
     </extensions>
 </idea-plugin>

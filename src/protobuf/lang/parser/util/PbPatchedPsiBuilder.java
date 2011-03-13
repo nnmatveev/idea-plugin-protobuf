@@ -10,10 +10,10 @@ import protobuf.util.PbBundle;
  * author: Nikolay Matveev
  * Date: Mar 10, 2010
  */
-public class PatchedPsiBuilder {
+public class PbPatchedPsiBuilder {
     private PsiBuilder myBuilder;
 
-    public PatchedPsiBuilder(PsiBuilder builder) {
+    public PbPatchedPsiBuilder(PsiBuilder builder) {
         myBuilder = builder;
     }
 

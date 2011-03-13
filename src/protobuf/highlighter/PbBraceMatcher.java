@@ -6,19 +6,19 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import protobuf.lang.ProtobufTokenTypes;
+import protobuf.lang.PbTokenTypes;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 6, 2010
  */
-public class ProtobufBraceMatcher implements PairedBraceMatcher {
+public class PbBraceMatcher implements PairedBraceMatcher {
 
     //todo [low] what is true and what is false
     private static final BracePair[] PAIRS = {
-        new BracePair(ProtobufTokenTypes.OPEN_BRACE,ProtobufTokenTypes.CLOSE_BRACE,false),
-        new BracePair(ProtobufTokenTypes.OPEN_BLOCK, ProtobufTokenTypes.CLOSE_BLOCK,false),
-        new BracePair(ProtobufTokenTypes.OPEN_PARANT,ProtobufTokenTypes.CLOSE_PARANT,false)
+        new BracePair(PbTokenTypes.OPEN_BRACE, PbTokenTypes.CLOSE_BRACE,false),
+        new BracePair(PbTokenTypes.OPEN_BLOCK, PbTokenTypes.CLOSE_BLOCK,false),
+        new BracePair(PbTokenTypes.OPEN_PARANT, PbTokenTypes.CLOSE_PARANT,false)
     };
 
 

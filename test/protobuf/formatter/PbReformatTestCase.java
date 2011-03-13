@@ -1,23 +1,12 @@
 package protobuf.formatter;
 
 import com.intellij.openapi.application.ApplicationManager;
-import com.intellij.openapi.command.CommandProcessor;
-import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
-import com.intellij.psi.codeStyle.CodeStyleSettings;
-import com.intellij.psi.codeStyle.CodeStyleSettingsManager;
-import com.intellij.psi.impl.DebugUtil;
-import com.intellij.testFramework.fixtures.LightCodeInsightFixtureTestCase;
-import com.intellij.util.IncorrectOperationException;
-import junit.framework.Assert;
-import protobuf.file.ProtobufFileType;
 import protobuf.util.PbTestUtil;
-
-import java.io.IOException;
 
 /**
  * author: Nikolay Matveev

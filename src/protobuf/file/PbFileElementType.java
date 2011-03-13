@@ -6,8 +6,8 @@ import com.intellij.psi.tree.IFileElementType;
 /**
  * author: Nikolay Matveev
  */
-public class ProtobufFileElementType extends IFileElementType {
-    public ProtobufFileElementType(Language language){
+public class PbFileElementType extends IFileElementType {
+    public PbFileElementType(Language language){
         super(language);
     }
 }

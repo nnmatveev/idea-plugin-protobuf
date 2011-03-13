@@ -6,9 +6,9 @@ import com.intellij.lang.Language;
  * author: Nikolay Matveev
  * Date: Mar 5, 2010
  */
-public class ProtobufLanguage extends Language {
+public class PbLanguage extends Language {
 
-    public ProtobufLanguage(){
+    public PbLanguage(){
         super("Protobuf");
     }
 }

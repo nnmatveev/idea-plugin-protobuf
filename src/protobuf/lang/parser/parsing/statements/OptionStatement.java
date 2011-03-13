@@ -1,9 +1,9 @@
 package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.ProtobufElementTypes;
+import protobuf.lang.PbElementTypes;
 import protobuf.lang.parser.parsing.ReferenceElement;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * author: Nikolay Matveev
@@ -18,9 +18,9 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 
 
 //done
-public class OptionStatement implements ProtobufElementTypes {
+public class OptionStatement implements PbElementTypes {
     
-    public static boolean parseSeparateOption(PatchedPsiBuilder builder) {
+    public static boolean parseSeparateOption(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPTION)) {
             return false;
         }
@@ -34,7 +34,7 @@ public class OptionStatement implements ProtobufElementTypes {
         return true;
     }
 
-    public static boolean parseOptionList(PatchedPsiBuilder builder) {
+    public static boolean parseOptionList(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BRACE)) {
             return false;
         }
@@ -55,7 +55,7 @@ public class OptionStatement implements ProtobufElementTypes {
         return true;
     }
 
-    public static boolean parseOptionAssigment(PatchedPsiBuilder builder) {
+    public static boolean parseOptionAssigment(PbPatchedPsiBuilder builder) {
         if (builder.compareToken(IK)) {
             builder.match(IK);
         } else if (!ReferenceElement.parseForCustomOption(builder)) {
@@ -68,7 +68,7 @@ public class OptionStatement implements ProtobufElementTypes {
         return true;
     }
 
-    public static boolean parseOptionValue(PatchedPsiBuilder builder) {
+    public static boolean parseOptionValue(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();        
         if (builder.match(NUMBERS)) {
         } else if (builder.match(MINUS)) {

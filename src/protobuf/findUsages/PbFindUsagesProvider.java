@@ -6,12 +6,11 @@ import com.intellij.lang.findUsages.FindUsagesProvider;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiNamedElement;
-import com.intellij.psi.PsiPackage;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.lexer.PbMergingLexer;
 import protobuf.lang.psi.api.declaration.*;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev

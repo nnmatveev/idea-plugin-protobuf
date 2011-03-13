@@ -3,10 +3,10 @@ package protobuf.lang.psi.impl.member;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.PbPsiEnums;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
@@ -18,7 +18,7 @@ public class PbValueImpl extends PbPsiElementImpl implements PbValue{
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {        
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitValue(this);
     }
 

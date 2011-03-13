@@ -2,9 +2,9 @@ package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.parser.parsing.ReferenceElement;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
@@ -12,7 +12,7 @@ import static protobuf.lang.ProtobufElementTypes.*;
  */
 public class FieldStatement {
 
-    public static boolean parse(PatchedPsiBuilder builder) {
+    public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(FIELD_LABELS)) {
             return false;
         }
@@ -46,7 +46,7 @@ public class FieldStatement {
     }
 
     //done
-    public static boolean parseType(PatchedPsiBuilder builder) {
+    public static boolean parseType(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();
         if (builder.match(BUILT_IN_TYPES)) {                        
         } else if (ReferenceElement.parseForCustomType(builder)) {

@@ -5,7 +5,7 @@ import com.intellij.openapi.compiler.CompilerManager;
 import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.project.Project;
 import protobuf.compiler.PbCompiler;
-import protobuf.file.ProtobufFileType;
+import protobuf.file.PbFileType;
 
 import javax.swing.*;
 
@@ -51,11 +51,11 @@ public class ProtobufDefaultFacetSettingsEditor extends DefaultFacetSettingsEdit
         configuration.setIsCompilationEnabled(isCompilationCheckboxEnabled);
         if (isCompilationCheckboxEnabled && !configuration.isCompilationEnabled()) {
             CompilerManager compilerManager = CompilerManager.getInstance(project);
-            compilerManager.addCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
+            compilerManager.addCompilableFileType(PbFileType.PROTOBUF_FILE_TYPE);
             CompilerManager.getInstance(project).addCompiler(new PbCompiler(project));
         } else if (!isCompilationCheckboxEnabled && configuration.isCompilationEnabled()) {
             CompilerManager compilerManager = CompilerManager.getInstance(project);
-            compilerManager.removeCompilableFileType(ProtobufFileType.PROTOBUF_FILE_TYPE);
+            compilerManager.removeCompilableFileType(PbFileType.PROTOBUF_FILE_TYPE);
             for (PbCompiler compiler : compilerManager.getCompilers(PbCompiler.class)) {
                 compilerManager.removeCompiler(compiler);
             }

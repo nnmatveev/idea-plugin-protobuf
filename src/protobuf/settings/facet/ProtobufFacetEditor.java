@@ -12,7 +12,7 @@ import com.intellij.openapi.util.Comparing;
 import com.intellij.openapi.util.io.FileUtil;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
-import protobuf.facet.ProtobufFacet;
+import protobuf.facet.PbFacet;
 import protobuf.util.PbBundle;
 
 import javax.swing.*;
@@ -51,7 +51,7 @@ public class ProtobufFacetEditor extends FacetEditorTab {
 
     @Override
     public void onFacetInitialized(@NotNull final Facet facet) {
-        ((ProtobufFacet)facet).updateCompilerOutputWatchRequest();
+        ((PbFacet)facet).updateCompilerOutputWatchRequest();
     }
 
     @Override

@@ -1,9 +1,9 @@
 package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.ProtobufElementTypes;
+import protobuf.lang.PbElementTypes;
 import protobuf.lang.parser.parsing.ReferenceElement;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * author: Nikolay Matveev
@@ -17,8 +17,8 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  serviceMethod ::= 'rpc' IDENTIFIER '(' userDefinedType ')' 'returns' '(' userDefinedType ')' serviceMethodBlock? ';'
 //  serviceMethodBlock ::= '{' (optionDefinition|';')* '}'
 
-public class ServiceStatement implements ProtobufElementTypes {
-    public static boolean parse(PatchedPsiBuilder builder) {
+public class ServiceStatement implements PbElementTypes {
+    public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(SERVICE)) {
             return false;
         }
@@ -35,7 +35,7 @@ public class ServiceStatement implements ProtobufElementTypes {
 
     //done
 
-    public static boolean parseServiceBlock(PatchedPsiBuilder builder) {
+    public static boolean parseServiceBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
             return false;
         }
@@ -56,7 +56,7 @@ public class ServiceStatement implements ProtobufElementTypes {
     }
 
     //done
-    public static boolean parseServiceMethod(PatchedPsiBuilder builder) {
+    public static boolean parseServiceMethod(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(RPC)) {
             return false;
         }
@@ -84,7 +84,7 @@ public class ServiceStatement implements ProtobufElementTypes {
 
     //done
 
-    public static boolean parseServiceMethodBlock(PatchedPsiBuilder builder) {
+    public static boolean parseServiceMethodBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
             return false;
         }

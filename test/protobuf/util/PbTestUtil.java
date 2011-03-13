@@ -1,7 +1,5 @@
 package protobuf.util;
 
-import com.intellij.openapi.application.PluginPathManager;
-import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.io.FileUtil;
@@ -10,7 +8,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiFileFactory;
 import com.intellij.util.IncorrectOperationException;
 import com.intellij.util.LocalTimeCounter;
-import protobuf.file.ProtobufFileType;
+import protobuf.file.PbFileType;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,7 +49,7 @@ public abstract class PbTestUtil {
     public static PsiFile createPseudoProtoFile(final Project project, final String fileName, final String text) throws IncorrectOperationException {        
         return PsiFileFactory.getInstance(project).createFileFromText(
                 "temp.proto",                
-                ProtobufFileType.PROTOBUF_FILE_TYPE,
+                PbFileType.PROTOBUF_FILE_TYPE,
                 text,
                 LocalTimeCounter.currentTime(),
                 true);

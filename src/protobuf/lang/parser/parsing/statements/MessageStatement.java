@@ -1,8 +1,8 @@
 package protobuf.lang.parser.parsing.statements;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.ProtobufElementTypes;
-import protobuf.lang.parser.util.PatchedPsiBuilder;
+import protobuf.lang.PbElementTypes;
+import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * author: Nikolay Matveev
@@ -24,8 +24,8 @@ import protobuf.lang.parser.util.PatchedPsiBuilder;
 //  userDefinedType ::= '.'? IDENTIFIER('.'IDENTIFIER)*    
 
 //done
-public class MessageStatement implements ProtobufElementTypes {
-    public static boolean parse(PatchedPsiBuilder builder) {
+public class MessageStatement implements PbElementTypes {
+    public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(MESSAGE)) {
             return false;
         }
@@ -42,7 +42,7 @@ public class MessageStatement implements ProtobufElementTypes {
 
     //done
 
-    public static boolean parseMessageBlock(PatchedPsiBuilder builder) {
+    public static boolean parseMessageBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
             return false;
         }
@@ -60,7 +60,7 @@ public class MessageStatement implements ProtobufElementTypes {
 
     //done
 
-    public static boolean parseMessageStatement(PatchedPsiBuilder builder) {
+    public static boolean parseMessageStatement(PbPatchedPsiBuilder builder) {
         //PsiBuilder.Marker statementMarker = builder.mark();
         if (builder.match(SEMICOLON)) {
         } else if (MessageStatement.parse(builder)) {
@@ -84,7 +84,7 @@ public class MessageStatement implements ProtobufElementTypes {
 
     //done
 
-    public static boolean parseExtensions(PatchedPsiBuilder builder) {
+    public static boolean parseExtensions(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(EXTENSIONS)) {
             return false;
         }

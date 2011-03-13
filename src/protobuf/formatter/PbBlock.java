@@ -7,19 +7,19 @@ import com.intellij.psi.PsiErrorElement;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import protobuf.formatter.util.ProtobufBlockGenerator;
-import protobuf.formatter.util.ProtobufSpacingProcessor;
+import protobuf.formatter.util.PbBlockGenerator;
+import protobuf.formatter.util.PbSpacingProcessor;
 
 import java.util.List;
 
-import static protobuf.lang.ProtobufElementTypes.BLOCKS;
-import static protobuf.lang.ProtobufElementTypes.SKIPPED_ELEMENTS;
+import static protobuf.lang.PbElementTypes.BLOCKS;
+import static protobuf.lang.PbElementTypes.SKIPPED_ELEMENTS;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 12, 2010
  */
-public class ProtobufBlock implements Block {
+public class PbBlock implements Block {
 
     final ASTNode myNode;
     final Alignment myAlignment;
@@ -30,7 +30,7 @@ public class ProtobufBlock implements Block {
 
     private List<Block> mySubBlock;
 
-    public ProtobufBlock(@NotNull final ASTNode node, @Nullable final Alignment alignment, @NotNull final Indent indent, @Nullable final Wrap wrap, final CodeStyleSettings settings) {
+    public PbBlock(@NotNull final ASTNode node, @Nullable final Alignment alignment, @NotNull final Indent indent, @Nullable final Wrap wrap, final CodeStyleSettings settings) {
         myNode = node;
         myAlignment = alignment;
         myIndent = indent;
@@ -44,7 +44,7 @@ public class ProtobufBlock implements Block {
 
     public List<Block> getSubBlocks() {
         if (mySubBlock == null) {
-            mySubBlock = ProtobufBlockGenerator.generateSubBlocks(this, myAlignment, myWrap, mySettings);
+            mySubBlock = PbBlockGenerator.generateSubBlocks(this, myAlignment, myWrap, mySettings);
         }
         return mySubBlock;
     }
@@ -62,7 +62,7 @@ public class ProtobufBlock implements Block {
     }
 
     public Spacing getSpacing(Block block1, Block block2) {        
-        return ProtobufSpacingProcessor.getSpacing(this, (ProtobufBlock) block1, (ProtobufBlock) block2, mySettings);
+        return PbSpacingProcessor.getSpacing(this, (PbBlock) block1, (PbBlock) block2, mySettings);
     }
 
     //  todo: [low] make it more complete

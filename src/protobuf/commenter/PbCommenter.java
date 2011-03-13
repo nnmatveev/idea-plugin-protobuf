@@ -6,7 +6,7 @@ import com.intellij.lang.Commenter;
  * author: Nikolay Matveev
  * Date: Mar 14, 2010
  */
-public class ProtobufCommenter implements Commenter {    
+public class PbCommenter implements Commenter {
     public String getLineCommentPrefix() {
         return "//";
     }

@@ -5,18 +5,18 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
 import com.intellij.psi.tree.IElementType;
-import protobuf.formatter.ProtobufBlock;
+import protobuf.formatter.PbBlock;
 import protobuf.lang.psi.api.PbFile;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 12, 2010
  */
-public class ProtobufSpacingProcessor {
+public class PbSpacingProcessor {
 
-    private final static Logger LOG = Logger.getInstance(ProtobufSpacingProcessor.class.getName());
+    private final static Logger LOG = Logger.getInstance(PbSpacingProcessor.class.getName());
 
     private static final Spacing DEFAULT_SPACING = Spacing.createSpacing(1, 1, 0, false, 0);
 
@@ -29,7 +29,7 @@ public class ProtobufSpacingProcessor {
     private static final Spacing NO_SPACING_WITH_ONE_NEW_LINE = Spacing.createSpacing(0, 0, 1, true, 1);
     private static final Spacing NO_SPACING_WITH_ONE_EXISTED_LINE = Spacing.createSpacing(0, 0, 0, true, 1);
 
-    public static Spacing getSpacing(ProtobufBlock parent, ProtobufBlock child1, ProtobufBlock child2, CodeStyleSettings settings) {
+    public static Spacing getSpacing(PbBlock parent, PbBlock child1, PbBlock child2, CodeStyleSettings settings) {
         /*System.out.println("------------");
         System.out.println("parent: " + parent.getNode().getElementType());
         System.out.println("child1: " + child1.getNode().getElementType());
@@ -120,11 +120,11 @@ public class ProtobufSpacingProcessor {
         return DEFAULT_SPACING;
     }
 
-    private static boolean sameType(ProtobufBlock block, IElementType type) {
+    private static boolean sameType(PbBlock block, IElementType type) {
         return block.getNode().getElementType().equals(type);
     }
 
-    private static IElementType getType(ProtobufBlock block) {
+    private static IElementType getType(PbBlock block) {
         return block.getNode().getElementType();
     }
 }

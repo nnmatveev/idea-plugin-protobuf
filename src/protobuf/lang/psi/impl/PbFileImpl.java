@@ -7,8 +7,8 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.FileViewProvider;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
-import protobuf.file.ProtobufFileType;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.file.PbFileType;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.declaration.PbImportDef;
 import protobuf.lang.psi.api.declaration.PbMessageDef;
@@ -26,17 +26,17 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
     private final static Logger LOG = Logger.getInstance(PbFileImpl.class.getName());
 
     public PbFileImpl(FileViewProvider viewProvider) {
-        super(viewProvider, ProtobufFileType.PROTOBUF_FILE_TYPE.getLanguage());
+        super(viewProvider, PbFileType.PROTOBUF_FILE_TYPE.getLanguage());
     }
 
     @NotNull
     @Override
     public FileType getFileType() {
-        return ProtobufFileType.PROTOBUF_FILE_TYPE;
+        return PbFileType.PROTOBUF_FILE_TYPE;
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitFile(this);
     }
 

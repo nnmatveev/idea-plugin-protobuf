@@ -17,21 +17,21 @@ import protobuf.settings.facet.ProtobufFacetConfiguration;
  * A Facet for working with Google Protocol Buffers.
  * @author Travis Cripps
  */
-public class ProtobufFacet extends Facet<ProtobufFacetConfiguration> {
+public class PbFacet extends Facet<ProtobufFacetConfiguration> {
 
     private LocalFileSystem.WatchRequest compilerOutputWatchRequest;
 
-    public ProtobufFacet(@NotNull FacetType facetType, @NotNull Module module, @NotNull String name, @NotNull ProtobufFacetConfiguration configuration) {
+    public PbFacet(@NotNull FacetType facetType, @NotNull Module module, @NotNull String name, @NotNull ProtobufFacetConfiguration configuration) {
         super(facetType, module, name, configuration, null);
     }
 
     @Nullable
-    public static ProtobufFacet getInstance(@NotNull Module module) {
-        return FacetManager.getInstance(module).getFacetByType(ProtobufFacetType.ID);
+    public static PbFacet getInstance(@NotNull Module module) {
+        return FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
     }
 
     @Nullable
-    public static ProtobufFacet findFacetBySourceFile(@NotNull Project project, @Nullable VirtualFile file) {
+    public static PbFacet findFacetBySourceFile(@NotNull Project project, @Nullable VirtualFile file) {
         if (file == null) return null;
 
         final Module module = ModuleUtil.findModuleForFile(file, project);

@@ -1,7 +1,7 @@
 package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbExtensionsDef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 
@@ -14,7 +14,7 @@ public class PbExtensionsDefImpl extends PbPsiElementImpl implements PbExtension
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitExtensionsDefinition(this);
     }
 }

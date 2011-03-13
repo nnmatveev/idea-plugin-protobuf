@@ -10,7 +10,7 @@ import java.awt.*;
  * author: Nikolay Matveev
  * Date: Mar 6, 2010
  */
-public class DefaultHighlighter{
+public class PbDefaultHighlighter {
 
     static final TextAttributes TEXT_ATTR = new TextAttributes(new Color(0,0,0), null, null, null, Font.PLAIN);
     static final TextAttributes COMMENT_ATTR = SyntaxHighlighterColors.LINE_COMMENT.getDefaultAttributes();    

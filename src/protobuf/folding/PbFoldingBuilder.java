@@ -9,13 +9,13 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 15, 2010
  */
-public class ProtobufFoldingBuilder implements FoldingBuilder {
+public class PbFoldingBuilder implements FoldingBuilder {
     @NotNull
     public FoldingDescriptor[] buildFoldRegions(@NotNull ASTNode astNode, @NotNull Document document) {
         List<FoldingDescriptor> descriptors = new ArrayList<FoldingDescriptor>();

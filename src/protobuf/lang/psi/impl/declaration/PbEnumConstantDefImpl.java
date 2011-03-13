@@ -2,11 +2,8 @@ package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
-import com.intellij.util.IncorrectOperationException;
-import org.jetbrains.annotations.NonNls;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
-import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.impl.auxiliary.PbNamedElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
 
@@ -20,7 +17,7 @@ public class PbEnumConstantDefImpl extends PbNamedElementImpl implements PbEnumC
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitEnumConstantDefinition(this);
     }   
 

@@ -5,8 +5,7 @@ import com.intellij.formatting.Block;
 import com.intellij.formatting.Wrap;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.codeStyle.CodeStyleSettings;
-import protobuf.formatter.ProtobufBlock;
-import protobuf.lang.psi.api.block.PbBlock;
+import protobuf.formatter.PbBlock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +14,8 @@ import java.util.List;
  * author: Nikolay Matveev
  * Date: Mar 22, 2010
  */
-public class ProtobufBlockGenerator {
-    public static List<Block> generateSubBlocks(ProtobufBlock block, Alignment alignment, Wrap wrap, CodeStyleSettings settings) {
+public class PbBlockGenerator {
+    public static List<Block> generateSubBlocks(PbBlock block, Alignment alignment, Wrap wrap, CodeStyleSettings settings) {
         ASTNode curNode = block.getNode();        
 
         ArrayList<Block> subBlocks = new ArrayList<Block>();
@@ -24,7 +23,7 @@ public class ProtobufBlockGenerator {
         for (ASTNode childNode : children) {
             if (canBeCorrectBlock(childNode)) {
                 //todo [low] it is not clear with aligment
-                subBlocks.add(new ProtobufBlock(childNode, curNode.getPsi() instanceof PbBlock ? null : alignment, ProtobufIndentProcessor.getChildIndent(block,childNode), wrap, settings));
+                subBlocks.add(new PbBlock(childNode, curNode.getPsi() instanceof protobuf.lang.psi.api.block.PbBlock ? null : alignment, PbIndentProcessor.getChildIndent(block, childNode), wrap, settings));
             }
         }
         return subBlocks;

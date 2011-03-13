@@ -3,13 +3,11 @@ package protobuf.lang.psi.impl.declaration;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.util.IncorrectOperationException;
-import org.jetbrains.annotations.NonNls;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbFieldDef;
 
 import static protobuf.lang.psi.PbPsiEnums.*;
-import static protobuf.lang.ProtobufTokenTypes.*;
+import static protobuf.lang.PbTokenTypes.*;
 
 import protobuf.lang.psi.api.member.PbFieldType;
 import protobuf.lang.psi.api.reference.PbRef;
@@ -26,7 +24,7 @@ public class PbFieldDefImpl extends PbNamedElementImpl implements PbFieldDef {
     }
 
     @Override
-    public void accept(ProtobufPsiElementVisitor visitor) {
+    public void accept(PbPsiElementVisitor visitor) {
         visitor.visitFieldDefinition(this);
     }
 

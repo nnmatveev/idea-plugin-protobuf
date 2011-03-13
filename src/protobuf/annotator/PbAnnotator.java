@@ -6,8 +6,8 @@ import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import org.jetbrains.annotations.NotNull;
-import protobuf.highlighter.DefaultHighlighter;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.highlighter.PbDefaultHighlighter;
+import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.api.declaration.*;
@@ -17,7 +17,7 @@ import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.util.PbBundle;
 
 import static protobuf.lang.psi.utils.PbPsiUtil.sameType;
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 import static protobuf.lang.psi.PbPsiEnums.*;
 
 
@@ -25,7 +25,7 @@ import static protobuf.lang.psi.PbPsiEnums.*;
  * author: Nikolay Matveev
  * Date: Mar 12, 2010
  */
-public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator {
+public class PbAnnotator extends PbPsiElementVisitor implements Annotator {
 
 
     private final static Logger LOG = Logger.getInstance(PbAnnotator.class.getName());
@@ -79,7 +79,7 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
     public void visitEnumConstantDefinition(PbEnumConstantDef element) {
         PsiElement nameElement = element.getNameElement();
         if (nameElement != null) {
-            myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(protobuf.highlighter.DefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
+            myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(PbDefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
         }
     }
 
@@ -113,9 +113,9 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
         fixHighlighting(element);
         if (element.resolve() == null) {
             if (element.isLastInChainReference()) {
-                myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+                myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
             } else {
-                myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(DefaultHighlighter.ERROR_INFO_ATTR_KEY);
+                myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
             }
         }
     }
@@ -135,14 +135,14 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
             PsiElement nameElement = ((PbNamedElement) element).getNameElement();
             if (nameElement != null) {
                 if (!sameType(nameElement, IDENTIFIER)) {                    
-                    myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
+                    myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(PbDefaultHighlighter.TEXT_ATTR_KEY);
                 }
             }
         } else if (element instanceof PbRef) {
             PsiElement nameElement = ((PbRef) element).getReferenceNameElement();
             if (nameElement != null) {
                 if (!sameType(nameElement, IDENTIFIER)) {
-                    myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(DefaultHighlighter.TEXT_ATTR_KEY);
+                    myHolder.createInfoAnnotation(nameElement.getNode(), null).setTextAttributes(PbDefaultHighlighter.TEXT_ATTR_KEY);
                 }
             }
         } else if(element instanceof PbValue){
@@ -150,11 +150,11 @@ public class PbAnnotator extends ProtobufPsiElementVisitor implements Annotator 
             switch(type){
                 case NUM_INT:
                 case NUM_DOUBLE:{
-                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(DefaultHighlighter.NUMBER_ATTR_KEY);
+                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(PbDefaultHighlighter.NUMBER_ATTR_KEY);
                 }
                 break;
                 case ENUM_CONSTANT:{
-                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(protobuf.highlighter.DefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
+                    myHolder.createInfoAnnotation(element.getNode(), null).setTextAttributes(PbDefaultHighlighter.ENUM_CONSTANT_ATTR_KEY);
                 }
                 break;
             }

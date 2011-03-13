@@ -4,21 +4,21 @@ import com.intellij.lang.Language;
 import com.intellij.openapi.fileTypes.LanguageFileType;
 import org.jetbrains.annotations.NotNull;
 import protobuf.PbIcons;
-import protobuf.ProtobufLanguage;
+import protobuf.PbLanguage;
 
 import javax.swing.*;
 
 /**
  * author: Nikolay Matveev
  */
-public class ProtobufFileType extends LanguageFileType {
+public class PbFileType extends LanguageFileType {
 
-    public static final ProtobufFileType PROTOBUF_FILE_TYPE = new ProtobufFileType();
+    public static final PbFileType PROTOBUF_FILE_TYPE = new PbFileType();
     public static final Language PROTOBUF_LANGUAGE = PROTOBUF_FILE_TYPE.getLanguage();
     public static final String[] DEFAULT_ASSOCIATED_EXTENSIONS = new String[]{"proto"};
 
-    private ProtobufFileType(){
-        super(new ProtobufLanguage());
+    private PbFileType(){
+        super(new PbLanguage());
     }
 
     @NotNull

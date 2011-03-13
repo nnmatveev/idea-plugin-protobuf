@@ -1,7 +1,7 @@
 package protobuf.lang.psi.api;
 
 import com.intellij.psi.PsiElement;
-import protobuf.lang.psi.ProtobufPsiElementVisitor;
+import protobuf.lang.psi.PbPsiElementVisitor;
 
 /**
  * author: Nikolay Matveev
@@ -9,5 +9,5 @@ import protobuf.lang.psi.ProtobufPsiElementVisitor;
  */
 public interface PbPsiElement extends PsiElement {
     
-    public void accept(ProtobufPsiElementVisitor visitor);
+    public void accept(PbPsiElementVisitor visitor);
 }

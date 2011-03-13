@@ -17,9 +17,9 @@ import com.intellij.openapi.util.io.StreamUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
-import protobuf.facet.ProtobufFacet;
-import protobuf.facet.ProtobufFacetType;
-import protobuf.file.ProtobufFileType;
+import protobuf.facet.PbFacet;
+import protobuf.facet.PbFacetType;
+import protobuf.file.PbFileType;
 import protobuf.settings.application.PbCompilerApplicationSettings;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
 import protobuf.util.PbBundle;
@@ -67,12 +67,12 @@ public class PbCompiler implements SourceGeneratingCompiler {
         ProjectFileIndex fileIndex = ProjectRootManager.getInstance(myProject).getFileIndex();
         CompileScope compileScope = compileContext.getCompileScope();
         CompilerConfiguration compilerConfiguration = CompilerConfiguration.getInstance(myProject);
-        VirtualFile[] files = compileScope.getFiles(ProtobufFileType.PROTOBUF_FILE_TYPE, false);
+        VirtualFile[] files = compileScope.getFiles(PbFileType.PROTOBUF_FILE_TYPE, false);
         ArrayList<GenerationItem> generationItems = new ArrayList<GenerationItem>(files.length);
         for (VirtualFile file : files) {
             if (!compilerConfiguration.isExcludedFromCompilation(file)) {
                 Module module = compileContext.getModuleByFile(file);
-                ProtobufFacet facet = FacetManager.getInstance(module).getFacetByType(ProtobufFacetType.ID);
+                PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
                 if (facet != null) { // Generate if a Protobuf facet has been created for the module.
                     generationItems.add(new PbGenerationItem(file, module, fileIndex.isInTestSourceContent(file)));
                 }
@@ -116,7 +116,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
         // Force the Virtual files to refresh so generated the module sources will be available to the project and to the UI.
         for (Module module : modulesToRefresh) {
-            ProtobufFacet facet = FacetManager.getInstance(module).getFacetByType(ProtobufFacetType.ID);
+            PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
             if (facet != null) {
                 ProtobufFacetConfiguration config = facet.getConfiguration();
                 if (config.isCompilationEnabled()) {
@@ -182,7 +182,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
         Module[] modules = compileScope.getAffectedModules();
         for (Module module : modules) {
-            ProtobufFacet facet = FacetManager.getInstance(module).getFacetByType(ProtobufFacetType.ID);
+            PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
             if (facet != null) {
                 String outputPath = facet.getConfiguration().getCompilerOutputPath();
 

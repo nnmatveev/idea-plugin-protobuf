@@ -10,19 +10,19 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
-import protobuf.file.ProtobufFileElementType;
-import protobuf.file.ProtobufFileType;
-import protobuf.lang.ProtobufTokenTypes;
+import protobuf.file.PbFileElementType;
+import protobuf.file.PbFileType;
+import protobuf.lang.PbTokenTypes;
 import protobuf.lang.lexer.PbMergingLexer;
-import protobuf.lang.psi.ProtobufPsiCreator;
+import protobuf.lang.psi.PbPsiCreator;
 import protobuf.lang.psi.impl.PbFileImpl;
 
 /**
  * author: Nikolay Matveev
  * Date: Mar 7, 2010
  */
-public class ProtobufParserDefinition implements ParserDefinition {
-    public static final IFileElementType PROTOBUF_FILE = new ProtobufFileElementType(ProtobufFileType.PROTOBUF_FILE_TYPE.getLanguage());
+public class PbParserDefinition implements ParserDefinition {
+    public static final IFileElementType PROTOBUF_FILE = new PbFileElementType(PbFileType.PROTOBUF_FILE_TYPE.getLanguage());
 
 
     public Lexer createLexer(Project project) {
@@ -30,7 +30,7 @@ public class ProtobufParserDefinition implements ParserDefinition {
     }
 
     public PsiParser createParser(Project project) {
-        return new ProtobufParser();
+        return new PbParser();
     }
 
     public IFileElementType getFileNodeType() {
@@ -39,20 +39,20 @@ public class ProtobufParserDefinition implements ParserDefinition {
 
 
     public TokenSet getWhitespaceTokens() {
-        return ProtobufTokenTypes.WHITE_SPACES;
+        return PbTokenTypes.WHITE_SPACES;
     }
 
     public TokenSet getCommentTokens() {
-        return ProtobufTokenTypes.COMMENTS;
+        return PbTokenTypes.COMMENTS;
     }
 
 
     public TokenSet getStringLiteralElements() {
-        return ProtobufTokenTypes.STRING_LITERALS;
+        return PbTokenTypes.STRING_LITERALS;
     }
 
     public PsiElement createElement(ASTNode astNode) {
-        return ProtobufPsiCreator.createElement(astNode);
+        return PbPsiCreator.createElement(astNode);
     }
 
 

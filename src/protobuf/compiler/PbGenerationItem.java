@@ -8,8 +8,8 @@ import com.intellij.openapi.module.Module;
 import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiManager;
-import protobuf.facet.ProtobufFacet;
-import protobuf.facet.ProtobufFacetType;
+import protobuf.facet.PbFacet;
+import protobuf.facet.PbFacetType;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.impl.PbFileImpl;
 
@@ -23,13 +23,13 @@ import java.util.ArrayList;
 public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
 
     Module myModule;
-    ProtobufFacet facet;
+    PbFacet facet;
     VirtualFile myFile;
     boolean myIsTestSource;
 
     public PbGenerationItem(VirtualFile file, Module module, boolean isTestSource) {
         myModule = module;
-        facet = FacetManager.getInstance(myModule).getFacetByType(ProtobufFacetType.ID);
+        facet = FacetManager.getInstance(myModule).getFacetByType(PbFacetType.ID);
         myFile = file;
         myIsTestSource = isTestSource;
     }
@@ -94,7 +94,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
         return myModule;
     }
 
-    public ProtobufFacet getFacet() {
+    public PbFacet getFacet() {
         return facet;
     }
 

@@ -16,7 +16,7 @@ import com.intellij.patterns.PlatformPatterns;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import protobuf.PbIcons;
-import protobuf.file.ProtobufFileType;
+import protobuf.file.PbFileType;
 import protobuf.settings.facet.ProtobufDefaultFacetSettingsEditor;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
 import protobuf.settings.facet.ProtobufMultipleFacetSettingsEditor;
@@ -29,12 +29,12 @@ import java.util.Collection;
  * The FacetType for Protobuf facets.
  * @author Travis Cripps
  */
-public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetConfiguration> {
+public class PbFacetType extends FacetType<PbFacet, ProtobufFacetConfiguration> {
 
-    public static final FacetTypeId<ProtobufFacet> ID = new FacetTypeId<ProtobufFacet>("protobuf");
-    public static final ProtobufFacetType INSTANCE = new ProtobufFacetType();
+    public static final FacetTypeId<PbFacet> ID = new FacetTypeId<PbFacet>("protobuf");
+    public static final PbFacetType INSTANCE = new PbFacetType();
 
-    private ProtobufFacetType() {
+    private PbFacetType() {
         super(ID, "protobuf", PbBundle.message("facet.type.name.protobuf"));
     }
 
@@ -42,15 +42,15 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
         return new ProtobufFacetConfiguration();
     }
 
-    public ProtobufFacet createFacet(@NotNull Module module, final String name, @NotNull ProtobufFacetConfiguration configuration, @Nullable Facet underlyingFacet) {
-        return new ProtobufFacet(this, module, name, configuration);
+    public PbFacet createFacet(@NotNull Module module, final String name, @NotNull ProtobufFacetConfiguration configuration, @Nullable Facet underlyingFacet) {
+        return new PbFacet(this, module, name, configuration);
     }
 
-    public ProtobufFacetType(@NotNull FacetTypeId<ProtobufFacet> protobufFacetFacetTypeId, @NotNull String stringId, @NotNull String presentableName, @Nullable FacetTypeId underlyingFacetType) {
+    public PbFacetType(@NotNull FacetTypeId<PbFacet> protobufFacetFacetTypeId, @NotNull String stringId, @NotNull String presentableName, @Nullable FacetTypeId underlyingFacetType) {
         super(protobufFacetFacetTypeId, stringId, presentableName, underlyingFacetType);
     }
 
-    public ProtobufFacetType(@NotNull FacetTypeId<ProtobufFacet> protobufFacetFacetTypeId, @NotNull String stringId, @NotNull String presentableName) {
+    public PbFacetType(@NotNull FacetTypeId<PbFacet> protobufFacetFacetTypeId, @NotNull String stringId, @NotNull String presentableName) {
         super(protobufFacetFacetTypeId, stringId, presentableName);
     }
 
@@ -60,7 +60,7 @@ public class ProtobufFacetType extends FacetType<ProtobufFacet, ProtobufFacetCon
 
     public void registerDetectors(final FacetDetectorRegistry<ProtobufFacetConfiguration> detectorRegistry) {
         detectorRegistry.registerUniversalDetector(
-                ProtobufFileType.PROTOBUF_FILE_TYPE,
+                PbFileType.PROTOBUF_FILE_TYPE,
                 PlatformPatterns.virtualFile().withExtension(".proto"),
                 new ProtobufFacetDetector());
     }

@@ -3,7 +3,7 @@ package protobuf.lang.psi;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
-import protobuf.lang.ProtobufElementTypes;
+import protobuf.lang.PbElementTypes;
 import protobuf.lang.psi.impl.*;
 import protobuf.lang.psi.impl.block.PbBlockImpl;
 import protobuf.lang.psi.impl.declaration.*;
@@ -15,7 +15,7 @@ import protobuf.lang.psi.impl.reference.PbRefImpl;
  * author: Nikolay Matveev
  * Date: Mar 9, 2010
  */
-public class ProtobufPsiCreator implements ProtobufElementTypes {
+public class PbPsiCreator implements PbElementTypes {
 
     public static PsiElement createElement(ASTNode node){
         IElementType element = node.getElementType();

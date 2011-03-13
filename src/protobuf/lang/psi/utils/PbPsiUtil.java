@@ -7,15 +7,14 @@ import com.intellij.psi.*;
 import com.intellij.psi.scope.PsiScopeProcessor;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
-import protobuf.file.ProtobufFileType;
+import protobuf.file.PbFileType;
 import protobuf.lang.psi.api.*;
 import protobuf.lang.psi.api.auxiliary.PbBlockHolder;
 import protobuf.lang.psi.api.block.PbBlock;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.reference.PbRef;
-import protobuf.lang.psi.impl.PbFileImpl;
 
-import static protobuf.lang.ProtobufElementTypes.*;
+import static protobuf.lang.PbElementTypes.*;
 
 import java.util.ArrayList;
 
@@ -91,7 +90,7 @@ public abstract class PbPsiUtil {
     public static ASTNode createSimpleNodeWithText(String text, Project project){
         assert !text.contains(" "):"name cannot contain white spaces";
         PsiFileFactory psiFileFactory = PsiFileFactory.getInstance(project);
-        PbFile dummyFile = (PbFile)psiFileFactory.createFileFromText("DUMMY_SET_NAME", ProtobufFileType.PROTOBUF_FILE_TYPE,"message " + text + " {}");
+        PbFile dummyFile = (PbFile)psiFileFactory.createFileFromText("DUMMY_SET_NAME", PbFileType.PROTOBUF_FILE_TYPE,"message " + text + " {}");
         PbMessageDef dummyMessage = (PbMessageDef)PbPsiUtil.getChild(dummyFile,0,true,true,false);
         PsiElement newNameElement = dummyMessage.getNameElement();
         return newNameElement.getNode();
