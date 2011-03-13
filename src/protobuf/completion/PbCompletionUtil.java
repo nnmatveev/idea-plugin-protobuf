@@ -1,4 +1,4 @@
-package protobuf.lang.completion;
+package protobuf.completion;
 
 import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.api.reference.PbRef;

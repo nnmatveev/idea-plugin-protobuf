@@ -1,4 +1,4 @@
-package protobuf.lang.completion;
+package protobuf.completion;
 
 import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
