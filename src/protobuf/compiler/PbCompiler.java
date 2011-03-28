@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -64,15 +65,15 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public GenerationItem[] getGenerationItems(CompileContext compileContext) {
-        ProjectFileIndex fileIndex = ProjectRootManager.getInstance(myProject).getFileIndex();
-        CompileScope compileScope = compileContext.getCompileScope();
-        CompilerConfiguration compilerConfiguration = CompilerConfiguration.getInstance(myProject);
-        VirtualFile[] files = compileScope.getFiles(PbFileType.PROTOBUF_FILE_TYPE, false);
-        ArrayList<GenerationItem> generationItems = new ArrayList<GenerationItem>(files.length);
+        final ProjectFileIndex fileIndex = ProjectRootManager.getInstance(myProject).getFileIndex();
+        final CompileScope compileScope = compileContext.getCompileScope();
+        final CompilerConfiguration compilerConfiguration = CompilerConfiguration.getInstance(myProject);
+        final VirtualFile[] files = compileScope.getFiles(PbFileType.PROTOBUF_FILE_TYPE, false);
+        final List<GenerationItem> generationItems = new ArrayList<GenerationItem>(files.length);
         for (VirtualFile file : files) {
             if (!compilerConfiguration.isExcludedFromCompilation(file)) {
                 Module module = compileContext.getModuleByFile(file);
-                PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
+                final PbFacet facet = PbFacet.getInstance(module);
                 if (facet != null) { // Generate if a Protobuf facet has been created for the module.
                     generationItems.add(new PbGenerationItem(file, module, fileIndex.isInTestSourceContent(file)));
                 }
@@ -116,7 +117,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
         // Force the Virtual files to refresh so generated the module sources will be available to the project and to the UI.
         for (Module module : modulesToRefresh) {
-            PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
+            final PbFacet facet = PbFacet.getInstance(module);
             if (facet != null) {
                 ProtobufFacetConfiguration config = facet.getConfiguration();
                 if (config.isCompilationEnabled()) {

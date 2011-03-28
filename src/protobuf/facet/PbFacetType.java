@@ -31,11 +31,12 @@ import java.util.Collection;
  */
 public class PbFacetType extends FacetType<PbFacet, ProtobufFacetConfiguration> {
 
-    public static final FacetTypeId<PbFacet> ID = new FacetTypeId<PbFacet>("protobuf");
+    private static final String NAME = "protobuf";
+    public static final FacetTypeId<PbFacet> ID = new FacetTypeId<PbFacet>(NAME);
     public static final PbFacetType INSTANCE = new PbFacetType();
 
     private PbFacetType() {
-        super(ID, "protobuf", PbBundle.message("facet.type.name.protobuf"));
+        super(ID, NAME, PbBundle.message("facet.type.name.protobuf"));
     }
 
     public ProtobufFacetConfiguration createDefaultConfiguration() {

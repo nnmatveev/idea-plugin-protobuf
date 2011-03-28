@@ -29,7 +29,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
 
     public PbGenerationItem(VirtualFile file, Module module, boolean isTestSource) {
         myModule = module;
-        facet = FacetManager.getInstance(myModule).getFacetByType(PbFacetType.ID);
+        facet = PbFacet.getInstance(myModule);
         myFile = file;
         myIsTestSource = isTestSource;
     }
