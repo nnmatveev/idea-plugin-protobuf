@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.PbElementTypes;
@@ -15,7 +15,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 //  enumStatement ::= PbOptionDef | enumConstant | ';'
 //  enumConstant ::=  IDENTIFIER '=' NUM_INT fieldOptions? ';'
 
-public class EnumStatement implements PbElementTypes {
+public class EnumDeclaration implements PbElementTypes {
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(ENUM)) {
             return false;
@@ -51,7 +51,7 @@ public class EnumStatement implements PbElementTypes {
     public static boolean parseEnumStatement(PbPatchedPsiBuilder builder) {
         //PsiBuilder.Marker enumStatementMarker = builder.mark();
         if(builder.match(SEMICOLON)){
-        } else if(OptionStatement.parseSeparateOption(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
+        } else if(OptionDeclaration.parseSeparateOption(builder)){ //todo: maybe make a lookahead to option because it is not clear if enum name is 'option'
         } else if(parseEnumConstant(builder)){      //
         } else {
             //enumStatementMarker.drop();
@@ -78,7 +78,7 @@ public class EnumStatement implements PbElementTypes {
         } else {
             builder.matchAs(NUM_INT,VALUE,"num.integer.expected");
         }
-        OptionStatement.parseOptionList(builder);
+        OptionDeclaration.parseOptionList(builder);
         builder.match(SEMICOLON,"semicolon.expected");
         enumConstantkMarker.done(ENUM_CONST_DECL);
         return true;

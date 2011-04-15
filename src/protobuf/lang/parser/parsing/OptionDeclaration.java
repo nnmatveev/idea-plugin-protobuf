@@ -1,8 +1,7 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.PbElementTypes;
-import protobuf.lang.parser.parsing.ReferenceElement;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
@@ -18,7 +17,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 
 //done
-public class OptionStatement implements PbElementTypes {
+public class OptionDeclaration implements PbElementTypes {
     
     public static boolean parseSeparateOption(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPTION)) {

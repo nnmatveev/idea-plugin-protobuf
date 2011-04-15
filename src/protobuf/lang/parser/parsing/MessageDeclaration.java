@@ -1,4 +1,4 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.PbElementTypes;
@@ -24,7 +24,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 //  userDefinedType ::= '.'? IDENTIFIER('.'IDENTIFIER)*    
 
 //done
-public class MessageStatement implements PbElementTypes {
+public class MessageDeclaration implements PbElementTypes {
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(MESSAGE)) {
             return false;
@@ -63,17 +63,17 @@ public class MessageStatement implements PbElementTypes {
     public static boolean parseMessageStatement(PbPatchedPsiBuilder builder) {
         //PsiBuilder.Marker statementMarker = builder.mark();
         if (builder.match(SEMICOLON)) {
-        } else if (MessageStatement.parse(builder)) {
+        } else if (MessageDeclaration.parse(builder)) {
 
-        } else if (EnumStatement.parse(builder)) {
+        } else if (EnumDeclaration.parse(builder)) {
             
-        } else if (ExtendStatement.parse(builder)) {
+        } else if (ExtendDeclaration.parse(builder)) {
 
-        } else if (OptionStatement.parseSeparateOption(builder)) {
+        } else if (OptionDeclaration.parseSeparateOption(builder)) {
             
         } else if (parseExtensions(builder)) {
 
-        } else if (FieldStatement.parse(builder)) {
+        } else if (FieldDeclaration.parse(builder)) {
         } else {
             //statementMarker.drop();
             return false;

@@ -1,8 +1,7 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.PbElementTypes;
-import protobuf.lang.parser.parsing.ReferenceElement;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
@@ -14,7 +13,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 //  PbImportDef ::= 'import' STRING_LITERAL ';'
 
 //done    
-public class ImportStatement implements PbElementTypes {
+public class ImportDeclaration implements PbElementTypes {
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if(!builder.compareToken(IMPORT)) {
             return false;

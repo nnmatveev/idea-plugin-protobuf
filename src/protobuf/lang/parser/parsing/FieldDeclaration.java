@@ -1,7 +1,6 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
-import protobuf.lang.parser.parsing.ReferenceElement;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 import static protobuf.lang.PbElementTypes.*;
@@ -10,7 +9,7 @@ import static protobuf.lang.PbElementTypes.*;
  * @author Nikolay Matveev
  * Date: Mar 25, 2010
  */
-public class FieldStatement {
+public class FieldDeclaration {
 
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(FIELD_LABELS)) {
@@ -24,8 +23,8 @@ public class FieldStatement {
             //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            OptionStatement.parseOptionList(builder);
-            if (!MessageStatement.parseMessageBlock(builder)) {
+            OptionDeclaration.parseOptionList(builder);
+            if (!MessageDeclaration.parseMessageBlock(builder)) {
                 builder.error("group.block.expected");
             }            
             messageMarker.done(GROUP_DECL);
@@ -38,7 +37,7 @@ public class FieldStatement {
             //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
-            OptionStatement.parseOptionList(builder);
+            OptionDeclaration.parseOptionList(builder);
             builder.match(SEMICOLON, "semicolon.expected");
             messageMarker.done(FIELD_DECL);
         }

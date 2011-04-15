@@ -1,8 +1,7 @@
-package protobuf.lang.parser.parsing.statements;
+package protobuf.lang.parser.parsing;
 
 import com.intellij.lang.PsiBuilder;
 import protobuf.lang.PbElementTypes;
-import protobuf.lang.parser.parsing.ReferenceElement;
 import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
@@ -17,7 +16,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 //  serviceMethod ::= 'rpc' IDENTIFIER '(' userDefinedType ')' 'returns' '(' userDefinedType ')' serviceMethodBlock? ';'
 //  serviceMethodBlock ::= '{' (optionDefinition|';')* '}'
 
-public class ServiceStatement implements PbElementTypes {
+public class ServiceDeclaration implements PbElementTypes {
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(SERVICE)) {
             return false;
@@ -44,7 +43,7 @@ public class ServiceStatement implements PbElementTypes {
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
             if (builder.match(SEMICOLON)) {
             } else if (parseServiceMethod(builder)) {
-            } else if (OptionStatement.parseSeparateOption(builder)) {
+            } else if (OptionDeclaration.parseSeparateOption(builder)) {
             } else {
                 builder.eatError("unexpected.token");
             }
@@ -92,7 +91,7 @@ public class ServiceStatement implements PbElementTypes {
         builder.match(OPEN_BLOCK);
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
             if (builder.match(SEMICOLON)) {
-            } else if (OptionStatement.parseSeparateOption(builder)) {
+            } else if (OptionDeclaration.parseSeparateOption(builder)) {
             } else {
                 builder.eatError("unexpected.token");
             }
