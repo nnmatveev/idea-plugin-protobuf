@@ -1,0 +1,57 @@
+<Compilation Unit> :: = (
+    <Package Declaration>   |
+    <Import Declaration>    |
+    <Message Declaration>   |
+    <Extend Declaration>    |
+    <Option Declaration>    |
+    <Enum Declaration>      |
+    <Members Declaration>   |
+    <Service Declaration>   |
+    ";"
+    )*
+
+<Package Declaration> ::= 'package' IDENTIFIER('.'IDENTIFIER)* ';'
+
+<Import Declaration> ::= 'import' STRING_LITERAL ';'
+
+<Message Declaration> ::= 'message' IDENTIFIER <Message Block>
+<Message Block> ::= '{' (<Message Member>)* '}'
+<Message Member> ::= (
+    <Message Declaration>       |
+    <Enum Declaration>          |
+    <Extend Declaration>        |
+    <Option Declaration>        |
+    <Extensions Declaration>    |
+    <Field Declaration>         |
+    ";")*
+<Extensions Declaration> ::= 'extensions' <Extensions Range>(','<Extensions Range>)* ';'
+<Extensions Range> ::= (NUM_INT 'to' ('max'|NUM_INT))
+
+<Field Declaration> ::= <Field Label> 'group' IDENTIFIER '=' NUM_INT (<Field Options>)* <Message Block> ';'
+<Field Declaration> ::= <Field Label> <Field Type> IDENTIFIER '=' NUM_INT (<Field Options>)? ';'
+<Field Label> ::= 'required' | 'repeated' | 'optional'
+<Field Type> ::= BUILT_IN_TYPE | <User Defined Type>
+<Field Options> ::= '[' (<Default Assignment> | <Option Assignment>)(','(<Default Assignment>|<Option Assignment>)) ']'
+<Default Assignment> ::= 'default' = STRING_LITERALS
+<User Defined Type> ::= '.'? IDENTIFIER('.'IDENTIFIER)*
+
+STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
+
+<Extend Declaration> ::= 'extend' <User Defined Type> '{' <Extend Block> '}'
+<Extend Block> ::= (<Field Declaration> ';')*
+
+<Option Declaration> ::= "option" <Option Assignment> ";"
+<Option Assignment> ::= <Option Name> "=" STRING_LITERALS
+<Option Name> ::= <Option Name Part> ("."<Option Name Part>)*
+<Option Name Part> ::= IK |"(" IK("."IK)* ")
+
+<Enum Declaration> ::= 'enum' IDENTIFIER '{' <Enum Block> '}'
+<Enum Block> ::= (<Enum Member>)*
+<Enum Member> ::= <Option Declaration> | <Enum Constant> | ';'
+<Enum Constant> ::=  IDENTIFIER '=' NUM_INT <Field Options>? ';'
+
+<Service Declaration> ::= 'service' IDENTIFIER <Service Block>
+<Service Block> ::= '{' (<Service Member> | ';')* '}'
+<Service Member> ::= <Service Method> | <Option Declaration>
+<Service Method> ::= 'rpc' IDENTIFIER '(' <User Defined Type ')' 'returns' '(' <User Defined Type> ')' <Service Method Block>? ';'
+<Service Method Block> ::= '{' (<Option Declaration>|';')* '}'
