@@ -2,12 +2,12 @@ package protobuf.lang.lexer;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
-import protobuf.lang.ProtobufTokenTypes;
+import protobuf.lang.PbTokenTypes;
 
 %%
 
 %class _ProtobufLexer
-%implements FlexLexer, ProtobufTokenTypes
+%implements FlexLexer, PbTokenTypes
 %unicode
 %public
 
