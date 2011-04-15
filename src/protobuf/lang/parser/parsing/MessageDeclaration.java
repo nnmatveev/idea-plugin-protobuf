@@ -6,25 +6,10 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 10, 2010
  */
 
-//  grammar - ok
-//  PbMessageDef ::= 'message' IDENTIFIER messageBlock
-//  messageBlock ::= '{' (messageStatement)* '}'
-//  messageStatement ::= (PbMessageDef | PbEnumDef | PbExtendDef | PbOptionDef | extensions | messageField | ';')*
-//  extensions ::= 'extensions' extensionsRange(','extensionsRange)* ';'
-//	extensionsRange ::= (NUM_INT 'to' ('max'|NUM_INT))
-//  messageField ::= fieldLabel 'group' IDENTIFIER '=' NUM_INT (fieldOptions)* messageBlock ';'    
-//  messageField ::= fieldLabel fieldType IDENTIFIER '=' NUM_INT (fieldOptions)? ';'
-//  fieldLabel ::= 'required' | 'repeated' | 'optional'
-//  fieldType ::= BUILT_IN_TYPE | userDefinedType
-//  fieldOptions ::= '[' (defaultAssigment | optionAssigment)(','(defaultAssigment|optionAssigment)) ']'
-//  defaultAssigment ::= 'default' = STRING_LITERALS
-//  userDefinedType ::= '.'? IDENTIFIER('.'IDENTIFIER)*    
-
-//done
 public class MessageDeclaration implements PbElementTypes {
+
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(MESSAGE)) {
             return false;
@@ -32,15 +17,13 @@ public class MessageDeclaration implements PbElementTypes {
         PsiBuilder.Marker messageMarker = builder.mark();
         builder.match(MESSAGE);
         //builder.matchAs(IK,NAME,"identifier.expected");
-        builder.match(IK,"identifier.expected");
+        builder.match(IK, "identifier.expected");
         if (!parseMessageBlock(builder)) {
             builder.error("message.block.expected");
         }
         messageMarker.done(MESSAGE_DECL);
         return true;
     }
-
-    //done
 
     public static boolean parseMessageBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
@@ -49,7 +32,7 @@ public class MessageDeclaration implements PbElementTypes {
         PsiBuilder.Marker blockMarker = builder.mark();
         builder.match(OPEN_BLOCK); //matching OPEN_BLOCK
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
-            if (!parseMessageStatement(builder)) {
+            if (!parseMessageMember(builder)) {
                 builder.eatError("unexpected.token");
             }
         }
@@ -58,19 +41,17 @@ public class MessageDeclaration implements PbElementTypes {
         return true;
     }
 
-    //done
-
-    public static boolean parseMessageStatement(PbPatchedPsiBuilder builder) {
+    public static boolean parseMessageMember(PbPatchedPsiBuilder builder) {
         //PsiBuilder.Marker statementMarker = builder.mark();
         if (builder.match(SEMICOLON)) {
         } else if (MessageDeclaration.parse(builder)) {
 
         } else if (EnumDeclaration.parse(builder)) {
-            
+
         } else if (ExtendDeclaration.parse(builder)) {
 
         } else if (OptionDeclaration.parseSeparateOption(builder)) {
-            
+
         } else if (parseExtensions(builder)) {
 
         } else if (FieldDeclaration.parse(builder)) {
@@ -81,8 +62,6 @@ public class MessageDeclaration implements PbElementTypes {
         //statementMarker.done(MESSAGE_STATEMENT);
         return true;
     }
-
-    //done
 
     public static boolean parseExtensions(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(EXTENSIONS)) {
@@ -112,6 +91,4 @@ public class MessageDeclaration implements PbElementTypes {
         extMarker.done(EXTENSIONS_DECL);
         return true;
     }
-
-    //done
 }

@@ -6,13 +6,8 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 9, 2010
  */
 
-//  grammar - ok
-//  PbPackageDef ::= 'package' IDENTIFIER('.'IDENTIFIER)* ';'
-
-// done
 public class PackageDeclaration implements PbElementTypes {
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(PACKAGE)) {
@@ -20,10 +15,10 @@ public class PackageDeclaration implements PbElementTypes {
         }
         Marker outerMarker = builder.mark();
         builder.match(PACKAGE);
-        if(!ReferenceElement.parseForPackage(builder)) {
+        if (!ReferenceElement.parseForPackage(builder)) {
             builder.error("identifier.expected");
         }
-        builder.match(SEMICOLON,"semicolon.expected");
+        builder.match(SEMICOLON, "semicolon.expected");
         outerMarker.done(PACKAGE_DECL);
         return true;
     }

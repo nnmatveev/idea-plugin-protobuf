@@ -7,7 +7,7 @@ import static protobuf.lang.PbElementTypes.*;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 25, 2010
+ *         Date: Mar 25, 2010
  */
 public class ReferenceElement {
 

@@ -6,30 +6,21 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 10, 2010
  */
 
-//  grammar - ok
-//  PbOptionDef ::= "option" optionAssigment ";"
-//  optionAssigment ::= optionName "=" STRING_LITERALS    
-//  optionName ::= optionNamePart ("."optionNamePart)*
-//  optionNamePart ::= IK |"(" IK("."IK)* ")
-
-
-//done
 public class OptionDeclaration implements PbElementTypes {
-    
+
     public static boolean parseSeparateOption(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPTION)) {
             return false;
         }
-        PsiBuilder.Marker optionAssigmentMarker = builder.mark();
+        PsiBuilder.Marker optionAssignmentMarker = builder.mark();
         builder.match(OPTION);
-        if (!parseOptionAssigment(builder)) {
-            builder.error("option.assigment.expected");
+        if (!parseOptionAssignment(builder)) {
+            builder.error("option.assignment.expected");
         }
         builder.match(SEMICOLON, "semicolon.expected");
-        optionAssigmentMarker.done(OPTION_ASSIGNMENT);        
+        optionAssignmentMarker.done(OPTION_ASSIGNMENT);
         return true;
     }
 
@@ -40,12 +31,12 @@ public class OptionDeclaration implements PbElementTypes {
         PsiBuilder.Marker optionsMarker = builder.mark();
         builder.match(OPEN_BRACE);
         do {
-            PsiBuilder.Marker optionAssigmentMarker = builder.mark();
-            if (parseOptionAssigment(builder)) {
-                optionAssigmentMarker.done(OPTION_ASSIGNMENT);
+            PsiBuilder.Marker optionAssignmentMarker = builder.mark();
+            if (parseOptionAssignment(builder)) {
+                optionAssignmentMarker.done(OPTION_ASSIGNMENT);
             } else {
-                optionAssigmentMarker.drop();
-                builder.error("option.assigment.expected");
+                optionAssignmentMarker.drop();
+                builder.error("option.assignment.expected");
                 break;
             }
         } while (!builder.eof() && builder.match(COMMA));
@@ -54,7 +45,7 @@ public class OptionDeclaration implements PbElementTypes {
         return true;
     }
 
-    public static boolean parseOptionAssigment(PbPatchedPsiBuilder builder) {
+    public static boolean parseOptionAssignment(PbPatchedPsiBuilder builder) {
         if (builder.compareToken(IK)) {
             builder.match(IK);
         } else if (!ReferenceElement.parseForCustomOption(builder)) {
@@ -68,7 +59,7 @@ public class OptionDeclaration implements PbElementTypes {
     }
 
     public static boolean parseOptionValue(PbPatchedPsiBuilder builder) {
-        PsiBuilder.Marker marker = builder.mark();        
+        PsiBuilder.Marker marker = builder.mark();
         if (builder.match(NUMBERS)) {
         } else if (builder.match(MINUS)) {
             if (builder.match(NUMBERS)) {

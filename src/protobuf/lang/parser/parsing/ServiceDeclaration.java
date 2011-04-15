@@ -6,17 +6,10 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 10, 2010
  */
 
-//  grammar - ok
-//  PbServiceDef ::= 'service' IDENTIFIER serviceBlock
-//  serviceBlock ::= '{' (serviceStatement | ';')* '}'
-//  serviceStatement ::= serviceMethod | optionDefinition
-//  serviceMethod ::= 'rpc' IDENTIFIER '(' userDefinedType ')' 'returns' '(' userDefinedType ')' serviceMethodBlock? ';'
-//  serviceMethodBlock ::= '{' (optionDefinition|';')* '}'
-
 public class ServiceDeclaration implements PbElementTypes {
+
     public static boolean parse(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(SERVICE)) {
             return false;
@@ -31,8 +24,6 @@ public class ServiceDeclaration implements PbElementTypes {
         serviceMarker.done(SERVICE_DECL);
         return true;
     }
-
-    //done
 
     public static boolean parseServiceBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {
@@ -54,7 +45,6 @@ public class ServiceDeclaration implements PbElementTypes {
         return true;
     }
 
-    //done
     public static boolean parseServiceMethod(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(RPC)) {
             return false;
@@ -74,14 +64,12 @@ public class ServiceDeclaration implements PbElementTypes {
             builder.error("user.defined.type.expected");
         }
         builder.match(CLOSE_PARANT, "close.parant.expected");
-        if(!parseServiceMethodBlock(builder)){
-            builder.match(SEMICOLON,"semicolon.expected");    
+        if (!parseServiceMethodBlock(builder)) {
+            builder.match(SEMICOLON, "semicolon.expected");
         }
         serviceStatementMarker.done(SERVICE_METHOD_DECL);
         return true;
     }
-
-    //done
 
     public static boolean parseServiceMethodBlock(PbPatchedPsiBuilder builder) {
         if (!builder.compareToken(OPEN_BLOCK)) {

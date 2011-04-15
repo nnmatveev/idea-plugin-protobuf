@@ -7,7 +7,7 @@ import static protobuf.lang.PbElementTypes.*;
 
 /**
  * @author Nikolay Matveev
- * Date: Mar 25, 2010
+ *         Date: Mar 25, 2010
  */
 public class FieldDeclaration {
 
@@ -19,18 +19,18 @@ public class FieldDeclaration {
             PsiBuilder.Marker messageMarker = builder.mark();
             builder.match(FIELD_LABELS);
             builder.match(GROUP);
-            builder.match(IK,"identifier.expected");
+            builder.match(IK, "identifier.expected");
             //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
             OptionDeclaration.parseOptionList(builder);
             if (!MessageDeclaration.parseMessageBlock(builder)) {
                 builder.error("group.block.expected");
-            }            
+            }
             messageMarker.done(GROUP_DECL);
 
         } else {
-            PsiBuilder.Marker messageMarker = builder.mark();            
+            PsiBuilder.Marker messageMarker = builder.mark();
             builder.match(FIELD_LABELS);
             parseType(builder);
             builder.match(IK, "identifier.expected");
@@ -47,7 +47,7 @@ public class FieldDeclaration {
     //done
     public static boolean parseType(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();
-        if (builder.match(BUILT_IN_TYPES)) {                        
+        if (builder.match(BUILT_IN_TYPES)) {
         } else if (ReferenceElement.parseForCustomType(builder)) {
         } else {
             marker.drop();
@@ -56,6 +56,6 @@ public class FieldDeclaration {
         marker.done(FIELD_TYPE);
         return true;
     }
-    
+
     //done
 }
