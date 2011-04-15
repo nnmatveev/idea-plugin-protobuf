@@ -1,6 +1,7 @@
 package protobuf.lang.psi;
 
 import com.intellij.psi.PsiElementVisitor;
+import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
@@ -11,29 +12,58 @@ import protobuf.lang.psi.api.reference.PbRef;
  */
 public abstract class PbPsiElementVisitor extends PsiElementVisitor {
 
-    public abstract void visitImportDefinition(PbImportDef element);
+    public void visitPbElement(PbPsiElement element){
+        visitElement(element);
+    }
 
-    public abstract void visitPackageDefinition(PbPackageDef element);
+    public void visitImportDefinition(PbImportDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitMessageDefinition(PbMessageDef element);
+    public void visitPackageDefinition(PbPackageDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitEnumDefinition(PbEnumDef element);
+    public void visitMessageDefinition(PbMessageDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitExtendDefinition(PbExtendDef element);
+    public void visitEnumDefinition(PbEnumDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitEnumConstantDefinition(PbEnumConstantDef element);
+    public void visitExtendDefinition(PbExtendDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitGroupDefinition(PbGroupDef element);
+    public void visitEnumConstantDefinition(PbEnumConstantDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitFieldDefinition(PbFieldDef element);
+    public void visitGroupDefinition(PbGroupDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitServiceDefinition(PbServiceDef element);
+    public void visitFieldDefinition(PbFieldDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitServiceMethodDefinition(PbServiceMethodDef element);
+    public void visitServiceDefinition(PbServiceDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitRef(PbRef element);
+    public void visitServiceMethodDefinition(PbServiceMethodDef element){
+        visitPbElement(element);
+    }
 
-    public abstract void visitExtensionsDefinition(PbExtensionsDef element);
+    public void visitRef(PbRef element){
+    }
 
-    public abstract void visitValue(PbValue element);
+    public void visitExtensionsDefinition(PbExtensionsDef element){
+        visitPbElement(element);
+    }
+
+    public void visitValue(PbValue element){
+        visitPbElement(element);
+    }
 }
