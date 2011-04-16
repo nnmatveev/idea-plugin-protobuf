@@ -1,3 +1,8 @@
+==== 0.4.1
+* Structure view
+* New icon for Protobuf files
+* Various minor fixes
+
 ==== 0.4
 Version 0.4 brings several enhancements to the plugin.  The largest change is the adoption of a Facet-based approach to
 managing the generation of Java source files from .proto files within a project.  This grants flexibility when working
