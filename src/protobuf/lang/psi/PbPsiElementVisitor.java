@@ -1,8 +1,11 @@
 package protobuf.lang.psi;
 
+import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
+import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 
@@ -11,6 +14,15 @@ import protobuf.lang.psi.api.reference.PbRef;
  * Date: Mar 15, 2010
  */
 public abstract class PbPsiElementVisitor extends PsiElementVisitor {
+
+    @Override
+    public void visitElement(PsiElement element) {
+
+    }
+
+    public void visitPbFile(PbFile file) {
+        visitFile(file);
+    }
 
     public void visitPbElement(PbPsiElement element){
         visitElement(element);
@@ -64,6 +76,10 @@ public abstract class PbPsiElementVisitor extends PsiElementVisitor {
     }
 
     public void visitValue(PbValue element){
+        visitPbElement(element);
+    }
+
+    public void visitOptionAssignment(PbOptionAssignment element) {
         visitPbElement(element);
     }
 }
