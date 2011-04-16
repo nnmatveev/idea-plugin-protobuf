@@ -14,9 +14,6 @@ import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.PbTokenTypes;
-
-import static protobuf.lang.psi.PbPsiEnums.*;
-
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.declaration.*;
@@ -25,14 +22,15 @@ import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
+import protobuf.lang.resolve.PbResolveUtil;
 import protobuf.util.PbFileUtil;
 import protobuf.util.PbTextUtil;
-
-import protobuf.lang.resolve.PbResolveUtil;
 
 import java.io.File;
 
 import static protobuf.lang.PbElementTypes.*;
+import static protobuf.lang.psi.PbPsiEnums.CompletionKind;
+import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
 
 /**
  * @author Nikolay Matveev
@@ -78,7 +76,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     }
 
     @Override
-    public void accept(PbPsiElementVisitor visitor) {
+    public void accept(@NotNull PbPsiElementVisitor visitor) {
         visitor.visitRef(this);
     }
 

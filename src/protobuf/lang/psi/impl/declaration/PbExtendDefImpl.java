@@ -1,6 +1,7 @@
 package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.block.PbBlock;
 import protobuf.lang.psi.api.declaration.PbExtendDef;
@@ -18,7 +19,7 @@ public class PbExtendDefImpl extends PbPsiElementImpl implements PbExtendDef {
     }
 
     @Override
-    public void accept(PbPsiElementVisitor visitor) {
+    public void accept(@NotNull PbPsiElementVisitor visitor) {
         visitor.visitExtendDefinition(this);
     }
 

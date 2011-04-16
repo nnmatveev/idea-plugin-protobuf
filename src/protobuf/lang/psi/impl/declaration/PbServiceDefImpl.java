@@ -2,6 +2,7 @@ package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbServiceDef;
 import protobuf.lang.psi.impl.auxiliary.PbNamedBlockHolderImpl;
@@ -16,7 +17,7 @@ public class PbServiceDefImpl extends PbNamedBlockHolderImpl implements PbServic
     }
 
     @Override
-    public void accept(PbPsiElementVisitor visitor) {
+    public void accept(@NotNull PbPsiElementVisitor visitor) {
         visitor.visitServiceDefinition(this);        
     }
 

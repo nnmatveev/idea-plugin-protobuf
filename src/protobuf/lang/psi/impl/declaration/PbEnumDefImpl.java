@@ -2,10 +2,14 @@ package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
+import com.intellij.util.Icons;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbEnumDef;
 import protobuf.lang.psi.impl.auxiliary.PbNamedBlockHolderImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
+
+import javax.swing.*;
 
 /**
  * @author Nikolay Matveev
@@ -17,12 +21,17 @@ public class PbEnumDefImpl extends PbNamedBlockHolderImpl implements PbEnumDef {
     }
 
         @Override
-    public void accept(PbPsiElementVisitor visitor) {
+    public void accept(@NotNull PbPsiElementVisitor visitor) {
         visitor.visitEnumDefinition(this);
     }
 
     @Override
     public PsiElement getNameElement() {        
         return PbPsiUtil.getChild(this,1,true,true,false);
+    }
+
+    @Override
+    public Icon getIcon(int flags) {
+        return Icons.ENUM_ICON;
     }
 }
