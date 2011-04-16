@@ -1,10 +1,9 @@
 package protobuf.lang.psi.impl.auxiliary;
 
 import com.intellij.lang.ASTNode;
-import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.IncorrectOperationException;
-import org.jetbrains.annotations.NonNls;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
@@ -15,8 +14,6 @@ import protobuf.lang.psi.utils.PbPsiUtil;
 
 public abstract class PbNamedElementImpl extends PbPsiElementImpl implements PbNamedElement {
 
-    private final static Logger LOG = Logger.getInstance(PbNamedElementImpl.class.getName());
-    
     public PbNamedElementImpl(ASTNode node) {
         super(node);
     }
@@ -25,7 +22,7 @@ public abstract class PbNamedElementImpl extends PbPsiElementImpl implements PbN
     public abstract PsiElement getNameElement();
 
     @Override
-    public final PsiElement setName(@NonNls String newName) throws IncorrectOperationException{
+    public final PsiElement setName(@NotNull String newName) throws IncorrectOperationException{
         PsiElement nameElement = getNameElement();
         if(nameElement == null){            
             throw new IncorrectOperationException();
