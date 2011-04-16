@@ -3,7 +3,6 @@ package protobuf.lang.psi.impl.declaration;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
-import com.intellij.util.Icons;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.declaration.PbFieldDef;
@@ -11,8 +10,6 @@ import protobuf.lang.psi.api.member.PbFieldType;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.impl.auxiliary.PbNamedElementImpl;
 import protobuf.lang.psi.utils.PbPsiUtil;
-
-import javax.swing.*;
 
 import static protobuf.lang.PbTokenTypes.OPTIONAL;
 import static protobuf.lang.PbTokenTypes.REPEATED;
@@ -31,11 +28,6 @@ public class PbFieldDefImpl extends PbNamedElementImpl implements PbFieldDef {
     @Override
     public void accept(@NotNull PbPsiElementVisitor visitor) {
         visitor.visitFieldDefinition(this);
-    }
-
-    @Override
-    public Icon getIcon(int flags) {
-        return Icons.FIELD_ICON;
     }
 
     @Override
