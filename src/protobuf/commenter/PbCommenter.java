@@ -20,10 +20,10 @@ public class PbCommenter implements Commenter {
     }
 
     public String getCommentedBlockCommentPrefix() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 
     public String getCommentedBlockCommentSuffix() {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }
