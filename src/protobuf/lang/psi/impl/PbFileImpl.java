@@ -1,7 +1,6 @@
 package protobuf.lang.psi.impl;
 
 import com.intellij.extapi.psi.PsiFileBase;
-import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.FileViewProvider;
@@ -23,8 +22,6 @@ import java.util.ArrayList;
  */
 public class PbFileImpl extends PsiFileBase implements PbFile {
 
-    private final static Logger LOG = Logger.getInstance(PbFileImpl.class.getName());
-
     public PbFileImpl(FileViewProvider viewProvider) {
         super(viewProvider, PbFileType.PROTOBUF_FILE_TYPE.getLanguage());
     }
@@ -37,7 +34,7 @@ public class PbFileImpl extends PsiFileBase implements PbFile {
 
     @Override
     public void accept(PbPsiElementVisitor visitor) {
-        visitor.visitFile(this);
+        visitor.visitPbFile(this);
     }
 
     @Override
