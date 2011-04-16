@@ -3,6 +3,8 @@ package protobuf.lang.psi.impl;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementVisitor;
+import org.jetbrains.annotations.NotNull;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
@@ -15,6 +17,7 @@ import protobuf.lang.psi.impl.member.PbOptionAssignmentImpl;
  */
 
 public class PbPsiElementImpl extends ASTWrapperPsiElement implements PbPsiElement {
+
     public PbPsiElementImpl(ASTNode node) {
         super(node);
     }
@@ -25,10 +28,18 @@ public class PbPsiElementImpl extends ASTWrapperPsiElement implements PbPsiEleme
     }
 
     @Override
-    public void accept(PbPsiElementVisitor visitor) {
-
+    public final void accept(@NotNull PsiElementVisitor visitor) {
+        if (visitor instanceof PbPsiElementVisitor) {
+            accept((PbPsiElementVisitor)visitor);
+        } else {
+            super.accept(visitor);
+        }
     }
 
+    @Override
+    public void accept(@NotNull PbPsiElementVisitor visitor) {
+        visitor.visitPbElement(this);
+    }
 
     @Override
     public PsiElement getContext() {
