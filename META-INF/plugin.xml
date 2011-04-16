@@ -62,5 +62,7 @@
         <lang.commenter language="Protobuf" implementationClass="protobuf.commenter.PbCommenter"/>
         <lang.foldingBuilder language="Protobuf" implementationClass="protobuf.folding.PbFoldingBuilder"/>
         <lang.findUsagesProvider language="Protobuf" implementationClass="protobuf.findUsages.PbFindUsagesProvider"/>
+        <lang.psiStructureViewFactory language="Protobuf"
+                                      implementationClass="protobuf.structureView.PbStructureViewBuilderProvider"/>
     </extensions>
 </idea-plugin>
