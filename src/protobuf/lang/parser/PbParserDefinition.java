@@ -10,6 +10,7 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.tree.IFileElementType;
 import com.intellij.psi.tree.TokenSet;
+import org.jetbrains.annotations.NotNull;
 import protobuf.file.PbFileElementType;
 import protobuf.file.PbFileType;
 import protobuf.lang.PbTokenTypes;
@@ -25,6 +26,7 @@ public class PbParserDefinition implements ParserDefinition {
     public static final IFileElementType PROTOBUF_FILE = new PbFileElementType(PbFileType.PROTOBUF_FILE_TYPE.getLanguage());
 
 
+    @NotNull
     public Lexer createLexer(Project project) {
         return new PbMergingLexer();
     }
@@ -38,19 +40,23 @@ public class PbParserDefinition implements ParserDefinition {
     }
 
 
+    @NotNull
     public TokenSet getWhitespaceTokens() {
         return PbTokenTypes.WHITE_SPACES;
     }
 
+    @NotNull
     public TokenSet getCommentTokens() {
         return PbTokenTypes.COMMENTS;
     }
 
 
+    @NotNull
     public TokenSet getStringLiteralElements() {
         return PbTokenTypes.STRING_LITERALS;
     }
 
+    @NotNull
     public PsiElement createElement(ASTNode astNode) {
         return PbPsiCreator.createElement(astNode);
     }
