@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Nikolay Matveev</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.4.1</version>
+    <version>0.5</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
@@ -14,12 +14,10 @@
     <idea-version since-build="10000"/>
     <change-notes>
         <![CDATA[
+        <p>0.5</p>
         <ul>
-            0.4.1
             <li>
-                * Structure view
-                * New icon for Protobuf files
-                * Various minor fixes
+                * Idea 11 compatibility
             </li>
         </ul>
         ]]>

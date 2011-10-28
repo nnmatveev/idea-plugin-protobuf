@@ -295,4 +295,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
         }
 
     }
+
+    public VirtualFile getPresentableFile(CompileContext context, Module module, VirtualFile outputRoot, VirtualFile generatedFile) {
+        // TODO: Map the generated file back to the original file.
+        return generatedFile;
+    }
+
 }

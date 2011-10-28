@@ -1,7 +1,9 @@
 package protobuf.lang.psi.impl.reference;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
@@ -27,6 +29,8 @@ import protobuf.util.PbFileUtil;
 import protobuf.util.PbTextUtil;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static protobuf.lang.PbElementTypes.*;
 import static protobuf.lang.psi.PbPsiEnums.CompletionKind;
@@ -41,6 +45,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     private final static Logger LOG = Logger.getInstance(PbRefImpl.class.getName());
 
     private static final ExperimentalResolver expResolver = new ExperimentalResolver();
+    
+    private static ResolveCache resolveCache = null;
 
     @Override
     public String toString() {
@@ -210,10 +216,57 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     public boolean isReferenceTo(PsiElement psiElement) {
         return getManager().areElementsEquivalent(psiElement, resolve());
     }
+    
+    private ResolveCache getResolveCache() {
+        if (null == resolveCache) {
+            String appVersion = ApplicationInfo.getInstance().getMajorVersion();
+            if ("11".equals(appVersion)) {
+                // The IDEA 11 way: ResolveCache.getInstance(getProject());
+                try {
+                    Class resolveCacheClass = Class.forName("ResolveCache");
+                    Method m = resolveCacheClass.getDeclaredMethod("getInstance", new Class[] { Project.class });
+                    try {
+                        resolveCache = (ResolveCache)m.invoke(null, getProject());
+                    } catch (IllegalAccessException e) {
+                        LOG.error("Could not access the 'getInstance' method on the ResolveCache class", e);
+                    } catch (InvocationTargetException e) {
+                        LOG.error("Could not invoke the 'getInstance' method on the ResolveCache class", e);
+                    }
+                } catch (ClassNotFoundException e) {
+                    LOG.error("Could not find the ResolveCache class!", e); // Now, this is a problem.
+                } catch (NoSuchMethodException e) {
+                    LOG.info("Could not resolve the ResolveCache#getInstance method.", e);
+                }
+            } else if ("10".equals(appVersion)) {
+                // The IDEA 10 way: getManager().getResolveCache();
+                Class managerClass = getManager().getClass();
+                try {
+                    Method m = managerClass.getDeclaredMethod("getResolveCache");
+                    try {
+                        resolveCache = (ResolveCache)m.invoke(managerClass);
+                    } catch (IllegalAccessException e) {
+                        LOG.error("Could not access the 'getResolveCache' method on the PsiManagerEx class", e);
+                    } catch (InvocationTargetException e) {
+                        LOG.error("Could not invoke the 'getResolveCache' method on the PsiManagerEx class", e);
+                    }
+                } catch (NoSuchMethodException e) {
+                    LOG.error("Could not find the 'getResolveCache' method.", e);
+                }
+            }
+        }
+        return resolveCache;
+    }
 
     @Override
     public PsiElement resolve() {
-        return getManager().getResolveCache().resolveWithCaching(this, expResolver, true, false);
+        PsiElement el = null;
+        ResolveCache rc = getResolveCache();
+        if (rc != null) {
+            el = rc.resolveWithCaching(this, expResolver, true, false);
+        } else {
+            LOG.error("ResolveCache was not found.  Could not resolve element.");
+        }
+        return el;
     }
 
     @Override
