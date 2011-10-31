@@ -75,7 +75,9 @@ public class PbCompiler implements SourceGeneratingCompiler {
                 Module module = compileContext.getModuleByFile(file);
                 final PbFacet facet = PbFacet.getInstance(module);
                 if (facet != null) { // Generate if a Protobuf facet has been created for the module.
-                    generationItems.add(new PbGenerationItem(file, module, fileIndex.isInTestSourceContent(file)));
+                    if (facet.getConfiguration().isCompilationEnabled()) {
+                        generationItems.add(new PbGenerationItem(file, module, fileIndex.isInTestSourceContent(file)));
+                    }
                 }
             }
         }
@@ -158,6 +160,22 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     @Override
     public boolean validateConfiguration(CompileScope compileScope) {
+        // Allow for usage of just the syntax hilighter if no facets are enabled for compilation.
+        boolean hasAnyModulesEnabledForCompilation = false;
+        Module[] modules = compileScope.getAffectedModules();
+        for (Module module : modules) {
+            PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
+            if (facet != null && facet.getConfiguration().isCompilationEnabled()) {
+                hasAnyModulesEnabledForCompilation = true;
+                break;
+            }
+        }
+        if (!hasAnyModulesEnabledForCompilation) {
+            // Bail early.
+            LOG.info("No facets detected for compilation.  Giving up on configuration check.");
+            return true;
+        }
+        
         // Check if the compiler supports current operating system.
         if (getCompilerExecutableName() == null) {
             Messages.showErrorDialog(PbBundle.message(
@@ -181,7 +199,6 @@ public class PbCompiler implements SourceGeneratingCompiler {
             return false;
         }
 
-        Module[] modules = compileScope.getAffectedModules();
         for (Module module : modules) {
             PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
             if (facet != null) {
