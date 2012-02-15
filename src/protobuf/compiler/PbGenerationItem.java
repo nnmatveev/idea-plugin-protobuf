@@ -1,6 +1,5 @@
 package protobuf.compiler;
 
-import com.intellij.facet.FacetManager;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.compiler.GeneratingCompiler;
 import com.intellij.openapi.compiler.ValidityState;
@@ -9,7 +8,6 @@ import com.intellij.openapi.util.Computable;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiManager;
 import protobuf.facet.PbFacet;
-import protobuf.facet.PbFacetType;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.impl.PbFileImpl;
 
@@ -75,9 +73,10 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
                 return ((PbFileImpl)pbFile).getJavaClassNames();
             }
         });
-        String sep = System.getProperty("file.separator");
+        final String sep = System.getProperty("file.separator");
+        final String safePackageName = packageName.length() > 0 ? packageName.replaceAll("\\.", sep) : packageName;
+        String outputPath = getOutputPath() + sep + safePackageName;
         boolean outputFilesExist = false;
-        String outputPath = getOutputPath() + sep + packageName.replaceAll("\\.", sep);
         for (String fileName : fileNames) {
             String path = outputPath + sep + fileName + ".java";
             outputFilesExist = new File(path).exists();

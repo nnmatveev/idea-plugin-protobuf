@@ -106,12 +106,12 @@ public class PbSpacingProcessor {
 
         //Braces
 
-        //Parants
-        if (child1.getNode().getElementType().equals(OPEN_PARANT)) {
+        //Parentheses
+        if (child1.getNode().getElementType().equals(OPEN_PARENTHESIS)) {
             //System.out.println("NO_SPACING");
             return NO_SPACING;
         }
-        if (child2.getNode().getElementType().equals(CLOSE_PARANT)) {
+        if (child2.getNode().getElementType().equals(CLOSE_PARENTHESIS)) {
            //System.out.println("NO_SPACING");
             return NO_SPACING;
         }

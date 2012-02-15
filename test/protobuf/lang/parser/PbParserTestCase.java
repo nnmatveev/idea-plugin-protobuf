@@ -1,5 +1,6 @@
 package protobuf.lang.parser;
 
+import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.Pair;
 import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.psi.PsiFile;
@@ -44,6 +45,7 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
 
     //file
     public void testFile1(){}
+    public void testFile2(){}
 
     //declaration
     public void testDeclaration$enum1(){}

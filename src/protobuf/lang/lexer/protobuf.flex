@@ -69,8 +69,8 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\'\r\n]*
 {NUM_DOUBLE}                        {return (NUM_DOUBLE);}
 
 
-"("                                 {return (OPEN_PARANT);}
-")"                                 {return (CLOSE_PARANT);}
+"("                                 {return (OPEN_PARENTHESIS);}
+")"                                 {return (CLOSE_PARENTHESIS);}
 "["                                 {return (OPEN_BRACE);}
 "]"                                 {return (CLOSE_BRACE);}
 "{"                                 {return (OPEN_BLOCK);}

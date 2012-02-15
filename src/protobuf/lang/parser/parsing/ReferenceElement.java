@@ -61,7 +61,7 @@ public class ReferenceElement {
     }
 
     public static boolean parseForCustomOption(PbPatchedPsiBuilder builder) {
-        if (!builder.compareToken(OPEN_PARANT)) {
+        if (!builder.compareToken(OPEN_PARENTHESIS)) {
             return false;
         }
         PsiBuilder.Marker refSeqMarker = builder.mark();
@@ -74,13 +74,13 @@ public class ReferenceElement {
                 builder.match(IK);
                 refMarker.done(OPTION_REF);
                 refMarker = refMarker.precede();
-            } else if (builder.compareToken(OPEN_PARANT)) {
+            } else if (builder.compareToken(OPEN_PARENTHESIS)) {
                 //drop previous precede marker and start new marker
                 refMarker.drop();
                 refMarker = builder.mark();
                 parseOptionPart(builder);
             } else {
-                builder.error("identifier.or.open.parant.expected");
+                builder.error("identifier.or.open.parenthesis.expected");
                 break;
             }
         }
@@ -91,7 +91,7 @@ public class ReferenceElement {
 
     private static boolean parseOptionPart(PbPatchedPsiBuilder builder) {
         PsiBuilder.Marker marker = builder.mark();
-        builder.match(OPEN_PARANT);
+        builder.match(OPEN_PARENTHESIS);
         builder.match(DOT);
         builder.match(IK, "identifier.expected");
         while (!builder.eof() && builder.compareToken(DOT)) {
@@ -100,7 +100,7 @@ public class ReferenceElement {
             builder.match(DOT);
             builder.match(IK, "identifier.expected");
         }
-        builder.match(CLOSE_PARANT, "close.parant.expected");
+        builder.match(CLOSE_PARENTHESIS, "close.parenthesis.expected");
         marker.done(OPTION_REF);
         return true;
     }

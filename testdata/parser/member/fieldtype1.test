@@ -163,8 +163,8 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           MESSAGE_OR_ENUM_GROUP_REF
-            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
-              MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+            MESSAGE_OR_PACKAGE_OR_GROUP_REF
+              MESSAGE_OR_PACKAGE_OR_GROUP_REF
                 PsiElement(IDENTIFIER)('com')
               PsiElement(DOT)('.')
               PsiElement(IDENTIFIER)('intellij')

@@ -18,7 +18,7 @@ public class PbBraceMatcher implements PairedBraceMatcher {
     private static final BracePair[] PAIRS = {
         new BracePair(PbTokenTypes.OPEN_BRACE, PbTokenTypes.CLOSE_BRACE,false),
         new BracePair(PbTokenTypes.OPEN_BLOCK, PbTokenTypes.CLOSE_BLOCK,false),
-        new BracePair(PbTokenTypes.OPEN_PARANT, PbTokenTypes.CLOSE_PARANT,false)
+        new BracePair(PbTokenTypes.OPEN_PARENTHESIS, PbTokenTypes.CLOSE_PARENTHESIS,false)
     };
 
 

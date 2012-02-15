@@ -34,7 +34,7 @@ PROTO_FILE
       EXTEND_DECL
         PsiElement(EXTEND)('extend')
         MESSAGE_OR_GROUP_REF
-          MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+          MESSAGE_OR_PACKAGE_OR_GROUP_REF
             PsiElement(IDENTIFIER)('d')
           PsiElement(DOT)('.')
           PsiElement(IDENTIFIER)('e')

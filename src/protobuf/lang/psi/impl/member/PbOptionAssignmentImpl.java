@@ -32,7 +32,7 @@ public class PbOptionAssignmentImpl extends PbPsiElementImpl implements PbOption
      */
     @Override
     public String getOptionName() {
-        PsiElement identifier = findChildByType(PbElementTypes.IK);
+        PsiElement identifier = findChildByType(PbElementTypes.IDENTIFIER);
         if (identifier == null) {
             identifier = findChildByType(PbElementTypes.OPTION_REF_SEQ); // Includes the surrounding parenthesis.
         }

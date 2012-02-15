@@ -798,7 +798,7 @@ public class _ProtobufLexer implements FlexLexer, PbTokenTypes {
           }
         case 74: break;
         case 9: 
-          { return (CLOSE_PARANT);
+          { return (CLOSE_PARENTHESIS);
           }
         case 75: break;
         case 15: 
@@ -810,7 +810,7 @@ public class _ProtobufLexer implements FlexLexer, PbTokenTypes {
           }
         case 77: break;
         case 8: 
-          { return (OPEN_PARANT);
+          { return (OPEN_PARENTHESIS);
           }
         case 78: break;
         case 10: 

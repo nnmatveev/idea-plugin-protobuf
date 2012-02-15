@@ -7,33 +7,33 @@ PROTO_FILE
       MESSAGE_OR_GROUP_FIELD_REF
         MESSAGE_OR_GROUP_FIELD_REF
           EXTEND_FIELD_REF
-            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
-              PsiElement(OPEN_PARANT)('(')
+            MESSAGE_OR_PACKAGE_OR_GROUP_REF
+              PsiElement(OPEN_PARENTHESIS)('(')
               PsiElement(IDENTIFIER)('foo')
             PsiElement(DOT)('.')
             PsiElement(IDENTIFIER)('bar')
-            PsiElement(CLOSE_PARANT)(')')
+            PsiElement(CLOSE_PARENTHESIS)(')')
           PsiElement(DOT)('.')
           PsiElement(IDENTIFIER)('bar')
         PsiElement(DOT)('.')
         PsiElement(IDENTIFIER)('baz')
       PsiElement(DOT)('.')
       EXTEND_FIELD_REF
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         PsiElement(IDENTIFIER)('foo')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
       PsiElement(DOT)('.')
       EXTEND_FIELD_REF
-        MESSAGE_OR_PACAKAGE_OR_GROUP_REF
-          MESSAGE_OR_PACAKAGE_OR_GROUP_REF
-            PsiElement(OPEN_PARANT)('(')
+        MESSAGE_OR_PACKAGE_OR_GROUP_REF
+          MESSAGE_OR_PACKAGE_OR_GROUP_REF
+            PsiElement(OPEN_PARENTHESIS)('(')
             PsiElement(DOT)('.')
             PsiElement(IDENTIFIER)('foo')
           PsiElement(DOT)('.')
           PsiElement(IDENTIFIER)('bar')
         PsiElement(DOT)('.')
         PsiElement(IDENTIFIER)('foo')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
     PsiElement(EQUAL)('=')
     VALUE
       PsiElement(NUM_INT)('5')

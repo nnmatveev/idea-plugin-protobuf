@@ -147,9 +147,9 @@ PROTO_FILE
     PsiElement(OPTION)('option')
     OPTION_REF_SEQ
       EXTEND_FIELD_REF
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         PsiElement(IDENTIFIER)('idea')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
     PsiElement(EQUAL)('=')
     VALUE
       PsiElement(NUM_INT)('1')

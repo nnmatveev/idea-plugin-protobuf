@@ -53,17 +53,17 @@ public class ServiceDeclaration implements PbElementTypes {
         builder.match(RPC);
         builder.match(IK, "identifier.expected");
         //builder.matchAs(IK,NAME, "identifier.expected");
-        builder.match(OPEN_PARANT, "open.parant.expected");
+        builder.match(OPEN_PARENTHESIS, "open.parenthesis.expected");
         if (!ReferenceElement.parseForCustomType(builder)) {
             builder.error("user.defined.type.expected");
         }
-        builder.match(CLOSE_PARANT, "close.parant.expected");
+        builder.match(CLOSE_PARENTHESIS, "close.parenthesis.expected");
         builder.match(RETURNS, "returns.expected");
-        builder.match(OPEN_PARANT, "open.parant.expected");
+        builder.match(OPEN_PARENTHESIS, "open.parenthesis.expected");
         if (!ReferenceElement.parseForCustomType(builder)) {
             builder.error("user.defined.type.expected");
         }
-        builder.match(CLOSE_PARANT, "close.parant.expected");
+        builder.match(CLOSE_PARENTHESIS, "close.parenthesis.expected");
         if (!parseServiceMethodBlock(builder)) {
             builder.match(SEMICOLON, "semicolon.expected");
         }

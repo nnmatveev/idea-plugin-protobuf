@@ -40,9 +40,9 @@ public interface PbTokenTypes {
     IElementType CLOSE_BLOCK = new PbElementType("CLOSE_BLOCK");
     IElementType OPEN_BRACE = new PbElementType("OPEN_BRACE");
     IElementType CLOSE_BRACE = new PbElementType("CLOSE_BRACE");
-    IElementType OPEN_PARANT = new PbElementType("OPEN_PARANT");
-    IElementType CLOSE_PARANT = new PbElementType("CLOSE_PARANT");
-    TokenSet BRACES = TokenSet.create(OPEN_BLOCK,CLOSE_BLOCK,OPEN_BRACE,CLOSE_BRACE,OPEN_PARANT,CLOSE_PARANT);
+    IElementType OPEN_PARENTHESIS = new PbElementType("OPEN_PARENTHESIS");
+    IElementType CLOSE_PARENTHESIS = new PbElementType("CLOSE_PARENTHESIS");
+    TokenSet BRACES = TokenSet.create(OPEN_BLOCK,CLOSE_BLOCK,OPEN_BRACE,CLOSE_BRACE, OPEN_PARENTHESIS, CLOSE_PARENTHESIS);
 
     //Numbers
     IElementType NUM_INT = new PbElementType("NUM_INT");

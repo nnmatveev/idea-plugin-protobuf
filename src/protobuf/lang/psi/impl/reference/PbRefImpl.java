@@ -64,7 +64,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 return "MESSAGE_OR_ENUM_GROUP_REF";
             }
             case MESSAGE_OR_PACKAGE_OR_GROUP: {
-                return "MESSAGE_OR_PACAKAGE_OR_GROUP_REF";
+                return "MESSAGE_OR_PACKAGE_OR_GROUP_REF";
             }
             case MESSAGE_OR_GROUP_FIELD: {
                 return "MESSAGE_OR_GROUP_FIELD_REF";
@@ -342,7 +342,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     return ReferenceKind.MESSAGE_OR_PACKAGE_OR_GROUP;
                 }
                 case MESSAGE_OR_GROUP_FIELD: {
-                    if (findChildByType(CLOSE_PARANT) != null) {
+                    if (findChildByType(CLOSE_PARENTHESIS) != null) {
                         return ReferenceKind.EXTEND_FIELD;
                     }
                     return ReferenceKind.MESSAGE_OR_GROUP_FIELD;
@@ -360,7 +360,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             return ReferenceKind.MESSAGE_OR_ENUM_OR_GROUP;
         }
         if (parent instanceof PbOptionRefSeq) {
-            if (findChildByType(CLOSE_PARANT) != null) {
+            if (findChildByType(CLOSE_PARENTHESIS) != null) {
                 return ReferenceKind.EXTEND_FIELD;
             }
             return ReferenceKind.MESSAGE_OR_GROUP_FIELD;

@@ -18,7 +18,7 @@ PROTO_FILE
   EXTEND_DECL
     PsiElement(EXTEND)('extend')
     MESSAGE_OR_GROUP_REF
-      MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+      MESSAGE_OR_PACKAGE_OR_GROUP_REF
         PsiElement(IDENTIFIER)('foo')
       PsiElement(DOT)('.')
       PsiElement(IDENTIFIER)('bar')
@@ -28,7 +28,7 @@ PROTO_FILE
         PsiElement(OPTIONAL)('optional')
         FIELD_TYPE
           MESSAGE_OR_ENUM_GROUP_REF
-            MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+            MESSAGE_OR_PACKAGE_OR_GROUP_REF
               PsiElement(IDENTIFIER)('foo')
             PsiElement(DOT)('.')
             PsiElement(IDENTIFIER)('bar')
@@ -46,17 +46,17 @@ PROTO_FILE
       SERVICE_METHOD_DECL
         PsiElement(RPC)('rpc')
         PsiElement(RPC)('rpc')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('foo')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         PsiElement(RETURNS)('returns')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
-          MESSAGE_OR_PACAKAGE_OR_GROUP_REF
+          MESSAGE_OR_PACKAGE_OR_GROUP_REF
             PsiElement(IDENTIFIER)('foo')
           PsiElement(DOT)('.')
           PsiElement(IDENTIFIER)('bar')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         PsiElement(SEMICOLON)(';')
       PsiElement(CLOSE_BLOCK)('}')

@@ -13,28 +13,28 @@ PROTO_FILE
       SERVICE_METHOD_DECL
         PsiElement(RPC)('rpc')
         PsiElement(IDENTIFIER)('B')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('C')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         PsiElement(RETURNS)('returns')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('D')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         PsiElement(SEMICOLON)(';')
       SERVICE_METHOD_DECL
         PsiElement(RPC)('rpc')
         PsiElement(IDENTIFIER)('B')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('C')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         PsiElement(RETURNS)('returns')
-        PsiElement(OPEN_PARANT)('(')
+        PsiElement(OPEN_PARENTHESIS)('(')
         MESSAGE_OR_GROUP_REF
           PsiElement(IDENTIFIER)('D')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(CLOSE_PARENTHESIS)(')')
         SERVICE_METHOD_BLOCK
           PsiElement(OPEN_BLOCK)('{')
           PsiElement(CLOSE_BLOCK)('}')

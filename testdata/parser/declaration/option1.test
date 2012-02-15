@@ -1,5 +1,6 @@
 option a=1;
-option(a)=5;
+option(b)=5;
+option java_package = "org.example.test";
 ------
 PROTO_FILE
   OPTION_ASSIGNMENT
@@ -13,10 +14,17 @@ PROTO_FILE
     PsiElement(OPTION)('option')
     OPTION_REF_SEQ
       EXTEND_FIELD_REF
-        PsiElement(OPEN_PARANT)('(')
-        PsiElement(IDENTIFIER)('a')
-        PsiElement(CLOSE_PARANT)(')')
+        PsiElement(OPEN_PARENTHESIS)('(')
+        PsiElement(IDENTIFIER)('b')
+        PsiElement(CLOSE_PARENTHESIS)(')')
     PsiElement(EQUAL)('=')
     VALUE
       PsiElement(NUM_INT)('5')
+    PsiElement(SEMICOLON)(';')
+  OPTION_ASSIGNMENT
+    PsiElement(OPTION)('option')
+    PsiElement(IDENTIFIER)('java_package')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(STRING_LITERAL)('"org.example.test"')
     PsiElement(SEMICOLON)(';')
