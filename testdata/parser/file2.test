@@ -1,0 +1,50 @@
+package foo.bar;
+
+message Foo {
+    required int64 foo = 1;
+}
+
+message Bar {
+    required Foo foo = 1;
+}
+------
+PROTO_FILE
+  PACKAGE_DECL
+    PsiElement(PACKAGE)('package')
+    PACKAGE_REF
+      PACKAGE_REF
+        PsiElement(IDENTIFIER)('foo')
+      PsiElement(DOT)('.')
+      PsiElement(IDENTIFIER)('bar')
+    PsiElement(SEMICOLON)(';')
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    PsiElement(IDENTIFIER)('Foo')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(REQUIRED)('required')
+        FIELD_TYPE
+          PsiElement(INT64)('int64')
+        PsiElement(IDENTIFIER)('foo')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    PsiElement(IDENTIFIER)('Bar')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(REQUIRED)('required')
+        FIELD_TYPE
+          MESSAGE_OR_ENUM_GROUP_REF
+            PsiElement(IDENTIFIER)('Foo')
+        PsiElement(IDENTIFIER)('foo')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')
