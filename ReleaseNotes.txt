@@ -1,3 +1,9 @@
+==== 0.5a1
+* Fixes a minor issue that sometimes caused generation of files when not necessary.
+
+==== 0.5a1
+* Support for using the plugin with Idea 11.
+
 ==== 0.4.1
 * Structure view
 * New icon for Protobuf files
