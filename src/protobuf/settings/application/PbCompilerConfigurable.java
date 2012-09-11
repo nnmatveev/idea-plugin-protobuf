@@ -43,7 +43,7 @@ public class PbCompilerConfigurable implements Configurable {
         return "Protocol Buffers Compiler";
     }
 
-    @Override
+    //@Override
     public Icon getIcon() {
         return PbIcons.FILE_TYPE;
     }
