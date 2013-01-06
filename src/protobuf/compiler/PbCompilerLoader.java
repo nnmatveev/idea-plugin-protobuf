@@ -22,7 +22,8 @@ public class PbCompilerLoader implements ProjectComponent {
     public void projectOpened() {
         CompilerManager compilerManager = CompilerManager.getInstance(myProject);
         compilerManager.addCompilableFileType(PbFileType.PROTOBUF_FILE_TYPE);
-        CompilerManager.getInstance(myProject).addCompiler(new PbCompiler(myProject));
+        compilerManager.addBeforeTask(new PbPrecompileTask());
+        compilerManager.addCompiler(new PbCompiler(myProject));
     }
 
     @Override

@@ -220,7 +220,13 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     private ResolveCache getResolveCache() {
         if (null == resolveCache) {
             String appVersion = ApplicationInfo.getInstance().getMajorVersion();
-            if ("11".equals(appVersion) || "12".equals(appVersion)) {
+            Integer appVersionNum = null;
+            try {
+                appVersionNum = Integer.parseInt(appVersion);
+            } catch (NumberFormatException e) {
+                LOG.error("Could not parse app version number from version string: " + appVersion, e);
+            }
+            if ((appVersionNum != null && appVersionNum >= 11) || ("11".equals(appVersion) || "12".equals(appVersion))) {
                 // The IDEA 11 way: ResolveCache.getInstance(getProject());
                 try {
                     Class resolveCacheClass = Class.forName("com.intellij.psi.impl.source.resolve.ResolveCache");

@@ -18,22 +18,16 @@ public class PbLoader implements ApplicationComponent {
     private final static Logger LOG = Logger.getInstance(PbLoader.class.getName());
 
     public void initComponent() {
-        registerFileTypes();
         registerTemplates();
-        FacetTypeRegistry.getInstance().registerFacetType(PbFacetType.INSTANCE);
     }
 
     public void disposeComponent() {
-        FacetTypeRegistry.getInstance().unregisterFacetType(PbFacetType.INSTANCE);
+
     }
 
     @NotNull
     public String getComponentName() {
         return "protobuf.support.loader";
-    }
-
-    private void registerFileTypes() {
-        FileTypeManager.getInstance().registerFileType(PbFileType.PROTOBUF_FILE_TYPE, PbFileType.DEFAULT_ASSOCIATED_EXTENSIONS);
     }
 
     private void registerTemplates() {

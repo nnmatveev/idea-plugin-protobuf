@@ -36,6 +36,10 @@ public class PbSpacingProcessor {
         System.out.println("child2: " + child2.getNode().getElementType());
         System.out.println("------------");*/
 
+        if (null == child1 || null == child2) {
+            return NO_SPACING;
+        }
+
         //Comments
         if (child1.getNode().getPsi() instanceof PsiComment || child2.getNode().getPsi() instanceof PsiComment) {
             //System.out.println("NO_SPACING_WITH_EXISTED_LINES");
