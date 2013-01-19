@@ -3,6 +3,7 @@ package protobuf.facet;
 import com.intellij.facet.Facet;
 import com.intellij.facet.FacetManager;
 import com.intellij.facet.FacetType;
+import com.intellij.facet.FacetTypeRegistry;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleUtil;
 import com.intellij.openapi.project.Project;
@@ -28,6 +29,10 @@ public class PbFacet extends Facet<ProtobufFacetConfiguration> {
     @Nullable
     public static PbFacet getInstance(@NotNull Module module) {
         return FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
+    }
+
+    public static PbFacetType getFacetType() {
+        return (PbFacetType) FacetTypeRegistry.getInstance().findFacetType(PbFacetType.ID);
     }
 
     @Nullable

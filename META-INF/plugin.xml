@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.5.2</version>
+    <version>0.5.3</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
@@ -30,6 +30,14 @@
         <ul>
             <li>
                 * Idea 12 compatibility
+            </li>
+        </ul>
+        <p>0.5.3</p>
+        <ul>
+            <li>
+                * Idea 12 external compiler support
+                * Bug fixes
+                * Refinements, including to the proto-buffer facet detector
             </li>
         </ul>
         ]]>
@@ -60,6 +68,7 @@
         <facetType implementation="protobuf.facet.PbFacetType"/>
         <fileTemplateGroup implementation="protobuf.PbFileTemplateProvider"/>
         <fileTypeFactory implementation="protobuf.file.PbFileTypeFactory"/>
+        <framework.detector implementation="protobuf.PbFrameworkDetector"/>
         <syntaxHighlighter key="Protobuf" implementationClass="protobuf.highlighter.PbSyntaxHighlighter"/>
         <annotator language="Protobuf" implementationClass="protobuf.annotator.PbAnnotator"/>
         <compilerSettingsFactory implementation="protobuf.compiler.PbCompilerSettingsFactory"/>
