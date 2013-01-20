@@ -15,6 +15,7 @@ import com.intellij.psi.search.FilenameIndex;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
+import protobuf.lang.PbElementTypes;
 import protobuf.lang.PbTokenTypes;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
@@ -412,14 +413,21 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                     PsiFile psiFile = null;
                     PsiFile[] foundFiles = FilenameIndex.getFilesByName(ref.getProject(), fileName, ref.getResolveScope());
                     for (PsiFile foundFile : foundFiles) {
-                        if (foundFile.getVirtualFile().getPath().equals("/" + relativePath)) {
+                        if (foundFile.getVirtualFile().getPath().equals(File.separator + relativePath)) {
                             psiFile = foundFile;
                         }
                     }
                     if (psiFile != null) return psiFile; //todo avoid such hacking
 
                     //real code
-                    VirtualFile vfile = ref.getProject().getBaseDir().findFileByRelativePath(relativePath);
+                    VirtualFile baseOfSearchPath;
+                    if (ref.getNode().getElementType() == PbElementTypes.IMPORT_REF) {
+                        baseOfSearchPath = ref.getContainingFile().getVirtualFile().getParent();
+                    } else {
+                        baseOfSearchPath = ref.getProject().getBaseDir();
+                    }
+
+                    VirtualFile vfile = baseOfSearchPath.findFileByRelativePath(relativePath);
                     if (vfile != null) {
                         return ref.getManager().findFile(vfile);
                     } else {
