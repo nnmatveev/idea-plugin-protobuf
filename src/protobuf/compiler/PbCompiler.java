@@ -3,7 +3,11 @@ package protobuf.compiler;
 import com.intellij.compiler.CompilerConfiguration;
 import com.intellij.compiler.impl.CompilerUtil;
 import com.intellij.facet.FacetManager;
+import com.intellij.ide.util.DirectoryUtil;
 import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.application.Result;
+import com.intellij.openapi.application.RunResult;
+import com.intellij.openapi.application.WriteAction;
 import com.intellij.openapi.compiler.*;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
@@ -16,6 +20,9 @@ import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.StreamUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.psi.PsiDirectory;
+import com.intellij.psi.PsiManager;
+import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 import protobuf.PbBundle;
 import protobuf.facet.PbFacet;
@@ -32,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -94,15 +102,42 @@ public class PbCompiler implements SourceGeneratingCompiler {
         final Set<Module> modulesToRefresh = new HashSet<Module>();
         final String protocPath = getPathToCompiler();
         if (generationItems.length > 0) {
+            TreeSet<String> verifiedOutputDirs = new TreeSet<String>();
             for (GenerationItem genItem : generationItems) {
                 Process proc;
                 PbGenerationItem item = (PbGenerationItem)genItem;
                 if (item.shouldGenerate()) {
+                    // Check to see if the output directory exists and create it if necessary.
+                    final String outputPath = item.getOutputPath();
+                    if (!verifiedOutputDirs.contains(outputPath)) {
+                        File outputPathDir = new File(outputPath);
+                        if (outputPathDir.exists()) {
+                            verifiedOutputDirs.add(outputPath);
+                        } else {
+                            final CompileContext innerCompileContext = compileContext;
+                            WriteAction<PsiDirectory> writeAction = new WriteAction<PsiDirectory>() {
+                                public void run(final Result<PsiDirectory> result) {
+                                    result.setResult(DirectoryUtil.mkdirs(PsiManager.getInstance(innerCompileContext.getProject()), outputPath));
+                                }
+                            };
+                            RunResult<PsiDirectory> result = new RunResult<PsiDirectory>(writeAction);
+                            try {
+                                writeAction.execute();
+                            } catch (IncorrectOperationException e) {
+                                innerCompileContext.addMessage(CompilerMessageCategory.ERROR, "Could not create output path: '" + outputPath + "' for .proto file due to error: " + e.getMessage(), item.getUrl(), -1, -1);
+                            }
+                            if (result.getResultObject() != null) {
+                                verifiedOutputDirs.add(outputPath);
+                            }
+                        }
+                    }
+
+                    // Invoke the protoc compiler on the item.
                     try {
                         StringBuilder compilerCommand = new StringBuilder();
                         compilerCommand.append(protocPath);
                         compilerCommand.append(" --proto_path=").append(item.getBaseDir());
-                        compilerCommand.append(" --java_out=").append(item.getOutputPath());
+                        compilerCommand.append(" --java_out=").append(outputPath);
                         compilerCommand.append(" ").append(item.getPath());
                         LOG.info("Invoking protoc: " + compilerCommand.toString());
                         proc = Runtime.getRuntime().exec(compilerCommand.toString());

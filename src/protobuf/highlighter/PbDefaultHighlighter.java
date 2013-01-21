@@ -37,6 +37,6 @@ public class PbDefaultHighlighter {
     public static TextAttributesKey KEYWORD_ATTR_KEY = TextAttributesKey.createTextAttributesKey("keyword", KEYWORD_ATTR);
     public static TextAttributesKey ENUM_CONSTANT_ATTR_KEY = TextAttributesKey.createTextAttributesKey("enum constant", ENUM_CONSTANT_ATTR);
     public static TextAttributesKey ERROR_INFO_ATTR_KEY = TextAttributesKey.createTextAttributesKey("error", ERROR_INFO_ATTR);
-    
+
 }
 
