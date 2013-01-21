@@ -10,6 +10,7 @@ b*/
 /*
 a
 */
+/******* multi-star ******/
 
 /*abvc
 qwerty
@@ -30,6 +31,8 @@ WHITE_SPACE#\n
 C_STYLE_COMMENT#/*a\nasdasd\nb*/
 WHITE_SPACE#\n
 C_STYLE_COMMENT#/*\na\n*/
+WHITE_SPACE#\n
+C_STYLE_COMMENT#/*******\_multi-star\_******/
 WHITE_SPACE#\n
 WHITE_SPACE#\n
 WRONG_C_STYLE_COMMENT#/*abvc\nqwerty\n*\n/*

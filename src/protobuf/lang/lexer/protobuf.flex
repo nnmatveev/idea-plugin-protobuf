@@ -31,7 +31,7 @@ IDENTIFIER = ({LETTER})({LETTER}|{DIGIT})*
 
 LINE_COMMENT = "/""/"{INPUT_CHARACTER}*
 
-C_STYLE_COMMENT="/*"([^"*"]|{EOL}|("*"+([^"*""/"]|{EOL})))*"*/"
+C_STYLE_COMMENT="/*"([^"*"]|{EOL}|("*"+([^"*""/"]|{EOL})))*"*"*"*/"
 WRONG_C_STYLE_COMMENT="/*"([^"*"]|{EOL}|("*"+([^"*""/"]|{EOL})))*"*"?
 
 HEX_INT="0x"{HEX_DIGIT}+
