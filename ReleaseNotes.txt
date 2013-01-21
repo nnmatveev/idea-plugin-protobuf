@@ -1,3 +1,11 @@
+==== 0.5.3
+* Idea 12 external compiler support
+* Bug fixes
+* Refinements, including to the proto-buffer facet detector
+
+==== 0.5.1
+* Idea 12 compatibility
+
 ==== 0.5a1
 * Fixes a minor issue that sometimes caused generation of files when not necessary.
 
