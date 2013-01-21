@@ -3,22 +3,19 @@ package protobuf.facet;
 import com.intellij.facet.Facet;
 import com.intellij.facet.FacetType;
 import com.intellij.facet.FacetTypeId;
-import com.intellij.facet.autodetecting.FacetDetectorRegistry;
 import com.intellij.facet.ui.FacetEditor;
 import com.intellij.facet.ui.MultipleFacetSettingsEditor;
 import com.intellij.openapi.module.JavaModuleType;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.module.ModuleType;
 import com.intellij.openapi.project.Project;
-import com.intellij.patterns.PlatformPatterns;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import protobuf.PbBundle;
 import protobuf.PbIcons;
-import protobuf.file.PbFileType;
 import protobuf.settings.facet.ProtobufDefaultFacetSettingsEditor;
 import protobuf.settings.facet.ProtobufFacetConfiguration;
 import protobuf.settings.facet.ProtobufMultipleFacetSettingsEditor;
-import protobuf.PbBundle;
 
 import javax.swing.*;
 
@@ -55,13 +52,6 @@ public class PbFacetType extends FacetType<PbFacet, ProtobufFacetConfiguration> 
     public boolean isSuitableModuleType(ModuleType moduleType) {
         return moduleType instanceof JavaModuleType;
     }
-
-    /*public void registerDetectors(final FacetDetectorRegistry<ProtobufFacetConfiguration> detectorRegistry) {
-        detectorRegistry.registerUniversalDetector(
-                PbFileType.PROTOBUF_FILE_TYPE,
-                PlatformPatterns.virtualFile().withExtension(".proto"),
-                new PbFrameworkDetector());
-    }*/
 
     @Override
     public String getHelpTopic() {
