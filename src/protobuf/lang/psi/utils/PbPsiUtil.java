@@ -122,10 +122,12 @@ public abstract class PbPsiUtil {
             while (scope != null && !(scope instanceof PbFile) && !(scope instanceof PbBlock)) {
                 scope = (PbPsiElement) scope.getParent();
             }
+            /* // TC: This seems to skip from message block scope to package scope, preventing finding other messages
+            defined in the same file.  Commenting out for now, since I don't see a good reason for it.
             if (scope instanceof PbFile) {
                 JavaPsiFacade facade = JavaPsiFacade.getInstance(scope.getManager().getProject());
                 return facade.findPackage(((PbFile) scope).getPackageName());
-            }
+            }*/
             return scope;
         }
         assert false;
