@@ -11,7 +11,8 @@
         </p>
         ]]>
     </description>
-    <idea-version since-build="10000"/>
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="111.69"/><!-- Idea 11 -->
     <change-notes>
         <![CDATA[
         <p>0.5</p>
