@@ -5,21 +5,30 @@ import com.intellij.openapi.application.ApplicationInfo;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
+import com.intellij.openapi.util.io.FileUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementFactory;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiReference;
+import com.intellij.psi.impl.PsiElementFactoryImpl;
 import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.psi.search.FilenameIndex;
+import com.intellij.psi.tree.IElementType;
 import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
+import com.intellij.util.PathUtil;
 import org.jetbrains.annotations.NotNull;
 import protobuf.lang.PbElementTypes;
 import protobuf.lang.PbTokenTypes;
 import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
-import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.declaration.PbExtendDef;
+import protobuf.lang.psi.api.declaration.PbGroupDef;
+import protobuf.lang.psi.api.declaration.PbImportDef;
+import protobuf.lang.psi.api.declaration.PbPackageDef;
+import protobuf.lang.psi.api.declaration.PbServiceMethodDef;
 import protobuf.lang.psi.api.member.PbFieldType;
 import protobuf.lang.psi.api.member.PbOptionRefSeq;
 import protobuf.lang.psi.api.reference.PbRef;
@@ -33,7 +42,9 @@ import java.io.File;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import static protobuf.lang.PbElementTypes.*;
+import static protobuf.lang.PbElementTypes.CLOSE_PARENTHESIS;
+import static protobuf.lang.PbElementTypes.DOT;
+import static protobuf.lang.PbElementTypes.IK;
 import static protobuf.lang.psi.PbPsiEnums.CompletionKind;
 import static protobuf.lang.psi.PbPsiEnums.ReferenceKind;
 
@@ -210,7 +221,38 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     @Override
     public PsiElement bindToElement(@NotNull PsiElement psiElement) throws IncorrectOperationException {
-        throw new IncorrectOperationException();
+        final IElementType elementType = getNode().getElementType();
+        if ((elementType == PbElementTypes.IMPORT_DECL || elementType == PbElementTypes.IMPORT_REF) && psiElement instanceof PsiFile) {
+            // The file to which the import reference points is moving.  Get the new path and change the import reference
+            // text to the new relative path to the file.
+
+            final String newFilePath = ((PsiFile)psiElement).getVirtualFile().getPath();
+            String pathToContainingFile = PathUtil.getParentPath(getContainingFile().getVirtualFile().getPath());
+            String relativePathToContainingFile = FileUtil.getRelativePath(pathToContainingFile, newFilePath, File.separatorChar);
+            if (null == relativePathToContainingFile) {
+                return null;
+            }
+
+            PsiElementFactory factory = new PsiElementFactoryImpl(getManager());
+            /*
+            // The parser has a problem with parsing just simple string literals in that they don't fall into any of the
+            // element patterns it expects.  With no context, the string literal falls through to an error handler and
+            // gets marked with an error annotation.
+            // To make a long story short, it's easier "for now" to construct a full import statement and replace the
+            // import declaration element than to fix the parser.
+            // - TC
+            PsiElement newEl = factory.createDummyHolder(("\"" + relativePathToContainingFile + "\""), elementType, getContext());
+            return this.replace(newEl);
+            */
+
+            PsiElement newEl = factory.createDummyHolder(("import \"" + relativePathToContainingFile + "\";"), PbElementTypes.IMPORT_DECL, getContext());
+            newEl = newEl.getFirstChild(); // The first child of the dummy holder is the element we need.
+            PsiElement newImportEl = this.getParent().replace(newEl);
+            PsiElement newImportRefEl = newImportEl.getFirstChild();
+            return newImportRefEl;
+        }
+
+        throw new IncorrectOperationException("Cannot bind to element: " + psiElement);
     }
 
     @Override
@@ -475,4 +517,6 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             return null;
         }
     }
+
+
 }
