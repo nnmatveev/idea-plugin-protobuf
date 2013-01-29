@@ -20,7 +20,7 @@ public class PbDefaultHighlighter {
     static final TextAttributes NUMBER_ATTR = SyntaxHighlighterColors.NUMBER.getDefaultAttributes();
     static final TextAttributes BAD_CHARACTER_ATTR = SyntaxHighlighterColors.KEYWORD.getDefaultAttributes().clone();
     static final TextAttributes KEYWORD_ATTR = SyntaxHighlighterColors.KEYWORD.getDefaultAttributes().clone();
-    static final TextAttributes ENUM_CONSTANT_ATTR = CodeInsightColors.STATIC_FINAL_FIELD_ATTRIBUTES.getDefaultAttributes().clone();
+    static final TextAttributes ENUM_CONSTANT_ATTR = CodeInsightColors.STATIC_FIELD_ATTRIBUTES.getDefaultAttributes().clone();
     static final TextAttributes ERROR_INFO_ATTR = CodeInsightColors.WRONG_REFERENCES_ATTRIBUTES.getDefaultAttributes().clone();
 
     static { // Apply attribute customizations.
