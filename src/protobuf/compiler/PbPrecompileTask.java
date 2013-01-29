@@ -23,7 +23,6 @@ public class PbPrecompileTask implements CompileTask {
         boolean result = true;
         final Project project = context.getProject();
 
-
         boolean useOutOfProcessBuild = false;
         try { // IDEA 11 doesn't have the useOutOfProcessBuild method, so we have to do things the hard way.
             CompilerWorkspaceConfiguration config = CompilerWorkspaceConfiguration.getInstance(project);
