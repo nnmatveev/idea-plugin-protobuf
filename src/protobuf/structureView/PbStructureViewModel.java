@@ -12,7 +12,9 @@ import protobuf.lang.psi.api.declaration.PbFieldDef;
 /**
  * @author Nikolay Matveev
  */
-public class PbStructureViewModel extends StructureViewModelBase implements StructureViewModel.ElementInfoProvider{
+public class PbStructureViewModel extends StructureViewModelBase
+        implements StructureViewModel.ElementInfoProvider, StructureViewModel.ExpandInfoProvider
+{
     public PbStructureViewModel(@NotNull PsiFile psiFile) {
         super(psiFile, new PbStructureViewTreeElement((PbFile) psiFile));
     }
@@ -26,5 +28,15 @@ public class PbStructureViewModel extends StructureViewModelBase implements Stru
     public boolean isAlwaysLeaf(StructureViewTreeElement element) {
         Object value = element.getValue();
         return value instanceof PbEnumConstantDef || value instanceof PbFieldDef;
+    }
+
+    @Override
+    public boolean isAutoExpand(StructureViewTreeElement element) {
+        return element.getValue() instanceof PbFile;
+    }
+
+    @Override
+    public boolean isSmartExpand() {
+        return false;
     }
 }
