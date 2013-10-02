@@ -45,11 +45,11 @@ public abstract class PbPsiUtil {
     }
 
     private static boolean appendName(PbRef ref, StringBuilder builder) {
-        String refName = ref.getReferenceName();
+        String refName = ref != null ? ref.getReferenceName() : null;
         if (refName == null) {
             return false;
         }
-        PbRef qualifier = (PbRef) ref.getQualifier();
+        PbRef qualifier = ref.getQualifierRef();
         if (qualifier != null) {
             appendName(qualifier, builder);
             builder.append(".");

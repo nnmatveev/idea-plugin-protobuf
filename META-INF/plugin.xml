@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.5.4</version>
+    <version>0.5.5</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
@@ -12,25 +12,18 @@
         ]]>
     </description>
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="111.69"/><!-- Idea 11 -->
+    <idea-version since-build="123"/><!-- Idea 12 -->
     <change-notes>
         <![CDATA[
-        <p>0.5</p>
+        <p>0.5.5</p>
         <ul>
-            <li>
-                * Idea 11 compatibility
-            </li>
+            <li>IDEA 13 support. Minimum IDEA version is now 12.</li>
+            <li>bug fixes</li>
         </ul>
-        <p>0.5.1</p>
+        <p>0.5.4</p>
         <ul>
             <li>
-                * Fixed a parsing error when parsing the Java package name of a .proto file with an java_package option element.  The error caused a cache miss during the compile state check, in turn causing generation of Java source files when not necessary.
-            </li>
-        </ul>
-        <p>0.5.2</p>
-        <ul>
-            <li>
-                * Idea 12 compatibility
+                * Bug fix release to fix bug when running under IDEA 11.
             </li>
         </ul>
         <p>0.5.3</p>
@@ -41,10 +34,22 @@
                 * Refinements, including to the proto-buffer facet detector
             </li>
         </ul>
-        <p>0.5.4</p>
+        <p>0.5.2</p>
         <ul>
             <li>
-                * Bug fix release to fix bug when running under IDEA 11.
+                * Idea 12 compatibility
+            </li>
+        </ul>
+        <p>0.5.1</p>
+        <ul>
+            <li>
+                * Fixed a parsing error when parsing the Java package name of a .proto file with an java_package option element.  The error caused a cache miss during the compile state check, in turn causing generation of Java source files when not necessary.
+            </li>
+        </ul>
+        <p>0.5</p>
+        <ul>
+            <li>
+                * Idea 11 compatibility
             </li>
         </ul>
         ]]>

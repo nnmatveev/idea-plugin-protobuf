@@ -20,4 +20,6 @@ public interface PbRef extends PsiReference, PsiQualifiedReference {
     boolean isLastInChainReference();
 
     PsiElement getReferenceNameElement();
+
+    PbRef getQualifierRef(); // Added for compatibility with API changes in Idea 12.
 }

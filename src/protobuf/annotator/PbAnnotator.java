@@ -56,7 +56,7 @@ public class PbAnnotator extends PbPsiElementVisitor implements Annotator {
 
 
     //todo: check that the tag value is not in [19000, 19999]
-    //todo: check for the biggegst and smallest number: 1 - 536,870,911
+    //todo: check for the biggest and smallest number: 1 - 536,870,911
     //todo: For historical reasons, repeated fields of basic numeric types aren't encoded as efficiently as they could be. New code should use the special option [packed=true] to get a more efficient encoding
     //inspections: http://code.google.com/intl/ru/apis/protocolbuffers/docs/proto.html#scalar
 
@@ -109,13 +109,13 @@ public class PbAnnotator extends PbPsiElementVisitor implements Annotator {
     }
 
     @Override
-    public void visitRef(PbRef element) {
-        fixHighlighting(element);
-        if (element.resolve() == null) {
-            if (element.isLastInChainReference()) {
-                myHolder.createErrorAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
+    public void visitRef(PbRef elementRef) {
+        fixHighlighting(elementRef.getElement());
+        if (elementRef.resolve() == null) {
+            if (elementRef.isLastInChainReference()) {
+                myHolder.createErrorAnnotation(elementRef.getElement().getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
             } else {
-                myHolder.createInfoAnnotation(element.getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
+                myHolder.createInfoAnnotation(elementRef.getElement().getNode(), PbBundle.message("unresolved.reference")).setTextAttributes(PbDefaultHighlighter.ERROR_INFO_ATTR_KEY);
             }
         }
     }

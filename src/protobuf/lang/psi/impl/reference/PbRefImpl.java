@@ -20,6 +20,7 @@ import com.intellij.util.ArrayUtil;
 import com.intellij.util.IncorrectOperationException;
 import com.intellij.util.PathUtil;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import protobuf.lang.PbElementTypes;
 import protobuf.lang.PbTokenTypes;
 import protobuf.lang.psi.PbPsiElementVisitor;
@@ -113,8 +114,21 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return false;
     }
 
+    @Nullable
     @Override
-    public PbRef getQualifier() {
+    public PsiElement getQualifier() {
+        PbRef ref = getQualifierRef(); // Call into the old method for finding the qualifying reference.
+        PsiElement refEl = ref != null ? ref.resolve() : null; // If the reference exists, resolve its element.
+        return refEl;
+    }
+
+    /**
+     * The #getQualifier() method signature changed in Idea 12 to return a PsiElement.  This method simply maintains
+     * the pre-existing behavior to find the qualifying PbRef element.
+     * @return the qualifying ref
+     */
+    @Nullable
+    public PbRef getQualifierRef() {
         switch (getRefKind()) {
             case FILE: {
                 return null;
@@ -132,42 +146,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
         return null;
     }
 
-    /*
-    switch (getRefKind()) {
-            case FILE: {
-            }
-            case PACKAGE: {
-            }
-            case MESSAGE_OR_GROUP: {
-            }
-            case MESSAGE_OR_ENUM_OR_GROUP: {
-
-            }
-            case MESSAGE_OR_PACKAGE_OR_GROUP: {
-
-            }
-            case MESSAGE_OR_GROUP_FIELD: {
-
-            }
-            case EXTEND_FIELD: {
-
-            }
-        }
-     */
-
-
     @Override
     public String getReferenceName() {
-        /*switch (getRefKind()) {
-            case FILE:
-            case PACKAGE:
-            case MESSAGE_OR_GROUP:
-            case MESSAGE_OR_ENUM_OR_GROUP:
-            case MESSAGE_OR_PACKAGE_OR_GROUP:
-            case MESSAGE_OR_GROUP_FIELD:            
-            case EXTEND_FIELD: {
-            }
-        } */
         PsiElement psi = findChildByType(PbTokenTypes.IK);
         return psi != null ? psi.getText() : null;
     }
@@ -259,57 +239,11 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
     public boolean isReferenceTo(PsiElement psiElement) {
         return getManager().areElementsEquivalent(psiElement, resolve());
     }
-    
-    private ResolveCache getResolveCache() {
-        if (null == resolveCache) {
-            String appVersion = ApplicationInfo.getInstance().getMajorVersion();
-            Integer appVersionNum = null;
-            try {
-                appVersionNum = Integer.parseInt(appVersion);
-            } catch (NumberFormatException e) {
-                LOG.error("Could not parse app version number from version string: " + appVersion, e);
-            }
-            if ((appVersionNum != null && appVersionNum >= 11) || ("11".equals(appVersion) || "12".equals(appVersion))) {
-                // The IDEA 11 way: ResolveCache.getInstance(getProject());
-                try {
-                    Class resolveCacheClass = Class.forName("com.intellij.psi.impl.source.resolve.ResolveCache");
-                    Method m = resolveCacheClass.getDeclaredMethod("getInstance", new Class[] { Project.class });
-                    try {
-                        resolveCache = (ResolveCache)m.invoke(null, getProject());
-                    } catch (IllegalAccessException e) {
-                        LOG.error("Could not access the 'getInstance' method on the ResolveCache class", e);
-                    } catch (InvocationTargetException e) {
-                        LOG.error("Could not invoke the 'getInstance' method on the ResolveCache class", e);
-                    }
-                } catch (ClassNotFoundException e) {
-                    LOG.error("Could not find the ResolveCache class!", e); // Now, this is a problem.
-                } catch (NoSuchMethodException e) {
-                    LOG.info("Could not resolve the ResolveCache#getInstance method.", e);
-                }
-            } else if ("10".equals(appVersion)) {
-                // The IDEA 10 way: getManager().getResolveCache();
-                Class managerClass = getManager().getClass();
-                try {
-                    Method m = managerClass.getDeclaredMethod("getResolveCache");
-                    try {
-                        resolveCache = (ResolveCache)m.invoke(managerClass);
-                    } catch (IllegalAccessException e) {
-                        LOG.error("Could not access the 'getResolveCache' method on the PsiManagerEx class", e);
-                    } catch (InvocationTargetException e) {
-                        LOG.error("Could not invoke the 'getResolveCache' method on the PsiManagerEx class", e);
-                    }
-                } catch (NoSuchMethodException e) {
-                    LOG.error("Could not find the 'getResolveCache' method.", e);
-                }
-            }
-        }
-        return resolveCache;
-    }
 
     @Override
     public PsiElement resolve() {
         PsiElement el = null;
-        ResolveCache rc = getResolveCache();
+        ResolveCache rc = ResolveCache.getInstance(getProject());
         if (rc != null) {
             el = rc.resolveWithCaching(this, expResolver, true, false);
         } else {
@@ -435,10 +369,10 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     public static class ExperimentalResolver implements ResolveCache.Resolver {
 
-        public PsiElement resolve(PsiReference refElement, boolean b) {
+        public PsiElement resolve(PsiReference refElement, boolean incompleteCode) {
             final PbRefImpl ref = (PbRefImpl) refElement;
             final ReferenceKind refKind = ref.getRefKind();
-            final PbRef qualifier = ref.getQualifier();
+            final PbRef qualifier = ref.getQualifierRef();
             switch (refKind) {
                 case FILE: {
                     //todo
@@ -485,7 +419,7 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
                 case MESSAGE_OR_ENUM_OR_GROUP:
                 case MESSAGE_OR_PACKAGE_OR_GROUP:
                 case EXTEND_FIELD: {
-                    if (qualifier != null) {    //foo.bar                        
+                    if (qualifier != null) {    //foo.bar
                         final PsiElement resolvedElement = qualifier.resolve();
                         if (resolvedElement != null) {
                             return PbResolveUtil.resolveInScope(PbPsiUtil.getScope(resolvedElement), ref);
@@ -517,6 +451,5 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
             return null;
         }
     }
-
 
 }

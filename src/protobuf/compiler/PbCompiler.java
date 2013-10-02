@@ -18,6 +18,7 @@ import com.intellij.openapi.roots.ProjectRootManager;
 import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.util.SystemInfo;
 import com.intellij.openapi.util.io.StreamUtil;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiDirectory;
@@ -101,6 +102,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
         final ArrayList<GenerationItem> generatedItems = new ArrayList<GenerationItem>();
         final Set<Module> modulesToRefresh = new HashSet<Module>();
         final String protocPath = getPathToCompiler();
+        if (StringUtil.isEmpty(protocPath)) {
+            LOG.error("Cannot generate protobuf files as the path to protoc has not been set. Please set in Settins > Compiler");
+            return (GenerationItem[]) generatedItems.toArray();
+        }
         if (generationItems.length > 0) {
             TreeSet<String> verifiedOutputDirs = new TreeSet<String>();
             for (GenerationItem genItem : generationItems) {

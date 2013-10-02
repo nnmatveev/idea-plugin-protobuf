@@ -40,8 +40,8 @@ public abstract class PbResolveUtil {
                 case MESSAGE_OR_GROUP:
                 case MESSAGE_OR_ENUM_OR_GROUP:
                 case EXTEND_FIELD: {
-                    //get imported files by package name and invoke this function for this files
-                    PbFile containingFile = (PbFile) ref.getContainingFile();
+                    //get imported files by package name and invoke this function for these files
+                    PbFile containingFile = (PbFile) ref.getElement().getContainingFile();
                     if (PbPsiUtil.isSamePackage(containingFile, (PsiPackage) scope)) {
                         PsiElement resolveResult = resolveInScope(containingFile, ref);
                         if (resolveResult != null) {
@@ -58,7 +58,7 @@ public abstract class PbResolveUtil {
                 }
                 break;
                 case MESSAGE_OR_PACKAGE_OR_GROUP: {
-                    PbFile containingFile = (PbFile) ref.getContainingFile();
+                    PbFile containingFile = (PbFile) ref.getElement().getContainingFile();
                     //resolve in subpackages scope
                     //alg: find subpackage and then find it in subpackages
                     PsiPackage subPackage = resolveInSubPackagesScope((PsiPackage) scope, refName);

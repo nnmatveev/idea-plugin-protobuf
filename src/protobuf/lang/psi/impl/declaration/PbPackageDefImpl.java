@@ -1,6 +1,7 @@
 package protobuf.lang.psi.impl.declaration;
 
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
 import protobuf.lang.psi.api.declaration.PbPackageDef;
 import protobuf.lang.psi.api.reference.PbRef;
 import protobuf.lang.psi.impl.PbPsiElementImpl;
@@ -21,6 +22,8 @@ public class PbPackageDefImpl extends PbPsiElementImpl implements PbPackageDef {
         if(packageRef == null){
             return "";
         }
-        return packageRef.getText();
+        PsiElement el = packageRef.getElement();
+        String packageName = el != null ? el.getText() : null;
+        return packageName;
     }
 }
