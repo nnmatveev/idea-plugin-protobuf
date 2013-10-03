@@ -1,3 +1,7 @@
+==== 0.5.5
+* Changes to support IDEA 13.  The minimum version changed to IDEA 12.
+* Minor bug fix for collapse all in the structure view for .proto files.
+
 ==== 0.5.4
 * Bug fix release to fix bug when running under IDEA 11.
 
