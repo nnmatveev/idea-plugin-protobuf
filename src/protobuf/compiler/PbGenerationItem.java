@@ -77,15 +77,20 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
         final String safePackageName = packageName.length() > 0 ? packageName.replaceAll("\\.", sep) : packageName;
         String outputPath = getOutputPath() + sep + safePackageName;
         boolean outputFilesExist = false;
+        long lowestLastModifiedTime = Long.MAX_VALUE;
         for (String fileName : fileNames) {
             String path = outputPath + sep + fileName + ".java";
-            outputFilesExist = new File(path).exists();
-            if (!outputFilesExist) {
+            File outputFile = new File(path);
+            outputFilesExist = outputFile.exists();
+            if(outputFile.exists()) {
+                if (outputFile.lastModified() < lowestLastModifiedTime)
+                    lowestLastModifiedTime = outputFile.lastModified();
+            } else {
                 break;
             }
         }
 
-        return new PbGenerationItemValidityState(myFile.getModificationStamp(), outputFilesExist);
+        return new PbGenerationItemValidityState(myFile.getTimeStamp(), lowestLastModifiedTime, outputFilesExist);
     }
 
     @Override

@@ -137,21 +137,23 @@ public class PbCompiler implements SourceGeneratingCompiler {
                         }
                     }
 
-                    // Invoke the protoc compiler on the item.
-                    try {
-                        StringBuilder compilerCommand = new StringBuilder();
-                        compilerCommand.append(protocPath);
-                        compilerCommand.append(" --proto_path=").append(item.getBaseDir());
-                        compilerCommand.append(" --java_out=").append(outputPath);
-                        compilerCommand.append(" ").append(item.getPath());
-                        LOG.info("Invoking protoc: " + compilerCommand.toString());
-                        proc = Runtime.getRuntime().exec(compilerCommand.toString());
-                        processStreams(compileContext, proc.getInputStream(), proc.getErrorStream(), item);
-                        proc.destroy();
-                        generatedItems.add(genItem);
-                        modulesToRefresh.add(item.getModule());
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                    if(!((PbGenerationItemValidityState) item.getValidityState()).valid()) {
+                        // Invoke the protoc compiler on the item.
+                        try {
+                            StringBuilder compilerCommand = new StringBuilder();
+                            compilerCommand.append(protocPath);
+                            compilerCommand.append(" --proto_path=").append(item.getBaseDir());
+                            compilerCommand.append(" --java_out=").append(outputPath);
+                            compilerCommand.append(" ").append(item.getPath());
+                            LOG.info("Invoking protoc: " + compilerCommand.toString());
+                            proc = Runtime.getRuntime().exec(compilerCommand.toString());
+                            processStreams(compileContext, proc.getInputStream(), proc.getErrorStream(), item);
+                            proc.destroy();
+                            generatedItems.add(genItem);
+                            modulesToRefresh.add(item.getModule());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

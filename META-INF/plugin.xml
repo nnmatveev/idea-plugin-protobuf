@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.5.5</version>
+    <version>0.5.6</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
@@ -15,6 +15,10 @@
     <idea-version since-build="123"/><!-- Idea 12 -->
     <change-notes>
         <![CDATA[
+        <p>0.5.6</p>
+        <ul>
+            <li>No longer re-compiles proto files that are up to date when using the external compiler.</li>
+        </ul>
         <p>0.5.5</p>
         <ul>
             <li>IDEA 13 support. Minimum IDEA version is now 12.</li>
