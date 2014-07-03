@@ -16,10 +16,12 @@ import java.io.IOException;
 public class PbGenerationItemValidityState implements ValidityState {
 
     private long lastModTimestamp;
+    private long outputLastModifiedTimestamp;
     private boolean filesExist;
 
-    public PbGenerationItemValidityState(long lastModTimestamp, boolean filesExist) {
+    public PbGenerationItemValidityState(long lastModTimestamp, long outputLastModifiedTimestamp, boolean filesExist) {
         this.lastModTimestamp = lastModTimestamp;
+        this.outputLastModifiedTimestamp = outputLastModifiedTimestamp;
         this.filesExist = filesExist;
     }
 
@@ -40,7 +42,12 @@ public class PbGenerationItemValidityState implements ValidityState {
 
     public void save(DataOutput out) throws IOException {
         out.writeLong(lastModTimestamp);
+        out.writeLong(outputLastModifiedTimestamp);
         out.writeBoolean(filesExist);
+    }
+
+    public boolean valid() {
+        return filesExist && lastModTimestamp < outputLastModifiedTimestamp;
     }
 
     /**
@@ -51,8 +58,9 @@ public class PbGenerationItemValidityState implements ValidityState {
      */
     public static PbGenerationItemValidityState load(DataInput is) throws IOException {
         long lastModTimestamp = is.readLong();
+        long outputLastModifiedTimestamp = is.readLong();
         boolean filesExist = is.readBoolean();
-        return new PbGenerationItemValidityState(lastModTimestamp, filesExist);
+        return new PbGenerationItemValidityState(lastModTimestamp, outputLastModifiedTimestamp, filesExist);
     }
 
 }
