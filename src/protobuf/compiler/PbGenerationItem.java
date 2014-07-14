@@ -74,7 +74,7 @@ public class PbGenerationItem implements GeneratingCompiler.GenerationItem {
             }
         });
         final String sep = System.getProperty("file.separator");
-        final String safePackageName = packageName.length() > 0 ? packageName.replaceAll("\\.", sep) : packageName;
+        final String safePackageName = packageName.length() > 0 ? packageName.replace(".", sep) : packageName;
         String outputPath = getOutputPath() + sep + safePackageName;
         boolean outputFilesExist = false;
         long lowestLastModifiedTime = Long.MAX_VALUE;
