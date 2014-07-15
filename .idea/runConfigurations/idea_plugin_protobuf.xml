@@ -3,7 +3,7 @@
     <module name="idea-plugin-protobuf" />
     <option name="VM_PARAMETERS" value="-Xms128m -Xmx512m -XX:MaxPermSize=250m -ea" />
     <option name="PROGRAM_PARAMETERS" value="" />
-    <log_file path="$USER_HOME$/.IdeaIC10/system-103/plugins-sandbox/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />
+    <log_file path="$USER_HOME$/Library/Caches/IdeaIC13/plugins-sandbox/system/log/idea.log" checked="false" skipped="true" show_all="false" alias="IDEA LOG" />
     <RunnerSettings RunnerId="Debug">
       <option name="DEBUG_PORT" value="2033" />
       <option name="TRANSPORT" value="0" />

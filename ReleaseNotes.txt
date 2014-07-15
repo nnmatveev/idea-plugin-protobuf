@@ -1,3 +1,11 @@
+==== 0.5.7
+* Fix an incompatibility with version 13.x due to an API method removal.
+* Due to the API change, the minimum supported version is now IDEA 13.
+* Fix an occasional error generating a safe package name for validating build item validity state.
+
+==== 0.5.6
+* Fixes a bug in detecting the state of the generated files. The bug meant that Java files would be generated even when there was no change to the .proto files. This should speed up compilation of projects significantly.
+
 ==== 0.5.5
 * Changes to support IDEA 13.  The minimum version changed to IDEA 12.
 * Minor bug fix for collapse all in the structure view for .proto files.

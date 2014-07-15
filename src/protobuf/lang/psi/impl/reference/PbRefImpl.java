@@ -369,7 +369,8 @@ public class PbRefImpl extends PbPsiElementImpl implements PbRef {
 
     public static class ExperimentalResolver implements ResolveCache.Resolver {
 
-        public PsiElement resolve(PsiReference refElement, boolean incompleteCode) {
+        @Override
+        public PsiElement resolve(@NotNull PsiReference refElement, boolean incompleteCode) {
             final PbRefImpl ref = (PbRefImpl) refElement;
             final ReferenceKind refKind = ref.getRefKind();
             final PbRef qualifier = ref.getQualifierRef();

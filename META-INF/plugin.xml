@@ -12,9 +12,15 @@
         ]]>
     </description>
     <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="123"/><!-- Idea 12 -->
+    <idea-version since-build="133"/><!-- Idea 13 -->
     <change-notes>
         <![CDATA[
+        <p>0.5.7</p>
+        <ul>
+            <li>Fix an incompatibility with version 13.x due to an API method removal.</li>
+            <li>Fix an occasional error generating a safe package name for validating build item validity state.</li>
+            <li>Due to the API change, the minimum supported version is now IDEA 13.</li>
+        </ul>
         <p>0.5.6</p>
         <ul>
             <li>No longer re-compiles proto files that are up to date when using the external compiler.</li>
