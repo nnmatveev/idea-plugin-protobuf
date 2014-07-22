@@ -23,14 +23,10 @@ public class PbPrecompileTask implements CompileTask {
         boolean result = true;
         final Project project = context.getProject();
 
-        boolean useOutOfProcessBuild = CompilerWorkspaceConfiguration.getInstance(project).useOutOfProcessBuild();
-        if (useOutOfProcessBuild) {
-            // When using the out of process build, kick off the {@PBCompiler protobuffers generating compiler}.
-            // When using the internal compiler, the {@PBCompiler} is invoked directly by IDEA.
-            PbCompiler compiler = new PbCompiler(project);
-            GeneratingCompiler.GenerationItem[] generationItems = compiler.getGenerationItems(context);
-            compiler.generate(context, generationItems, null);
-        }
+        // Kick off the {@PBCompiler protobuffers generating compiler}.
+        PbCompiler compiler = new PbCompiler(project);
+        GeneratingCompiler.GenerationItem[] generationItems = compiler.getGenerationItems(context);
+        compiler.generate(context, generationItems, null);
         return result;
     }
 
