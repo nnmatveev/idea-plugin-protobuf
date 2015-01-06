@@ -10,6 +10,7 @@ import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbOneofDef;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -66,6 +67,8 @@ public class PbStructureViewTreeElement extends PsiTreeElementBase<PbPsiElement>
             return PbIcons.SERVICE;
         } else if (element instanceof PbServiceMethodDef) {
             return PbIcons.SERVICE_METHOD;
+        } else if (element instanceof PbOneofDef) {
+            return PbIcons.FIELD;
         } else if (element instanceof PbFieldDef) {
             return PbIcons.FIELD;
         } else if (element instanceof PbGroupDef) {

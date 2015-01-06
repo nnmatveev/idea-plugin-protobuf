@@ -5,6 +5,7 @@ import com.intellij.psi.PsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbOneofDef;
 import protobuf.lang.psi.api.member.PbOptionAssignment;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
@@ -41,6 +42,10 @@ public abstract class PbPsiElementVisitor extends PsiElementVisitor {
     }
 
     public void visitEnumDefinition(PbEnumDef element){
+        visitPbElement(element);
+    }
+
+    public void visitOneofDefinition(PbOneofDef element){
         visitPbElement(element);
     }
 

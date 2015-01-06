@@ -60,7 +60,8 @@ public interface PbTokenTypes {
     IElementType SERVICE = new PbElementType("SERVICE");
     IElementType OPTION = new PbElementType("OPTION");
     IElementType ENUM = new PbElementType("ENUM");
-    TokenSet DECLARATIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM); //keywords
+    IElementType ONEOF = new PbElementType("ONEOF");
+    TokenSet DECLARATIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM,ONEOF); //keywords
 
 
     IElementType RPC = new PbElementType("RPC");

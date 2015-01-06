@@ -74,6 +74,7 @@ public class PbParserTestCase extends LightCodeInsightFixtureTestCase {
     public void testMember$optionassigment1(){}
     public void testMember$optionlist1(){}
     public void testMember$optionrefseq1(){}
+    public void testMember$oneof1(){}
 
     //reference
     public void testReference$customoption1(){}

@@ -90,6 +90,7 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\'\r\n]*
 "service"                           {return (SERVICE);}
 "rpc"                               {return (RPC);}
 "enum"                              {return (ENUM);}
+"oneof"                              {return (ONEOF);}
 "returns"                           {return (RETURNS);}
 "option"                            {return (OPTION);}
 "group"                             {return (GROUP);}

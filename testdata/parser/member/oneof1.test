@@ -1,0 +1,56 @@
+message InnerTest {
+  optional int32 inner_field = 1;
+}
+
+message OneofTest {
+    oneof Test {
+        int32 int_field = 1;
+        InnerTest custom_field = 2;
+    }
+}
+------
+PROTO_FILE
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    PsiElement(IDENTIFIER)('InnerTest')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      FIELD_DECL
+        PsiElement(OPTIONAL)('optional')
+        FIELD_TYPE
+          PsiElement(INT32)('int32')
+        PsiElement(IDENTIFIER)('inner_field')
+        PsiElement(EQUAL)('=')
+        VALUE
+          PsiElement(NUM_INT)('1')
+        PsiElement(SEMICOLON)(';')
+      PsiElement(CLOSE_BLOCK)('}')
+  MESSAGE_DECL
+    PsiElement(MESSAGE)('message')
+    PsiElement(IDENTIFIER)('OneofTest')
+    MESSAGE_BLOCK
+      PsiElement(OPEN_BLOCK)('{')
+      ONEOF_DECL
+        PsiElement(ONEOF)('oneof')
+        PsiElement(IDENTIFIER)('Test')
+        ONEOF_BLOCK
+          PsiElement(OPEN_BLOCK)('{')
+          ONEOF_MEMBER_DECL
+            ONEOF_MEMBER_TYPE
+              PsiElement(INT32)('int32')
+            PsiElement(IDENTIFIER)('int_field')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(NUM_INT)('1')
+            PsiElement(SEMICOLON)(';')
+          ONEOF_MEMBER_DECL
+            ONEOF_MEMBER_TYPE
+              MESSAGE_OR_ENUM_GROUP_REF
+                PsiElement(IDENTIFIER)('InnerTest')
+            PsiElement(IDENTIFIER)('custom_field')
+            PsiElement(EQUAL)('=')
+            VALUE
+              PsiElement(NUM_INT)('2')
+            PsiElement(SEMICOLON)(';')
+          PsiElement(CLOSE_BLOCK)('}')
+      PsiElement(CLOSE_BLOCK)('}')

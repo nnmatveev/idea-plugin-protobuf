@@ -46,6 +46,8 @@ public class MessageDeclaration implements PbElementTypes {
         if (builder.match(SEMICOLON)) {
         } else if (MessageDeclaration.parse(builder)) {
 
+        } else if (OneofDeclaration.parse(builder)) {
+
         } else if (EnumDeclaration.parse(builder)) {
 
         } else if (ExtendDeclaration.parse(builder)) {
