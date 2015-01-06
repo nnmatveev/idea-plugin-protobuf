@@ -13,6 +13,7 @@ import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.auxiliary.PbNamedElement;
 import protobuf.lang.psi.api.declaration.*;
 import protobuf.lang.psi.api.declaration.PbEnumConstantDef;
+import protobuf.lang.psi.api.member.PbOneofDef;
 import protobuf.lang.psi.api.member.PbValue;
 import protobuf.lang.psi.api.reference.PbRef;
 
@@ -101,6 +102,11 @@ public class PbAnnotator extends PbPsiElementVisitor implements Annotator {
 
     @Override
     public void visitEnumDefinition(PbEnumDef element) {
+        fixHighlighting(element);
+    }
+
+    @Override
+    public void visitOneofDefinition(PbOneofDef element) {
         fixHighlighting(element);
     }
 

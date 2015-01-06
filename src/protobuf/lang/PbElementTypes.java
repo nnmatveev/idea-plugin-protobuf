@@ -41,6 +41,10 @@ public interface PbElementTypes extends PbTokenTypes {
     PbElementType ENUM_BLOCK = new PbElementType("ENUM_BLOCK");
     PbElementType ENUM_CONST_DECL = new PbElementType("ENUM_CONST_DECL");
 
+    PbElementType ONEOF_DECL = new PbElementType("ONEOF_DECL");
+    PbElementType ONEOF_BLOCK = new PbElementType("ONEOF_BLOCK");
+    PbElementType ONEOF_MEMBER_DECL = new PbElementType("ONEOF_MEMBER_DECL");
+    PbElementType ONEOF_MEMBER_TYPE = new PbElementType("ONEOF_MEMBER_TYPE");
 
     PbElementType EXTENSIONS_DECL = new PbElementType("EXTENSIONS_DECL");
     PbElementType EXTENSIONS_RANGE = new PbElementType("EXTENSIONS_RANGE");

@@ -9,6 +9,7 @@ import protobuf.lang.psi.PbPsiElementVisitor;
 import protobuf.lang.psi.api.PbFile;
 import protobuf.lang.psi.api.PbPsiElement;
 import protobuf.lang.psi.api.declaration.*;
+import protobuf.lang.psi.api.member.PbOneofDef;
 import protobuf.lang.psi.api.member.PbOptionList;
 import protobuf.lang.psi.impl.member.PbOptionAssignmentImpl;
 
@@ -44,7 +45,7 @@ public class PbPsiElementImpl extends ASTWrapperPsiElement implements PbPsiEleme
     @Override
     public PsiElement getContext() {
         //common types
-        if (this instanceof PbMessageDef || this instanceof PbEnumDef || this instanceof PbExtendDef) {
+        if (this instanceof PbMessageDef || this instanceof PbEnumDef || this instanceof PbExtendDef || this instanceof PbOneofDef) {
             PsiElement parent = getParent();
             if (parent instanceof PbFile) return parent;
             return parent.getParent();

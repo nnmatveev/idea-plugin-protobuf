@@ -19,6 +19,7 @@
 <Message Member> ::= (
     <Message Declaration>       |
     <Enum Declaration>          |
+    <Oneof Declaration>          |
     <Extend Declaration>        |
     <Option Declaration>        |
     <Extensions Declaration>    |
@@ -49,6 +50,12 @@ STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
 <Enum Block> ::= (<Enum Member>)*
 <Enum Member> ::= <Option Declaration> | <Enum Constant> | ';'
 <Enum Constant> ::=  IDENTIFIER '=' NUM_INT <Field Options>? ';'
+
+<Oneof Declaration> ::= 'oneof' IDENTIFIER '{' <Oneof Block> '}'
+<Oneof Block> ::= (<Oneof Member>)*
+<Oneof Member> ::= <Oneof Field> | ';'
+<Oneof Field> ::=  IDENTIFIER '=' NUM_INT ';'
+
 
 <Service Declaration> ::= 'service' IDENTIFIER <Service Block>
 <Service Block> ::= '{' (<Service Member> | ';')* '}'

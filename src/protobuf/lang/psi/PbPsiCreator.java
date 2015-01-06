@@ -68,6 +68,18 @@ public class PbPsiCreator implements PbElementTypes {
         if (type == ENUM_CONST_DECL) {
             return new PbEnumConstantDefImpl(node);
         }
+        if (type == ONEOF_DECL) {
+            return new PbOneofDefImpl(node);
+        }
+        if (type == ONEOF_BLOCK) {
+            return new PbBlockImpl(node);
+        }
+        if (type == ONEOF_MEMBER_TYPE) {
+            return new PbFieldTypeImpl(node);
+        }
+        if (type == ONEOF_MEMBER_DECL) {
+            return new PbFieldDefImpl(node);
+        }
         if (type == SERVICE_DECL) {
             return new PbServiceDefImpl(node);
         }
