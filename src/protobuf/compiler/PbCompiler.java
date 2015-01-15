@@ -102,11 +102,12 @@ public class PbCompiler implements SourceGeneratingCompiler {
         final ArrayList<GenerationItem> generatedItems = new ArrayList<GenerationItem>();
         final Set<Module> modulesToRefresh = new HashSet<Module>();
         final String protocPath = getPathToCompiler();
-        if (StringUtil.isEmpty(protocPath)) {
-            LOG.error("Cannot generate protobuf files as the path to protoc has not been set. Please set in Settins > Compiler");
-            return (GenerationItem[]) generatedItems.toArray();
-        }
         if (generationItems.length > 0) {
+            if (StringUtil.isEmpty(protocPath)) {
+                LOG.error("Cannot generate protobuf files as the path to protoc has not been set. Please set in Settings > Compiler");
+                return (GenerationItem[]) generatedItems.toArray();
+            }
+
             TreeSet<String> verifiedOutputDirs = new TreeSet<String>();
             for (GenerationItem genItem : generationItems) {
                 Process proc;
