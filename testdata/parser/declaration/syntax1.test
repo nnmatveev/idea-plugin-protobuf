@@ -1,0 +1,9 @@
+syntax = "proto2";
+------
+PROTO_FILE
+  SYNTAX_DEF
+    PsiElement(SYNTAX)('syntax')
+    PsiElement(EQUAL)('=')
+    VALUE
+      PsiElement(STRING_LITERAL)('proto2')
+    PsiElement(SEMICOLON)(';')

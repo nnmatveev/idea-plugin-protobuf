@@ -82,6 +82,7 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\'\r\n]*
 ","                                 {return (COMMA);}
 "-"                                 {return (MINUS);}
 
+"syntax"                            {return (SYNTAX);}
 "import"                            {return (IMPORT);}
 "package"                           {return (PACKAGE);}
 

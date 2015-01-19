@@ -53,6 +53,7 @@ public interface PbTokenTypes {
 //keywords    
 
     //statements
+    IElementType SYNTAX = new PbElementType("SYNTAX");
     IElementType IMPORT = new PbElementType("IMPORT");
     IElementType PACKAGE = new PbElementType("PACKAGE");
     IElementType MESSAGE = new PbElementType("MESSAGE");
@@ -61,7 +62,7 @@ public interface PbTokenTypes {
     IElementType OPTION = new PbElementType("OPTION");
     IElementType ENUM = new PbElementType("ENUM");
     IElementType ONEOF = new PbElementType("ONEOF");
-    TokenSet DECLARATIONS = TokenSet.create(IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM,ONEOF); //keywords
+    TokenSet DECLARATIONS = TokenSet.create(SYNTAX,IMPORT,PACKAGE,MESSAGE,EXTEND,SERVICE,OPTION,ENUM,ONEOF); //keywords
 
 
     IElementType RPC = new PbElementType("RPC");
@@ -138,7 +139,7 @@ public interface PbTokenTypes {
                                         /*FIELD_OPTIONS,*/
                                         FIELD_LABELS,
                                         BOOL_VALUES,
-            DECLARATIONS,
+                                        DECLARATIONS,
                                         OTHER_KEYWORDS
                                         );
     TokenSet IK = TokenSet.orSet(IDENTIFIERS,KEYWORDS);

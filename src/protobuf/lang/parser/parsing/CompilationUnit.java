@@ -8,14 +8,15 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
  *         Date: Mar 9, 2010
  */
 
-//  ProtoDefinition :: = ( PbMessageDef | PbExtendDef | MembersDefinition | PbImportDef | package | option | service | ";" )*
+//  ProtoDefinition :: = ( PbMessageDef | PbExtendDef | MembersDefinition | PbImportDef | syntax | package | option | service | ";" )*
 //  STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES 
 
 public class CompilationUnit implements PbElementTypes {
     public static void parse(PbPatchedPsiBuilder builder) {
         //parseSeparateOption root level statements
         while (!builder.eof()) {
-            if (PackageDeclaration.parse(builder)) {
+            if (SyntaxDeclaration.parse(builder)) {
+            } else if (PackageDeclaration.parse(builder)) {
             } else if (ImportDeclaration.parse(builder)) {
             } else if (OptionDeclaration.parseSeparateOption(builder)) {
             } else if (ExtendDeclaration.parse(builder)) {

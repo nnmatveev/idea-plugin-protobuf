@@ -1,4 +1,5 @@
-<Compilation Unit> :: = (
+<Compilation Unit> ::= (
+    <Syntax Declaration>    |
     <Package Declaration>   |
     <Import Declaration>    |
     <Message Declaration>   |
@@ -10,6 +11,8 @@
     ";"
     )*
 
+<Syntax Declaration> ::= 'syntax' '=' STRING_LITERAL ';'
+
 <Package Declaration> ::= 'package' IDENTIFIER('.'IDENTIFIER)* ';'
 
 <Import Declaration> ::= 'import' STRING_LITERAL ';'
@@ -19,7 +22,7 @@
 <Message Member> ::= (
     <Message Declaration>       |
     <Enum Declaration>          |
-    <Oneof Declaration>          |
+    <Oneof Declaration>         |
     <Extend Declaration>        |
     <Option Declaration>        |
     <Extensions Declaration>    |
@@ -33,10 +36,10 @@
 <Field Label> ::= 'required' | 'repeated' | 'optional'
 <Field Type> ::= BUILT_IN_TYPE | <User Defined Type>
 <Field Options> ::= '[' (<Default Assignment> | <Option Assignment>)(','(<Default Assignment>|<Option Assignment>)) ']'
-<Default Assignment> ::= 'default' = STRING_LITERALS
+<Default Assignment> ::= 'default' '=' STRING_LITERALS
 <User Defined Type> ::= '.'? IDENTIFIER('.'IDENTIFIER)*
 
-STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
+STRING_LITERALS ::= NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
 
 <Extend Declaration> ::= 'extend' <User Defined Type> '{' <Extend Block> '}'
 <Extend Block> ::= (<Field Declaration> ';')*
@@ -44,7 +47,7 @@ STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
 <Option Declaration> ::= "option" <Option Assignment> ";"
 <Option Assignment> ::= <Option Name> "=" STRING_LITERALS
 <Option Name> ::= <Option Name Part> ("."<Option Name Part>)*
-<Option Name Part> ::= IK |"(" IK("."IK)* ")
+<Option Name Part> ::= IK | "(" IK("."IK)* ")"
 
 <Enum Declaration> ::= 'enum' IDENTIFIER '{' <Enum Block> '}'
 <Enum Block> ::= (<Enum Member>)*
@@ -60,5 +63,5 @@ STRING_LITERALS :: = NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
 <Service Declaration> ::= 'service' IDENTIFIER <Service Block>
 <Service Block> ::= '{' (<Service Member> | ';')* '}'
 <Service Member> ::= <Service Method> | <Option Declaration>
-<Service Method> ::= 'rpc' IDENTIFIER '(' <User Defined Type ')' 'returns' '(' <User Defined Type> ')' <Service Method Block>? ';'
+<Service Method> ::= 'rpc' IDENTIFIER '(' <User Defined Type> ')' 'returns' '(' <User Defined Type> ')' <Service Method Block>? ';'
 <Service Method Block> ::= '{' (<Option Declaration>|';')* '}'

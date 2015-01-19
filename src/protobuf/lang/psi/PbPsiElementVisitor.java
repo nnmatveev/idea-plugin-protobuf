@@ -33,6 +33,8 @@ public abstract class PbPsiElementVisitor extends PsiElementVisitor {
         visitPbElement(element);
     }
 
+    public void visitSyntaxDefinition(PbSyntaxDef element){ visitPbElement(element); }
+
     public void visitPackageDefinition(PbPackageDef element){
         visitPbElement(element);
     }

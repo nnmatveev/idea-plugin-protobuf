@@ -11,6 +11,8 @@ public interface PbElementTypes extends PbTokenTypes {
     PbElementType CUSTOM_TYPE_REF = new PbElementType("CUSTOM_TYPE_REF");
     PbElementType BLOCK = new PbElementType("BLOCK");
 
+    PbElementType SYNTAX_DECL = new PbElementType("SYNTAX_DECL");
+
     PbElementType PACKAGE_DECL = new PbElementType("PACKAGE_DECL");
     PbElementType PACKAGE_REF = new PbElementType("PACKAGE_REF");
 
@@ -54,6 +56,6 @@ public interface PbElementTypes extends PbTokenTypes {
     TokenSet SKIPPED_ELEMENTS = TokenSet.orSet(WHITE_SPACES,COMMENTS);
     
     TokenSet BLOCKS = TokenSet.create(BLOCK,MESSAGE_BLOCK,ENUM_BLOCK,SERVICE_BLOCK,SERVICE_METHOD_BLOCK,EXTEND_BLOCK);    
-    TokenSet DECLS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, PACKAGE_DECL, FIELD_DECL, ENUM_CONST_DECL,GROUP_DECL);
+    TokenSet DECLS = TokenSet.create(MESSAGE_DECL, ENUM_DECL, SERVICE_DECL, SERVICE_METHOD_DECL, EXTEND_DECL, EXTENSIONS_DECL, IMPORT_DECL, SYNTAX_DECL, PACKAGE_DECL, FIELD_DECL, ENUM_CONST_DECL,GROUP_DECL);
 
 }

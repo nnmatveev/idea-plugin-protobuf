@@ -26,6 +26,9 @@ public class PbPsiCreator implements PbElementTypes {
         if (type == IMPORT_REF) {
             return new PbRefImpl(node);
         }
+        if (type == SYNTAX_DECL) {
+            return new PbSyntaxDefImpl(node);
+        }
         if (type == PACKAGE_DECL) {
             return new PbPackageDefImpl(node);
         }
