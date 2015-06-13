@@ -144,6 +144,9 @@ public class PbCompiler implements SourceGeneratingCompiler {
                             StringBuilder compilerCommand = new StringBuilder();
                             compilerCommand.append(protocPath);
                             compilerCommand.append(" --proto_path=").append(item.getBaseDir());
+                            for (String addtionalProtoPath : getAdditionalProtoPaths()) {
+                                compilerCommand.append(" --proto_path=").append(addtionalProtoPath);
+                            }
                             compilerCommand.append(" --java_out=").append(outputPath);
                             compilerCommand.append(" ").append(item.getPath());
                             LOG.info("Invoking protoc: " + compilerCommand.toString());
@@ -329,6 +332,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
 
     private String getPathToCompiler() {
         return compilerAppSettings.PATH_TO_COMPILER;
+    }
+
+    private String[] getAdditionalProtoPaths() {
+        return compilerAppSettings.ADDITIONAL_PROTO_PATHS.split(";");
     }
 
     private void processStreams(CompileContext context, InputStream inp, InputStream err, PbGenerationItem item) {

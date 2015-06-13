@@ -25,6 +25,7 @@ import javax.swing.*;
 public class PbCompilerConfigurable implements Configurable {
     
     private TextFieldWithBrowseButton pathField;
+    private JTextField addtionalProtoPathsField;
     private JPanel settingsPanel;
 
     PbCompilerApplicationSettings myAppSettings;
@@ -60,17 +61,21 @@ public class PbCompilerConfigurable implements Configurable {
 
     @Override
     public boolean isModified() {
-        return !myAppSettings.PATH_TO_COMPILER.equals(pathField.getText());
+        return !myAppSettings.PATH_TO_COMPILER.equals(pathField.getText())
+                || !myAppSettings.ADDITIONAL_PROTO_PATHS.equals(addtionalProtoPathsField.getText());
     }
 
     @Override
     public void apply() throws ConfigurationException {
         myAppSettings.PATH_TO_COMPILER = pathField.getText();
+        myAppSettings.ADDITIONAL_PROTO_PATHS = addtionalProtoPathsField.getText();
+
     }
 
     @Override
     public void reset() {
         pathField.setText(myAppSettings.PATH_TO_COMPILER);
+        addtionalProtoPathsField.setText(myAppSettings.ADDITIONAL_PROTO_PATHS);
     }
 
     @Override
