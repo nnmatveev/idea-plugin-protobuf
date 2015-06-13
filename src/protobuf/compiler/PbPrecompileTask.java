@@ -1,6 +1,5 @@
 package protobuf.compiler;
 
-import com.intellij.compiler.CompilerConfiguration;
 import com.intellij.openapi.compiler.CompileContext;
 import com.intellij.openapi.compiler.CompileScope;
 import com.intellij.openapi.compiler.CompileTask;
@@ -8,13 +7,9 @@ import com.intellij.openapi.compiler.GeneratingCompiler;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.module.Module;
 import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
 import protobuf.facet.PbFacet;
-import protobuf.file.PbFileType;
 
 import java.io.File;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A precompile task for the Protobuffer compiler.
@@ -45,31 +40,20 @@ public class PbPrecompileTask implements CompileTask {
         }
 
         final CompileScope compileScope = compileContext.getCompileScope();
-        final CompilerConfiguration compilerConfiguration = CompilerConfiguration.getInstance(compileContext.getProject());
-        final VirtualFile[] files = compileScope.getFiles(PbFileType.PROTOBUF_FILE_TYPE, false);
+        Module[] affectedModules = compileScope.getAffectedModules();
 
+        for (Module module : affectedModules) {
+            final PbFacet facet = PbFacet.getInstance(module);
+            if (facet == null || !facet.getConfiguration().isCompilationEnabled())
+                continue;
 
-        Set<PbFacet> cleanedFacets = new HashSet<PbFacet>();
-        for (VirtualFile file : files) {
-            if (!compilerConfiguration.isExcludedFromCompilation(file)) {
-                Module module = compileContext.getModuleByFile(file);
-                final PbFacet facet = PbFacet.getInstance(module);
-                if (facet == null || !facet.getConfiguration().isCompilationEnabled())
-                    continue;
+            // Continue cleanup if a Protobuf facet has been created for the module.
+            File outputPath = new File(facet.getConfiguration().getCompilerOutputPath());
+            if (!outputPath.exists() || !outputPath.isDirectory())
+                continue;
 
-                if (cleanedFacets.contains(facet))
-                    continue;
-
-                cleanedFacets.add(facet);
-
-                // Continue cleanup if a Protobuf facet has been created for the module.
-                File outputPath = new File(facet.getConfiguration().getCompilerOutputPath());
-                if (!outputPath.exists() || !outputPath.isDirectory())
-                    continue;
-
-                LOG.info("Cleaning up a facet on rebuild: " + module.getName() + ", " + outputPath.getAbsolutePath());
-                cleanDirectory(outputPath);
-            }
+            LOG.info("Cleaning up a facet on rebuild: " + module.getName() + ", " + outputPath.getAbsolutePath());
+            cleanDirectory(outputPath);
         }
     }
 
