@@ -5,6 +5,9 @@ import com.intellij.openapi.components.*;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * @author Nikolay Matveev
  * Date: Apr 5, 2010
@@ -19,7 +22,8 @@ import org.jetbrains.annotations.NotNull;
 )
 public class PbCompilerApplicationSettings implements PersistentStateComponent<PbCompilerApplicationSettings>, ApplicationComponent {
     
-    public String PATH_TO_COMPILER = "";    
+    public String PATH_TO_COMPILER = "";
+    public String ADDITIONAL_PROTO_PATHS = "";
 
     public static PbCompilerApplicationSettings getInstance() {
         return ApplicationManager.getApplication().getComponent(PbCompilerApplicationSettings.class);
