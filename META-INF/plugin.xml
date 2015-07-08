@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.5.9</version>
+    <version>0.5.10</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
@@ -15,6 +15,11 @@
     <idea-version since-build="133"/><!-- Idea 13 -->
     <change-notes>
         <![CDATA[
+        <p>0.5.10</p>
+        <ul>
+            <li>Fix structure view (Thanks Nikolay Mikhaylov!)</li>
+            <li>Add additional proto paths, clean up project on rebuild (Thanks Boris Byk!)</li>
+        </ul>
         <p>0.5.9</p>
         <ul>
             <li>Added support for the syntax keyword and oneof style enums. Thank you to David Elkind for implementing oneof support!</li>

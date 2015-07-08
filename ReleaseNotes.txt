@@ -1,3 +1,7 @@
+==== 0.5.10
+* Fix structure view (Thanks Nikolay Mikhaylov!)
+* Add additional proto paths, clean up project on rebuild (Thanks Boris Byk!)
+
 ==== 0.5.9
 * Added support for the syntax keyword and oneof style enums. Thank you to David Elkind for implementing oneof support!</li>
 * No longer emit a compilation error when the path to the protoc compiler is not set if there are no proto files to compile due to all facets being disabled.
