@@ -36,6 +36,9 @@ public class ProtobufFacetEditor extends FacetEditorTab {
         commonSettingsEditor.getEnableCompilationCheckbox().setSelected(configuration.isCompilationEnabled());
         commonSettingsEditor.getProtobufCompilerOutputPathField().setText(configuration.getCompilerOutputPath());
         commonSettingsEditor.getProtobufCompilerOutputPathField().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, module, commonSettingsEditor.getProtobufCompilerOutputPathField()));
+        commonSettingsEditor.getProtobufCompilerRunInFixedDirectory().setSelected(configuration.isCompilationUseGivenRunDirectory());
+        commonSettingsEditor.getProtobufCompilerRunDirectory().setText(configuration.getCompilationRunDirectory());
+        commonSettingsEditor.getProtobufCompilerRunDirectory().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, module, commonSettingsEditor.getProtobufCompilerRunDirectory()));
     }
 
     @Nls
@@ -58,15 +61,21 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     public boolean isModified() {
         boolean compilationEnabled = commonSettingsEditor.getEnableCompilationCheckbox().isSelected();
         String outputPath = commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim();
+        boolean compileInGivenPath = commonSettingsEditor.getProtobufCompilerRunInFixedDirectory().isSelected();
+        String runDirectory = commonSettingsEditor.getProtobufCompilerRunDirectory().getText().trim();
 
         return (configuration.isCompilationEnabled() != compilationEnabled ||
-            !Comparing.equal(configuration.getCompilerOutputPath(), FileUtil.toSystemIndependentName(outputPath)));
+                !Comparing.equal(configuration.getCompilerOutputPath(), FileUtil.toSystemIndependentName(outputPath)) ||
+                configuration.isCompilationUseGivenRunDirectory() != compileInGivenPath ||
+                !Comparing.equal(configuration.getCompilationRunDirectory(), FileUtil.toSystemIndependentName(runDirectory)));
     }
 
     @Override
     public void apply() throws ConfigurationException {
         configuration.setIsCompilationEnabled(commonSettingsEditor.getEnableCompilationCheckbox().isSelected());
         configuration.setCompilerOutputPath(FileUtil.toSystemIndependentName(commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim()));
+        configuration.setCompilationUseGivenRunDirectory(commonSettingsEditor.getProtobufCompilerRunInFixedDirectory().isSelected());
+        configuration.setCompilationRunDirectory(FileUtil.toSystemIndependentName(commonSettingsEditor.getProtobufCompilerRunDirectory().getText().trim()));
     }
 
     @Override
@@ -85,6 +94,14 @@ public class ProtobufFacetEditor extends FacetEditorTab {
 
     public TextFieldWithBrowseButton getProtobufCompilerOutputPathField() {
         return commonSettingsEditor.getProtobufCompilerOutputPathField();
+    }
+
+    public JCheckBox getProtoCompilerRunInFixedDirectory() {
+        return commonSettingsEditor.getProtobufCompilerRunInFixedDirectory();
+    }
+
+    public TextFieldWithBrowseButton getProtobufCompilerRunDirectory() {
+        return commonSettingsEditor.getProtobufCompilerRunDirectory();
     }
 
 }

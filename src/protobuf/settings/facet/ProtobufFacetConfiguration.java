@@ -27,6 +27,8 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
 
     private boolean compilationEnabled = true;
     private String compilerOutputPath = "";
+    private boolean compilationUseGivenRunDirectory = false;
+    private String compilationRunDirectory = "";
 
     @Override
     public FacetEditorTab[] createEditorTabs(FacetEditorContext editorContext, FacetValidatorsManager validatorsManager) {
@@ -48,6 +50,8 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
         ProtobufFacetSettings settings = new ProtobufFacetSettings();
         settings.COMPILE_PROTO = compilationEnabled;
         settings.COMPILER_OUTPUT_SOURCE_DIRECTORY = compilerOutputPath;
+	    settings.COMPILE_IN_GIVEN_DIRECTORY = compilationUseGivenRunDirectory;
+	    settings.COMPILER_RUN_DIRECTORY = compilationRunDirectory;
         return settings;
     }
 
@@ -55,6 +59,8 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public void loadState(ProtobufFacetSettings settings) {
         compilationEnabled = settings.COMPILE_PROTO;
         compilerOutputPath = settings.COMPILER_OUTPUT_SOURCE_DIRECTORY;
+	    compilationUseGivenRunDirectory = settings.COMPILE_IN_GIVEN_DIRECTORY;
+	    compilationRunDirectory = settings.COMPILER_RUN_DIRECTORY;
     }
 
     public boolean isCompilationEnabled() {
@@ -72,5 +78,21 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public void setCompilerOutputPath(String value) {
         compilerOutputPath = value;
     }
+
+	public boolean isCompilationUseGivenRunDirectory() {
+		return compilationUseGivenRunDirectory;
+	}
+
+	public void setCompilationUseGivenRunDirectory(boolean value) {
+		this.compilationUseGivenRunDirectory = value;
+	}
+
+	public String getCompilationRunDirectory() {
+		return compilationRunDirectory;
+	}
+
+	public void setCompilationRunDirectory(String value) {
+		this.compilationRunDirectory = value;
+	}
 
 }

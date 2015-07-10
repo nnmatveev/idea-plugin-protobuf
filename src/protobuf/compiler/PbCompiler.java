@@ -141,16 +141,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
                     if(!((PbGenerationItemValidityState) item.getValidityState()).valid()) {
                         // Invoke the protoc compiler on the item.
                         try {
-                            StringBuilder compilerCommand = new StringBuilder();
-                            compilerCommand.append(protocPath);
-                            compilerCommand.append(" --proto_path=").append(item.getBaseDir());
-                            for (String addtionalProtoPath : getAdditionalProtoPaths()) {
-                                compilerCommand.append(" --proto_path=").append(addtionalProtoPath);
-                            }
-                            compilerCommand.append(" --java_out=").append(outputPath);
-                            compilerCommand.append(" ").append(item.getPath());
-                            LOG.info("Invoking protoc: " + compilerCommand.toString());
-                            proc = Runtime.getRuntime().exec(compilerCommand.toString());
+                            proc = Runtime.getRuntime().exec(new String[] {protocPath, "--proto_path", getProtoPath(item), "--java_out", outputPath, item.getPath()});
                             processStreams(compileContext, proc.getInputStream(), proc.getErrorStream(), item);
                             proc.destroy();
                             generatedItems.add(genItem);
@@ -368,4 +359,20 @@ public class PbCompiler implements SourceGeneratingCompiler {
         return generatedFile;
     }
 
+    private String getProtoPath(PbGenerationItem item) {
+        PbFacet facet = item.getFacet();
+
+        if (facet != null) {
+            ProtobufFacetConfiguration facetConfiguration = facet.getConfiguration();
+            if (facetConfiguration.isCompilationUseGivenRunDirectory()) {
+                return facetConfiguration.getCompilationRunDirectory();
+            }
+            else {
+                return item.getBaseDir();
+            }
+        }
+        else {
+            return item.getBaseDir();
+        }
+    }
 }

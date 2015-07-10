@@ -14,6 +14,8 @@ public class ProtobufFacetCommonSettingsEditor extends JComponent {
     private JPanel mainPanel;
     private ThreeStateCheckBox enableCompilationCheckBox;
     private TextFieldWithBrowseButton protobufCompilerOutputPath;
+    private ThreeStateCheckBox protoCompilerRunInFixedDirectory;
+    private TextFieldWithBrowseButton protoCompilerRunDirectory;
 
     public ProtobufFacetCommonSettingsEditor() {
         super();
@@ -30,5 +32,13 @@ public class ProtobufFacetCommonSettingsEditor extends JComponent {
     public TextFieldWithBrowseButton getProtobufCompilerOutputPathField() {
         return protobufCompilerOutputPath;
     }
+
+	public ThreeStateCheckBox getProtobufCompilerRunInFixedDirectory() {
+		return protoCompilerRunInFixedDirectory;
+	}
+
+	public TextFieldWithBrowseButton getProtobufCompilerRunDirectory() {
+		return protoCompilerRunDirectory;
+	}
 
 }

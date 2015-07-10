@@ -43,6 +43,23 @@ public class ProtobufMultipleFacetSettingsEditor extends MultipleFacetSettingsEd
 
         commonSettingsEditor.getProtobufCompilerOutputPathField().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, null, commonSettingsEditor.getProtobufCompilerOutputPathField()));
 
+        helper.bind(commonSettingsEditor.getProtobufCompilerRunInFixedDirectory(), editors, new NotNullFunction<FacetEditor, JCheckBox>() {
+	        @NotNull
+	        @Override
+	        public JCheckBox fun(FacetEditor facetEditor) {
+		        return (facetEditor.getEditorTab(ProtobufFacetEditor.class)).getProtoCompilerRunInFixedDirectory();
+	        }
+        });
+
+	    helper.bind(commonSettingsEditor.getProtobufCompilerOutputPathField().getTextField(), editors, new NotNullFunction<FacetEditor, JTextField>() {
+		    @NotNull
+		    @Override
+		    public JTextField fun(FacetEditor facetEditor) {
+			    return facetEditor.getEditorTab(ProtobufFacetEditor.class).getProtobufCompilerOutputPathField().getTextField();
+		    }
+	    });
+
+	    commonSettingsEditor.getProtobufCompilerRunDirectory().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, null, commonSettingsEditor.getProtobufCompilerRunDirectory()));
     }
 
     @Override

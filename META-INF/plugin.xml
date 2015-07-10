@@ -1,7 +1,7 @@
 <idea-plugin version="2" url="http://github.com/nnmatveev/idea-plugin-protobuf">
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
-    <name>Google Protocol Buffers support</name>
+    <name>Google Protocol Buffers support_modified</name>
     <version>0.5.9</version>
     <category>Custom Languages</category>
     <description>
