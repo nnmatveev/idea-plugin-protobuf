@@ -79,7 +79,7 @@ public class ProtobufFacetEditor extends FacetEditorTab {
         for (int i = 0; i < splitPaths.length; i++) {
             splitPaths[i] = FileUtil.toSystemIndependentName(splitPaths[i]);
         }
-        return StringUtil.join(splitPaths);
+        return StringUtil.join(splitPaths, ";");
     }
 
     @Override
