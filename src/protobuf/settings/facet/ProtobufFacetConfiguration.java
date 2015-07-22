@@ -27,6 +27,7 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
 
     private boolean compilationEnabled = true;
     private String compilerOutputPath = "";
+    private String additionalProtoPaths = "";
 
     @Override
     public FacetEditorTab[] createEditorTabs(FacetEditorContext editorContext, FacetValidatorsManager validatorsManager) {
@@ -48,6 +49,7 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
         ProtobufFacetSettings settings = new ProtobufFacetSettings();
         settings.COMPILE_PROTO = compilationEnabled;
         settings.COMPILER_OUTPUT_SOURCE_DIRECTORY = compilerOutputPath;
+        settings.COMPILER_ADDITIONAL_PROTO_PATHS = additionalProtoPaths;
         return settings;
     }
 
@@ -55,6 +57,7 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public void loadState(ProtobufFacetSettings settings) {
         compilationEnabled = settings.COMPILE_PROTO;
         compilerOutputPath = settings.COMPILER_OUTPUT_SOURCE_DIRECTORY;
+        additionalProtoPaths = settings.COMPILER_ADDITIONAL_PROTO_PATHS;
     }
 
     public boolean isCompilationEnabled() {
@@ -71,6 +74,14 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
 
     public void setCompilerOutputPath(String value) {
         compilerOutputPath = value;
+    }
+
+    public String getAdditionalProtoPaths() {
+        return additionalProtoPaths;
+    }
+
+    public void setAdditionalProtoPaths(String value) {
+        additionalProtoPaths = value;
     }
 
 }

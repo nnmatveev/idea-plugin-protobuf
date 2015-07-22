@@ -82,6 +82,11 @@ class PbFrameworkDetector extends FacetBasedFrameworkDetector<PbFacet, ProtobufF
             }
 
         }
+        if (StringUtil.isEmpty(config.getAdditionalProtoPaths())) {
+            if (!StringUtil.isEmpty(defaultConfiguration.getAdditionalProtoPaths())) {
+                config.setAdditionalProtoPaths(defaultConfiguration.getAdditionalProtoPaths());
+            }
+        }
     }
 
 }

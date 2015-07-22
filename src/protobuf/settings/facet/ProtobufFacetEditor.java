@@ -10,6 +10,7 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.util.Comparing;
 import com.intellij.openapi.util.io.FileUtil;
+import com.intellij.openapi.util.text.StringUtil;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import protobuf.PbBundle;
@@ -36,6 +37,7 @@ public class ProtobufFacetEditor extends FacetEditorTab {
         commonSettingsEditor.getEnableCompilationCheckbox().setSelected(configuration.isCompilationEnabled());
         commonSettingsEditor.getProtobufCompilerOutputPathField().setText(configuration.getCompilerOutputPath());
         commonSettingsEditor.getProtobufCompilerOutputPathField().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, module, commonSettingsEditor.getProtobufCompilerOutputPathField()));
+        commonSettingsEditor.getProtobufAdditionalProtoPaths().setText(configuration.getAdditionalProtoPaths());
     }
 
     @Nls
@@ -58,15 +60,26 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     public boolean isModified() {
         boolean compilationEnabled = commonSettingsEditor.getEnableCompilationCheckbox().isSelected();
         String outputPath = commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim();
+        String additionalProtoPaths = commonSettingsEditor.getProtobufAdditionalProtoPaths().getText().trim();
 
-        return (configuration.isCompilationEnabled() != compilationEnabled ||
-            !Comparing.equal(configuration.getCompilerOutputPath(), FileUtil.toSystemIndependentName(outputPath)));
+        return ((configuration.isCompilationEnabled() != compilationEnabled) ||
+            (!Comparing.equal(configuration.getCompilerOutputPath(), FileUtil.toSystemIndependentName(outputPath))) ||
+            (!Comparing.equal(configuration.getAdditionalProtoPaths(), toSystemIndependentPaths(additionalProtoPaths))));
     }
 
     @Override
     public void apply() throws ConfigurationException {
         configuration.setIsCompilationEnabled(commonSettingsEditor.getEnableCompilationCheckbox().isSelected());
         configuration.setCompilerOutputPath(FileUtil.toSystemIndependentName(commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim()));
+        configuration.setAdditionalProtoPaths(toSystemIndependentPaths(commonSettingsEditor.getProtobufAdditionalProtoPaths().getText()));
+    }
+
+    private String toSystemIndependentPaths(String paths) {
+        String[] splitPaths = paths.trim().split(";");
+        for (int i = 0; i < splitPaths.length; i++) {
+            splitPaths[i] = FileUtil.toSystemIndependentName(splitPaths[i]);
+        }
+        return StringUtil.join(splitPaths);
     }
 
     @Override
@@ -85,6 +98,10 @@ public class ProtobufFacetEditor extends FacetEditorTab {
 
     public TextFieldWithBrowseButton getProtobufCompilerOutputPathField() {
         return commonSettingsEditor.getProtobufCompilerOutputPathField();
+    }
+
+    public JTextField getProtobufAdditionalProtoPathsField() {
+        return commonSettingsEditor.getProtobufAdditionalProtoPaths();
     }
 
 }

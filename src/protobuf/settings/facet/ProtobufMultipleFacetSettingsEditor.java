@@ -41,6 +41,14 @@ public class ProtobufMultipleFacetSettingsEditor extends MultipleFacetSettingsEd
             }
         });
 
+        // Bind to the additional proto paths text field.
+        helper.bind(commonSettingsEditor.getProtobufAdditionalProtoPaths(), editors, new NotNullFunction<FacetEditor, JTextField>() {
+            @NotNull
+            public JTextField fun(final FacetEditor facetEditor) {
+                return facetEditor.getEditorTab(ProtobufFacetEditor.class).getProtobufAdditionalProtoPathsField();
+            }
+        });
+
         commonSettingsEditor.getProtobufCompilerOutputPathField().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, null, commonSettingsEditor.getProtobufCompilerOutputPathField()));
 
     }
