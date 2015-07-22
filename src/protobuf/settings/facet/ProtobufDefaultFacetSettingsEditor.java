@@ -62,12 +62,14 @@ public class ProtobufDefaultFacetSettingsEditor extends DefaultFacetSettingsEdit
         }
 
         configuration.setCompilerOutputPath(commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim());
+        configuration.setCompilerOutputPath(commonSettingsEditor.getProtobufAdditionalProtoPaths().getText().trim());
     }
 
     @Override
     public void reset() {
         commonSettingsEditor.getEnableCompilationCheckbox().setSelected(configuration.isCompilationEnabled());
         commonSettingsEditor.getProtobufCompilerOutputPathField().setText(configuration.getCompilerOutputPath());
+        commonSettingsEditor.getProtobufAdditionalProtoPaths().setText(configuration.getAdditionalProtoPaths());
     }
 
     @Override
