@@ -26,6 +26,7 @@ import org.jdom.Element;
 public class ProtobufFacetConfiguration implements FacetConfiguration, PersistentStateComponent<ProtobufFacetSettings> {
 
     private boolean compilationEnabled = true;
+    private boolean generateNanoProto = false;
     private String compilerOutputPath = "";
     private String additionalProtoPaths = "";
 
@@ -48,6 +49,7 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     public ProtobufFacetSettings getState() {
         ProtobufFacetSettings settings = new ProtobufFacetSettings();
         settings.COMPILE_PROTO = compilationEnabled;
+        settings.GENERATE_NANO_PROTO = generateNanoProto;
         settings.COMPILER_OUTPUT_SOURCE_DIRECTORY = compilerOutputPath;
         settings.COMPILER_ADDITIONAL_PROTO_PATHS = additionalProtoPaths;
         return settings;
@@ -56,6 +58,7 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
     @Override
     public void loadState(ProtobufFacetSettings settings) {
         compilationEnabled = settings.COMPILE_PROTO;
+        generateNanoProto = settings.GENERATE_NANO_PROTO;
         compilerOutputPath = settings.COMPILER_OUTPUT_SOURCE_DIRECTORY;
         additionalProtoPaths = settings.COMPILER_ADDITIONAL_PROTO_PATHS;
     }
@@ -66,6 +69,14 @@ public class ProtobufFacetConfiguration implements FacetConfiguration, Persisten
 
     public void setIsCompilationEnabled(boolean value) {
         compilationEnabled = value;
+    }
+
+    public boolean isGenerateNanoProto() {
+        return generateNanoProto;
+    }
+
+    public void setGenerateNanoProto(boolean value) {
+        generateNanoProto = value;
     }
 
     public String getCompilerOutputPath() {

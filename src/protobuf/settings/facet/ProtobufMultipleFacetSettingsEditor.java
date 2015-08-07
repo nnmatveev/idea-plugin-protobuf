@@ -33,6 +33,14 @@ public class ProtobufMultipleFacetSettingsEditor extends MultipleFacetSettingsEd
             }
         });
 
+        // Bind to the generate nano proto checkbox.
+        helper.bind(commonSettingsEditor.getGenerateNanoProtoCheckBox(), editors, new NotNullFunction<FacetEditor, JCheckBox>() {
+            @NotNull
+            public JCheckBox fun(final FacetEditor facetEditor) {
+                return (facetEditor.getEditorTab(ProtobufFacetEditor.class)).getGenerateNanoProtoCheckbox();
+            }
+        });
+
         // Bind to the output source directory text field.
         helper.bind(commonSettingsEditor.getProtobufCompilerOutputPathField().getTextField(), editors, new NotNullFunction<FacetEditor, JTextField>() {
             @NotNull
