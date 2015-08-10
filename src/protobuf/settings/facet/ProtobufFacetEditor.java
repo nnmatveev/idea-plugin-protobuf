@@ -35,6 +35,7 @@ public class ProtobufFacetEditor extends FacetEditorTab {
         final Module module = editorContext.getModule();
 
         commonSettingsEditor.getEnableCompilationCheckbox().setSelected(configuration.isCompilationEnabled());
+        commonSettingsEditor.getGenerateNanoProtoCheckBox().setSelected(configuration.isGenerateNanoProto());
         commonSettingsEditor.getProtobufCompilerOutputPathField().setText(configuration.getCompilerOutputPath());
         commonSettingsEditor.getProtobufCompilerOutputPathField().addBrowseFolderListener(project, new CompilerOutputBrowseFolderActionListener(project, module, commonSettingsEditor.getProtobufCompilerOutputPathField()));
         commonSettingsEditor.getProtobufAdditionalProtoPaths().setText(configuration.getAdditionalProtoPaths());
@@ -59,10 +60,12 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     @Override
     public boolean isModified() {
         boolean compilationEnabled = commonSettingsEditor.getEnableCompilationCheckbox().isSelected();
+        boolean generateNanoProto = commonSettingsEditor.getGenerateNanoProtoCheckBox().isSelected();
         String outputPath = commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim();
         String additionalProtoPaths = commonSettingsEditor.getProtobufAdditionalProtoPaths().getText().trim();
 
         return ((configuration.isCompilationEnabled() != compilationEnabled) ||
+            (configuration.isGenerateNanoProto() != generateNanoProto) ||
             (!Comparing.equal(configuration.getCompilerOutputPath(), FileUtil.toSystemIndependentName(outputPath))) ||
             (!Comparing.equal(configuration.getAdditionalProtoPaths(), toSystemIndependentPaths(additionalProtoPaths))));
     }
@@ -70,6 +73,7 @@ public class ProtobufFacetEditor extends FacetEditorTab {
     @Override
     public void apply() throws ConfigurationException {
         configuration.setIsCompilationEnabled(commonSettingsEditor.getEnableCompilationCheckbox().isSelected());
+        configuration.setGenerateNanoProto(commonSettingsEditor.getGenerateNanoProtoCheckBox().isSelected());
         configuration.setCompilerOutputPath(FileUtil.toSystemIndependentName(commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim()));
         configuration.setAdditionalProtoPaths(toSystemIndependentPaths(commonSettingsEditor.getProtobufAdditionalProtoPaths().getText()));
     }
@@ -94,6 +98,10 @@ public class ProtobufFacetEditor extends FacetEditorTab {
 
     public JCheckBox getEnableCompilationCheckbox() {
         return commonSettingsEditor.getEnableCompilationCheckbox();
+    }
+
+    public JCheckBox getGenerateNanoProtoCheckbox() {
+        return commonSettingsEditor.getGenerateNanoProtoCheckBox();
     }
 
     public TextFieldWithBrowseButton getProtobufCompilerOutputPathField() {

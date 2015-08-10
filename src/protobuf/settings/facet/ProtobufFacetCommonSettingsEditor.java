@@ -13,6 +13,7 @@ public class ProtobufFacetCommonSettingsEditor extends JComponent {
 
     private JPanel mainPanel;
     private ThreeStateCheckBox enableCompilationCheckBox;
+    private ThreeStateCheckBox generateNanoProtoCheckBox;
     private TextFieldWithBrowseButton protobufCompilerOutputPath;
     private JTextField protobufAdditionalProtoPaths;
 
@@ -26,6 +27,10 @@ public class ProtobufFacetCommonSettingsEditor extends JComponent {
 
     public ThreeStateCheckBox getEnableCompilationCheckbox() {
         return enableCompilationCheckBox;
+    }
+
+    public ThreeStateCheckBox getGenerateNanoProtoCheckBox() {
+        return generateNanoProtoCheckBox;
     }
 
     public TextFieldWithBrowseButton getProtobufCompilerOutputPathField() {
