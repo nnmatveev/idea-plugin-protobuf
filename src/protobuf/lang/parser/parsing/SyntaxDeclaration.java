@@ -13,7 +13,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
  */
 public class SyntaxDeclaration implements PbElementTypes {
 
-    public static boolean parse(PbPatchedPsiBuilder builder) {
+    public static boolean parse(PbPatchedPsiBuilder builder, CompilationUnit.Context parsingContext) {
         if (!builder.compareToken(SYNTAX)) {
             return false;
         }
@@ -22,6 +22,7 @@ public class SyntaxDeclaration implements PbElementTypes {
         builder.match(EQUAL, "equal.expected");
 
         PsiBuilder.Marker valueMarker = builder.mark();
+        parsingContext.setSyntax(builder.getTokenText());
         if (builder.match(STRING_LITERALS)) {
             valueMarker.done(VALUE);
         } else {

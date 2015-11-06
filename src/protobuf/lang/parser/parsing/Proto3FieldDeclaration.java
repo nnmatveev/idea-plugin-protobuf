@@ -9,29 +9,26 @@ import static protobuf.lang.PbElementTypes.*;
  * @author Nikolay Matveev
  *         Date: Mar 25, 2010
  */
-public class FieldDeclaration {
+public class Proto3FieldDeclaration {
 
     public static boolean parse(PbPatchedPsiBuilder builder) {
-        if (!builder.compareToken(FIELD_LABELS)) {
-            return false;
-        }
-        if (builder.lookAhead(FIELD_LABELS, GROUP_SET)) {
+        if (builder.lookAhead(PROTO3_FIELD_LABELS, GROUP_SET) || builder.lookAhead(GROUP_SET)) {
             PsiBuilder.Marker messageMarker = builder.mark();
-            builder.match(FIELD_LABELS);
+            builder.match(PROTO3_FIELD_LABELS);
             builder.match(GROUP);
             builder.match(IK, "identifier.expected");
             //builder.matchAs(IK, NAME, "identifier.expected");
             builder.match(EQUAL, "equal.expected");
             builder.matchAs(NUM_INT, VALUE, "num.integer.expected");
             OptionDeclaration.parseOptionList(builder);
-            if (!MessageDeclaration.parseMessageBlock(builder, false)) {
+            if (!MessageDeclaration.parseMessageBlock(builder, true)) {
                 builder.error("group.block.expected");
             }
             messageMarker.done(GROUP_DECL);
 
         } else {
             PsiBuilder.Marker messageMarker = builder.mark();
-            builder.match(FIELD_LABELS);
+            builder.match(PROTO3_FIELD_LABELS);
             parseType(builder);
             builder.match(IK, "identifier.expected");
             //builder.matchAs(IK, NAME, "identifier.expected");

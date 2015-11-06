@@ -10,7 +10,7 @@ import protobuf.lang.parser.util.PbPatchedPsiBuilder;
 
 public class MessageDeclaration implements PbElementTypes {
 
-    public static boolean parse(PbPatchedPsiBuilder builder) {
+    public static boolean parse(PbPatchedPsiBuilder builder, boolean proto3Syntax) {
         if (!builder.compareToken(MESSAGE)) {
             return false;
         }
@@ -18,21 +18,21 @@ public class MessageDeclaration implements PbElementTypes {
         builder.match(MESSAGE);
         //builder.matchAs(IK,NAME,"identifier.expected");
         builder.match(IK, "identifier.expected");
-        if (!parseMessageBlock(builder)) {
+        if (!parseMessageBlock(builder, proto3Syntax)) {
             builder.error("message.block.expected");
         }
         messageMarker.done(MESSAGE_DECL);
         return true;
     }
 
-    public static boolean parseMessageBlock(PbPatchedPsiBuilder builder) {
+    public static boolean parseMessageBlock(PbPatchedPsiBuilder builder, boolean isProto3Syntax) {
         if (!builder.compareToken(OPEN_BLOCK)) {
             return false;
         }
         PsiBuilder.Marker blockMarker = builder.mark();
         builder.match(OPEN_BLOCK); //matching OPEN_BLOCK
         while (!builder.eof() && !builder.compareToken(CLOSE_BLOCK)) {
-            if (!parseMessageMember(builder)) {
+            if (!parseMessageMember(builder, isProto3Syntax)) {
                 builder.eatError("unexpected.token");
             }
         }
@@ -41,22 +41,22 @@ public class MessageDeclaration implements PbElementTypes {
         return true;
     }
 
-    public static boolean parseMessageMember(PbPatchedPsiBuilder builder) {
+    public static boolean parseMessageMember(PbPatchedPsiBuilder builder, boolean proto3Syntax) {
         //PsiBuilder.Marker statementMarker = builder.mark();
         if (builder.match(SEMICOLON)) {
-        } else if (MessageDeclaration.parse(builder)) {
+        } else if (MessageDeclaration.parse(builder, proto3Syntax)) {
 
         } else if (OneofDeclaration.parse(builder)) {
 
         } else if (EnumDeclaration.parse(builder)) {
 
-        } else if (ExtendDeclaration.parse(builder)) {
+        } else if (ExtendDeclaration.parse(builder, proto3Syntax)) {
 
         } else if (OptionDeclaration.parseSeparateOption(builder)) {
 
         } else if (parseExtensions(builder)) {
 
-        } else if (FieldDeclaration.parse(builder)) {
+        } else if (proto3Syntax ? Proto3FieldDeclaration.parse(builder) : FieldDeclaration.parse(builder)) {
         } else {
             //statementMarker.drop();
             return false;
