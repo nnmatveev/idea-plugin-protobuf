@@ -84,6 +84,7 @@ public interface PbTokenTypes {
     IElementType OPTIONAL = new PbElementType("OPTIONAL");
     IElementType REPEATED = new PbElementType("REPEATED");
     TokenSet FIELD_LABELS = TokenSet.create(REQUIRED,OPTIONAL,REPEATED); //keywords
+    TokenSet PROTO3_FIELD_LABELS = TokenSet.create(REPEATED); //keywords
 
 
     IElementType GROUP = new PbElementType("GROUP");  TokenSet GROUP_SET = TokenSet.create(GROUP); //hack for lookAhead
