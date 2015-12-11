@@ -93,6 +93,7 @@ WRONG_STRING_SINGLE_QUOTED = \'[^\'\r\n]*
 "enum"                              {return (ENUM);}
 "oneof"                              {return (ONEOF);}
 "returns"                           {return (RETURNS);}
+"stream"                            {return (STREAM);}
 "option"                            {return (OPTION);}
 "group"                             {return (GROUP);}
 "extensions"                        {return (EXTENSIONS);}

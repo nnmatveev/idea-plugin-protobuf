@@ -54,12 +54,14 @@ public class ServiceDeclaration implements PbElementTypes {
         builder.match(IK, "identifier.expected");
         //builder.matchAs(IK,NAME, "identifier.expected");
         builder.match(OPEN_PARENTHESIS, "open.parenthesis.expected");
+        builder.match(STREAM);
         if (!ReferenceElement.parseForCustomType(builder)) {
             builder.error("user.defined.type.expected");
         }
         builder.match(CLOSE_PARENTHESIS, "close.parenthesis.expected");
         builder.match(RETURNS, "returns.expected");
         builder.match(OPEN_PARENTHESIS, "open.parenthesis.expected");
+        builder.match(STREAM);
         if (!ReferenceElement.parseForCustomType(builder)) {
             builder.error("user.defined.type.expected");
         }

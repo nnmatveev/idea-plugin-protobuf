@@ -67,6 +67,7 @@ public interface PbTokenTypes {
 
     IElementType RPC = new PbElementType("RPC");
     IElementType RETURNS = new PbElementType("RETURNS");
+    IElementType STREAM = new PbElementType("STREAM");
     IElementType EXTENSIONS = new PbElementType("EXTENSIONS");
     //--
 
@@ -110,7 +111,7 @@ public interface PbTokenTypes {
                                                 FIXED32,FIXED64,SFIXED32,
                                                 SFIXED64,BOOL,STRING,BYTES);  //keywords
 
-    TokenSet OTHER_KEYWORDS = TokenSet.create(RPC,RETURNS,GROUP,EXTENSIONS,TO,MAX);//keywords
+    TokenSet OTHER_KEYWORDS = TokenSet.create(RPC,RETURNS,GROUP,EXTENSIONS,TO,MAX,STREAM);//keywords
 
     //Options
     //--File settings
