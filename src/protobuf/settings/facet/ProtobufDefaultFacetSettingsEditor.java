@@ -42,13 +42,14 @@ public class ProtobufDefaultFacetSettingsEditor extends DefaultFacetSettingsEdit
     @Override
     public boolean isModified() {
         return configuration.isCompilationEnabled() != commonSettingsEditor.getEnableCompilationCheckbox().isSelected() ||
-                !configuration.getCompilerOutputPath().equals(commonSettingsEditor.getProtobufCompilerOutputPathField().getText());
+                configuration.isGenerateNanoProto() != commonSettingsEditor.getGenerateNanoProtoCheckBox().isSelected() ||
+                !configuration.getCompilerOutputPath().equals(commonSettingsEditor.getProtobufCompilerOutputPathField().getText()) ||
+                !configuration.getAdditionalProtoPaths().equals(commonSettingsEditor.getProtobufAdditionalProtoPaths().getText());
     }
 
     @Override
     public void apply() throws ConfigurationException {
         boolean isCompilationCheckboxEnabled = commonSettingsEditor.getEnableCompilationCheckbox().isSelected();
-        configuration.setIsCompilationEnabled(isCompilationCheckboxEnabled);
         if (isCompilationCheckboxEnabled && !configuration.isCompilationEnabled()) {
             CompilerManager compilerManager = CompilerManager.getInstance(project);
             compilerManager.addCompilableFileType(PbFileType.PROTOBUF_FILE_TYPE);
@@ -61,13 +62,18 @@ public class ProtobufDefaultFacetSettingsEditor extends DefaultFacetSettingsEdit
             }
         }
 
+        configuration.setIsCompilationEnabled(isCompilationCheckboxEnabled);
+        configuration.setGenerateNanoProto(commonSettingsEditor.getGenerateNanoProtoCheckBox().isSelected());
         configuration.setCompilerOutputPath(commonSettingsEditor.getProtobufCompilerOutputPathField().getText().trim());
+        configuration.setCompilerOutputPath(commonSettingsEditor.getProtobufAdditionalProtoPaths().getText().trim());
     }
 
     @Override
     public void reset() {
         commonSettingsEditor.getEnableCompilationCheckbox().setSelected(configuration.isCompilationEnabled());
+        commonSettingsEditor.getGenerateNanoProtoCheckBox().setSelected(configuration.isGenerateNanoProto());
         commonSettingsEditor.getProtobufCompilerOutputPathField().setText(configuration.getCompilerOutputPath());
+        commonSettingsEditor.getProtobufAdditionalProtoPaths().setText(configuration.getAdditionalProtoPaths());
     }
 
     @Override

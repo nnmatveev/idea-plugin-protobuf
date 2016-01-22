@@ -147,7 +147,15 @@ public class PbCompiler implements SourceGeneratingCompiler {
                             for (String addtionalProtoPath : getAdditionalProtoPaths()) {
                                 compilerCommand.append(" --proto_path=").append(addtionalProtoPath);
                             }
-                            compilerCommand.append(" --java_out=").append(outputPath);
+                            for (String addtionalProtoPath : getModuleAdditionalProtoPaths(item)) {
+                                compilerCommand.append(" --proto_path=").append(addtionalProtoPath);
+                            }
+                            if (item.getFacet().getConfiguration().isGenerateNanoProto()) {
+                                compilerCommand.append(" --javanano_out=");
+                            } else {
+                                compilerCommand.append(" --java_out=");
+                            }
+                            compilerCommand.append(outputPath);
                             compilerCommand.append(" ").append(item.getPath());
                             LOG.info("Invoking protoc: " + compilerCommand.toString());
                             proc = Runtime.getRuntime().exec(compilerCommand.toString());
@@ -245,10 +253,21 @@ public class PbCompiler implements SourceGeneratingCompiler {
             return false;
         }
 
+        boolean compilerHasJavaNanoOutOption = hasJavaNanoOutOption(pathToCompiler);
+
         for (Module module : modules) {
             PbFacet facet = FacetManager.getInstance(module).getFacetByType(PbFacetType.ID);
             if (facet != null) {
-                String outputPath = facet.getConfiguration().getCompilerOutputPath();
+                ProtobufFacetConfiguration configuration = facet.getConfiguration();
+
+                if (!compilerHasJavaNanoOutOption && configuration.isCompilationEnabled() && configuration.isGenerateNanoProto()) {
+                    Messages.showErrorDialog(PbBundle.message(
+                            "compiler.validate.error.protoc.javaout.nano.not.supported", module.getName()),
+                            PbBundle.message("compiler.validate.error.title"));
+                    return false;
+                }
+
+                String outputPath = configuration.getCompilerOutputPath();
 
                 // Make sure the configuration has a value for the output source directory.
                 if (outputPath == null) {
@@ -338,6 +357,10 @@ public class PbCompiler implements SourceGeneratingCompiler {
         return compilerAppSettings.ADDITIONAL_PROTO_PATHS.split(";");
     }
 
+    private String[] getModuleAdditionalProtoPaths(PbGenerationItem item) {
+        return item.getFacet().getConfiguration().getAdditionalProtoPaths().split(";");
+    }
+
     private void processStreams(CompileContext context, InputStream inp, InputStream err, PbGenerationItem item) {
         try {
             String[] errorLines = StreamUtil.readText(err).trim().split("\n");
@@ -361,6 +384,21 @@ public class PbCompiler implements SourceGeneratingCompiler {
             context.addMessage(CompilerMessageCategory.ERROR, line, item.getUrl(), -1, -1);
         }
 
+    }
+
+    private boolean hasJavaNanoOutOption(String pathToCompiler) {
+        try {
+            Process proc = Runtime.getRuntime().exec(new String[] { pathToCompiler, "--help" });
+            String[] helpLines = StreamUtil.readText(proc.getInputStream()).trim().split("\n");
+            for (String line : helpLines) {
+                if (line.contains("--javanano_out=")) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public VirtualFile getPresentableFile(CompileContext context, Module module, VirtualFile outputRoot, VirtualFile generatedFile) {

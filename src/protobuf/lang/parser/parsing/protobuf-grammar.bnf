@@ -63,5 +63,5 @@ STRING_LITERALS ::= NUMBERS | IDENTIFIER | STRING | KEYWORD | BOOL_VALUES
 <Service Declaration> ::= 'service' IDENTIFIER <Service Block>
 <Service Block> ::= '{' (<Service Member> | ';')* '}'
 <Service Member> ::= <Service Method> | <Option Declaration>
-<Service Method> ::= 'rpc' IDENTIFIER '(' <User Defined Type> ')' 'returns' '(' <User Defined Type> ')' <Service Method Block>? ';'
+<Service Method> ::= 'rpc' IDENTIFIER '(' <User Defined Type> ')' 'returns' '(' ('stream' | <User Defined Type>) ')' <Service Method Block>? ';'
 <Service Method Block> ::= '{' (<Option Declaration>|';')* '}'
