@@ -58,6 +58,7 @@ public class PbCompiler implements SourceGeneratingCompiler {
     private static final String PROTOC_LINUX = "protoc";
     private static final String PROTOC_MAC = "protoc";
 
+    private static final String DEFAULT_PROTO_SOURCE_ROOT = "src/main/proto";
 
     private static final Matcher ERROR_IN_LINE_MATCHER = Pattern.compile("[^:]*:[0-9]*:[0-9]*:.*").matcher("");
     private static final Matcher ERROR_IN_FILE_MATCHER = Pattern.compile("[^:]*:[^:]*").matcher("");
@@ -150,13 +151,22 @@ public class PbCompiler implements SourceGeneratingCompiler {
                             for (String addtionalProtoPath : getModuleAdditionalProtoPaths(item)) {
                                 compilerCommand.append(" --proto_path=").append(addtionalProtoPath);
                             }
+                            // Add the default proto source root for the module if the directory exists.
+                            VirtualFile moduleFile = item.getModule().getModuleFile();
+                            if (moduleFile != null) {
+                                VirtualFile protoSourceRoot = moduleFile.getParent().findFileByRelativePath(DEFAULT_PROTO_SOURCE_ROOT);
+                                if ((protoSourceRoot != null) && protoSourceRoot.isDirectory()) {
+                                    compilerCommand.append(" --proto_path=").append(protoSourceRoot.getPath());
+                                }
+                            }
+
                             if (item.getFacet().getConfiguration().isGenerateNanoProto()) {
                                 compilerCommand.append(" --javanano_out=");
                             } else {
                                 compilerCommand.append(" --java_out=");
                             }
                             compilerCommand.append(outputPath);
-                            compilerCommand.append(" ").append(item.getPath());
+							compilerCommand.append(" ").append(item.getPath());
                             LOG.info("Invoking protoc: " + compilerCommand.toString());
                             proc = Runtime.getRuntime().exec(compilerCommand.toString());
                             processStreams(compileContext, proc.getInputStream(), proc.getErrorStream(), item);
