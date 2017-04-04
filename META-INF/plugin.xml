@@ -2,7 +2,7 @@
     <id>com.nmatveev.idea-plugin-protobuf</id>
     <vendor>Strintec</vendor>
     <name>Google Protocol Buffers support</name>
-    <version>0.5.10</version>
+    <version>0.6.0</version>
     <category>Custom Languages</category>
     <description>
         <![CDATA[
